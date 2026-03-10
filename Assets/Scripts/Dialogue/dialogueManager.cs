@@ -11,6 +11,11 @@ public class dialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText; //accéder aux fichiers ink
 
+    [Header("Choices UI")]
+
+    [SerializeField] private GameObject[] choices; 
+    [SerializeField] private TextMeshProUGUI choicesText;
+
     private Story currentStory; //pour voir quel ink file est display
 
     public bool dialogueIsPlaying { get; private set; } //pour voir si le texte se joue
@@ -36,6 +41,12 @@ public class dialogueManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
+
+        ////récupérer les choix de dialogues
+        //choicesText = new TextMeshProUGUI[choices.Length];
+        //int index = 0;
+        //foreach (GameObject choices in choice) ;
+
     }
 
     private void Update()
@@ -47,9 +58,10 @@ public class dialogueManager : MonoBehaviour
         }
 
         // se joue si le joueur clique sur le bon bouton 
-        if (Input.GetButtonDown("Interact"))
+        if (InputManager.GetInstance().GetInteractPressed())
         {
             ContinueStory();
+
         }
     }
 
@@ -58,6 +70,15 @@ public class dialogueManager : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
+
+        if (currentStory.canContinue)
+        {
+            dialogueText.text = currentStory.Continue();  //continue vas appeler la prochaine ligne de dialogue 
+        }
+        else
+        {
+            StartCoroutine(ExitDialogueMode());
+        }
 
     }
 
