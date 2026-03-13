@@ -26,19 +26,11 @@ public class PlayerMovement2D : MonoBehaviour
 
     void Update()
     {
-        if (dialogueManager.GetInstance().dialogueIsPlaying)
-        {
-            return;
-        }
         Move();
     }
 
     void FixedUpdate()
     {
-        if (dialogueManager.GetInstance().dialogueIsPlaying)
-        {
-            return;
-        }
         JumpPhysic();
     }
 

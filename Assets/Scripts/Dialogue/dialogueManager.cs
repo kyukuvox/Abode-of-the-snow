@@ -1,104 +1,71 @@
-using TMPro;
-using UnityEngine;
+ï»¿using UnityEngine;
+using UnityEngine.UI;
 using Ink.Runtime;
-using System.Collections; //pour utilisé les varaibles de types Story 
 
-
-public class dialogueManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour
 {
-    [Header("Dialogue UI")]
+    public static DialogueManager Instance;
 
-    [SerializeField] private GameObject dialoguePanel;
-    [SerializeField] private TextMeshProUGUI dialogueText; //accéder aux fichiers ink
+    [Header("Ink")]
+    public TextAsset inkFile; // glisse le .json compilÃ© ici
 
-    [Header("Choices UI")]
+    [Header("UI")]
+    public GameObject dialoguePanel;
+    public Text dialogueText;
+    public Button[] choiceButtons;
 
-    [SerializeField] private GameObject[] choices; 
-    [SerializeField] private TextMeshProUGUI choicesText;
+    private Story _story;
 
-    private Story currentStory; //pour voir quel ink file est display
-
-    public bool dialogueIsPlaying { get; private set; } //pour voir si le texte se joue
-
-    private static dialogueManager instance;
-
-    private void Awake()
+    void Start()
     {
-        if ( instance != null) //Mesure de sécurité si le singleton est double 
-        {
-            Debug.LogWarning("il y a un dialogueManager de plus dans la scène");
-        }
-
-        instance = this;
+        dialoguePanel.SetActive(false); // cache le panel au dÃ©marrage
     }
 
-    public static dialogueManager GetInstance()
+    void Awake() => Instance = this;
+
+    public void StartDialogue(string itemId)
     {
-        return instance;
-    }
+        _story = new Story(inkFile.text);
+        _story.variablesState["item_name"] = itemId;
 
-    private void Start() //pour commencer le dialogue caché 
-    {
-        dialogueIsPlaying = false;
-        dialoguePanel.SetActive(false);
-
-        ////récupérer les choix de dialogues
-        //choicesText = new TextMeshProUGUI[choices.Length];
-        //int index = 0;
-        //foreach (GameObject choices in choice) ;
-
-    }
-
-    private void Update()
-    {
-        // ne se joue pas si dialogue n'est pas entrain de se jouer 
-        if (!dialogueIsPlaying) 
-        {
-            return;
-        }
-
-        // se joue si le joueur clique sur le bon bouton 
-        if (InputManager.GetInstance().GetInteractPressed())
-        {
-            ContinueStory();
-
-        }
-    }
-
-    public void EnterDialogueMode(TextAsset inkJSON) // pour rentrer en mode dialogue
-    {
-        currentStory = new Story(inkJSON.text);
-        dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
+        _story.ChoosePathString("present_item");
+        DisplayNextLine();
+    }
 
-        if (currentStory.canContinue)
+    public void DisplayNextLine()
+    {
+        if (_story.canContinue)
         {
-            dialogueText.text = currentStory.Continue();  //continue vas appeler la prochaine ligne de dialogue 
+            dialogueText.text = _story.Continue();
+            ShowChoices();
         }
         else
         {
-            StartCoroutine(ExitDialogueMode());
+            EndDialogue();
         }
-
     }
 
-    private IEnumerator ExitDialogueMode()
+    void ShowChoices()
     {
-        yield return new WaitForSeconds(0.2f);
+        foreach (var btn in choiceButtons)
+            btn.gameObject.SetActive(false);
 
-        dialogueIsPlaying = false;
-        dialoguePanel.SetActive(false);
-        dialogueText.text = "";
+        for (int i = 0; i < _story.currentChoices.Count; i++)
+        {
+            int index = i;
+            choiceButtons[i].gameObject.SetActive(true);
+            choiceButtons[i].GetComponentInChildren<Text>().text = _story.currentChoices[i].text;
+            choiceButtons[i].onClick.RemoveAllListeners();
+            choiceButtons[i].onClick.AddListener(() => ChooseOption(index));
+        }
     }
-    private void ContinueStory()
+
+    void ChooseOption(int index)
     {
-        if (currentStory.canContinue)
-        {
-            dialogueText.text = currentStory.Continue();  //continue vas appeler la prochaine ligne de dialogue 
-        }
-        else
-        {
-            StartCoroutine(ExitDialogueMode());
-        }
+        _story.ChooseChoiceIndex(index);
+        DisplayNextLine();
     }
+
+    void EndDialogue() => dialoguePanel.SetActive(false);
 }
