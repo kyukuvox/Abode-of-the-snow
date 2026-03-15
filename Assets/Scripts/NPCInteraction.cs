@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class NPCInteraction : MonoBehaviour
 {
@@ -15,14 +15,21 @@ public class NPCInteraction : MonoBehaviour
 
     void Update()
     {
-        // Vérifie si le joueur est assez proche
         float distance = Vector2.Distance(transform.position, player.position);
         playerInRange = distance <= interactionRange;
 
-        // Appui sur E (ancien système d'input)
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            TriggerDialogue();
+            // Si un dialogue est en cours â†’ on l'avance ou le ferme
+            if (DialogueManager.Instance.IsActive())
+            {
+                DialogueManager.Instance.OnPressE();
+            }
+            // Sinon â†’ on dÃ©marre le dialogue si le joueur est assez proche
+            else if (playerInRange)
+            {
+                TriggerDialogue();
+            }
         }
     }
 
@@ -31,7 +38,7 @@ public class NPCInteraction : MonoBehaviour
         DialogueManager.Instance.StartDialogue(defaultDialogue);
     }
 
-    // Visualise la portée dans l'éditeur (cercle vert)
+    // Visualise la portÃ©e dans l'Ã©diteur (cercle vert)
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
