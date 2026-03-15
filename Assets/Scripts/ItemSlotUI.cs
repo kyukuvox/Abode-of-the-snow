@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemSlotUI : MonoBehaviour
@@ -17,7 +17,7 @@ public class ItemSlotUI : MonoBehaviour
         myButton.onClick.AddListener(OnClick);
     }
 
-    // Appel� par InventoryUI pour assigner l'item � ce slot
+    // Appelé par InventoryUI pour assigner l'item à ce slot
     public void Setup(Item item)
     {
         myItem = item;
@@ -26,18 +26,16 @@ public class ItemSlotUI : MonoBehaviour
 
     void OnClick()
     {
-        // Trouve le PNJ le plus proche et lui donne l'item
         NPCWithItemDialogue npc = FindNearestNPC();
         if (npc != null)
         {
-            npc.ReceiveItem(myItem);
-            Inventory.Instance.RemoveItem(myItem);
+            npc.ReceiveItem(myItem); // ← le PNJ décide si l'item est consommé
         }
     }
 
     NPCWithItemDialogue FindNearestNPC()
     {
-        // Cherche tous les PNJs dans la sc�ne
+        // Cherche tous les PNJs dans la scène
         NPCWithItemDialogue[] allNPCs = FindObjectsOfType<NPCWithItemDialogue>();
         NPCWithItemDialogue nearest = null;
         float minDist = 3f; // Distance max pour donner un item

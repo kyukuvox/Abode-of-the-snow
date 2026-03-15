@@ -8,6 +8,7 @@ public class NPCWithItemDialogue : NPCInteraction
     {
         public Item item;           // L'item qui déclenche ce dialogue
         public DialogueData dialogue; // Le dialogue correspondant
+        public bool consumesItem = true;
     }
 
     public List<ItemDialoguePair> itemDialogues; // Liste des paires item/dialogue
@@ -15,7 +16,6 @@ public class NPCWithItemDialogue : NPCInteraction
     //Appelé par ItemSlotUI quand on clique sur un slot
     public void ReceiveItem(Item item)
     {
-        // Coupe proprement le dialogue en cours avant d'en lancer un nouveau
         DialogueManager.Instance.EndDialogue();
 
         foreach (var pair in itemDialogues)
@@ -23,12 +23,16 @@ public class NPCWithItemDialogue : NPCInteraction
             if (pair.item == item)
             {
                 DialogueManager.Instance.StartDialogue(pair.dialogue);
+
+                // Supprime ou non selon la config du PNJ
+                if (pair.consumesItem)
+                    Inventory.Instance.RemoveItem(item);
                 return;
             }
         }
 
         DialogueManager.Instance.StartDialogue(defaultDialogue);
     }
-  
+
 
 }
