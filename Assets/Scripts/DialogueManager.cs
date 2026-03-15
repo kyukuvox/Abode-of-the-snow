@@ -7,62 +7,79 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance;
 
     public GameObject dialoguePanel;
-    public Text dialogueText;       // ou TMP_Text si tu utilises TextMeshPro
+    public Text dialogueText;
     public Text npcNameText;
 
-    private string[] currentLines;
+    [Header("Portraits")]
+    public Image playerPortraitImage; // Glisse PlayerPortrait ici
+    public Image npcPortraitImage;    // Glisse NPCPortrait ici
+
+    private DialogueData currentData;
     private int currentLineIndex;
     private bool isDialogueActive = false;
     private bool isTyping = false;
     private string currentFullLine = "";
 
-    public float typingSpeed = 0.05f; // Vitesse d'apparition des lettres
+    public float typingSpeed = 0.05f;
 
     void Awake()
     {
         Instance = this;
     }
 
-    // Appelé par le PNJ pour démarrer un dialogue
     public void StartDialogue(DialogueData data)
     {
-        Debug.Log("StartDialogue appelé avec : " + (data != null ? data.name : "NULL"));
-        Debug.Log("isDialogueActive = " + isDialogueActive);
-        Debug.Log("dialoguePanel = " + (dialoguePanel != null ? "OK" : "NULL"));
-
         if (isDialogueActive) return;
 
         isDialogueActive = true;
-        currentLines = data.lines;
+        currentData = data;
         currentLineIndex = 0;
-        npcNameText.text = data.npcName;
         dialoguePanel.SetActive(true);
 
-        StartCoroutine(TypeLine(currentLines[currentLineIndex]));
+        DisplayLine(currentData.lines[currentLineIndex]);
     }
 
-    // Appelé quand le joueur appuie sur E
     public void OnPressE()
     {
         if (!isDialogueActive) return;
 
         if (isTyping)
         {
-            // Si le texte est en train de s'écrire → l'affiche en entier immédiatement
+            // Affiche la ligne en entier immédiatement
             StopAllCoroutines();
             dialogueText.text = currentFullLine;
             isTyping = false;
         }
         else
         {
-            // Passe à la ligne suivante
             currentLineIndex++;
 
-            if (currentLineIndex < currentLines.Length)
-                StartCoroutine(TypeLine(currentLines[currentLineIndex]));
+            if (currentLineIndex < currentData.lines.Length)
+                DisplayLine(currentData.lines[currentLineIndex]);
             else
                 EndDialogue();
         }
+    }
+
+    void DisplayLine(DialogueLine line)
+    {
+        // Met à jour le nom affiché et les portraits selon qui parle
+        if (line.speaker == DialogueLine.Speaker.NPC)
+        {
+            npcNameText.text = currentData.npcName;
+            npcPortraitImage.sprite = currentData.npcPortrait;
+            npcPortraitImage.gameObject.SetActive(true);
+            playerPortraitImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            npcNameText.text = "Joueur";
+            playerPortraitImage.sprite = currentData.playerPortrait;
+            playerPortraitImage.gameObject.SetActive(true);
+            npcPortraitImage.gameObject.SetActive(false);
+        }
+
+        StartCoroutine(TypeLine(line.text));
     }
 
     IEnumerator TypeLine(string line)
@@ -84,8 +101,8 @@ public class DialogueManager : MonoBehaviour
     {
         isDialogueActive = false;
         dialoguePanel.SetActive(false);
-        currentLines = null;
-        StopAllCoroutines(); // Arrête aussi l'effet de frappe en cours
+        currentData = null;
+        StopAllCoroutines();
     }
 
     public bool IsActive() { return isDialogueActive; }

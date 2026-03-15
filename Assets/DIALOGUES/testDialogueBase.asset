@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: testDialogueBase
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   npcName: Gregory
+  npcPortrait: {fileID: 3965134887974747985, guid: 8caa714b8906d7945b095ac85ce1bfff, type: 3}
+  playerPortrait: {fileID: 3690293445947645659, guid: 6fed411ece9e5f042b84dcf9bea61315, type: 3}
   lines:
-  - 'HEY !!
-
-'
+  - speaker: 1
+    text: Tu me veux quoi ?
+  - speaker: 0
+    text: eeeuh je sais pas ....

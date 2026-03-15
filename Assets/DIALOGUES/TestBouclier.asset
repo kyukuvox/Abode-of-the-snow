@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: TestBouclier
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   npcName: "Gr\xE9gory"
+  npcPortrait: {fileID: 3965134887974747985, guid: 8caa714b8906d7945b095ac85ce1bfff, type: 3}
+  playerPortrait: {fileID: 3690293445947645659, guid: 6fed411ece9e5f042b84dcf9bea61315, type: 3}
   lines:
-  - 'c''est mon bouclier !!
-
-'
+  - speaker: 0
+    text: ton bouclier est avec moi !
+  - speaker: 1
+    text: Mais noooon , trop bien man !

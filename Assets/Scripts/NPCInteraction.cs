@@ -7,6 +7,7 @@ public class NPCInteraction : MonoBehaviour
 
     private Transform player;
     private bool playerInRange = false;
+    private float dialogueCooldown = 0f;
 
     void Start()
     {
@@ -18,16 +19,19 @@ public class NPCInteraction : MonoBehaviour
         float distance = Vector2.Distance(transform.position, player.position);
         playerInRange = distance <= interactionRange;
 
+        // Diminue le cooldown avec le temps
+        if (dialogueCooldown > 0f)
+            dialogueCooldown -= Time.deltaTime;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // Si un dialogue est en cours → on l'avance ou le ferme
             if (DialogueManager.Instance.IsActive())
             {
                 DialogueManager.Instance.OnPressE();
             }
-            // Sinon → on démarre le dialogue si le joueur est assez proche
-            else if (playerInRange)
+            else if (playerInRange && dialogueCooldown <= 0f)
             {
+                dialogueCooldown = 1f; // ← remet le compteur à 1 seconde
                 TriggerDialogue();
             }
         }
