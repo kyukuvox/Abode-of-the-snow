@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 7194150834220311132}
   - component: {fileID: 6782768424418630838}
   - component: {fileID: 3758393178732944380}
+  - component: {fileID: 2970307583100885878}
   - component: {fileID: 6207878435310359249}
   m_Layer: 5
   m_Name: ItemSlot
@@ -255,6 +256,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898fccab772fc9246be84fa6d9754385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemSlotUI
+--- !u!114 &2970307583100885878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906266329855827253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80eb892ff063474b88556cff0f2a84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSlotHover
+  hoverOffset: 40
+  animationSpeed: 8
 --- !u!114 &6207878435310359249
 MonoBehaviour:
   m_ObjectHideFlags: 0
