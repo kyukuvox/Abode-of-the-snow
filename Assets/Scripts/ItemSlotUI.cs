@@ -8,7 +8,12 @@ public class ItemSlotUI : MonoBehaviour
 
     void Awake()
     {
-        myButton = GetComponent<Button>();
+        // Cherche le Button sur ce GameObject ET ses enfants
+        myButton = GetComponentInChildren<Button>();
+
+        if (myButton == null)
+            myButton = gameObject.AddComponent<Button>();
+
         myButton.onClick.AddListener(OnClick);
     }
 
@@ -17,6 +22,7 @@ public class ItemSlotUI : MonoBehaviour
     {
         myItem = item;
     }
+
 
     void OnClick()
     {

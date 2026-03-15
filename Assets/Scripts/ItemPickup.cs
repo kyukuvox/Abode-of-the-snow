@@ -2,15 +2,36 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    public Item item; // L'item ScriptableObject à donner au joueur
+    public Item item;
+    public float pickupRange = 1.5f;
 
-    // Ajoute un Collider2D sur cet objet et coche "Is Trigger"
-    void OnTriggerEnter2D(Collider2D other)
+    private Transform player;
+    private bool playerInRange = false;
+
+    void Start()
     {
-        if (other.CompareTag("Player"))
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    void Update()
+    {
+        float distance = Vector2.Distance(transform.position, player.position);
+        playerInRange = distance <= pickupRange;
+
+        if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            Inventory.Instance.AddItem(item);
-            Destroy(gameObject); // Supprime l'objet du sol
+            // Ne ramasse l'item que si aucun dialogue n'est en cours
+            if (!DialogueManager.Instance.IsActive())
+            {
+                Inventory.Instance.AddItem(item);
+                Destroy(gameObject);
+            }
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, pickupRange);
     }
 }

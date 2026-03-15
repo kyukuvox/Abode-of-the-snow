@@ -12,10 +12,12 @@ public class NPCWithItemDialogue : NPCInteraction
 
     public List<ItemDialoguePair> itemDialogues; // Liste des paires item/dialogue
 
-    // Appelé par ItemSlotUI quand on clique sur un slot
+    //Appelé par ItemSlotUI quand on clique sur un slot
     public void ReceiveItem(Item item)
     {
-        // Cherche si cet item a un dialogue associé
+        // Coupe proprement le dialogue en cours avant d'en lancer un nouveau
+        DialogueManager.Instance.EndDialogue();
+
         foreach (var pair in itemDialogues)
         {
             if (pair.item == item)
@@ -25,7 +27,8 @@ public class NPCWithItemDialogue : NPCInteraction
             }
         }
 
-        // Si aucun dialogue spécifique, joue le dialogue par défaut
         DialogueManager.Instance.StartDialogue(defaultDialogue);
     }
+  
+
 }

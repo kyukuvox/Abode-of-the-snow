@@ -26,6 +26,10 @@ public class DialogueManager : MonoBehaviour
     // Appelé par le PNJ pour démarrer un dialogue
     public void StartDialogue(DialogueData data)
     {
+        Debug.Log("StartDialogue appelé avec : " + (data != null ? data.name : "NULL"));
+        Debug.Log("isDialogueActive = " + isDialogueActive);
+        Debug.Log("dialoguePanel = " + (dialoguePanel != null ? "OK" : "NULL"));
+
         if (isDialogueActive) return;
 
         isDialogueActive = true;
@@ -76,11 +80,12 @@ public class DialogueManager : MonoBehaviour
         isTyping = false;
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
         isDialogueActive = false;
         dialoguePanel.SetActive(false);
         currentLines = null;
+        StopAllCoroutines(); // Arrête aussi l'effet de frappe en cours
     }
 
     public bool IsActive() { return isDialogueActive; }
