@@ -4,8 +4,8 @@ using UnityEngine.EventSystems;
 
 public class ItemSlotHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public float hoverOffset = 40f;   // Hauteur de remontée au survol
-    public float animationSpeed = 8f; // Vitesse de l'animation
+    public float hoverOffset = 40f;  
+    public float animationSpeed = 8f; 
 
     private Vector2 basePosition;
     private Vector2 targetPosition;
@@ -19,19 +19,16 @@ public class ItemSlotHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     void Start()
     {
-        // Sauvegarde la position de base du slot
         basePosition = rectTransform.anchoredPosition;
         targetPosition = basePosition;
     }
 
-    // Appelé quand la souris entre sur le slot
     public void OnPointerEnter(PointerEventData eventData)
     {
         targetPosition = basePosition + Vector2.up * hoverOffset;
         RestartAnimation();
     }
 
-    // Appelé quand la souris quitte le slot
     public void OnPointerExit(PointerEventData eventData)
     {
         targetPosition = basePosition;

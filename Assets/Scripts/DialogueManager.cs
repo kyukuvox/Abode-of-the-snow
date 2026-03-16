@@ -11,8 +11,8 @@ public class DialogueManager : MonoBehaviour
     public Text npcNameText;
 
     [Header("Portraits")]
-    public Image playerPortraitImage; // Glisse PlayerPortrait ici
-    public Image npcPortraitImage;    // Glisse NPCPortrait ici
+    public Image playerPortraitImage; 
+    public Image npcPortraitImage;   
 
     private DialogueData currentData;
     private int currentLineIndex;
@@ -45,7 +45,6 @@ public class DialogueManager : MonoBehaviour
 
         if (isTyping)
         {
-            // Affiche la ligne en entier immédiatement
             StopAllCoroutines();
             dialogueText.text = currentFullLine;
             isTyping = false;
@@ -63,7 +62,6 @@ public class DialogueManager : MonoBehaviour
 
     void DisplayLine(DialogueLine line)
     {
-        // Met à jour le nom affiché et les portraits selon qui parle
         if (line.speaker == DialogueLine.Speaker.NPC)
         {
             npcNameText.text = currentData.npcName;

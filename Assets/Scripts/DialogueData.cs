@@ -3,18 +3,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewDialogue", menuName = "Dialogue/DialogueData")]
 public class DialogueData : ScriptableObject
 {
+    // POUR DATA DIALOGUES ET SPRITES !!
+
     public string npcName;
-    public Sprite npcPortrait;    // Image du PNJ
-    public Sprite playerPortrait; // Image du joueur
+    public Sprite npcPortrait;    
+    public Sprite playerPortrait; 
 
     public DialogueLine[] lines;
 }
 
-[System.Serializable]
+[System.Serializable] //sauvegarde data
 public class DialogueLine
 {
     public enum Speaker { Player, NPC }
-    public Speaker speaker; // Qui parle sur cette ligne ?
+    public Speaker speaker; 
     [TextArea(2, 5)]
     public string text;
 }

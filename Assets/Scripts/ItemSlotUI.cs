@@ -8,7 +8,6 @@ public class ItemSlotUI : MonoBehaviour
 
     void Awake()
     {
-        // Cherche le Button sur ce GameObject ET ses enfants
         myButton = GetComponentInChildren<Button>();
 
         if (myButton == null)
@@ -17,7 +16,6 @@ public class ItemSlotUI : MonoBehaviour
         myButton.onClick.AddListener(OnClick);
     }
 
-    // Appelé par InventoryUI pour assigner l'item à ce slot
     public void Setup(Item item)
     {
         myItem = item;
@@ -29,16 +27,15 @@ public class ItemSlotUI : MonoBehaviour
         NPCWithItemDialogue npc = FindNearestNPC();
         if (npc != null)
         {
-            npc.ReceiveItem(myItem); // ← le PNJ décide si l'item est consommé
+            npc.ReceiveItem(myItem);
         }
     }
 
     NPCWithItemDialogue FindNearestNPC()
     {
-        // Cherche tous les PNJs dans la scène
         NPCWithItemDialogue[] allNPCs = FindObjectsOfType<NPCWithItemDialogue>();
         NPCWithItemDialogue nearest = null;
-        float minDist = 3f; // Distance max pour donner un item
+        float minDist = 3f; 
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 

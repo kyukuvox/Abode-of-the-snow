@@ -3,17 +3,19 @@ using System.Collections.Generic;
 
 public class NPCWithItemDialogue : NPCInteraction
 {
+
+    //A DONNER a TOUS LES PNJS !
+
     [System.Serializable]
     public class ItemDialoguePair
     {
-        public Item item;           // L'item qui déclenche ce dialogue
-        public DialogueData dialogue; // Le dialogue correspondant
+        public Item item;           
+        public DialogueData dialogue; 
         public bool consumesItem = true;
     }
 
-    public List<ItemDialoguePair> itemDialogues; // Liste des paires item/dialogue
+    public List<ItemDialoguePair> itemDialogues;
 
-    //Appelé par ItemSlotUI quand on clique sur un slot
     public void ReceiveItem(Item item)
     {
         DialogueManager.Instance.EndDialogue();
@@ -24,7 +26,6 @@ public class NPCWithItemDialogue : NPCInteraction
             {
                 DialogueManager.Instance.StartDialogue(pair.dialogue);
 
-                // Supprime ou non selon la config du PNJ
                 if (pair.consumesItem)
                     Inventory.Instance.RemoveItem(item);
                 return;

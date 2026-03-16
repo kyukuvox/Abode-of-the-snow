@@ -1949,7 +1949,7 @@ MonoBehaviour:
     consumesItem: 1
   - item: {fileID: 11400000, guid: 4122339b1801d31418924b768142b1e1, type: 2}
     dialogue: {fileID: 11400000, guid: bc6f874fc29d5f3489f88df73689ce31, type: 2}
-    consumesItem: 0
+    consumesItem: 1
   - item: {fileID: 11400000, guid: 5c58c6d2c53191e4a8b0f57345dc89d8, type: 2}
     dialogue: {fileID: 11400000, guid: ae1bf6ab237377c4d8c0e34f23379372, type: 2}
     consumesItem: 1

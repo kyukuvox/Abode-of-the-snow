@@ -42,7 +42,6 @@ public class PlayerMovement2D : MonoBehaviour
         float newX = Mathf.Lerp(rb.linearVelocity.x, targetSpeed, acceleration * Time.fixedDeltaTime);
         rb.linearVelocity = new Vector2(newX, rb.linearVelocity.y);
 
-        // Saut
         if (jumpRequested)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -51,9 +50,8 @@ public class PlayerMovement2D : MonoBehaviour
     }
     void Move()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal"); // Flèches ou A/D
+        horizontalInput = Input.GetAxisRaw("Horizontal"); 
 
-        // Ground Check
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
 
@@ -62,7 +60,7 @@ public class PlayerMovement2D : MonoBehaviour
             jumpRequested = true;
         }
 
-        // Tourner le sprite
+        // Tourne le sprite
         if (horizontalInput > 0)
             transform.localScale = new Vector3(1, 1, 1);
         else if (horizontalInput < 0)

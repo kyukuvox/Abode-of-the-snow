@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
+
+    // A DONNER A TOUS LES ITEMS AU SOL !!!!
+
     public Item item;
     public float pickupRange = 1.5f;
 
@@ -20,7 +23,6 @@ public class ItemPickup : MonoBehaviour
 
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            // Ne ramasse l'item que si aucun dialogue n'est en cours
             if (!DialogueManager.Instance.IsActive())
             {
                 Inventory.Instance.AddItem(item);

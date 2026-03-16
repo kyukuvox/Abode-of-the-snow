@@ -30,15 +30,13 @@ public class InventoryUI : MonoBehaviour
             ItemSlotUI slotUI = slot.GetComponent<ItemSlotUI>();
             slotUI.Setup(item);
 
-            // Initialise la position de base après un frame
-            // pour laisser le Layout Group placer le slot d'abord
             StartCoroutine(InitSlotPosition(slot));
         }
     }
 
     IEnumerator InitSlotPosition(GameObject slot)
     {
-        yield return null; // Attend un frame
+        yield return null; 
         ItemSlotHover hover = slot.GetComponent<ItemSlotHover>();
         if (hover != null)
             hover.InitBasePosition();

@@ -2,8 +2,8 @@
 
 public class NPCInteraction : MonoBehaviour
 {
-    public DialogueData defaultDialogue;   // Dialogue de base du PNJ
-    public float interactionRange = 2f;    // Distance pour interagir
+    public DialogueData defaultDialogue;   
+    public float interactionRange = 2f;    
 
     private Transform player;
     private bool playerInRange = false;
@@ -19,7 +19,6 @@ public class NPCInteraction : MonoBehaviour
         float distance = Vector2.Distance(transform.position, player.position);
         playerInRange = distance <= interactionRange;
 
-        // Diminue le cooldown avec le temps
         if (dialogueCooldown > 0f)
             dialogueCooldown -= Time.deltaTime;
 
@@ -29,9 +28,9 @@ public class NPCInteraction : MonoBehaviour
             {
                 DialogueManager.Instance.OnPressE();
             }
-            else if (playerInRange && dialogueCooldown <= 0f)
+            else if (playerInRange && dialogueCooldown <= 0f)  
             {
-                dialogueCooldown = 1f; // ← remet le compteur à 1 seconde
+                dialogueCooldown = 1f;  // cooldown pour éviter spam dialogue 
                 TriggerDialogue();
             }
         }
@@ -42,8 +41,8 @@ public class NPCInteraction : MonoBehaviour
         DialogueManager.Instance.StartDialogue(defaultDialogue);
     }
 
-    // Visualise la portée dans l'éditeur (cercle vert)
-    void OnDrawGizmosSelected()
+  
+    void OnDrawGizmosSelected() // Agit comme un collider 2d (mieux)
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
