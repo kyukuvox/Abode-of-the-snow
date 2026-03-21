@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: test
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   npcName: Gregory
-  npcPortrait: {fileID: 3965134887974747985, guid: 8caa714b8906d7945b095ac85ce1bfff, type: 3}
-  playerPortrait: {fileID: 3690293445947645659, guid: 6fed411ece9e5f042b84dcf9bea61315, type: 3}
+  npcPortrait: {fileID: -1547048719659269721, guid: 042ad6bbef462cc4499aaad7c2f50ad8, type: 3}
+  playerPortrait: {fileID: 1566108442484387111, guid: 39753b2fda2295a409b1b640f748f9ca, type: 3}
+  isBadDecision: 0
   lines:
   - speaker: 0
     text: "hey j'ai ton \xE9p\xE9e !"

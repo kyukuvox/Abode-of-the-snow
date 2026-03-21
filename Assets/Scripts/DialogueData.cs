@@ -1,14 +1,12 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewDialogue", menuName = "Dialogue/DialogueData")]
 public class DialogueData : ScriptableObject
 {
-    // POUR DATA DIALOGUES ET SPRITES !!
-
     public string npcName;
-    public Sprite npcPortrait;    
-    public Sprite playerPortrait; 
-
+    public Sprite npcPortrait;
+    public Sprite playerPortrait;
+    public bool isBadDecision = false; 
     public DialogueLine[] lines;
 }
 

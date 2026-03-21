@@ -46,7 +46,12 @@ public class PlayerMovement2D : MonoBehaviour
 
     void JumpPhysic()
     {
-        // dash
+        if (DialogueManager.Instance.IsActive())
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         if (dashRequested)
         {
             isDashing = true;
@@ -66,7 +71,6 @@ public class PlayerMovement2D : MonoBehaviour
             return;
         }
 
-        // cooldown dash
         if (cooldownTimer > 0f)
             cooldownTimer -= Time.fixedDeltaTime;
 
@@ -84,6 +88,8 @@ public class PlayerMovement2D : MonoBehaviour
 
     void Move()
     {
+        if (DialogueManager.Instance.IsActive()) return;
+
         horizontalInput = Input.GetAxisRaw("Horizontal");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
@@ -93,7 +99,6 @@ public class PlayerMovement2D : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C) && cooldownTimer <= 0f && !isDashing)
             dashRequested = true;
 
-        // Tourne le sprite
         if (horizontalInput > 0)
             transform.localScale = new Vector3(1, 1, 1);
         else if (horizontalInput < 0)

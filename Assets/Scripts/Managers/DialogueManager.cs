@@ -11,14 +11,15 @@ public class DialogueManager : MonoBehaviour
     public Text npcNameText;
 
     [Header("Portraits")]
-    public Image playerPortraitImage; 
-    public Image npcPortraitImage;   
+    public Image playerPortraitImage;
+    public Image npcPortraitImage;
 
     private DialogueData currentData;
     private int currentLineIndex;
     private bool isDialogueActive = false;
     private bool isTyping = false;
     private string currentFullLine = "";
+    private bool currentDialogueIsBad = false;
 
     public float typingSpeed = 0.05f;
 
@@ -30,6 +31,8 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueData data)
     {
         if (isDialogueActive) return;
+
+        currentDialogueIsBad = data.isBadDecision;
 
         isDialogueActive = true;
         currentData = data;
@@ -101,6 +104,12 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         currentData = null;
         StopAllCoroutines();
+
+        if (currentDialogueIsBad)
+        {
+            BadDecisionManager.Instance.TriggerBadDecision();
+            currentDialogueIsBad = false;
+        }
     }
 
     public bool IsActive() { return isDialogueActive; }
