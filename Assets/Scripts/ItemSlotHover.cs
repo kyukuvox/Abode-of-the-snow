@@ -1,11 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ItemSlotHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public float hoverOffset = 40f;  
-    public float animationSpeed = 8f; 
+    public float hoverOffset = 40f;
+    public float animationSpeed = 8f;
 
     private Vector2 basePosition;
     private Vector2 targetPosition;
@@ -34,11 +34,13 @@ public class ItemSlotHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         targetPosition = basePosition;
         RestartAnimation();
     }
+
     public void InitBasePosition()
     {
         basePosition = rectTransform.anchoredPosition;
         targetPosition = basePosition;
     }
+
     void RestartAnimation()
     {
         if (currentAnimation != null)
