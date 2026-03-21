@@ -14,20 +14,10 @@ public class PlayerMovement2D : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
 
-    [Header("Dash")]
-    [SerializeField] private float dashForce = 15f;
-    [SerializeField] private float dashDuration = 0.15f;
-    [SerializeField] private float dashCooldown = 5f;
-
     private Rigidbody2D rb;
     private float horizontalInput;
     private bool isGrounded;
     private bool jumpRequested;
-
-    private bool isDashing;
-    private bool dashRequested;
-    private float dashTimer;
-    private float cooldownTimer;
 
     void Awake()
     {
@@ -52,28 +42,6 @@ public class PlayerMovement2D : MonoBehaviour
             return;
         }
 
-        if (dashRequested)
-        {
-            isDashing = true;
-            dashTimer = dashDuration;
-            cooldownTimer = dashCooldown;
-            dashRequested = false;
-
-            float dashDir = horizontalInput != 0 ? horizontalInput : transform.localScale.x;
-            rb.linearVelocity = new Vector2(dashDir * dashForce, 0f);
-        }
-
-        if (isDashing)
-        {
-            dashTimer -= Time.fixedDeltaTime;
-            if (dashTimer <= 0f)
-                isDashing = false;
-            return;
-        }
-
-        if (cooldownTimer > 0f)
-            cooldownTimer -= Time.fixedDeltaTime;
-
         float targetSpeed = horizontalInput * moveSpeed;
         float acceleration = isGrounded ? groundAcceleration : airAcceleration;
         float newX = Mathf.Lerp(rb.linearVelocity.x, targetSpeed, acceleration * Time.fixedDeltaTime);
@@ -95,9 +63,6 @@ public class PlayerMovement2D : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
             jumpRequested = true;
-
-        if (Input.GetKeyDown(KeyCode.C) && cooldownTimer <= 0f && !isDashing)
-            dashRequested = true;
 
         if (horizontalInput > 0)
             transform.localScale = new Vector3(1, 1, 1);

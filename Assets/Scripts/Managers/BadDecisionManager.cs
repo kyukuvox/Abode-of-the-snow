@@ -15,6 +15,7 @@ public class BadDecisionManager : MonoBehaviour
     public int maxLives = 4;
     private int currentLives;
     public bool isGameOver = false;
+    public bool isOverlayActive = false;
 
     void Awake()
     {
@@ -38,16 +39,20 @@ public class BadDecisionManager : MonoBehaviour
 
     IEnumerator ShowOverlay()
     {
+        isOverlayActive = true;
         badDecisionOverlay.SetActive(true);
         yield return new WaitForSeconds(overlayDuration);
         badDecisionOverlay.SetActive(false);
+        isOverlayActive = false;
     }
 
     IEnumerator ShowOverlayThenGameOver()
     {
+        isOverlayActive = true;
         badDecisionOverlay.SetActive(true);
         yield return new WaitForSeconds(overlayDuration);
         badDecisionOverlay.SetActive(false);
+        isOverlayActive = false;
         TriggerGameOver();
     }
 
