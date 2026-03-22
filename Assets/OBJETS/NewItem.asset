@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: "\xE9p\xE9e"
   itemIcon: {fileID: 3965134887974747985, guid: 8caa714b8906d7945b095ac85ce1bfff, type: 3}
+  descriptionSprite: {fileID: 1566108442484387111, guid: 39753b2fda2295a409b1b640f748f9ca, type: 3}
+  description: "une belle \xE9p\xE9e forg\xE9 de la main d'une grand m\xE8re forgeronne."
