@@ -8,6 +8,11 @@ public class DialogueData : ScriptableObject
     public Sprite playerPortrait;
     public bool isBadDecision = false; 
     public DialogueLine[] lines;
+
+    public bool triggersCardGame = false;     
+    public CharacterCardData enemyCardData;   
+    public CharacterCardData playerCardData;   
+    public Item cardGameReward;
 }
 
 [System.Serializable] //sauvegarde data

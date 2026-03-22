@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
+  m_Name: DialogueCombat
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  npcName: NPC
+  npcPortrait: {fileID: 3965134887974747985, guid: 8caa714b8906d7945b095ac85ce1bfff, type: 3}
+  playerPortrait: {fileID: 3690293445947645659, guid: 6fed411ece9e5f042b84dcf9bea61315, type: 3}
+  isBadDecision: 0
+  lines:
+  - speaker: 0
+    text: Viens on se bat
+  - speaker: 1
+    text: Allez chaud !!
+  triggersCardGame: 1
+  enemyCardData: {fileID: 11400000, guid: 2dd8dac628eeae042bfda939937877ee, type: 2}
+  playerCardData: {fileID: 11400000, guid: 93c91f4b48cba784ca5604f0d7862d0e, type: 2}
+  cardGameReward: {fileID: 11400000, guid: 80d516128a45fb140a282158c3ac7e07, type: 2}

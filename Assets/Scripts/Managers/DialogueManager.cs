@@ -132,11 +132,23 @@ public class DialogueManager : MonoBehaviour
     {
         isDialogueActive = false;
         dialoguePanel.SetActive(false);
-        currentData = null;
-        StopAllCoroutines();
-
         npcPortraitImage.color = Color.white;
         playerPortraitImage.color = Color.white;
+        npcPortraitImage.rectTransform.localScale = Vector3.one;
+        playerPortraitImage.rectTransform.localScale = Vector3.one;
+        StopAllCoroutines();
+
+        // Lance le mini jeu si configuré
+        if (currentData != null && currentData.triggersCardGame)
+        {
+            CardGameManager.Instance.StartCardGame(
+                currentData.enemyCardData,
+                currentData.playerCardData,
+                currentData.cardGameReward
+            );
+        }
+
+        currentData = null;
 
         if (currentDialogueIsBad)
         {
