@@ -15,7 +15,7 @@ public class DelayBarManager : MonoBehaviour
         public int turnsLeft;
         public bool isPlayer;
         public GameObject uiElement;
-        public Text turnsLeftText; // ← référence directe au text des tours
+        public Text turnsLeftText;
     }
 
     private List<DelayedCard> delayedCards = new List<DelayedCard>();
@@ -29,7 +29,6 @@ public class DelayBarManager : MonoBehaviour
     {
         GameObject entry = Instantiate(delayCardPrefab, delayContent);
 
-        // Récupère chaque Text par son nom
         Text cardNameText = entry.transform.Find("CardNameText").GetComponent<Text>();
         Text turnsLeftText = entry.transform.Find("TurnsLeftText").GetComponent<Text>();
         Text ownerText = entry.transform.Find("OwnerText").GetComponent<Text>();
@@ -39,10 +38,9 @@ public class DelayBarManager : MonoBehaviour
         turnsLeftText.text = "Dans " + turns + " tours";
         ownerText.text = isPlayer ? "J" : "E";
 
-        // Couleur différente selon le propriétaire
         background.color = isPlayer ?
-            new Color(0.2f, 0.5f, 1f, 0.8f) :  // bleu pour le joueur
-            new Color(1f, 0.3f, 0.3f, 0.8f);    // rouge pour l'ennemi
+            new Color(0.2f, 0.5f, 1f, 0.8f) :
+            new Color(1f, 0.3f, 0.3f, 0.8f); 
 
         DelayedCard delayed = new DelayedCard
         {

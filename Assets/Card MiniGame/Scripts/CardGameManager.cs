@@ -13,12 +13,14 @@ public class CardGameManager : MonoBehaviour
     [Header("UI Joueur")]
     public Text playerLifeText;
     public Text playerActionText;
+    public Text playerDefenseText;
     public Transform playerHandZone;
     public Transform playerDefenseZone;
 
     [Header("UI Ennemi")]
     public Text enemyLifeText;
     public Text enemyActionText;
+    public Text enemyDefenseText;
     public Transform enemyDefenseZone;
     public Image enemyCardSprite;
 
@@ -33,7 +35,6 @@ public class CardGameManager : MonoBehaviour
     public Button endTurnButton;
     public Button discardButton;
 
-    // État du jeu
     private int playerLife;
     private int playerActionPoints;
     private int playerDefense;
@@ -54,7 +55,6 @@ public class CardGameManager : MonoBehaviour
     private bool isDiscardMode = false;
     private bool isPlayerTurn = true;
 
-    // Item à donner si victoire
     private Item rewardItem;
 
     void Awake()
@@ -62,16 +62,18 @@ public class CardGameManager : MonoBehaviour
         Instance = this;
     }
 
-    // Appelé par le DialogueManager pour lancer le mini jeu
+    void Start()
+    {
+        endTurnButton.onClick.AddListener(EndPlayerTurn);
+        discardButton.onClick.AddListener(ToggleDiscardMode);
+
+        Button closeButton = resultPanel.GetComponentInChildren<Button>();
+        if (closeButton != null)
+            closeButton.onClick.AddListener(CloseCardGame);
+    }
+
     public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item reward)
     {
-        Debug.Log("StartCardGame lancé !");
-        Debug.Log("Enemy : " + (enemy != null ? enemy.characterName : "NULL"));
-        Debug.Log("Player : " + (player != null ? player.characterName : "NULL"));
-        Debug.Log("PlayerHandZone : " + (playerHandZone != null ? "OK" : "NULL"));
-        Debug.Log("CardPrefab : " + (cardPrefab != null ? "OK" : "NULL"));
-        Debug.Log("PlayerLifeText : " + (playerLifeText != null ? "OK" : "NULL"));
-
         enemyData = enemy;
         playerData = player;
         rewardItem = reward;
@@ -95,8 +97,6 @@ public class CardGameManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
             DrawPlayerCard();
 
-        Debug.Log("Cartes dans la main : " + playerHand.Count);
-
         UpdateUI();
         isPlayerTurn = true;
     }
@@ -109,16 +109,10 @@ public class CardGameManager : MonoBehaviour
         playerActionPoints -= card.cardData.actionCost;
 
         if (card.cardData.delayTurns > 0)
-        {
-            // Carte délayée → ajoute à la barre de délais
             DelayBarManager.Instance.AddDelayedCard(card.cardData, card.cardData.delayTurns, true);
-        }
         else
-        {
             ApplyCardEffect(card.cardData, true);
-        }
 
-        // Retire la carte de la main
         playerHand.Remove(card);
         playerDeck.DiscardCard(card.cardData);
         Destroy(card.gameObject);
@@ -178,7 +172,6 @@ public class CardGameManager : MonoBehaviour
                 actionPoints = Mathf.Max(0, actionPoints - card.power);
                 break;
             case CardData.AttackType.HitLife:
-                // La défense absorbe d'abord
                 int remaining = card.power - defense;
                 defense = Mathf.Max(0, defense - card.power);
                 if (remaining > 0) life -= remaining;
@@ -197,7 +190,6 @@ public class CardGameManager : MonoBehaviour
         playerHand.Add(card);
     }
 
-    // --- DÉFAUSSE ---
     public void ToggleDiscardMode()
     {
         isDiscardMode = !isDiscardMode;
@@ -211,15 +203,10 @@ public class CardGameManager : MonoBehaviour
         if (!isDiscardMode) return;
 
         if (selectedForDiscard.Contains(card.cardData))
-        {
             selectedForDiscard.Remove(card.cardData);
-        }
         else if (selectedForDiscard.Count < 3)
-        {
             selectedForDiscard.Add(card.cardData);
-        }
 
-        // Si 3 cartes sélectionnées → défausse automatique
         if (selectedForDiscard.Count == 3)
             ConfirmDiscard();
     }
@@ -246,7 +233,6 @@ public class CardGameManager : MonoBehaviour
         UpdateUI();
     }
 
-    // --- FIN DE TOUR ---
     public void EndPlayerTurn()
     {
         if (!isPlayerTurn) return;
@@ -257,13 +243,13 @@ public class CardGameManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        Debug.Log("EnemyTurn lancé !");
         yield return new WaitForSeconds(1f);
 
-        // Résout les cartes délayées de l'ennemi
         DelayBarManager.Instance.TickTurn(false);
 
-        // L'ennemi joue des cartes aléatoirement
         enemyActionPoints = enemyData.actionPointsPerTurn;
+
         CardData[] hand = new CardData[3];
         for (int i = 0; i < 3; i++)
             hand[i] = enemyDeck.DrawCard();
@@ -271,6 +257,7 @@ public class CardGameManager : MonoBehaviour
         foreach (CardData card in hand)
         {
             if (card == null) continue;
+
             if (enemyActionPoints >= card.actionCost)
             {
                 yield return new WaitForSeconds(0.8f);
@@ -290,19 +277,15 @@ public class CardGameManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        // Tour du joueur
         isPlayerTurn = true;
         endTurnButton.interactable = true;
         playerActionPoints = playerData.actionPointsPerTurn;
 
-        // Résout les cartes délayées du joueur
         DelayBarManager.Instance.TickTurn(true);
 
-        // Pioche jusqu'à 5 cartes
         while (playerHand.Count < 5)
             DrawPlayerCard();
 
-        // Mise à jour jouabilité des cartes
         foreach (Card card in playerHand)
             card.SetPlayable(playerActionPoints >= card.cardData.actionCost);
 
@@ -341,10 +324,12 @@ public class CardGameManager : MonoBehaviour
 
     void UpdateUI()
     {
-        playerLifeText.text = "PV : " + playerLife;
-        playerActionText.text = "PA : " + playerActionPoints;
-        enemyLifeText.text = "PV : " + enemyLife;
-        enemyActionText.text = "PA : " + enemyActionPoints;
+        if (playerLifeText != null) playerLifeText.text = "PV : " + playerLife;
+        if (playerActionText != null) playerActionText.text = "PA : " + playerActionPoints;
+        if (playerDefenseText != null) playerDefenseText.text = "DEF : " + playerDefense; // ← nouveau
+        if (enemyLifeText != null) enemyLifeText.text = "PV : " + enemyLife;
+        if (enemyActionText != null) enemyActionText.text = "PA : " + enemyActionPoints;
+        if (enemyDefenseText != null) enemyDefenseText.text = "DEF : " + enemyDefense; // ← nouveau
 
         foreach (Card card in playerHand)
             card.SetPlayable(isPlayerTurn && playerActionPoints >= card.cardData.actionCost);
