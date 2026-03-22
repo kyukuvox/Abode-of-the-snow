@@ -23,6 +23,10 @@ public class DialogueManager : MonoBehaviour
 
     public float typingSpeed = 0.05f;
 
+    public float activeSpeakerScale = 1.2f; 
+    public float inactiveSpeakerScale = 1f; 
+    public float scaleSpeed = 8f;
+
     void Awake()
     {
         Instance = this;
@@ -33,11 +37,15 @@ public class DialogueManager : MonoBehaviour
         if (isDialogueActive) return;
 
         currentDialogueIsBad = data.isBadDecision;
-
         isDialogueActive = true;
         currentData = data;
         currentLineIndex = 0;
         dialoguePanel.SetActive(true);
+
+        npcPortraitImage.sprite = currentData.npcPortrait;
+        playerPortraitImage.sprite = currentData.playerPortrait;
+        npcPortraitImage.gameObject.SetActive(true);
+        playerPortraitImage.gameObject.SetActive(true);
 
         DisplayLine(currentData.lines[currentLineIndex]);
     }
@@ -68,19 +76,41 @@ public class DialogueManager : MonoBehaviour
         if (line.speaker == DialogueLine.Speaker.NPC)
         {
             npcNameText.text = currentData.npcName;
-            npcPortraitImage.sprite = currentData.npcPortrait;
-            npcPortraitImage.gameObject.SetActive(true);
-            playerPortraitImage.gameObject.SetActive(false);
+            npcPortraitImage.color = Color.white;
+            playerPortraitImage.color = new Color(0.4f, 0.4f, 0.4f, 1f);
+
+            StopCoroutine("AnimateScale");
+            StartCoroutine(AnimateScale(npcPortraitImage.rectTransform, activeSpeakerScale));
+            StartCoroutine(AnimateScale(playerPortraitImage.rectTransform, inactiveSpeakerScale));
         }
         else
         {
             npcNameText.text = "Joueur";
-            playerPortraitImage.sprite = currentData.playerPortrait;
-            playerPortraitImage.gameObject.SetActive(true);
-            npcPortraitImage.gameObject.SetActive(false);
+            npcPortraitImage.color = new Color(0.4f, 0.4f, 0.4f, 1f);
+            playerPortraitImage.color = Color.white;
+
+            StartCoroutine(AnimateScale(playerPortraitImage.rectTransform, activeSpeakerScale));
+            StartCoroutine(AnimateScale(npcPortraitImage.rectTransform, inactiveSpeakerScale));
         }
 
         StartCoroutine(TypeLine(line.text));
+    }
+
+    IEnumerator AnimateScale(RectTransform target, float targetScale)
+    {
+        Vector3 destination = Vector3.one * targetScale;
+
+        while (Vector3.Distance(target.localScale, destination) > 0.01f)
+        {
+            target.localScale = Vector3.Lerp(
+                target.localScale,
+                destination,
+                Time.deltaTime * scaleSpeed
+            );
+            yield return null;
+        }
+
+        target.localScale = destination;
     }
 
     IEnumerator TypeLine(string line)
@@ -104,6 +134,9 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         currentData = null;
         StopAllCoroutines();
+
+        npcPortraitImage.color = Color.white;
+        playerPortraitImage.color = Color.white;
 
         if (currentDialogueIsBad)
         {
