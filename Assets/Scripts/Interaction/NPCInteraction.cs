@@ -3,7 +3,8 @@
 public class NPCInteraction : MonoBehaviour
 {
     public DialogueData defaultDialogue;   
-    public float interactionRange = 2f;    
+    public float interactionRange = 2f;
+    public GameObject interactionSprite;
 
     private Transform player;
     private bool playerInRange = false;
@@ -12,6 +13,9 @@ public class NPCInteraction : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        if (interactionSprite != null)
+            interactionSprite.SetActive(false);
     }
 
     void Update()
@@ -25,15 +29,24 @@ public class NPCInteraction : MonoBehaviour
         if (dialogueCooldown > 0f)
             dialogueCooldown -= Time.deltaTime;
 
+        if (interactionSprite != null)
+            interactionSprite.SetActive(playerInRange);
+
         if (Input.GetKeyDown(KeyCode.E))
         {
+            if (ItemDescriptionManager.Instance.IsActive())
+            {
+                ItemDescriptionManager.Instance.ClosePanel();
+                return;
+            }
+
             if (DialogueManager.Instance.IsActive())
             {
                 DialogueManager.Instance.OnPressE();
             }
-            else if (playerInRange && dialogueCooldown <= 0f)  
+            else if (playerInRange && dialogueCooldown <= 0f)
             {
-                dialogueCooldown = 1f;  // cooldown pour éviter spam dialogue 
+                dialogueCooldown = 1f;
                 TriggerDialogue();
             }
         }
@@ -45,7 +58,7 @@ public class NPCInteraction : MonoBehaviour
     }
 
   
-    void OnDrawGizmosSelected() // Agit comme un collider 2d (mieux)
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
