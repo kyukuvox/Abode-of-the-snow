@@ -50,10 +50,11 @@ public class CardGameManager : MonoBehaviour
     private DeckManager enemyDeck = new DeckManager();
 
     private List<Card> playerHand = new List<Card>();
-    private List<CardData> selectedForDiscard = new List<CardData>();
+    private List<Card> selectedForDiscard = new List<Card>();
 
     private bool isDiscardMode = false;
     private bool isPlayerTurn = true;
+    private bool hasDiscardedThisTurn = false;
 
     private Item rewardItem;
 
@@ -66,7 +67,6 @@ public class CardGameManager : MonoBehaviour
     {
         endTurnButton.onClick.AddListener(EndPlayerTurn);
         discardButton.onClick.AddListener(ToggleDiscardMode);
-
         Button closeButton = resultPanel.GetComponentInChildren<Button>();
         if (closeButton != null)
             closeButton.onClick.AddListener(CloseCardGame);
@@ -190,46 +190,74 @@ public class CardGameManager : MonoBehaviour
         playerHand.Add(card);
     }
 
+    public bool IsDiscardMode() { return isDiscardMode; }
+
     public void ToggleDiscardMode()
     {
+        if (!isDiscardMode && hasDiscardedThisTurn)
+        {
+            Debug.Log("Vous avez déjà défaussé ce tour !");
+            return;
+        }
+
         isDiscardMode = !isDiscardMode;
-        selectedForDiscard.Clear();
-        discardButton.GetComponentInChildren<Text>().text =
-            isDiscardMode ? "Confirmer défausse" : "Défausser";
+
+        if (isDiscardMode)
+        {
+            discardButton.GetComponentInChildren<Text>().text = "Confirmer (0/2)";
+            selectedForDiscard.Clear();
+        }
+        else
+        {
+            if (selectedForDiscard.Count == 2)
+                ConfirmDiscard();
+            else
+            {
+                foreach (Card card in playerHand)
+                    card.ResetDiscardSelection();
+                selectedForDiscard.Clear();
+                discardButton.GetComponentInChildren<Text>().text = "Défausser";
+            }
+        }
     }
 
     public void SelectCardForDiscard(Card card)
     {
         if (!isDiscardMode) return;
 
-        if (selectedForDiscard.Contains(card.cardData))
-            selectedForDiscard.Remove(card.cardData);
-        else if (selectedForDiscard.Count < 3)
-            selectedForDiscard.Add(card.cardData);
+        if (selectedForDiscard.Contains(card))
+        {
+            selectedForDiscard.Remove(card);
+            card.ToggleDiscardSelection();
+        }
+        else if (selectedForDiscard.Count < 2)
+        {
+            selectedForDiscard.Add(card);
+            card.ToggleDiscardSelection();
+        }
 
-        if (selectedForDiscard.Count == 3)
-            ConfirmDiscard();
+        discardButton.GetComponentInChildren<Text>().text =
+            "Confirmer (" + selectedForDiscard.Count + "/2)";
     }
 
     void ConfirmDiscard()
     {
-        foreach (CardData data in selectedForDiscard)
+        foreach (Card card in selectedForDiscard)
         {
-            playerDeck.DiscardCard(data);
-            Card toRemove = playerHand.Find(c => c.cardData == data);
-            if (toRemove != null)
-            {
-                playerHand.Remove(toRemove);
-                Destroy(toRemove.gameObject);
-            }
+            playerDeck.DiscardCard(card.cardData);
+            playerHand.Remove(card);
+            Destroy(card.gameObject);
         }
 
         selectedForDiscard.Clear();
-        for (int i = 0; i < 3; i++)
+
+        for (int i = 0; i < 2; i++)
             DrawPlayerCard();
 
         isDiscardMode = false;
-        discardButton.GetComponentInChildren<Text>().text = "Défausser";
+        hasDiscardedThisTurn = true;
+        discardButton.interactable = false;
+        discardButton.GetComponentInChildren<Text>().text = "Défaussé";
         UpdateUI();
     }
 
@@ -243,7 +271,6 @@ public class CardGameManager : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-        Debug.Log("EnemyTurn lancé !");
         yield return new WaitForSeconds(1f);
 
         DelayBarManager.Instance.TickTurn(false);
@@ -280,6 +307,9 @@ public class CardGameManager : MonoBehaviour
         isPlayerTurn = true;
         endTurnButton.interactable = true;
         playerActionPoints = playerData.actionPointsPerTurn;
+        hasDiscardedThisTurn = false;
+        discardButton.interactable = true; 
+        discardButton.GetComponentInChildren<Text>().text = "Défausser";
 
         DelayBarManager.Instance.TickTurn(true);
 
@@ -326,10 +356,10 @@ public class CardGameManager : MonoBehaviour
     {
         if (playerLifeText != null) playerLifeText.text = "PV : " + playerLife;
         if (playerActionText != null) playerActionText.text = "PA : " + playerActionPoints;
-        if (playerDefenseText != null) playerDefenseText.text = "DEF : " + playerDefense; // ← nouveau
+        if (playerDefenseText != null) playerDefenseText.text = "DEF : " + playerDefense;
         if (enemyLifeText != null) enemyLifeText.text = "PV : " + enemyLife;
         if (enemyActionText != null) enemyActionText.text = "PA : " + enemyActionPoints;
-        if (enemyDefenseText != null) enemyDefenseText.text = "DEF : " + enemyDefense; // ← nouveau
+        if (enemyDefenseText != null) enemyDefenseText.text = "DEF : " + enemyDefense;
 
         foreach (Card card in playerHand)
             card.SetPlayable(isPlayerTurn && playerActionPoints >= card.cardData.actionCost);

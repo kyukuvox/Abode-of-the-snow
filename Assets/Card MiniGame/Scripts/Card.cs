@@ -11,6 +11,7 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     public Text cardCostText;
 
     private bool isPlayable = true;
+    private bool isSelectedForDiscard = false;
     private Vector3 baseScale;
 
     void Awake()
@@ -30,9 +31,23 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     public void SetPlayable(bool playable)
     {
         isPlayable = playable;
-        // Assombrit la carte si elle n'est pas jouable
-        cardImage.color = playable ? Color.white : new Color(0.5f, 0.5f, 0.5f, 1f);
+        if (!isSelectedForDiscard)
+            cardImage.color = playable ? Color.white : new Color(0.5f, 0.5f, 0.5f, 1f);
     }
+
+    public void ToggleDiscardSelection()
+    {
+        isSelectedForDiscard = !isSelectedForDiscard;
+        cardImage.color = isSelectedForDiscard ? new Color(1f, 0.8f, 0f, 1f) : Color.white;
+    }
+
+    public void ResetDiscardSelection()
+    {
+        isSelectedForDiscard = false;
+        cardImage.color = Color.white;
+    }
+
+    public bool IsSelectedForDiscard() { return isSelectedForDiscard; }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -46,6 +61,12 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (CardGameManager.Instance.IsDiscardMode())
+        {
+            CardGameManager.Instance.SelectCardForDiscard(this);
+            return;
+        }
+
         if (!isPlayable) return;
         CardGameManager.Instance.PlayCard(this);
     }
