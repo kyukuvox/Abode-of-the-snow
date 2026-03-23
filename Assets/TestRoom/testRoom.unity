@@ -449,8 +449,8 @@ RectTransform:
   - {fileID: 464469731}
   - {fileID: 224006509}
   - {fileID: 775028008}
-  - {fileID: 727087858}
   - {fileID: 1116029473}
+  - {fileID: 727087858}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2279,7 +2279,6 @@ RectTransform:
   - {fileID: 1873289977}
   - {fileID: 227693959}
   - {fileID: 1782828668}
-  - {fileID: 462791210}
   - {fileID: 862400446}
   m_Father: {fileID: 116212315}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2326,81 +2325,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443724610}
   m_CullTransparentMesh: 1
---- !u!1 &462791209
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 462791210}
-  - component: {fileID: 462791212}
-  - component: {fileID: 462791211}
-  m_Layer: 5
-  m_Name: EnnemyDefenseZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &462791210
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462791209}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 443724611}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.000022888184}
-  m_SizeDelta: {x: 265.4, y: 115}
-  m_Pivot: {x: 0, y: 0.5}
---- !u!114 &462791211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462791209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.8037735, g: 0.7264293, b: 0.7264293, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &462791212
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462791209}
-  m_CullTransparentMesh: 1
 --- !u!1 &464469730
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,7 +2358,6 @@ RectTransform:
   - {fileID: 2000434601}
   - {fileID: 540646934}
   - {fileID: 469781055}
-  - {fileID: 689483127}
   - {fileID: 726060616}
   m_Father: {fileID: 116212315}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2609,11 +2532,9 @@ MonoBehaviour:
   playerActionText: {fileID: 540646935}
   playerDefenseText: {fileID: 469781056}
   playerHandZone: {fileID: 726060616}
-  playerDefenseZone: {fileID: 689483127}
   enemyLifeText: {fileID: 1873289978}
   enemyActionText: {fileID: 227693960}
   enemyDefenseText: {fileID: 1782828669}
-  enemyDefenseZone: {fileID: 462791210}
   enemyCardSprite: {fileID: 862400447}
   cardPrefab: {fileID: 1727024622519757147, guid: 32da54c34952c25459c2508cfe3bce11, type: 3}
   resultPanel: {fileID: 727087857}
@@ -3445,81 +3366,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &689483126
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 689483127}
-  - component: {fileID: 689483129}
-  - component: {fileID: 689483128}
-  m_Layer: 5
-  m_Name: PlayerDefenseZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &689483127
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 689483126}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 464469731}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
-  m_SizeDelta: {x: 265.40002, y: 115}
-  m_Pivot: {x: 1, y: 0.5}
---- !u!114 &689483128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 689483126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.8037735, g: 0.7264293, b: 0.7264293, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &689483129
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 689483126}
-  m_CullTransparentMesh: 1
 --- !u!1 &705749733
 GameObject:
   m_ObjectHideFlags: 0
@@ -3688,6 +3534,7 @@ MonoBehaviour:
   interactionRange: 2
   interactionSprite: {fileID: 909076289}
   itemDialogues: []
+  alreadyDefeatedDialogue: {fileID: 11400000, guid: 3e583cebf52694a43863259c098ea539, type: 2}
 --- !u!4 &705749738
 Transform:
   m_ObjectHideFlags: 0
@@ -3815,8 +3662,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -70.79999, y: 6.5}
-  m_SizeDelta: {x: 369.6, y: 115}
+  m_AnchoredPosition: {x: 0, y: 6.5}
+  m_SizeDelta: {x: 620, y: 115}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &726060617
 MonoBehaviour:
@@ -4475,11 +4322,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 443724611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -79.8, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 15.0000305, y: -14.0000305}
   m_SizeDelta: {x: 70, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &862400447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5484,6 +5331,7 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 5c58c6d2c53191e4a8b0f57345dc89d8, type: 2}
     dialogue: {fileID: 11400000, guid: ae1bf6ab237377c4d8c0e34f23379372, type: 2}
     consumesItem: 1
+  alreadyDefeatedDialogue: {fileID: 0}
 --- !u!4 &1136560245
 Transform:
   m_ObjectHideFlags: 0
@@ -7124,10 +6972,10 @@ MonoBehaviour:
   npcNameText: {fileID: 194252355}
   playerPortraitImage: {fileID: 826731703}
   npcPortraitImage: {fileID: 722756708}
-  typingSpeed: 0.05
   activeSpeakerScale: 1.2
   inactiveSpeakerScale: 1
   scaleSpeed: 8
+  typingSpeed: 0.05
 --- !u!4 &1842811953
 Transform:
   m_ObjectHideFlags: 0

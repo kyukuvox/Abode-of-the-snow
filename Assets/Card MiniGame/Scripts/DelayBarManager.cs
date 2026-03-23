@@ -79,4 +79,13 @@ public class DelayBarManager : MonoBehaviour
         foreach (DelayedCard d in toRemove)
             delayedCards.Remove(d);
     }
+
+    public void ResetDelayBar()
+    {
+        foreach (DelayedCard delayed in delayedCards)
+            if (delayed.uiElement != null)
+                Destroy(delayed.uiElement);
+
+        delayedCards.Clear();
+    }
 }

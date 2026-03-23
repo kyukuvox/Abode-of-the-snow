@@ -15,13 +15,11 @@ public class CardGameManager : MonoBehaviour
     public Text playerActionText;
     public Text playerDefenseText;
     public Transform playerHandZone;
-    public Transform playerDefenseZone;
 
     [Header("UI Ennemi")]
     public Text enemyLifeText;
     public Text enemyActionText;
     public Text enemyDefenseText;
-    public Transform enemyDefenseZone;
     public Image enemyCardSprite;
 
     [Header("Prefabs")]
@@ -57,6 +55,7 @@ public class CardGameManager : MonoBehaviour
     private bool hasDiscardedThisTurn = false;
 
     private Item rewardItem;
+    private NPCWithItemDialogue currentNPC;
 
     void Awake()
     {
@@ -72,8 +71,9 @@ public class CardGameManager : MonoBehaviour
             closeButton.onClick.AddListener(CloseCardGame);
     }
 
-    public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item reward)
+    public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item reward, NPCWithItemDialogue npc)
     {
+        currentNPC = npc;
         enemyData = enemy;
         playerData = player;
         rewardItem = reward;
@@ -194,11 +194,7 @@ public class CardGameManager : MonoBehaviour
 
     public void ToggleDiscardMode()
     {
-        if (!isDiscardMode && hasDiscardedThisTurn)
-        {
-            Debug.Log("Vous avez déjà défaussé ce tour !");
-            return;
-        }
+        if (!isDiscardMode && hasDiscardedThisTurn) return;
 
         isDiscardMode = !isDiscardMode;
 
@@ -308,7 +304,7 @@ public class CardGameManager : MonoBehaviour
         endTurnButton.interactable = true;
         playerActionPoints = playerData.actionPointsPerTurn;
         hasDiscardedThisTurn = false;
-        discardButton.interactable = true; 
+        discardButton.interactable = true;
         discardButton.GetComponentInChildren<Text>().text = "Défausser";
 
         DelayBarManager.Instance.TickTurn(true);
@@ -342,14 +338,46 @@ public class CardGameManager : MonoBehaviour
         resultPanel.SetActive(true);
         resultText.text = playerWon ? "Victoire !" : "Défaite...";
 
+        if (currentNPC != null)
+            currentNPC.SetDefeated(playerWon);
+
         if (playerWon && rewardItem != null)
             Inventory.Instance.AddItem(rewardItem);
     }
 
     public void CloseCardGame()
     {
+        ResetCardGame();
         cardGameCanvas.SetActive(false);
         Time.timeScale = 1f;
+    }
+
+    void ResetCardGame()
+    {
+        foreach (Card card in playerHand)
+            if (card != null)
+                Destroy(card.gameObject);
+        playerHand.Clear();
+
+        DelayBarManager.Instance.ResetDelayBar();
+
+        playerDeck = new DeckManager();
+        enemyDeck = new DeckManager();
+
+        selectedForDiscard.Clear();
+        isDiscardMode = false;
+        isPlayerTurn = true;
+        hasDiscardedThisTurn = false;
+        playerLife = 0;
+        playerActionPoints = 0;
+        playerDefense = 0;
+        enemyLife = 0;
+        enemyActionPoints = 0;
+        enemyDefense = 0;
+
+        endTurnButton.interactable = true;
+        discardButton.interactable = true;
+        discardButton.GetComponentInChildren<Text>().text = "Défausser";
     }
 
     void UpdateUI()

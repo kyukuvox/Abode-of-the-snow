@@ -2,13 +2,13 @@
 
 public class NPCInteraction : MonoBehaviour
 {
-    public DialogueData defaultDialogue;   
+    public DialogueData defaultDialogue;
     public float interactionRange = 2f;
     public GameObject interactionSprite;
 
-    private Transform player;
-    private bool playerInRange = false;
-    private float dialogueCooldown = 0f;
+    protected Transform player;
+    protected bool playerInRange = false;
+    protected float dialogueCooldown = 0f;
 
     void Start()
     {
@@ -26,11 +26,11 @@ public class NPCInteraction : MonoBehaviour
         float distance = Vector2.Distance(transform.position, player.position);
         playerInRange = distance <= interactionRange;
 
-        if (dialogueCooldown > 0f)
-            dialogueCooldown -= Time.deltaTime;
-
         if (interactionSprite != null)
             interactionSprite.SetActive(playerInRange);
+
+        if (dialogueCooldown > 0f)
+            dialogueCooldown -= Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -54,10 +54,9 @@ public class NPCInteraction : MonoBehaviour
 
     public virtual void TriggerDialogue()
     {
-        DialogueManager.Instance.StartDialogue(defaultDialogue);
+        DialogueManager.Instance.StartDialogue(defaultDialogue, null);
     }
 
-  
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;

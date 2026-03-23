@@ -25,6 +25,7 @@ public class ItemSlotHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (DialogueManager.Instance.IsActive()) return;
         targetPosition = basePosition + Vector2.up * hoverOffset;
         RestartAnimation();
     }

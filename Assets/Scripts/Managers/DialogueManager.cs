@@ -10,9 +10,18 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueText;
     public Text npcNameText;
 
+    private Coroutine typingCoroutine;
+    private Coroutine scaleCoroutineNPC;
+    private Coroutine scaleCoroutinePlayer;
+
     [Header("Portraits")]
     public Image playerPortraitImage;
     public Image npcPortraitImage;
+
+    [Header("Animation Portraits")]
+    public float activeSpeakerScale = 1.2f;
+    public float inactiveSpeakerScale = 1f;
+    public float scaleSpeed = 8f;
 
     private DialogueData currentData;
     private int currentLineIndex;
@@ -20,22 +29,20 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping = false;
     private string currentFullLine = "";
     private bool currentDialogueIsBad = false;
+    private NPCWithItemDialogue currentNPC;
 
     public float typingSpeed = 0.05f;
-
-    public float activeSpeakerScale = 1.2f; 
-    public float inactiveSpeakerScale = 1f; 
-    public float scaleSpeed = 8f;
 
     void Awake()
     {
         Instance = this;
     }
 
-    public void StartDialogue(DialogueData data)
+    public void StartDialogue(DialogueData data, NPCWithItemDialogue npc = null)
     {
         if (isDialogueActive) return;
 
+        currentNPC = npc;
         currentDialogueIsBad = data.isBadDecision;
         isDialogueActive = true;
         currentData = data;
@@ -56,7 +63,7 @@ public class DialogueManager : MonoBehaviour
 
         if (isTyping)
         {
-            StopAllCoroutines();
+            if (typingCoroutine != null) StopCoroutine(typingCoroutine);
             dialogueText.text = currentFullLine;
             isTyping = false;
         }
@@ -73,27 +80,44 @@ public class DialogueManager : MonoBehaviour
 
     void DisplayLine(DialogueLine line)
     {
+        
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+        if (scaleCoroutineNPC != null) StopCoroutine(scaleCoroutineNPC);
+        if (scaleCoroutinePlayer != null) StopCoroutine(scaleCoroutinePlayer);
+
         if (line.speaker == DialogueLine.Speaker.NPC)
         {
             npcNameText.text = currentData.npcName;
             npcPortraitImage.color = Color.white;
             playerPortraitImage.color = new Color(0.4f, 0.4f, 0.4f, 1f);
-
-            StopCoroutine("AnimateScale");
-            StartCoroutine(AnimateScale(npcPortraitImage.rectTransform, activeSpeakerScale));
-            StartCoroutine(AnimateScale(playerPortraitImage.rectTransform, inactiveSpeakerScale));
+            scaleCoroutineNPC = StartCoroutine(AnimateScale(npcPortraitImage.rectTransform, activeSpeakerScale));
+            scaleCoroutinePlayer = StartCoroutine(AnimateScale(playerPortraitImage.rectTransform, inactiveSpeakerScale));
         }
         else
         {
             npcNameText.text = "Joueur";
             npcPortraitImage.color = new Color(0.4f, 0.4f, 0.4f, 1f);
             playerPortraitImage.color = Color.white;
-
-            StartCoroutine(AnimateScale(playerPortraitImage.rectTransform, activeSpeakerScale));
-            StartCoroutine(AnimateScale(npcPortraitImage.rectTransform, inactiveSpeakerScale));
+            scaleCoroutinePlayer = StartCoroutine(AnimateScale(playerPortraitImage.rectTransform, activeSpeakerScale));
+            scaleCoroutineNPC = StartCoroutine(AnimateScale(npcPortraitImage.rectTransform, inactiveSpeakerScale));
         }
 
-        StartCoroutine(TypeLine(line.text));
+        typingCoroutine = StartCoroutine(TypeLine(line.text));
+    }
+
+    IEnumerator TypeLine(string line)
+    {
+        isTyping = true;
+        currentFullLine = line;
+        dialogueText.text = "";
+
+        foreach (char letter in line)
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        isTyping = false;
     }
 
     IEnumerator AnimateScale(RectTransform target, float targetScale)
@@ -113,21 +137,6 @@ public class DialogueManager : MonoBehaviour
         target.localScale = destination;
     }
 
-    IEnumerator TypeLine(string line)
-    {
-        isTyping = true;
-        currentFullLine = line;
-        dialogueText.text = "";
-
-        foreach (char letter in line)
-        {
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
-        }
-
-        isTyping = false;
-    }
-
     public void EndDialogue()
     {
         isDialogueActive = false;
@@ -138,13 +147,13 @@ public class DialogueManager : MonoBehaviour
         playerPortraitImage.rectTransform.localScale = Vector3.one;
         StopAllCoroutines();
 
-        // Lance le mini jeu si configuré
         if (currentData != null && currentData.triggersCardGame)
         {
             CardGameManager.Instance.StartCardGame(
                 currentData.enemyCardData,
                 currentData.playerCardData,
-                currentData.cardGameReward
+                currentData.cardGameReward,
+                currentNPC
             );
         }
 
