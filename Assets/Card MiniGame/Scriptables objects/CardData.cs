@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewCard", menuName = "CardGame/Card")]
 public class CardData : ScriptableObject
@@ -12,9 +12,12 @@ public class CardData : ScriptableObject
     public CardType cardType;
 
     public enum AttackType { None, HitDefense, HitRecharge, HitLife }
-    public AttackType attackType; 
+    public AttackType attackType;
 
-    public int actionCost;  
-    public int power;        
-    public int delayTurns;  
+    public enum CostType { ActionPoints, Life, Defense }
+    public CostType costType; 
+
+    public int actionCost;
+    public int power;
+    public int delayTurns;
 }

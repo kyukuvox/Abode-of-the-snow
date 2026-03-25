@@ -38,6 +38,15 @@ public class NPCWithItemDialogue : NPCInteraction
         DialogueManager.Instance.EndDialogue();
         dialogueCooldown = 1f;
 
+        if (hasBeenDefeated)
+        {
+            if (alreadyDefeatedDialogue != null)
+                DialogueManager.Instance.StartDialogue(alreadyDefeatedDialogue, this);
+            else
+                DialogueManager.Instance.StartDialogue(defaultDialogue, this);
+            return;
+        }
+
         foreach (var pair in itemDialogues)
         {
             if (pair.item == item)

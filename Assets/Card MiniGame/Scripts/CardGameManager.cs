@@ -104,9 +104,22 @@ public class CardGameManager : MonoBehaviour
     public void PlayCard(Card card)
     {
         if (!isPlayerTurn) return;
-        if (playerActionPoints < card.cardData.actionCost) return;
 
-        playerActionPoints -= card.cardData.actionCost;
+        switch (card.cardData.costType)
+        {
+            case CardData.CostType.ActionPoints:
+                if (playerActionPoints < card.cardData.actionCost) return;
+                playerActionPoints -= card.cardData.actionCost;
+                break;
+            case CardData.CostType.Life:
+                if (playerLife <= card.cardData.actionCost) return;
+                playerLife -= card.cardData.actionCost;
+                break;
+            case CardData.CostType.Defense:
+                if (playerDefense < card.cardData.actionCost) return;
+                playerDefense -= card.cardData.actionCost;
+                break;
+        }
 
         if (card.cardData.delayTurns > 0)
             DelayBarManager.Instance.AddDelayedCard(card.cardData, card.cardData.delayTurns, true);
@@ -313,7 +326,22 @@ public class CardGameManager : MonoBehaviour
             DrawPlayerCard();
 
         foreach (Card card in playerHand)
-            card.SetPlayable(playerActionPoints >= card.cardData.actionCost);
+        {
+            bool canPlay = false;
+            switch (card.cardData.costType)
+            {
+                case CardData.CostType.ActionPoints:
+                    canPlay = playerActionPoints >= card.cardData.actionCost;
+                    break;
+                case CardData.CostType.Life:
+                    canPlay = playerLife > card.cardData.actionCost;
+                    break;
+                case CardData.CostType.Defense:
+                    canPlay = playerDefense >= card.cardData.actionCost;
+                    break;
+            }
+            card.SetPlayable(canPlay);
+        }
 
         UpdateUI();
     }
@@ -390,7 +418,22 @@ public class CardGameManager : MonoBehaviour
         if (enemyDefenseText != null) enemyDefenseText.text = "DEF : " + enemyDefense;
 
         foreach (Card card in playerHand)
-            card.SetPlayable(isPlayerTurn && playerActionPoints >= card.cardData.actionCost);
+        {
+            bool canPlay = false;
+            switch (card.cardData.costType)
+            {
+                case CardData.CostType.ActionPoints:
+                    canPlay = playerActionPoints >= card.cardData.actionCost;
+                    break;
+                case CardData.CostType.Life:
+                    canPlay = playerLife > card.cardData.actionCost;
+                    break;
+                case CardData.CostType.Defense:
+                    canPlay = playerDefense >= card.cardData.actionCost;
+                    break;
+            }
+            card.SetPlayable(isPlayerTurn && canPlay);
+        }
     }
 
     public void ApplyDelayedCard(CardData card, bool isPlayer)

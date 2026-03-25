@@ -25,7 +25,19 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         cardImage.sprite = data.cardSprite;
         cardNameText.text = data.cardName;
         cardDescText.text = data.description;
-        cardCostText.text = data.actionCost + " PA";
+
+        switch (data.costType)
+        {
+            case CardData.CostType.ActionPoints:
+                cardCostText.text = data.actionCost + " PA";
+                break;
+            case CardData.CostType.Life:
+                cardCostText.text = data.actionCost + " PV";
+                break;
+            case CardData.CostType.Defense:
+                cardCostText.text = data.actionCost + " DEF";
+                break;
+        }
     }
 
     public void SetPlayable(bool playable)

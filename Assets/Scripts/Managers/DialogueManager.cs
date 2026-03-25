@@ -147,7 +147,9 @@ public class DialogueManager : MonoBehaviour
         playerPortraitImage.rectTransform.localScale = Vector3.one;
         StopAllCoroutines();
 
-        if (currentData != null && currentData.triggersCardGame)
+        bool npcAlreadyDefeated = currentNPC != null && currentNPC.HasBeenDefeated();
+
+        if (currentData != null && currentData.triggersCardGame && !npcAlreadyDefeated)
         {
             CardGameManager.Instance.StartCardGame(
                 currentData.enemyCardData,
