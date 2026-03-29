@@ -33,10 +33,13 @@ public class MenuManager : MonoBehaviour
     }
     public void OpenMenu()
     {
+        if (DialogueManager.Instance.IsActive()) return;
+        if (CardGameManager.Instance.cardGameCanvas.activeSelf) return;
+
         isMenuOpen = true;
         menuPanel.SetActive(true);
-        Time.timeScale = 0f;
-        ShowGlossaire();
+        ShowGlossaire();        
+        Time.timeScale = 0f;    
     }
 
     public void CloseMenu()
@@ -50,6 +53,10 @@ public class MenuManager : MonoBehaviour
     {
         glossairePage.SetActive(true);
         deckBuilderPage.SetActive(false);
+
+        GlossaireManager glossaire = glossairePage.GetComponent<GlossaireManager>();
+        if (glossaire != null)
+            glossaire.RefreshCards();
     }
 
     public void ShowDeckBuilder()

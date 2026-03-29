@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
   m_Name: MONOLITHE
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: 
+  cardName: MONOLITHE
   cardSprite: {fileID: 0}
-  description: 
-  cardType: 0
+  description: LE BEAU MONOLITHE
+  cardType: 1
   attackType: 0
   costType: 0
-  actionCost: 0
-  power: 0
+  actionCost: 2
+  power: 30
   delayTurns: 0

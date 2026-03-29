@@ -37,6 +37,9 @@ public class ItemPickup : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
 
+        if (PickedUpItemsTracker.Instance != null)
+            PickedUpItemsTracker.Instance.AddPickedUpItem(item.itemName);
+
         Inventory.Instance.AddItem(item);
         ItemDescriptionManager.Instance.ShowItemDescription(item);
         Destroy(gameObject);

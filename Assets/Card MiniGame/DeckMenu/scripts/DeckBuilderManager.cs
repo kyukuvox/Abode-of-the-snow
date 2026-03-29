@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
@@ -22,11 +22,22 @@ public class DeckBuilderManager : MonoBehaviour
     private int browserIndex = 0;
     private bool isInitialized = false;
 
+    public static DeckBuilderManager Instance;
+
     void Awake()
     {
+        Instance = this;
         currentDeck = new List<CardData>(new CardData[maxDeckSize]);
     }
 
+    public void LoadDeck(List<CardData> deck)
+    {
+        for (int i = 0; i < maxDeckSize; i++)
+            currentDeck[i] = i < deck.Count ? deck[i] : null;
+
+        if (isInitialized)
+            UpdateSlotsDisplay();
+    }
     void OnEnable()
     {
         if (!isInitialized)

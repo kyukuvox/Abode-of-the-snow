@@ -7,21 +7,11 @@ public class GlossaireManager : MonoBehaviour
     public Text cardNameText;
     public Text cardDescriptionText;
     public Text cardStatsText;
-
     public Button leftArrowButton;
     public Button rightArrowButton;
 
     private int currentIndex = 0;
     private CardData[] currentCards;
-
-    void OnEnable()
-    {
-        currentCards = PlayerCardCollection.Instance.GetUnlockedCardsArray();
-        currentIndex = 0;
-
-        if (currentCards.Length > 0)
-            DisplayCard(currentIndex);
-    }
 
     void Start()
     {
@@ -29,8 +19,33 @@ public class GlossaireManager : MonoBehaviour
         rightArrowButton.onClick.AddListener(NextCard);
     }
 
+    void OnEnable()
+    {
+        RefreshCards();
+    }
+
+    public void RefreshCards()
+    {
+        // Vérifie directement sans coroutine
+        if (PlayerCardCollection.Instance == null)
+        {
+            Debug.Log("PlayerCardCollection introuvable !");
+            return;
+        }
+
+        currentCards = PlayerCardCollection.Instance.GetUnlockedCardsArray();
+        Debug.Log("Cartes dans le glossaire : " + currentCards.Length);
+        currentIndex = 0;
+
+        if (currentCards != null && currentCards.Length > 0)
+            DisplayCard(currentIndex);
+        else
+            Debug.Log("Aucune carte à afficher !");
+    }
+
     void PreviousCard()
     {
+        if (currentCards == null || currentCards.Length == 0) return;
         currentIndex--;
         if (currentIndex < 0)
             currentIndex = currentCards.Length - 1;
@@ -39,6 +54,7 @@ public class GlossaireManager : MonoBehaviour
 
     void NextCard()
     {
+        if (currentCards == null || currentCards.Length == 0) return;
         currentIndex++;
         if (currentIndex >= currentCards.Length)
             currentIndex = 0;
@@ -48,7 +64,6 @@ public class GlossaireManager : MonoBehaviour
     void DisplayCard(int index)
     {
         CardData card = currentCards[index];
-
         cardImage.sprite = card.cardSprite;
         cardNameText.text = card.cardName;
         cardDescriptionText.text = card.description;

@@ -13,7 +13,7 @@ public class BadDecisionManager : MonoBehaviour
 
     public float overlayDuration = 2f;
     public int maxLives = 4;
-    private int currentLives;
+    public int currentLives;
     public bool isGameOver = false;
     public bool isOverlayActive = false;
 
