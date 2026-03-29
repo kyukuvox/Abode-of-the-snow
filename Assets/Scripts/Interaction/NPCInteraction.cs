@@ -9,6 +9,7 @@ public class NPCInteraction : MonoBehaviour
     protected Transform player;
     protected bool playerInRange = false;
     protected float dialogueCooldown = 0f;
+    private bool wasDialogueActive = false; 
 
     void Start()
     {
@@ -32,6 +33,11 @@ public class NPCInteraction : MonoBehaviour
         if (dialogueCooldown > 0f)
             dialogueCooldown -= Time.deltaTime;
 
+        bool isDialogueCurrentlyActive = DialogueManager.Instance.IsActive();
+        if (wasDialogueActive && !isDialogueCurrentlyActive)
+            dialogueCooldown = 1f;
+        wasDialogueActive = isDialogueCurrentlyActive;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (ItemDescriptionManager.Instance.IsActive())
@@ -42,7 +48,9 @@ public class NPCInteraction : MonoBehaviour
 
             if (DialogueManager.Instance.IsActive())
             {
-                DialogueManager.Instance.OnPressE();
+                if (DialogueManager.Instance.IsWaitingForInput())
+                    DialogueManager.Instance.OnPressE();
+                return;
             }
             else if (playerInRange && dialogueCooldown <= 0f)
             {
@@ -54,6 +62,7 @@ public class NPCInteraction : MonoBehaviour
 
     public virtual void TriggerDialogue()
     {
+        dialogueCooldown = 1f;
         DialogueManager.Instance.StartDialogue(defaultDialogue, null);
     }
 

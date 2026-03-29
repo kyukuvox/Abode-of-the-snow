@@ -19,6 +19,8 @@ public class ItemPickup : MonoBehaviour
 
     void OnMouseEnter()
     {
+        if (PauseMenu.Instance.IsPaused()) return;
+        if (MenuManager.Instance.IsMenuOpen()) return;
         if (hoverSprite != null)
             hoverSprite.SetActive(true);
     }
@@ -31,11 +33,12 @@ public class ItemPickup : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!DialogueManager.Instance.IsActive())
-        {
-            Inventory.Instance.AddItem(item);
-            ItemDescriptionManager.Instance.ShowItemDescription(item);
-            Destroy(gameObject);
-        }
+        if (DialogueManager.Instance.IsActive()) return;
+        if (PauseMenu.Instance.IsPaused()) return;
+        if (MenuManager.Instance.IsMenuOpen()) return;
+
+        Inventory.Instance.AddItem(item);
+        ItemDescriptionManager.Instance.ShowItemDescription(item);
+        Destroy(gameObject);
     }
 }

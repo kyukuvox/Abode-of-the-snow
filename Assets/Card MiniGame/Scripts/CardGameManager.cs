@@ -377,8 +377,14 @@ public class CardGameManager : MonoBehaviour
         if (currentNPC != null)
             currentNPC.SetDefeated(playerWon);
 
-        if (playerWon && rewardItem != null)
-            Inventory.Instance.AddItem(rewardItem);
+        if (playerWon)
+        {
+            if (rewardItem != null)
+                Inventory.Instance.AddItem(rewardItem);
+
+            if (enemyData.rewardCard != null)
+                PlayerCardCollection.Instance.AddCard(enemyData.rewardCard);
+        }
     }
 
     public void CloseCardGame()

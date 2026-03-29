@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pausePanel;
     private bool isPaused = false;
-
+    public bool IsPaused() { return isPaused; }
     void Awake()
     {
         Instance = this;
@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (DialogueManager.Instance.IsActive()) return;
         if (BadDecisionManager.Instance.isGameOver) return;
+        if (MenuManager.Instance.IsMenuOpen()) return; 
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

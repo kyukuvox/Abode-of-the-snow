@@ -24,6 +24,8 @@ public class NPCWithItemDialogue : NPCInteraction
 
     public override void TriggerDialogue()
     {
+        dialogueCooldown = 1f;
+
         if (hasBeenDefeated && alreadyDefeatedDialogue != null)
         {
             DialogueManager.Instance.StartDialogue(alreadyDefeatedDialogue, this);

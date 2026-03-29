@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -9,10 +10,6 @@ public class DialogueManager : MonoBehaviour
     public GameObject dialoguePanel;
     public Text dialogueText;
     public Text npcNameText;
-
-    private Coroutine typingCoroutine;
-    private Coroutine scaleCoroutineNPC;
-    private Coroutine scaleCoroutinePlayer;
 
     [Header("Portraits")]
     public Image playerPortraitImage;
@@ -27,9 +24,14 @@ public class DialogueManager : MonoBehaviour
     private int currentLineIndex;
     private bool isDialogueActive = false;
     private bool isTyping = false;
+    private bool isWaitingForInput = false;
     private string currentFullLine = "";
     private bool currentDialogueIsBad = false;
     private NPCWithItemDialogue currentNPC;
+
+    private Coroutine typingCoroutine;
+    private Coroutine scaleCoroutineNPC;
+    private Coroutine scaleCoroutinePlayer;
 
     public float typingSpeed = 0.05f;
 
@@ -42,9 +44,12 @@ public class DialogueManager : MonoBehaviour
     {
         if (isDialogueActive) return;
 
+        EventSystem.current.SetSelectedGameObject(null);
+
         currentNPC = npc;
         currentDialogueIsBad = data.isBadDecision;
         isDialogueActive = true;
+        isWaitingForInput = false;
         currentData = data;
         currentLineIndex = 0;
         dialoguePanel.SetActive(true);
@@ -60,27 +65,19 @@ public class DialogueManager : MonoBehaviour
     public void OnPressE()
     {
         if (!isDialogueActive) return;
+        if (!isWaitingForInput) return;
 
-        if (isTyping)
-        {
-            if (typingCoroutine != null) StopCoroutine(typingCoroutine);
-            dialogueText.text = currentFullLine;
-            isTyping = false;
-        }
+        isWaitingForInput = false;
+        currentLineIndex++;
+
+        if (currentLineIndex < currentData.lines.Length)
+            DisplayLine(currentData.lines[currentLineIndex]);
         else
-        {
-            currentLineIndex++;
-
-            if (currentLineIndex < currentData.lines.Length)
-                DisplayLine(currentData.lines[currentLineIndex]);
-            else
-                EndDialogue();
-        }
+            EndDialogue();
     }
 
     void DisplayLine(DialogueLine line)
     {
-        
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
         if (scaleCoroutineNPC != null) StopCoroutine(scaleCoroutineNPC);
         if (scaleCoroutinePlayer != null) StopCoroutine(scaleCoroutinePlayer);
@@ -108,6 +105,7 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeLine(string line)
     {
         isTyping = true;
+        isWaitingForInput = false;
         currentFullLine = line;
         dialogueText.text = "";
 
@@ -118,6 +116,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         isTyping = false;
+        isWaitingForInput = true;
     }
 
     IEnumerator AnimateScale(RectTransform target, float targetScale)
@@ -140,6 +139,7 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         isDialogueActive = false;
+        isWaitingForInput = false;
         dialoguePanel.SetActive(false);
         npcPortraitImage.color = Color.white;
         playerPortraitImage.color = Color.white;
@@ -169,4 +169,5 @@ public class DialogueManager : MonoBehaviour
     }
 
     public bool IsActive() { return isDialogueActive; }
+    public bool IsWaitingForInput() { return isWaitingForInput; }
 }

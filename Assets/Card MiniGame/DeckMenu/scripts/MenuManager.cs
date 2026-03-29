@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
@@ -15,17 +15,22 @@ public class MenuManager : MonoBehaviour
         Instance = this;
     }
 
+    public bool IsMenuOpen() { return isMenuOpen; }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
+            if (PauseMenu.Instance.IsPaused()) return;
+            if (DialogueManager.Instance.IsActive()) return;
+            if (CardGameManager.Instance.cardGameCanvas.activeSelf) return;
+
             if (isMenuOpen)
                 CloseMenu();
             else
                 OpenMenu();
         }
     }
-
     public void OpenMenu()
     {
         isMenuOpen = true;

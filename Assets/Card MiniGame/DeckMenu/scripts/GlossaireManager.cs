@@ -3,8 +3,6 @@ using UnityEngine.UI;
 
 public class GlossaireManager : MonoBehaviour
 {
-    public CardDatabase cardDatabase;
-
     public Image cardImage;
     public Text cardNameText;
     public Text cardDescriptionText;
@@ -14,11 +12,15 @@ public class GlossaireManager : MonoBehaviour
     public Button rightArrowButton;
 
     private int currentIndex = 0;
+    private CardData[] currentCards;
 
     void OnEnable()
     {
+        currentCards = PlayerCardCollection.Instance.GetUnlockedCardsArray();
         currentIndex = 0;
-        DisplayCard(currentIndex);
+
+        if (currentCards.Length > 0)
+            DisplayCard(currentIndex);
     }
 
     void Start()
@@ -31,21 +33,21 @@ public class GlossaireManager : MonoBehaviour
     {
         currentIndex--;
         if (currentIndex < 0)
-            currentIndex = cardDatabase.allCards.Length - 1;
+            currentIndex = currentCards.Length - 1;
         DisplayCard(currentIndex);
     }
 
     void NextCard()
     {
         currentIndex++;
-        if (currentIndex >= cardDatabase.allCards.Length)
+        if (currentIndex >= currentCards.Length)
             currentIndex = 0;
         DisplayCard(currentIndex);
     }
 
     void DisplayCard(int index)
     {
-        CardData card = cardDatabase.allCards[index];
+        CardData card = currentCards[index];
 
         cardImage.sprite = card.cardSprite;
         cardNameText.text = card.cardName;
