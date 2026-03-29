@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
   m_Name: DefenseCost
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: 
+  cardName: Paladin
   cardSprite: {fileID: 0}
-  description: 
+  description: adieu le boucli
   cardType: 0
-  attackType: 0
-  costType: 0
-  actionCost: 0
-  power: 0
+  attackType: 2
+  costType: 2
+  actionCost: 2
+  power: 5
   delayTurns: 0

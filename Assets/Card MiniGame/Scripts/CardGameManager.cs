@@ -33,6 +33,9 @@ public class CardGameManager : MonoBehaviour
     public Button endTurnButton;
     public Button discardButton;
 
+    [Header("Deck Builder")]
+    public DeckBuilderManager deckBuilderManager;
+
     private int playerLife;
     private int playerActionPoints;
     private int playerDefense;
@@ -86,7 +89,12 @@ public class CardGameManager : MonoBehaviour
         enemyActionPoints = enemy.actionPointsPerTurn;
         enemyDefense = 0;
 
-        playerDeck.InitializeDeck(player.startingDeck);
+        List<CardData> playerDeckCards = deckBuilderManager.GetCurrentDeck();
+        if (playerDeckCards.Count > 0)
+            playerDeck.InitializeDeck(playerDeckCards.ToArray());
+        else
+            playerDeck.InitializeDeck(player.startingDeck);
+
         enemyDeck.InitializeDeck(enemy.startingDeck);
 
         cardGameCanvas.SetActive(true);
