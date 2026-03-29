@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class DeckBuilderManager : MonoBehaviour
 {
+    public static DeckBuilderManager Instance;
+
     [Header("Slots du deck")]
     public GameObject deckSlotPrefab;
     public Transform deckSlotsZone;
@@ -22,22 +24,12 @@ public class DeckBuilderManager : MonoBehaviour
     private int browserIndex = 0;
     private bool isInitialized = false;
 
-    public static DeckBuilderManager Instance;
-
     void Awake()
     {
         Instance = this;
         currentDeck = new List<CardData>(new CardData[maxDeckSize]);
     }
 
-    public void LoadDeck(List<CardData> deck)
-    {
-        for (int i = 0; i < maxDeckSize; i++)
-            currentDeck[i] = i < deck.Count ? deck[i] : null;
-
-        if (isInitialized)
-            UpdateSlotsDisplay();
-    }
     void OnEnable()
     {
         if (!isInitialized)
@@ -56,10 +48,25 @@ public class DeckBuilderManager : MonoBehaviour
         browserIndex = 0;
         selectedSlotIndex = -1;
 
-        if (PlayerCardCollection.Instance.GetUnlockedCards().Count > 0)
-            DisplayBrowserCard(browserIndex);
-
+        RefreshBrowser();
         UpdateSlotsDisplay();
+    }
+
+    void RefreshBrowser()
+    {
+        if (PlayerCardCollection.Instance == null)
+        {
+            Debug.Log("PlayerCardCollection introuvable !");
+            return;
+        }
+
+        List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
+        Debug.Log("Cartes disponibles dans le navigateur : " + cards.Count);
+
+        if (cards.Count > 0)
+            DisplayBrowserCard(0);
+        else
+            Debug.Log("Aucune carte disponible !");
     }
 
     void InitializeSlots()
@@ -117,34 +124,75 @@ public class DeckBuilderManager : MonoBehaviour
 
     void PreviousBrowserCard()
     {
+        List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
+        if (cards.Count == 0) return;
         browserIndex--;
         if (browserIndex < 0)
-            browserIndex = PlayerCardCollection.Instance.GetUnlockedCards().Count - 1;
+            browserIndex = cards.Count - 1;
         DisplayBrowserCard(browserIndex);
     }
 
     void NextBrowserCard()
     {
+        List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
+        if (cards.Count == 0) return;
         browserIndex++;
-        if (browserIndex >= PlayerCardCollection.Instance.GetUnlockedCards().Count)
+        if (browserIndex >= cards.Count)
             browserIndex = 0;
         DisplayBrowserCard(browserIndex);
     }
 
     void DisplayBrowserCard(int index)
     {
-        CardData card = PlayerCardCollection.Instance.GetUnlockedCards()[index];
-        browserCardImage.sprite = card.cardSprite;
-        browserCardNameText.text = card.cardName;
+        List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
+
+        if (cards.Count == 0 || index >= cards.Count) return;
+
+        CardData card = cards[index];
+        Debug.Log("Carte : " + card.cardName);
+        Debug.Log("cardSprite : " + (card.cardSprite != null ? "OK" : "NULL"));
+        Debug.Log("browserCardImage : " + (browserCardImage != null ? "OK" : "NULL"));
+        Debug.Log("browserCardImage.sprite avant : " + (browserCardImage.sprite != null ? browserCardImage.sprite.name : "NULL"));
+
+        if (browserCardImage != null)
+        {
+            browserCardImage.enabled = true;
+            browserCardImage.gameObject.SetActive(true); // ← force l'activation
+            browserCardImage.sprite = card.cardSprite;
+            browserCardImage.color = Color.white;
+            Debug.Log("Après activation - enabled : " + browserCardImage.enabled);
+            Debug.Log("Après activation - gameObject active : " + browserCardImage.gameObject.activeSelf);
+            Debug.Log("Parent actif : " + browserCardImage.transform.parent.gameObject.activeSelf);
+        }
+
+        if (browserCardNameText != null)
+            browserCardNameText.text = card.cardName;
     }
 
     void AssignCardToSlot()
     {
-        if (selectedSlotIndex == -1) return;
+        if (selectedSlotIndex == -1)
+        {
+            Debug.Log("Aucun slot sélectionné !");
+            return;
+        }
 
-        currentDeck[selectedSlotIndex] = PlayerCardCollection.Instance.GetUnlockedCards()[browserIndex];
+        List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
+        if (cards.Count == 0) return;
+
+        currentDeck[selectedSlotIndex] = cards[browserIndex];
+        Debug.Log("Carte assignée : " + cards[browserIndex].cardName + " → slot " + selectedSlotIndex);
         selectedSlotIndex = -1;
         UpdateSlotsDisplay();
+    }
+
+    public void LoadDeck(List<CardData> deck)
+    {
+        for (int i = 0; i < maxDeckSize; i++)
+            currentDeck[i] = i < deck.Count ? deck[i] : null;
+
+        if (isInitialized)
+            UpdateSlotsDisplay();
     }
 
     public List<CardData> GetCurrentDeck()
@@ -152,6 +200,7 @@ public class DeckBuilderManager : MonoBehaviour
         List<CardData> deck = new List<CardData>();
         foreach (CardData card in currentDeck)
             if (card != null) deck.Add(card);
+        Debug.Log("GetCurrentDeck : " + deck.Count + " cartes");
         return deck;
     }
 }

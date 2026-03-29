@@ -36,7 +36,13 @@ public class InventoryUI : MonoBehaviour
 
     IEnumerator InitSlotPosition(GameObject slot)
     {
-        yield return null; 
+        yield return null;
+        yield return null;
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(slotContainer as RectTransform);
+
+        yield return null;
+
         ItemSlotHover hover = slot.GetComponent<ItemSlotHover>();
         if (hover != null)
             hover.InitBasePosition();

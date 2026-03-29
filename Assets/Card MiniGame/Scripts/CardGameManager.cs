@@ -76,6 +76,13 @@ public class CardGameManager : MonoBehaviour
 
     public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item reward, NPCWithItemDialogue npc)
     {
+        Debug.Log("=== START CARD GAME ===");
+        Debug.Log("cardGameCanvas : " + (cardGameCanvas != null ? "OK" : "NULL"));
+        Debug.Log("enemy : " + (enemy != null ? enemy.characterName : "NULL"));
+        Debug.Log("player : " + (player != null ? player.characterName : "NULL"));
+        Debug.Log("cardPrefab : " + (cardPrefab != null ? "OK" : "NULL"));
+        Debug.Log("playerHandZone : " + (playerHandZone != null ? "OK" : "NULL"));
+
         currentNPC = npc;
         enemyData = enemy;
         playerData = player;
@@ -89,7 +96,11 @@ public class CardGameManager : MonoBehaviour
         enemyActionPoints = enemy.actionPointsPerTurn;
         enemyDefense = 0;
 
-        List<CardData> playerDeckCards = deckBuilderManager.GetCurrentDeck();
+        List<CardData> playerDeckCards = deckBuilderManager != null ?
+            deckBuilderManager.GetCurrentDeck() : new List<CardData>();
+
+        Debug.Log("Cartes dans le DeckBuilder : " + playerDeckCards.Count);
+
         if (playerDeckCards.Count > 0)
             playerDeck.InitializeDeck(playerDeckCards.ToArray());
         else
