@@ -7,6 +7,7 @@ public class MenuManager : MonoBehaviour
     public GameObject menuPanel;
     public GameObject glossairePage;
     public GameObject deckBuilderPage;
+    public GameObject itemGlossairePage;
 
     private bool isMenuOpen = false;
 
@@ -53,6 +54,7 @@ public class MenuManager : MonoBehaviour
     {
         glossairePage.SetActive(true);
         deckBuilderPage.SetActive(false);
+        itemGlossairePage.SetActive(false);
 
         GlossaireManager glossaire = glossairePage.GetComponent<GlossaireManager>();
         if (glossaire != null)
@@ -63,5 +65,18 @@ public class MenuManager : MonoBehaviour
     {
         glossairePage.SetActive(false);
         deckBuilderPage.SetActive(true);
+        itemGlossairePage.SetActive(false);
     }
+
+    public void ShowItemGlossaire() 
+    {
+        glossairePage.SetActive(false);
+        deckBuilderPage.SetActive(false);
+        itemGlossairePage.SetActive(true);
+
+        ItemGlossaireManager itemGlossaire = itemGlossairePage.GetComponent<ItemGlossaireManager>();
+        if (itemGlossaire != null)
+            itemGlossaire.RefreshItems();
+    }
+
 }

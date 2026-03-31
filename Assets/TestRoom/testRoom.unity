@@ -10532,7 +10532,7 @@ MonoBehaviour:
   deckSlotPrefab: {fileID: 7142262804392219732, guid: 1a741bb0358b97149868b016089629fb, type: 3}
   deckSlotsZone: {fileID: 1941883797}
   maxDeckSize: 8
-  browserCardImage: {fileID: 1845354098}
+  browserCardImage: {fileID: 350952463}
   browserCardNameText: {fileID: 427934533}
   browserLeftArrow: {fileID: 1427437053}
   browserRightArrow: {fileID: 2104207901}

@@ -161,7 +161,7 @@ public class DialogueManager : MonoBehaviour
             CardGameManager.Instance.StartCardGame(
                 currentData.enemyCardData,
                 currentData.playerCardData,
-                currentData.cardGameReward,
+                currentData.ItemGameReward,
                 currentNPC
             );
         }
