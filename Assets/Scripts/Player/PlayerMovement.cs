@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement2D : MonoBehaviour
@@ -15,6 +15,7 @@ public class PlayerMovement2D : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     private Rigidbody2D rb;
+    private Animator animator; // ← nouveau
     private float horizontalInput;
     private bool isGrounded;
     private bool jumpRequested;
@@ -22,6 +23,7 @@ public class PlayerMovement2D : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>(); // ← nouveau
     }
 
     void Update()
@@ -56,13 +58,21 @@ public class PlayerMovement2D : MonoBehaviour
 
     void Move()
     {
-        if (DialogueManager.Instance.IsActive()) return;
+        if (DialogueManager.Instance.IsActive())
+        {
+            if (animator != null)
+                animator.SetBool("isWalking", false);
+            return;
+        }
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
             jumpRequested = true;
+
+        if (animator != null)
+            animator.SetBool("isWalking", horizontalInput != 0);
 
         if (horizontalInput > 0)
             transform.localScale = new Vector3(1, 1, 1);

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,13 +12,18 @@ public class ItemDescriptionManager : MonoBehaviour
     public Image itemSpriteImage;
 
     public float typingSpeed = 0.05f;
+    public float animationSpeed = 5f;
+    public float slideOffset = 50f;
+
     private bool isTyping = false;
     private string currentFullText = "";
     private Coroutine typingCoroutine;
+    private RectTransform panelRect;
 
     void Awake()
     {
         Instance = this;
+        panelRect = descriptionPanel.GetComponent<RectTransform>();
     }
 
     public void ShowItemDescription(Item item)
@@ -30,7 +35,35 @@ public class ItemDescriptionManager : MonoBehaviour
         itemSpriteImage.sprite = item.descriptionSprite;
 
         descriptionPanel.SetActive(true);
+
+        StopAllCoroutines();
+        StartCoroutine(AnimatePanel());
         typingCoroutine = StartCoroutine(TypeDescription(item.description));
+    }
+
+    IEnumerator AnimatePanel()
+    {
+        CanvasGroup canvasGroup = descriptionPanel.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = descriptionPanel.AddComponent<CanvasGroup>();
+
+        Vector2 startPos = panelRect.anchoredPosition - new Vector2(0, slideOffset);
+        Vector2 targetPos = panelRect.anchoredPosition;
+
+        canvasGroup.alpha = 0f;
+        panelRect.anchoredPosition = startPos;
+
+        float elapsed = 0f;
+        while (elapsed < 1f)
+        {
+            elapsed += Time.deltaTime * animationSpeed;
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsed);
+            panelRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, elapsed);
+            yield return null;
+        }
+
+        canvasGroup.alpha = 1f;
+        panelRect.anchoredPosition = targetPos;
     }
 
     IEnumerator TypeDescription(string text)
