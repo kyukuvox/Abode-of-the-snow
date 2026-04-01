@@ -39,7 +39,8 @@
 //
 // Pour ajouter dans un deck --> Card MiniGame --> CharacterCard --> choisir le NPC voulu --> donner comme carte de récompense après un combat 
 //
-// !!Sauvegarde des Data!! --> Scripts --> SAUVEGARDE --> DATABASE --> CardDataBase --> donner l'item dans l'inspecteur
+// !!Sauvegarde des Data!! --> Scripts --> SAUVEGARDE --> DATABASE --> CardDataBase --> All card
+// !!ATTENTION!! --> Si carte de récompense --> CardDataBAse --> Rewards card
 
 //POUR AJOUTER UN NPC DE COMBAT
 //

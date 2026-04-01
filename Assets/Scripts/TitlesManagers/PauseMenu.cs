@@ -8,12 +8,12 @@ public class PauseMenu : MonoBehaviour
     public static PauseMenu Instance;
 
     public GameObject pausePanel;
-    public float animationSpeed = 5f;  // ← nouveau
-    public float slideOffset = 50f;    // ← nouveau
+    public float animationSpeed = 5f;  
+    public float slideOffset = 50f;   
 
     private bool isPaused = false;
-    private bool isAnimating = false;  // ← nouveau
-    private RectTransform panelRect;   // ← nouveau
+    private bool isAnimating = false; 
+    private RectTransform panelRect;   
 
     private const string LOAD_FLAG = "ShouldLoad";
 
@@ -28,7 +28,7 @@ public class PauseMenu : MonoBehaviour
         if (DialogueManager.Instance.IsActive()) return;
         if (BadDecisionManager.Instance.isGameOver) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
-        if (isAnimating) return; // ← nouveau
+        if (isAnimating) return; 
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
