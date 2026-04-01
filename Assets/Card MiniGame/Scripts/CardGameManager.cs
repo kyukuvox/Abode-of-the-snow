@@ -57,6 +57,12 @@ public class CardGameManager : MonoBehaviour
     private bool isPlayerTurn = true;
     private bool hasDiscardedThisTurn = false;
 
+    public float shakeIntensity = 5f;
+    public float shakeDuration = 0.3f;
+
+    public float resultAnimationSpeed = 5f;
+    public float resultSlideOffset = 50f;
+
     private Item rewardItem;
     private NPCWithItemDialogue currentNPC;
 
@@ -120,6 +126,34 @@ public class CardGameManager : MonoBehaviour
         isPlayerTurn = true;
     }
 
+    IEnumerator ShakeText(Text text)
+    {
+        Vector3 originalPos = text.rectTransform.anchoredPosition;
+        float elapsed = 0f;
+
+        while (elapsed < shakeDuration)
+        {
+            float x = originalPos.x + Random.Range(-shakeIntensity, shakeIntensity);
+            float y = originalPos.y + Random.Range(-shakeIntensity, shakeIntensity);
+            text.rectTransform.anchoredPosition = new Vector2(x, y);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        text.rectTransform.anchoredPosition = originalPos;
+    }
+
+    public void SwapCards(Card cardA, Card cardB)
+    {
+        int indexA = playerHand.IndexOf(cardA);
+        int indexB = playerHand.IndexOf(cardB);
+
+        if (indexA == -1 || indexB == -1) return;
+
+        playerHand[indexA] = cardB;
+        playerHand[indexB] = cardA;
+    }
+
     public void PlayCard(Card card)
     {
         if (!isPlayerTurn) return;
@@ -140,17 +174,22 @@ public class CardGameManager : MonoBehaviour
                 break;
         }
 
-        if (card.cardData.delayTurns > 0)
-            DelayBarManager.Instance.AddDelayedCard(card.cardData, card.cardData.delayTurns, true);
-        else
-            ApplyCardEffect(card.cardData, true);
-
         playerHand.Remove(card);
         playerDeck.DiscardCard(card.cardData);
-        Destroy(card.gameObject);
 
-        UpdateUI();
-        CheckGameOver();
+        CardData playedCardData = card.cardData;
+
+        card.PlayAnimation(() =>
+        {
+            if (playedCardData.delayTurns > 0)
+                DelayBarManager.Instance.AddDelayedCard(playedCardData, playedCardData.delayTurns, true);
+            else
+                ApplyCardEffect(playedCardData, true);
+
+            Destroy(card.gameObject);
+            UpdateUI();
+            CheckGameOver();
+        });
     }
 
     void ApplyCardEffect(CardData card, bool isPlayer)
@@ -160,7 +199,7 @@ public class CardGameManager : MonoBehaviour
             switch (card.cardType)
             {
                 case CardData.CardType.Attack:
-                    ApplyAttack(card, ref enemyDefense, ref enemyActionPoints, ref enemyLife);
+                    ApplyAttack(card, ref enemyDefense, ref enemyActionPoints, ref enemyLife, true); 
                     break;
                 case CardData.CardType.Defense:
                     playerDefense += card.power;
@@ -178,7 +217,7 @@ public class CardGameManager : MonoBehaviour
             switch (card.cardType)
             {
                 case CardData.CardType.Attack:
-                    ApplyAttack(card, ref playerDefense, ref playerActionPoints, ref playerLife);
+                    ApplyAttack(card, ref playerDefense, ref playerActionPoints, ref playerLife, false);
                     break;
                 case CardData.CardType.Defense:
                     enemyDefense += card.power;
@@ -193,20 +232,34 @@ public class CardGameManager : MonoBehaviour
         }
     }
 
-    void ApplyAttack(CardData card, ref int defense, ref int actionPoints, ref int life)
+    void ApplyAttack(CardData card, ref int defense, ref int actionPoints, ref int life, bool isPlayer)
     {
         switch (card.attackType)
         {
             case CardData.AttackType.HitDefense:
                 defense = Mathf.Max(0, defense - card.power);
+                StartCoroutine(ShakeText(isPlayer ? enemyDefenseText : playerDefenseText));
                 break;
+
             case CardData.AttackType.HitRecharge:
                 actionPoints = Mathf.Max(0, actionPoints - card.power);
+                StartCoroutine(ShakeText(isPlayer ? enemyActionText : playerActionText));
                 break;
+
             case CardData.AttackType.HitLife:
+                int oldDefense = defense;
                 int remaining = card.power - defense;
                 defense = Mathf.Max(0, defense - card.power);
-                if (remaining > 0) life -= remaining;
+
+                if (oldDefense > 0)
+                    StartCoroutine(ShakeText(isPlayer ? enemyDefenseText : playerDefenseText));
+
+                if (remaining > 0)
+                {
+                    life -= remaining;
+                    life = Mathf.Max(0, life); 
+                    StartCoroutine(ShakeText(isPlayer ? enemyLifeText : playerLifeText));
+                }
                 break;
         }
     }
@@ -382,7 +435,6 @@ public class CardGameManager : MonoBehaviour
 
     void EndGame(bool playerWon)
     {
-        resultPanel.SetActive(true);
         resultText.text = playerWon ? "Victoire !" : "Défaite...";
 
         if (currentNPC != null)
@@ -396,6 +448,37 @@ public class CardGameManager : MonoBehaviour
             if (enemyData.rewardCard != null)
                 PlayerCardCollection.Instance.AddCard(enemyData.rewardCard);
         }
+
+        StartCoroutine(AnimateResultPanel());
+    }
+
+    IEnumerator AnimateResultPanel()
+    {
+        resultPanel.SetActive(true);
+
+        RectTransform resultRect = resultPanel.GetComponent<RectTransform>();
+
+        CanvasGroup cg = resultPanel.GetComponent<CanvasGroup>();
+        if (cg == null)
+            cg = resultPanel.AddComponent<CanvasGroup>();
+
+        Vector2 startPos = resultRect.anchoredPosition - new Vector2(0, resultSlideOffset);
+        Vector2 targetPos = resultRect.anchoredPosition;
+
+        cg.alpha = 0f;
+        resultRect.anchoredPosition = startPos;
+
+        float elapsed = 0f;
+        while (elapsed < 1f)
+        {
+            elapsed += Time.deltaTime * resultAnimationSpeed;
+            cg.alpha = Mathf.Lerp(0f, 1f, elapsed);
+            resultRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, elapsed);
+            yield return null;
+        }
+
+        cg.alpha = 1f;
+        resultRect.anchoredPosition = targetPos;
     }
 
     public void CloseCardGame()
