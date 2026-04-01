@@ -37,11 +37,11 @@ public class ItemDescriptionManager : MonoBehaviour
         descriptionPanel.SetActive(true);
 
         StopAllCoroutines();
-        StartCoroutine(AnimatePanel());
+        StartCoroutine(AnimateOpen());
         typingCoroutine = StartCoroutine(TypeDescription(item.description));
     }
 
-    IEnumerator AnimatePanel()
+    IEnumerator AnimateOpen()
     {
         CanvasGroup canvasGroup = descriptionPanel.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
@@ -66,6 +66,29 @@ public class ItemDescriptionManager : MonoBehaviour
         panelRect.anchoredPosition = targetPos;
     }
 
+    IEnumerator AnimateClose()
+    {
+        CanvasGroup canvasGroup = descriptionPanel.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = descriptionPanel.AddComponent<CanvasGroup>();
+
+        Vector2 startPos = panelRect.anchoredPosition;
+        Vector2 targetPos = panelRect.anchoredPosition - new Vector2(0, slideOffset);
+
+        float elapsed = 0f;
+        while (elapsed < 1f)
+        {
+            elapsed += Time.deltaTime * animationSpeed;
+            canvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsed);
+            panelRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, elapsed);
+            yield return null;
+        }
+
+        canvasGroup.alpha = 0f;
+        panelRect.anchoredPosition = startPos;
+        descriptionPanel.SetActive(false);
+    }
+
     IEnumerator TypeDescription(string text)
     {
         isTyping = true;
@@ -84,12 +107,8 @@ public class ItemDescriptionManager : MonoBehaviour
     public void ClosePanel()
     {
         if (isTyping) return;
-
-        if (typingCoroutine != null)
-            StopCoroutine(typingCoroutine);
-
-        isTyping = false;
-        descriptionPanel.SetActive(false);
+        StopAllCoroutines();
+        StartCoroutine(AnimateClose());
     }
 
     public bool IsActive()

@@ -4,15 +4,24 @@ using UnityEngine;
 public class PlayerCardCollection : MonoBehaviour
 {
     public static PlayerCardCollection Instance;
+
     public CardDatabase cardDatabase;
     private List<CardData> unlockedCards = new List<CardData>();
 
-    void Awake() // ← de retour en Awake
+    void Awake()
     {
         Instance = this;
         unlockedCards.Clear();
+
         foreach (CardData card in cardDatabase.allCards)
             unlockedCards.Add(card);
+    }
+
+    public void InitializeBaseCards()
+    {
+        if (unlockedCards.Count == 0)
+            foreach (CardData card in cardDatabase.allCards)
+                unlockedCards.Add(card);
     }
 
     public void AddCard(CardData card)
@@ -27,13 +36,6 @@ public class PlayerCardCollection : MonoBehaviour
     public void ClearAndReload()
     {
         unlockedCards.Clear();
-    }
-
-    public void InitializeBaseCards()
-    {
-        if (unlockedCards.Count == 0)
-            foreach (CardData card in cardDatabase.allCards)
-                unlockedCards.Add(card);
     }
 
     public List<CardData> GetUnlockedCards() { return unlockedCards; }

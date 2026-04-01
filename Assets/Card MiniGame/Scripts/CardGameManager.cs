@@ -44,6 +44,8 @@ public class CardGameManager : MonoBehaviour
     private int enemyActionPoints;
     private int enemyDefense;
 
+    private bool isGameEnded = false;
+
     private CharacterCardData enemyData;
     private CharacterCardData playerData;
 
@@ -420,13 +422,17 @@ public class CardGameManager : MonoBehaviour
 
     bool CheckGameOver()
     {
+        if (isGameEnded) return false;
+
         if (enemyLife <= 0)
         {
+            isGameEnded = true;
             EndGame(true);
             return true;
         }
         if (playerLife <= 0)
         {
+            isGameEnded = true;
             EndGame(false);
             return true;
         }
@@ -504,6 +510,7 @@ public class CardGameManager : MonoBehaviour
         isDiscardMode = false;
         isPlayerTurn = true;
         hasDiscardedThisTurn = false;
+        isGameEnded = false; 
         playerLife = 0;
         playerActionPoints = 0;
         playerDefense = 0;

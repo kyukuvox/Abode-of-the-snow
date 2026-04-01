@@ -181,6 +181,11 @@ public class SaveManager : MonoBehaviour
     {
         foreach (CardData card in cardDatabase.allCards)
             if (card.cardName == name) return card;
+
+        foreach (CardData card in cardDatabase.rewardCards)
+            if (card.cardName == name) return card;
+
+        Debug.Log("Carte introuvable : " + name);
         return null;
     }
 }
