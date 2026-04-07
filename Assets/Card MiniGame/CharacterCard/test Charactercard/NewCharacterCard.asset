@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7254933d8125d2347a52ba9c228a4435, type: 3}
+  m_Name: NewCharacterCard
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterCardData
+  characterName: connard
+  characterSprite: {fileID: 1566108442484387111, guid: 39753b2fda2295a409b1b640f748f9ca, type: 3}
+  perkDescription: 
+  maxLife: 1000000
+  maxActionPoints: 856320
+  actionPointsPerTurn: 2
+  startingDeck:
+  - {fileID: 11400000, guid: 3ff830e3603a213458f755e8a80e4f50, type: 2}
+  rewardCard: {fileID: 11400000, guid: 3ff830e3603a213458f755e8a80e4f50, type: 2}
