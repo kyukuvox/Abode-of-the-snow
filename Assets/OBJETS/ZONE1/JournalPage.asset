@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
+  m_Name: JournalPage
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  itemName: "Page de journal Arrach\xE9e "
+  itemIcon: {fileID: 0}
+  descriptionSprite: {fileID: 0}
+  description: "Une page de journal o\xF9 il est \xE9crit: \"Je n'en peux plus d'attendre
+    et de simplement laisser les jours pass\xE9s. C'est comme si ma raison d'avancer
+    m'avait \xE9t\xE9 arrach\xE9e... Tu me comprends et je le sais, cette \xE9preuve
+    on la vie ensemble. Je refuse de rester cloitr\xE9 \xE0 la maison, je refuse
+    d'\xEAtre passive, il faut que je lui dise au revoir.   -A tr\xE8s vite mon amour,
+    je serai bient\xF4t de retour. [signature] \""

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
+  m_Name: GodEye
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  itemName: Oeil de dieu
+  itemIcon: {fileID: 0}
+  descriptionSprite: {fileID: 0}
+  description: "Coeur d'une bombe nucl\xE9aire. Il est inactif depuis des si\xE8cle
+    d\xE9j\xE0 mais il reste quasiment intact hormis quelques taches de rouilles
+    et une l\xE9g\xE8re surbrillance. "
