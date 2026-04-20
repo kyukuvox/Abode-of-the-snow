@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: Pass3
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: 
+  itemName: "Laissez-pass\xE9"
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
   description: 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: Chapelet
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: FOU
+  npcName: "ATH\xC9E"
   npcPortrait: {fileID: 0}
   playerPortrait: {fileID: 0}
   isBadDecision: 0
