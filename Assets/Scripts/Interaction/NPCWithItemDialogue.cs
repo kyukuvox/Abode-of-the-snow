@@ -9,6 +9,7 @@ public class NPCWithItemDialogue : NPCInteraction
         public Item item;
         public DialogueData dialogue;
         public bool consumesItem = true;
+        public bool activatesPortal = false;
     }
 
     public List<ItemDialoguePair> itemDialogues;
@@ -54,8 +55,13 @@ public class NPCWithItemDialogue : NPCInteraction
             if (pair.item == item)
             {
                 DialogueManager.Instance.StartDialogue(pair.dialogue, this);
+
                 if (pair.consumesItem)
                     Inventory.Instance.RemoveItem(item);
+
+                if (pair.activatesPortal && PortalAnimator.Instance != null)
+                    PortalAnimator.Instance.ActivatePortal();
+
                 return;
             }
         }
