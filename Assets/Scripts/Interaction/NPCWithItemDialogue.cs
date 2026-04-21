@@ -14,7 +14,10 @@ public class NPCWithItemDialogue : NPCInteraction
 
     public List<ItemDialoguePair> itemDialogues;
     public DialogueData alreadyDefeatedDialogue;
+    public DialogueData fightDialogue; 
+
     private bool hasBeenDefeated = false;
+    private List<Item> consumedItems = new List<Item>();
 
     public void SetDefeated(bool defeated)
     {
@@ -54,18 +57,39 @@ public class NPCWithItemDialogue : NPCInteraction
         {
             if (pair.item == item)
             {
-                DialogueManager.Instance.StartDialogue(pair.dialogue, this);
-
                 if (pair.consumesItem)
+                {
                     Inventory.Instance.RemoveItem(item);
+                    if (!consumedItems.Contains(item))
+                        consumedItems.Add(item);
+                }
 
                 if (pair.activatesPortal && PortalAnimator.Instance != null)
                     PortalAnimator.Instance.ActivatePortal();
+
+                DialogueManager.Instance.StartDialogue(pair.dialogue, this);
+
+                if (AllConsumedItemsGiven() && fightDialogue != null)
+                    StartCoroutine(LaunchFightDialogueAfterDelay());
 
                 return;
             }
         }
 
         DialogueManager.Instance.StartDialogue(defaultDialogue, this);
+    }
+
+    System.Collections.IEnumerator LaunchFightDialogueAfterDelay()
+    {
+        yield return new WaitUntil(() => !DialogueManager.Instance.IsActive());
+        DialogueManager.Instance.StartDialogue(fightDialogue, this);
+    }
+
+    bool AllConsumedItemsGiven()
+    {
+        foreach (var pair in itemDialogues)
+            if (pair.consumesItem && !consumedItems.Contains(pair.item))
+                return false;
+        return true;
     }
 }

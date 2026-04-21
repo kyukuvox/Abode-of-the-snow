@@ -441,6 +441,7 @@ public class CardGameManager : MonoBehaviour
 
     void EndGame(bool playerWon)
     {
+        resultPanel.SetActive(true);
         resultText.text = playerWon ? "Victoire !" : "Défaite...";
 
         if (currentNPC != null)
@@ -449,7 +450,10 @@ public class CardGameManager : MonoBehaviour
         if (playerWon)
         {
             if (rewardItem != null)
+            {
                 Inventory.Instance.AddItem(rewardItem);
+                ItemDescriptionManager.Instance.ShowItemDescription(rewardItem);
+            }
 
             if (enemyData.rewardCard != null)
                 PlayerCardCollection.Instance.AddCard(enemyData.rewardCard);
