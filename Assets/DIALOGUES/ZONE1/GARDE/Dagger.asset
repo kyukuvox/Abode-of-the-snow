@@ -12,11 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: Dagger
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: GARDE
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
-  isBadDecision: 0
-  lines: []
+  npcName: Garde
+  npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
+  isBadDecision: 1
+  lines:
+  - speaker: 1
+    text: "Tu oses venir face \xE0 moi , arm\xE9 d'une lame en esp\xE9rant que je
+      te laisse partir sans cons\xE9quences ?!"
+  - speaker: 0
+    text: Mais je ne comptais pas...
+  - speaker: 1
+    text: 'Crois tu que notre salvateur te pardonnerai de menacer une de ses oailles? '
+  - speaker: 0
+    text: "Le seigneur saura pardonn\xE9 un ignorant !"
+  - speaker: 1
+    text: "Un ingorant peut-\xEAtre , mais un fou ne peut se retrouver aupr\xE8s
+      de lui dans son royaume par del\xE0 les nuages."
+  - speaker: 1
+    text: "Si ta mentalit\xE9 est si irr\xE9ligieuse, abandonne ton p\xE9lerinage
+      et rentre chez toi voyageur."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}

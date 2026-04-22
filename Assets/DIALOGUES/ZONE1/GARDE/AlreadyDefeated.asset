@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
-  m_Name: FightDialogue
+  m_Name: AlreadyDefeated
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   npcName: Garde
   npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
@@ -18,11 +18,8 @@ MonoBehaviour:
   isBadDecision: 0
   lines:
   - speaker: 1
-    text: "Voyageur, tellement on p\xE9ri en faisant cette ascencion au fil des ans
-      que je ne peux te laissez simplement monter ."
-  - speaker: 1
-    text: Je t'en prie Voyageur, Montre moi ce que tu vaux.
-  triggersCardGame: 1
+    text: "Tu souhaites encore rest\xE9 un temps au village ? "
+  triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   ItemGameReward: {fileID: 0}

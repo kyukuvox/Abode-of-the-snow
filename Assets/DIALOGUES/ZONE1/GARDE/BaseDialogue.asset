@@ -12,11 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: BaseDialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: GARDE
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
+  npcName: Garde
+  npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 1
+    text: "Je suis d\xE9sol\xE9 p\xE9lerin mais je ne pourrai pas te laisser mont\xE9
+      sans un laissez passez de notre \xE9glise."
+  - speaker: 0
+    text: "Comment suis je cens\xE9 pouvoir en obtenir un ?"
+  - speaker: 1
+    text: "Avec de la chance quelqu'un en ville pourrait t'aider. Mais jusque l\xE0,
+      ce portail restera ferm\xE9."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}

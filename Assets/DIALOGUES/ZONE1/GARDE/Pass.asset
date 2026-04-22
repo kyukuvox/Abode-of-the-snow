@@ -12,11 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: Pass
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: GARDE
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
+  npcName: Garde
+  npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 1
+    text: "Je te souhaite de survivre \xE0 l'ascencion p\xE9lerin. Si tu parviens
+      \xE0 monter au sommet, je t'en prie , demande le pardon de mon \xE2me."
+  - speaker: 0
+    text: "Quel p\xE9ch\xE9 dois-tu te faire pardonner ?"
+  - speaker: 1
+    text: "Mon innaction face \xE0 une injustice total. Et ma peur de d\xE9sob\xE9ir
+      \xE0 un ordre totalement absurde et cruel."
+  - speaker: 1
+    text: Quoi qu'il en sois , je te laisse continuer ta route, adieu.
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}

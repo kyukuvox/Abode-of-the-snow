@@ -12,11 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: BombFragment
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "ARCH\xC9OLOGUE"
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
+  npcName: "Arch\xE9ologue"
+  npcPortrait: {fileID: 21300000, guid: 41abe5e685221aa4db2e127f6837a817, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 0
+    text: "J'ai trouv\xE9 cet \xE9trange objet pr\xE8s de la tente . Qu'est ce que
+      c'est ?"
+  - speaker: 1
+    text: "\xC9loigne \xE7a de moi tout de suite ! "
+  - speaker: 0
+    text: "Mais ... c'est quoi le probl\xE8me de cette chose ?"
+  - speaker: 1
+    text: Elle n'est pas dangereuse en soit. Seulement, elle attire des personnes
+      qui elles sont dangereuses.
+  - speaker: 1
+    text: Des personnes qui ferait tout pour l'avoir en leurs posession.
+  - speaker: 0
+    text: Mais je dois en faire quoi ?
+  - speaker: 1
+    text: "Cache le ! Du mieux que tu le peux , ta vie en d\xE9pend ..."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}

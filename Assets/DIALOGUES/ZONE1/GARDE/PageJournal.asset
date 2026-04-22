@@ -12,11 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: PageJournal
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: GARDE
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
+  npcName: Garde
+  npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 1
+    text: "Elle faisait donc bien partie de l'exp\xE9dition..."
+  - speaker: 0
+    text: De qui parlez-vous ?
+  - speaker: 1
+    text: "De la femme la plus d\xE9vou\xE9e que je n'ai jamais vu, une femme qui
+      aurait tout donn\xE9 pour sa fille."
+  - speaker: 1
+    text: "Et il faut croire qu'elle \xE9tait pr\xEAte \xE0 allez jusqu'au sommet
+      de la montagne pour elle."
+  - speaker: 0
+    text: 'Et a t''elle trouver sa fille au sommet ? '
+  - speaker: 1
+    text: "Si tu la trouves , elle te r\xE9pondra elle m\xEAme. Mais j'esp\xE8re
+      de tout coeur qu'elle a pu enfin lui parl\xE9 de nouveau"
+  - speaker: 1
+    text: "Si seulement j'avais su qu'elle \xE9t\xE9 mont\xE9, je lui aurai apport\xE9
+      un peu de mon aide, une aide que j'aurai d\xFB lui donn\xE9 bien avant... "
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
