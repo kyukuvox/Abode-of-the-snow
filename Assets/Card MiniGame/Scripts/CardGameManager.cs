@@ -28,6 +28,8 @@ public class CardGameManager : MonoBehaviour
     [Header("Résultat")]
     public GameObject resultPanel;
     public Text resultText;
+    public float resultAnimationSpeed = 5f;
+    public float resultSlideOffset = 50f;
 
     [Header("Boutons")]
     public Button endTurnButton;
@@ -36,6 +38,10 @@ public class CardGameManager : MonoBehaviour
     [Header("Deck Builder")]
     public DeckBuilderManager deckBuilderManager;
 
+    [Header("Shake")]
+    public float shakeIntensity = 5f;
+    public float shakeDuration = 0.3f;
+
     private int playerLife;
     private int playerActionPoints;
     private int playerDefense;
@@ -43,8 +49,6 @@ public class CardGameManager : MonoBehaviour
     private int enemyLife;
     private int enemyActionPoints;
     private int enemyDefense;
-
-    private bool isGameEnded = false;
 
     private CharacterCardData enemyData;
     private CharacterCardData playerData;
@@ -58,14 +62,9 @@ public class CardGameManager : MonoBehaviour
     private bool isDiscardMode = false;
     private bool isPlayerTurn = true;
     private bool hasDiscardedThisTurn = false;
+    private bool isGameEnded = false;
 
-    public float shakeIntensity = 5f;
-    public float shakeDuration = 0.3f;
-
-    public float resultAnimationSpeed = 5f;
-    public float resultSlideOffset = 50f;
-
-    private Item rewardItem;
+    private Item[] rewardItems;
     private NPCWithItemDialogue currentNPC;
 
     void Awake()
@@ -82,19 +81,12 @@ public class CardGameManager : MonoBehaviour
             closeButton.onClick.AddListener(CloseCardGame);
     }
 
-    public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item reward, NPCWithItemDialogue npc)
+    public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item[] rewards, NPCWithItemDialogue npc)
     {
-        Debug.Log("=== START CARD GAME ===");
-        Debug.Log("cardGameCanvas : " + (cardGameCanvas != null ? "OK" : "NULL"));
-        Debug.Log("enemy : " + (enemy != null ? enemy.characterName : "NULL"));
-        Debug.Log("player : " + (player != null ? player.characterName : "NULL"));
-        Debug.Log("cardPrefab : " + (cardPrefab != null ? "OK" : "NULL"));
-        Debug.Log("playerHandZone : " + (playerHandZone != null ? "OK" : "NULL"));
-
         currentNPC = npc;
         enemyData = enemy;
         playerData = player;
-        rewardItem = reward;
+        rewardItems = rewards;
 
         playerLife = player.maxLife;
         playerActionPoints = player.actionPointsPerTurn;
@@ -106,8 +98,6 @@ public class CardGameManager : MonoBehaviour
 
         List<CardData> playerDeckCards = deckBuilderManager != null ?
             deckBuilderManager.GetCurrentDeck() : new List<CardData>();
-
-        Debug.Log("Cartes dans le DeckBuilder : " + playerDeckCards.Count);
 
         if (playerDeckCards.Count > 0)
             playerDeck.InitializeDeck(playerDeckCards.ToArray());
@@ -126,34 +116,7 @@ public class CardGameManager : MonoBehaviour
 
         UpdateUI();
         isPlayerTurn = true;
-    }
-
-    IEnumerator ShakeText(Text text)
-    {
-        Vector3 originalPos = text.rectTransform.anchoredPosition;
-        float elapsed = 0f;
-
-        while (elapsed < shakeDuration)
-        {
-            float x = originalPos.x + Random.Range(-shakeIntensity, shakeIntensity);
-            float y = originalPos.y + Random.Range(-shakeIntensity, shakeIntensity);
-            text.rectTransform.anchoredPosition = new Vector2(x, y);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        text.rectTransform.anchoredPosition = originalPos;
-    }
-
-    public void SwapCards(Card cardA, Card cardB)
-    {
-        int indexA = playerHand.IndexOf(cardA);
-        int indexB = playerHand.IndexOf(cardB);
-
-        if (indexA == -1 || indexB == -1) return;
-
-        playerHand[indexA] = cardB;
-        playerHand[indexB] = cardA;
+        isGameEnded = false;
     }
 
     public void PlayCard(Card card)
@@ -201,7 +164,7 @@ public class CardGameManager : MonoBehaviour
             switch (card.cardType)
             {
                 case CardData.CardType.Attack:
-                    ApplyAttack(card, ref enemyDefense, ref enemyActionPoints, ref enemyLife, true); 
+                    ApplyAttack(card, ref enemyDefense, ref enemyActionPoints, ref enemyLife, true);
                     break;
                 case CardData.CardType.Defense:
                     playerDefense += card.power;
@@ -259,11 +222,28 @@ public class CardGameManager : MonoBehaviour
                 if (remaining > 0)
                 {
                     life -= remaining;
-                    life = Mathf.Max(0, life); 
+                    life = Mathf.Max(0, life);
                     StartCoroutine(ShakeText(isPlayer ? enemyLifeText : playerLifeText));
                 }
                 break;
         }
+    }
+
+    IEnumerator ShakeText(Text text)
+    {
+        Vector3 originalPos = text.rectTransform.anchoredPosition;
+        float elapsed = 0f;
+
+        while (elapsed < shakeDuration)
+        {
+            float x = originalPos.x + Random.Range(-shakeIntensity, shakeIntensity);
+            float y = originalPos.y + Random.Range(-shakeIntensity, shakeIntensity);
+            text.rectTransform.anchoredPosition = new Vector2(x, y);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        text.rectTransform.anchoredPosition = originalPos;
     }
 
     void DrawPlayerCard()
@@ -449,17 +429,28 @@ public class CardGameManager : MonoBehaviour
 
         if (playerWon)
         {
-            if (rewardItem != null)
-            {
-                Inventory.Instance.AddItem(rewardItem);
-                ItemDescriptionManager.Instance.ShowItemDescription(rewardItem);
-            }
+            if (rewardItems != null && rewardItems.Length > 0)
+                StartCoroutine(ShowRewardsSequentially());
 
             if (enemyData.rewardCard != null)
                 PlayerCardCollection.Instance.AddCard(enemyData.rewardCard);
         }
 
         StartCoroutine(AnimateResultPanel());
+    }
+
+    IEnumerator ShowRewardsSequentially()
+    {
+        foreach (Item item in rewardItems)
+        {
+            if (item == null) continue;
+
+            Inventory.Instance.AddItem(item);
+            ItemDescriptionManager.Instance.ShowItemDescription(item);
+
+            yield return new WaitUntil(() => !ItemDescriptionManager.Instance.IsActive());
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 
     IEnumerator AnimateResultPanel()
@@ -514,7 +505,7 @@ public class CardGameManager : MonoBehaviour
         isDiscardMode = false;
         isPlayerTurn = true;
         hasDiscardedThisTurn = false;
-        isGameEnded = false; 
+        isGameEnded = false;
         playerLife = 0;
         playerActionPoints = 0;
         playerDefense = 0;
@@ -553,6 +544,17 @@ public class CardGameManager : MonoBehaviour
             }
             card.SetPlayable(isPlayerTurn && canPlay);
         }
+    }
+
+    public void SwapCards(Card cardA, Card cardB)
+    {
+        int indexA = playerHand.IndexOf(cardA);
+        int indexB = playerHand.IndexOf(cardB);
+
+        if (indexA == -1 || indexB == -1) return;
+
+        playerHand[indexA] = cardB;
+        playerHand[indexB] = cardA;
     }
 
     public void ApplyDelayedCard(CardData card, bool isPlayer)

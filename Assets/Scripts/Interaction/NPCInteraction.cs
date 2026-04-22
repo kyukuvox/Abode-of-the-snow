@@ -6,10 +6,13 @@ public class NPCInteraction : MonoBehaviour
     public float interactionRange = 2f;
     public GameObject interactionSprite;
 
+    public enum InteractionType { KeyPress, MouseClick } 
+    public InteractionType interactionType = InteractionType.KeyPress; 
+
     protected Transform player;
     protected bool playerInRange = false;
     protected float dialogueCooldown = 0f;
-    private bool wasDialogueActive = false; 
+    private bool wasDialogueActive = false;
 
     void Start()
     {
@@ -27,7 +30,7 @@ public class NPCInteraction : MonoBehaviour
         float distance = Vector2.Distance(transform.position, player.position);
         playerInRange = distance <= interactionRange;
 
-        if (interactionSprite != null)
+        if (interactionType == InteractionType.KeyPress && interactionSprite != null)
             interactionSprite.SetActive(playerInRange);
 
         if (dialogueCooldown > 0f)
@@ -38,26 +41,59 @@ public class NPCInteraction : MonoBehaviour
             dialogueCooldown = 1f;
         wasDialogueActive = isDialogueCurrentlyActive;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (interactionType == InteractionType.KeyPress)
         {
-            if (ItemDescriptionManager.Instance.IsActive())
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                ItemDescriptionManager.Instance.ClosePanel();
-                return;
-            }
+                if (ItemDescriptionManager.Instance.IsActive())
+                {
+                    ItemDescriptionManager.Instance.ClosePanel();
+                    return;
+                }
 
-            if (DialogueManager.Instance.IsActive())
-            {
-                if (DialogueManager.Instance.IsWaitingForInput())
-                    DialogueManager.Instance.OnPressE();
-                return;
-            }
-            else if (playerInRange && dialogueCooldown <= 0f)
-            {
-                dialogueCooldown = 1f;
-                TriggerDialogue();
+                if (DialogueManager.Instance.IsActive())
+                {
+                    if (DialogueManager.Instance.IsWaitingForInput())
+                        DialogueManager.Instance.OnPressE();
+                    return;
+                }
+                else if (playerInRange && dialogueCooldown <= 0f)
+                {
+                    dialogueCooldown = 1f;
+                    TriggerDialogue();
+                }
             }
         }
+    }
+
+    void OnMouseEnter()
+    {
+        if (interactionType != InteractionType.MouseClick) return;
+        if (PauseMenu.Instance.IsPaused()) return;
+        if (MenuManager.Instance.IsMenuOpen()) return;
+
+        if (interactionSprite != null)
+            interactionSprite.SetActive(true);
+    }
+
+    void OnMouseExit()
+    {
+        if (interactionType != InteractionType.MouseClick) return;
+
+        if (interactionSprite != null)
+            interactionSprite.SetActive(false);
+    }
+
+    void OnMouseDown()
+    {
+        if (interactionType != InteractionType.MouseClick) return;
+        if (PauseMenu.Instance.IsPaused()) return;
+        if (MenuManager.Instance.IsMenuOpen()) return;
+        if (DialogueManager.Instance.IsActive()) return;
+        if (dialogueCooldown > 0f) return;
+
+        dialogueCooldown = 1f;
+        TriggerDialogue();
     }
 
     public virtual void TriggerDialogue()

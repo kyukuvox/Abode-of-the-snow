@@ -12,7 +12,7 @@ public class DialogueData : ScriptableObject
     public bool triggersCardGame = false;     
     public CharacterCardData enemyCardData;   
     public CharacterCardData playerCardData;   
-    public Item ItemGameReward;
+    public Item[] cardGameRewards;
 }
 
 [System.Serializable] //sauvegarde data

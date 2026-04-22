@@ -25,4 +25,5 @@ MonoBehaviour:
   triggersCardGame: 1
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards:
+  - {fileID: 11400000, guid: c0d6cc8d37b467b46b82f91d554edf60, type: 2}
