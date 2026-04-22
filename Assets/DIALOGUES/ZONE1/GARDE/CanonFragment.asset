@@ -16,7 +16,9 @@ MonoBehaviour:
   npcPortrait: {fileID: 0}
   playerPortrait: {fileID: 0}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 0
+    text: k
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}

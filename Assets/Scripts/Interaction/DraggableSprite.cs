@@ -5,14 +5,12 @@ public class DraggableSprite : MonoBehaviour
 {
     public GameObject hiddenItem;
     public GameObject hoverSprite;
-    public int maxDrags = 3;
     public float triggerDistance = 2f;
-    public float maxPullDistance = 1.5f; 
+    public float maxPullDistance = 1.5f;
     public float resistanceStrength = 3f;
 
     private bool isDragging = false;
     private bool isActivated = false;
-    private int currentDrags = 0;
     private Vector3 startPosition;
     private SpriteRenderer spriteRenderer;
 
@@ -33,7 +31,6 @@ public class DraggableSprite : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (isActivated) return;
-        if (currentDrags >= maxDrags) return;
 
         if (hoverSprite != null)
             hoverSprite.SetActive(true);
@@ -49,7 +46,6 @@ public class DraggableSprite : MonoBehaviour
     void OnMouseDown()
     {
         if (isActivated) return;
-        if (currentDrags >= maxDrags) return;
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (DialogueManager.Instance.IsActive()) return;
@@ -77,7 +73,6 @@ public class DraggableSprite : MonoBehaviour
             transform.position = startPosition + direction;
         }
 
- 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         float maxAngle = 15f;
         angle = Mathf.Clamp(angle, -maxAngle, maxAngle);
@@ -90,31 +85,22 @@ public class DraggableSprite : MonoBehaviour
         isDragging = false;
 
         float distance = Vector3.Distance(startPosition, transform.position);
-        Debug.Log("Distance tirée : " + distance + " / " + triggerDistance);
 
         if (distance >= triggerDistance && !isActivated)
         {
+  
             isActivated = true;
+
             if (hiddenItem != null)
                 hiddenItem.SetActive(true);
+
             if (hoverSprite != null)
                 hoverSprite.SetActive(false);
 
-            StartCoroutine(ReturnToStart());
+            spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         }
-        else
-        {
-            currentDrags++;
-            Debug.Log("Tirages restants : " + (maxDrags - currentDrags));
-            StartCoroutine(ReturnToStart());
 
-            if (currentDrags >= maxDrags && !isActivated)
-            {
-                spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-                if (hoverSprite != null)
-                    hoverSprite.SetActive(false);
-            }
-        }
+        StartCoroutine(ReturnToStart());
     }
 
     IEnumerator ReturnToStart()
