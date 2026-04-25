@@ -12,24 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: CanonFragment
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: Garde
+  npcName: Guard
   npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 1
-    text: "Je vais pr\xE9tendre n'avoir vu. Aucun de nous deux ne d\xE9sire se retrouver
-      dans les tr\xE9fonds d'une geole du temple."
-  - speaker: 0
-    text: "Cette chose est si dangereuse que \xE7a ?"
-  - speaker: 1
-    text: "Pas dangereuse en sois ,mais certains serait pr\xEAt \xE0 tout pour mettre
-      la main dessus.....vraiment tout."
-  - speaker: 0
-    text: Quel genre de personne ?
-  - speaker: 1
-    text: "Certaines question ne se pose pas p\xE9lerin. Pas dans ces terres surtout."
+  lines: []
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []
