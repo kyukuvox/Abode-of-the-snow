@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: GodEye
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: Oeil de dieu
+  itemName: Eye of God
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Coeur d'une bombe nucl\xE9aire. Il est inactif depuis des si\xE8cle
-    d\xE9j\xE0 mais il reste quasiment intact hormis quelques taches de rouilles
-    et une l\xE9g\xE8re surbrillance. "
+  description: 'Heart of a nuclear bomb. It has been inactive for centuries already,
+    but it remains almost intact except for a few rust spots and a slight highlight. '

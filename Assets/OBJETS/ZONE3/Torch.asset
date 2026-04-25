@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: Torch
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: Torche
+  itemName: Torch
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Torche encore allum\xE9 retrouv\xE9 dans le campement d\xE9sol\xE9."
+  description: Torch still lit, found in the destroyed camp.

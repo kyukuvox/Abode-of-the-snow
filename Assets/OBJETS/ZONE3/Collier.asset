@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: Collier
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: Pendentif avec portrait d'enfant
+  itemName: "Pendant with child\u2019s portrait"
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Un pendentif en argent avec une chaine bris\xE9. L'image au centre
-    du bijou montre une fille au visage flout\xE9."
+  description: A silver pendant with a broken chain. The image in the center of the
+    jewel shows a girl with a blurred face.

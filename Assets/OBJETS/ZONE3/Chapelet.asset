@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: Chapelet
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: Chapelet
+  itemName: Rosary
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Vieu chapelet us\xE9 par le temps. Son propri\xE9taire devait certainement
-    \xEAtre un fervant croyant."
+  description: Old rosary worn by time. Its owner must certainly have been a devout
+    believer.

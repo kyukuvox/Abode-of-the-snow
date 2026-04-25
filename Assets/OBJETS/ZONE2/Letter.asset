@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: Letter
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: Lettre
+  itemName: Letter
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Une lettre o\xF9 il es \xE9crit : \"Cela fait trop longtemps que
-    tu es parti, trop de jours loin de moi. Son souvenir est tout ce qu'il me reste
-    de nous depusi que tu es partie avec tout ces p\xE9lerins. Je te sais courageuse
-    et forte, mais je ne lui suis pas autant que toi, j'ai besoin de toi. Je t'en
-    prie , rentre \xE0 la maison.  -Ta bien aim\xE9e [signature]\""
+  description: "A letter where it is written: \"You have been gone too long, too
+    many days away from me. His memory is all I have left of us since you left with
+    all these pilgrims. I know you\u2019re brave and strong, but I\u2019m not as
+    strong as you, I need you. Please, go home.  -Your beloved [signature]\""

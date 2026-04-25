@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: BombFragment
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: 'fragment de bombe '
+  itemName: Bomb fragment
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Morceau d'acier \xE9pais et rouill\xE9. il pr\xE9sente un pochoir
-    militaire. Le temps \xE0 profond\xE9menent marqu\xE9 l'objet et une \xE9trange
-    sensation de frisson se fait ressentir au contact de l'objet."
+  description: Piece of thick, rusty steel. It features a military stencil. Time
+    at depth marked the object and a strange sensation of shivering was felt upon
+    contact with the object.

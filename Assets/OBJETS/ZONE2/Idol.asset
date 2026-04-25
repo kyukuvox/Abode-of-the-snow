@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: Idol
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: "Idole Pa\xEFenne"
+  itemName: Pagan idol
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Une sculpture en bois repr\xE9sentant trois t\xEAtes d'oiseaux .Un
-    faucon ,Un  moqueur polyglotte et un Corbeau "
+  description: 'A wooden sculpture depicting three bird heads. A Falcon, a Mockingbird,
+    and a Raven. '

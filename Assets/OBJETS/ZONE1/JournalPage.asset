@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: JournalPage
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: "Page de journal Arrach\xE9e "
+  itemName: 'Torn log page '
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Une page de journal o\xF9 il est \xE9crit: \"Je n'en peux plus d'attendre
-    et de simplement laisser les jours pass\xE9s. C'est comme si ma raison d'avancer
-    m'avait \xE9t\xE9 arrach\xE9e... Tu me comprends et je le sais, cette \xE9preuve
-    on la vie ensemble. Je refuse de rester cloitr\xE9 \xE0 la maison, je refuse
-    d'\xEAtre passive, il faut que je lui dise au revoir.   -A tr\xE8s vite mon amour,
-    je serai bient\xF4t de retour. [signature] \""
+  description: "A page where it says: \"I can\u2019t wait anymore and just leave
+    the days gone by. It\u2019s as if my reason for moving forward had been taken
+    away from me... You understand me and I know it, this ordeal brings us together.
+    I refuse to stay shut away at home, I refuse to be passive, I have to say goodbye
+    to him.   -See you soon, my love, I\u2019ll be back soon. [signature] \""

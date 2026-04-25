@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: 1stPass
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: "Laissez-pass\xE9"
+  itemName: Crossing permit
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Un ruban rouge surmont\xE9 d'un globe dor\xE9 avec des \xE9critures
-    \xE9tranges sur son long."
+  description: A red ribbon surmounted by a golden globe with strange writing on
+    its length.

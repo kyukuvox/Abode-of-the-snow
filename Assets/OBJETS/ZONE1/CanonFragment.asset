@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: CanonFragment
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: 'Bout de Canon '
+  itemName: Piece of rifle
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Morceau de canon rouill\xE9 et tordu. une gravure avec le nom d'une
-    compagnie est encore l\xE9g\xE8rement visible. "
+  description: Piece of a rusty and twisted rifle. An engraving with the name of
+    a company is still slightly visible.

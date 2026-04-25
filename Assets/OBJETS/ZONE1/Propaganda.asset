@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: Propaganda
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: Affiche porpagandiste
+  itemName: 'Propaganda poster '
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Affiche en grande partie d\xE9chir\xE9 et dont l'encre est grandement
-    \xE9ffac\xE9. L'illustration vente les bienfaits de l'atome. "
+  description: 'Poster, mostly torn and with greatly depleted ink. The illustration
+    highlights the benefits of the atom. '

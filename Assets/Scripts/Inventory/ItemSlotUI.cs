@@ -1,19 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class ItemSlotUI : MonoBehaviour
+public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Item myItem;
-    private Button myButton;
+    private Canvas canvas;
+    private RectTransform rectTransform;
+    private CanvasGroup canvasGroup;
+    private Vector2 originalPosition;
+    private Transform originalParent;
 
     void Awake()
     {
-        myButton = GetComponentInChildren<Button>();
+        rectTransform = GetComponent<RectTransform>();
+        canvas = GetComponentInParent<Canvas>();
 
-        if (myButton == null)
-            myButton = gameObject.AddComponent<Button>();
-
-        myButton.onClick.AddListener(OnClick);
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
     }
 
     public void Setup(Item item)
@@ -21,33 +26,55 @@ public class ItemSlotUI : MonoBehaviour
         myItem = item;
     }
 
-
-    void OnClick()
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        NPCWithItemDialogue npc = FindNearestNPC();
+        if (DialogueManager.Instance.IsActive()) return;
+        if (PauseMenu.Instance.IsPaused()) return;
+        if (MenuManager.Instance.IsMenuOpen()) return;
+
+        originalPosition = rectTransform.anchoredPosition;
+        originalParent = transform.parent;
+
+        transform.SetParent(canvas.transform);
+        transform.SetAsLastSibling();
+
+        canvasGroup.alpha = 0.7f;
+        canvasGroup.blocksRaycasts = false;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
+
+        NPCDropTarget npc = GetNPCUnderCursor();
+
         if (npc != null)
         {
-            npc.ReceiveItem(myItem);
+            npc.ReceiveDroppedItem(myItem);
+        }
+        else
+        {
+      
+            transform.SetParent(originalParent);
+            rectTransform.anchoredPosition = originalPosition;
         }
     }
 
-    NPCWithItemDialogue FindNearestNPC()
+    NPCDropTarget GetNPCUnderCursor()
     {
-        NPCWithItemDialogue[] allNPCs = FindObjectsOfType<NPCWithItemDialogue>();
-        NPCWithItemDialogue nearest = null;
-        float minDist = 3f; 
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0f;
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Collider2D hit = Physics2D.OverlapPoint(mousePos);
+        if (hit != null)
+            return hit.GetComponent<NPCDropTarget>();
 
-        foreach (var npc in allNPCs)
-        {
-            float dist = Vector2.Distance(player.transform.position, npc.transform.position);
-            if (dist < minDist)
-            {
-                minDist = dist;
-                nearest = npc;
-            }
-        }
-        return nearest;
+        return null;
     }
 }

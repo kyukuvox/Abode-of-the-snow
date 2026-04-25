@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: Poignet de manivelle
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: Poignet de manivelle
+  itemName: Crank wrist
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Poignet d'un m\xE9canisme r\xE9cup\xE9rer apr\xE8s avoir bris\xE9
-    une machine us\xE9 et rouill\xE9e . Elle pourrait avoir une autre utilit\xE9..."
+  description: The wrist of a mechanism was picked up after breaking a worn and rusty
+    machine. It could have another use...

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: Croc
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: "Croc arrach\xE9e"
+  itemName: Torn fang
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Croc arrach\xE9e d'une b\xEAte avec les racines apparente. "
+  description: 'Fang torn from a beast with the roots visible. '

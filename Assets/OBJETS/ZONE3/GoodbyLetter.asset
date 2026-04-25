@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: GoodbyLetter
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: 'lettre d''adieu '
+  itemName: Goodbye letter
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Une lettre d'une m\xE8re \xE0 sa fille pour lui souhaiter une belle
-    vie dans l'au del\xE0."
+  description: A letter from a mother to her daughter wishing her a good life in
+    the beyond.

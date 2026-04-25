@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: Ear
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: "Oreille arrach\xE9e"
+  itemName: Torn ear
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Oreille arrach\xE9e et machouill\xE9. Les traces de crocs semblent
-    \xEAtre ceux d'une b\xEAte \xE0 la machoire puissante."
+  description: Ear torn off and hackled. The bite marks seem to be those of a beast
+    with a powerful jaw.

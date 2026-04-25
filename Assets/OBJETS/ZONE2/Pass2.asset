@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: Pass2
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: "laissez-pass\xE9"
+  itemName: Crossing permit
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "ymbole en \xE9toile dor\xE9, forg\xE9 en bronze. Le long du ruban
-    se trouve une \xE9criture \xE9trange."
+  description: Golden star symbol, forged in bronze. Along the ribbon is a strange
+    script.

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: eye
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: "Oeil arrach\xE9e"
+  itemName: Torn eye
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Oeil arrach\xE9 avec les nerfs et veines reli\xE9 \xE0 l'oeil apparente."
+  description: Torn eye with apparent nerves and connected veins.

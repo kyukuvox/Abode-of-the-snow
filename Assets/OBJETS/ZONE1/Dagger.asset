@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4eb8d185f80164393b6774e32a21b9, type: 3}
   m_Name: Dagger
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: "Dague grav\xE9e"
+  itemName: Dagger engraved
   itemIcon: {fileID: 0}
   descriptionSprite: {fileID: 0}
-  description: "Une dague avec un manche en bois grossi\xE8rement taill\xE9 et une
-    lame rudimentaire. Le manche affiche une gravure repr\xE9sentant deux adultes
-    et une enfant fait de mani\xE8re tr\xE8s enfantine. "
+  description: 'A dagger with a roughly hewn wooden handle and a rudimentary blade.
+    The handle displays an engraving representing two adults and a child made in
+    a very childish way. '
