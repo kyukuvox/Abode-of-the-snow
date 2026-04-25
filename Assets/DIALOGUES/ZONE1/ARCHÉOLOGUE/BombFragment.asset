@@ -12,28 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: BombFragment
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "Arch\xE9ologue"
+  npcName: Archeologist
   npcPortrait: {fileID: 21300000, guid: 41abe5e685221aa4db2e127f6837a817, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
   lines:
   - speaker: 0
-    text: "J'ai trouv\xE9 cet \xE9trange objet pr\xE8s de la tente . Qu'est ce que
-      c'est ?"
+    text: I found this strange object near the tent. What is it?
   - speaker: 1
-    text: "\xC9loigne \xE7a de moi tout de suite ! "
+    text: 'Get that away from me right now! '
   - speaker: 0
-    text: "Mais ... c'est quoi le probl\xE8me de cette chose ?"
+    text: "But... what\u2019s the problem with this thing?"
   - speaker: 1
-    text: Elle n'est pas dangereuse en soit. Seulement, elle attire des personnes
-      qui elles sont dangereuses.
+    text: She is not dangerous in herself. Only, she attracts people who are dangerous.
   - speaker: 1
-    text: Des personnes qui ferait tout pour l'avoir en leurs posession.
+    text: People who would do anything to have it in their possession.
   - speaker: 0
-    text: Mais je dois en faire quoi ?
+    text: But what should I do with it?
   - speaker: 1
-    text: "Cache le ! Du mieux que tu le peux , ta vie en d\xE9pend ..."
+    text: Hide it! As best you can, your life depends on it ...
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

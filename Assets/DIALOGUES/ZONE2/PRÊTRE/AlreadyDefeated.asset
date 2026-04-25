@@ -10,14 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
-  m_Name: Pass3
+  m_Name: AlreadyDefeated
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "ATH\xC9E"
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
+  npcName: Priest
+  npcPortrait: {fileID: 21300000, guid: 1ad02a1cb9d09e14581bf86b6b08ede7, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 1
+    text: I see that you had time to practice the game well during your pilgrimage!
+      Go and keep climbing this mountain, who knows, you might be the first to come
+      back.
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

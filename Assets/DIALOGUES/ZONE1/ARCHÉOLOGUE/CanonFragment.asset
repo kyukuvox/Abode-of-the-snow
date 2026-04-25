@@ -12,29 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: CanonFragment
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "Arch\xE9ologue"
+  npcName: Archeologist
   npcPortrait: {fileID: 21300000, guid: 41abe5e685221aa4db2e127f6837a817, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
   lines:
   - speaker: 0
-    text: "Quelqu'un a jet\xE9 ceci dans la poubelle plus loin, pour une raison que
-      j'ignore."
+    text: "Someone threw this in the trash a little further away, for some reason
+      I don\u2019t know."
   - speaker: 1
-    text: Comment oser jeter une telle merveille ?!
+    text: How can one dare to get rid of such a marvel?!
   - speaker: 0
-    text: "Je dois dire que je vois pas trop l'int\xE9r\xEAt, pour \xEAtre honn\xEAte."
+    text: "I have to say that I don\u2019t really see the point, to be honest."
   - speaker: 1
-    text: "C'est le vestige d'une des plus grandes armes du monde ancien ! Un d\xE9mon
-      de m\xE9tal que portaient chaques soldats, crachant des flammes et de l'acier
-      sur leurs ennemis !"
+    text: This is the remnant of one of the greatest weapons in the ancient world!
+      A metal demon carried by every soldier, spitting flames and steel on their
+      enemies!
   - speaker: 0
-    text: "Mais , c'est terrifiant ! Qui souhaiterait avoir un d\xE9mon pr\xE8s de
-      sois ?! Prends le , je ne veux pas l'avoir une seconde de plus !"
+    text: "But it\u2019s terrifying! Who would want a demon near him?! Take it, I
+      don\u2019t want to have it for another second!"
   - speaker: 1
-    text: "Vous \xEAtes tous trop ferm\xE9 au pass\xE9 et \xE0 notre histoire. Enfin...
-      fut une \xE9poque je n'\xE9tais pas le seul que \xE7a int\xE9ressait.."
+    text: "You are all too closed to the past and our history. Finally... there was
+      a time when I wasn\u2019t the only one interested in it..."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

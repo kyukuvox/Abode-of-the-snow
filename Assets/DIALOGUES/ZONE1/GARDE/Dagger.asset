@@ -12,27 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: Dagger
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: Garde
+  npcName: Guard
   npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 1
   lines:
   - speaker: 1
-    text: "Tu oses venir face \xE0 moi , arm\xE9 d'une lame en esp\xE9rant que je
-      te laisse partir sans cons\xE9quences ?!"
+    text: "Do you dare to come face to face with a blade, hoping I\u2019ll let you
+      go without consequences?!"
   - speaker: 0
-    text: Mais je ne comptais pas...
+    text: "But I wasn\u2019t counting..."
   - speaker: 1
-    text: 'Crois tu que notre salvateur te pardonnerai de menacer une de ses oailles? '
+    text: 'Do you think our saviour would forgive you for threatening one of his
+      sons? '
   - speaker: 0
-    text: "Le seigneur saura pardonn\xE9 un ignorant !"
+    text: The lord will know how to forgive an ignorant!
   - speaker: 1
-    text: "Un ingorant peut-\xEAtre , mais un fou ne peut se retrouver aupr\xE8s
-      de lui dans son royaume par del\xE0 les nuages."
+    text: A fool, perhaps, but a madman cannot find himself with him in his kingdom
+      beyond the clouds.
   - speaker: 1
-    text: "Si ta mentalit\xE9 est si irr\xE9ligieuse, abandonne ton p\xE9lerinage
-      et rentre chez toi voyageur."
+    text: If your mentality is so irreligious, abandon your pilgrimage and go home
+      traveler.
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

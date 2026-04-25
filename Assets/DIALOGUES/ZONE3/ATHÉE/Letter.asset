@@ -12,12 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: Letter
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "ATH\xC9E"
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
+  npcName: Atheist
+  npcPortrait: {fileID: 21300000, guid: f6d820a7266204e4b8d98d50913746c6, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 1
+    text: 'My love... I have ... No, why is your face so blurry? Why do I have so
+      much trouble remembering your face? '
+  - speaker: 1
+    text: I remember our meeting, the feeling of your hand on mine, evenings together
+      lying down watching the moon through the clouds.
+  - speaker: 1
+    text: Why when I think of her... is her face so blurry?
+  - speaker: 0
+    text: She is still waiting for you, you know, she is only waiting for your return.
+  - speaker: 1
+    text: 'But... who is waiting for my return? '
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

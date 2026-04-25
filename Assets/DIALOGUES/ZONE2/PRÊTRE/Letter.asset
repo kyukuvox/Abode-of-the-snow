@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: Letter
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "PR\xCATRE"
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
+  npcName: Priest
+  npcPortrait: {fileID: 21300000, guid: 1ad02a1cb9d09e14581bf86b6b08ede7, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 1
+    text: It was laughable that she could still believe her alive after so long.
+  - speaker: 1
+    text: "If it wasn\u2019t the bitter cold that killed her, a wild beast must have
+      devoured her."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

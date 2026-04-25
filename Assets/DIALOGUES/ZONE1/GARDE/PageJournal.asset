@@ -12,30 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: PageJournal
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: Garde
+  npcName: Guard
   npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
   lines:
   - speaker: 1
-    text: "Elle faisait donc bien partie de l'exp\xE9dition..."
+    text: So she was indeed part of the expedition...
   - speaker: 0
-    text: De qui parlez-vous ?
+    text: Who are you talking about?
   - speaker: 1
-    text: "De la femme la plus d\xE9vou\xE9e que je n'ai jamais vu, une femme qui
-      aurait tout donn\xE9 pour sa fille."
+    text: From the most devoted woman I have ever seen, a woman who would have given
+      everything for her daughter.
   - speaker: 1
-    text: "Et il faut croire qu'elle \xE9tait pr\xEAte \xE0 allez jusqu'au sommet
-      de la montagne pour elle."
+    text: And I guess she was ready to go up the mountain for her.
   - speaker: 0
-    text: 'Et a t''elle trouver sa fille au sommet ? '
+    text: 'And did she find her daughter at the top? '
   - speaker: 1
-    text: "Si tu la trouves , elle te r\xE9pondra elle m\xEAme. Mais j'esp\xE8re
-      de tout coeur qu'elle a pu enfin lui parl\xE9 de nouveau"
+    text: If you find her, she will answer you herself. But I sincerely hope that
+      she has finally been able to talk to her again.
   - speaker: 1
-    text: "Si seulement j'avais su qu'elle \xE9t\xE9 mont\xE9, je lui aurai apport\xE9
-      un peu de mon aide, une aide que j'aurai d\xFB lui donn\xE9 bien avant... "
+    text: 'If only I had known that she had decided to climb the mountain, I would
+      have given her some of my help, a help I should have given her long before... '
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

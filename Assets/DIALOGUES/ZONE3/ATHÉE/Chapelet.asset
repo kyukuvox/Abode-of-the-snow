@@ -12,12 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: Chapelet
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "ATH\xC9E"
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
-  isBadDecision: 0
-  lines: []
+  npcName: Atheist
+  npcPortrait: {fileID: 21300000, guid: f6d820a7266204e4b8d98d50913746c6, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
+  isBadDecision: 1
+  lines:
+  - speaker: 1
+    text: This idiot sincerely thought that his rosary would save him. But nothing
+      came.
+  - speaker: 1
+    text: "You see, pilgrim, our god does not exist. What\u2019s the point of continuing
+      your ascension when you realize that nothing is waiting for you in the end?"
+  - speaker: 0
+    text: Maybe he thought more of his place with him and thus decided to rush his
+      arrival?
+  - speaker: 1
+    text: Do you think this poor man deserved to be shredded?
+  - speaker: 1
+    text: "If the god I once believed in allows this kind of slaughter to happen,
+      I\u2019d rather not believe it."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

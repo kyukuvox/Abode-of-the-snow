@@ -18,17 +18,17 @@ MonoBehaviour:
   isBadDecision: 0
   lines:
   - speaker: 1
-    text: "Je vais pr\xE9tendre n'avoir vu. Aucun de nous deux ne d\xE9sire se retrouver
-      dans les tr\xE9fonds d'une geole du temple."
+    text: I will pretend not to have seen. Neither of us wants to end up in the depths
+      of the temple dungeon.
   - speaker: 0
-    text: "Cette chose est si dangereuse que \xE7a ?"
+    text: Is this thing that dangerous?
   - speaker: 1
-    text: "Pas dangereuse en sois ,mais certains serait pr\xEAt \xE0 tout pour mettre
-      la main dessus.....vraiment tout."
+    text: Not dangerous in itself, but some would be ready to do anything to get
+      their hands on it... really everything.
   - speaker: 0
-    text: Quel genre de personne ?
+    text: What kind of person?
   - speaker: 1
-    text: "Certaines question ne se pose pas p\xE9lerin. Pas dans ces terres surtout."
+    text: "Some questions don\u2019t arise. Not in these lands especially."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}

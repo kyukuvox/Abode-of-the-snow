@@ -12,25 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: Propaganda
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "Arch\xE9ologue"
+  npcName: Archeologist
   npcPortrait: {fileID: 21300000, guid: 41abe5e685221aa4db2e127f6837a817, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
   lines:
   - speaker: 0
-    text: 'Pourquoi tu gardes ce bout de papier avec toi ? '
+    text: 'Why are you keeping this piece of paper with you? '
   - speaker: 1
-    text: "Bout de papier ?! Mais tu es fou ! C'est l'un de mes plus grands tr\xE9sors
-      !"
+    text: "Piece of paper?! But you\u2019re crazy! It\u2019s one of my greatest treasures!"
   - speaker: 0
-    text: "En quoi c'est un tr\xE9sor ?"
+    text: How is it a treasure?
   - speaker: 1
-    text: 'll vient de bien avant le Cataclysme. Quand les Hommes vivaient dans l''opulence
-      et l''harmonie avec l''atome. '
+    text: 'This object came long before the cataclysm, when men lived in opulence
+      and in harmony with the atom. '
   - speaker: 1
-    text: "Je me demande parfois quel p\xE9ch\xE9 ils ont commis pour condamn\xE9e
-      notre monde ...\n"
+    text: 'I sometimes wonder what sin they committed to condemn our world ...
+
+'
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

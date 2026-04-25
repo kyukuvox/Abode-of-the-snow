@@ -12,12 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: Letter
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: FOU
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
+  npcName: Lunatic
+  npcPortrait: {fileID: 21300000, guid: 3a19bcb7865f45f4cabe7638cb318be5, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 1
+    text: How cute! She is still waiting for us at home after so much time.
+  - speaker: 1
+    text: "She still hasn\u2019t understood that we love this place and that we want
+      to stay there!"
+  - speaker: 0
+    text: But... How could you prefer to stay in the middle of this battlefield rather
+      than go home?!
+  - speaker: 1
+    text: "Oh, you know, I don\u2019t think anything is really waiting for me at
+      home anymore. Look at me! Do I seem to still have a little bit of sanity?!"
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

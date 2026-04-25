@@ -12,28 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: PageJournal
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "Arch\xE9ologue"
+  npcName: Archeologist
   npcPortrait: {fileID: 21300000, guid: 41abe5e685221aa4db2e127f6837a817, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
   lines:
   - speaker: 1
-    text: "Je t'en prie , je ne veux pas en lire plus. Cela fait d\xE9\xE0 si longtemps
-      qu'elles sont parti et je ne veux plus me rappeler de mon plus grand \xE9chec."
+    text: "Please, I don\u2019t want to read any more. It\u2019s already been so
+      long since they left, and I don\u2019t want to remember my biggest failure
+      anymore."
   - speaker: 0
-    text: "Quel \xE9chec ?"
+    text: What failure?
   - speaker: 1
-    text: "Parfois voyageur ... Il est plus sage de garder ses passions pour sois.
-      Quand quelqu'un de proche fini par s'y int\xE9resser, cela peut leurs faire
-      du mal."
+    text: Sometimes, the traveler... It is wiser to keep his passions to oneself.
+      When someone close to us ends up taking an interest in it, it can harm him.
   - speaker: 0
-    text: "Et cette personne l\xE0 , qu'est elle devenu ? "
+    text: 'And what has become of this person? '
   - speaker: 1
-    text: "Je pr\xE9f\xE8re ne pas en parl\xE9 ... C'est une partie de mon pass\xE9
-      que je pr\xE9f\xE9rerai oubli\xE9. "
+    text: "I prefer not to talk about it... It\u2019s a part of my past that I would
+      rather forget. "
   - speaker: 1
-    text: "J'esp\xE8re seulement qu'elles me pardonneront un jour."
+    text: "I just hope they\u2019ll forgive me one day."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

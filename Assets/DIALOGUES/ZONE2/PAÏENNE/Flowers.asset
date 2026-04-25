@@ -12,12 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: Flowers
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "PA\xCFENNE"
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
+  npcName: Pagan
+  npcPortrait: {fileID: 21300000, guid: 8960afca12083c04881e00f02ce7167a, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 0
+    text: 'It seems that this bouquet was caught in the branches of the tree. Is
+      it yours? '
+  - speaker: 1
+    text: Rather, the last tribute I paid to my daughter. It was her favorite flowers
+      and the rare ones that grew in this region.
+  - speaker: 1
+    text: My wife and I spent days and nights making this bouquet for her...
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

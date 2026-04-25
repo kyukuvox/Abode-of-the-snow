@@ -12,12 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: GodEye
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "PR\xCATRE"
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
+  npcName: Priest
+  npcPortrait: {fileID: 21300000, guid: 1ad02a1cb9d09e14581bf86b6b08ede7, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 1
+    text: 'Ah! Thank you for finding him, my son! It is one of the greatest treasures
+      of our church! '
+  - speaker: 0
+    text: "It\u2019s a relic so close to our lord. It\u2019s impressive, how did
+      you get it?"
+  - speaker: 1
+    text: "We\u2019re going to say that a child ... ended up bringing it to us."
+  - speaker: 0
+    text: ' I hope she has been gracefully rewarded!'
+  - speaker: 1
+    text: 'She would have been if she had brought it directly to the temple. '
+  - speaker: 1
+    text: Unfortunately, she chose to obey only her own interest.
+  - speaker: 0
+    text: 'And... what happened to the child?  '
+  - speaker: 1
+    text: 'Just go see the miscreant at the end of the garden, she will tell you. '
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

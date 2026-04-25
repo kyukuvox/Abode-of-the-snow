@@ -12,12 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: PageJournal
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "PR\xCATRE"
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
+  npcName: Priest
+  npcPortrait: {fileID: 21300000, guid: 1ad02a1cb9d09e14581bf86b6b08ede7, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 1
+    text: 'The only pious one in the family, after all. '
+  - speaker: 1
+    text: "That said, we haven\u2019t heard from the last exp\xE9dition in a while."
+  - speaker: 0
+    text: Who was that person? I thought I had understood that she was a very courageous
+      person from what is said about the inhabitants of the village below.
+  - speaker: 1
+    text: Courageous she is, but her family was filled with unbelievers, impious
+      and eager to wreak chaos in our community!
+  - speaker: 0
+    text: But ... where is this family now?
+  - speaker: 1
+    text: "It\u2019s no longer the time to ask questions, traveler..."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: BaseDialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "Arch\xE9ologue"
+  npcName: Archeologist
   npcPortrait: {fileID: 21300000, guid: 41abe5e685221aa4db2e127f6837a817, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
   lines:
   - speaker: 1
-    text: "Enfin un curieux ! N'h\xE9sitez pas, voyageur, \xE0 faire un tour dans
-      ma collection ! "
+    text: "Finally, a curious one! Don\u2019t hesitate, traveler, to take a look
+      at my collection! "
   - speaker: 1
-    text: "Ce sont des tr\xE9sors venant du temps d'avant le cataclysme , quand les
-      hommes vivaient dans l'opulence la plus total ! "
+    text: 'These are treasures from before the cataclysm, when men lived in total
+      opulence! '
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []

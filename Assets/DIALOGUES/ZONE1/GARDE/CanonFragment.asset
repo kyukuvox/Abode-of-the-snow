@@ -16,7 +16,13 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 1
+    text: "Be careful with that metal bar. A movement too sudden and I\u2019ll be
+      able to intervene."
+  - speaker: 0
+    text: "I don\u2019t even know what it is really, there\u2019s no need to be so
+      harsh."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}

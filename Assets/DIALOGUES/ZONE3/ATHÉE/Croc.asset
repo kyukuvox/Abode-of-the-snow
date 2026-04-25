@@ -12,12 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
   m_Name: Croc
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  npcName: "ATH\xC9E"
-  npcPortrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
+  npcName: Atheist
+  npcPortrait: {fileID: 21300000, guid: f6d820a7266204e4b8d98d50913746c6, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines: []
+  lines:
+  - speaker: 1
+    text: 'This beast is indeed proof that our lord never existed... Why did he actively
+      seek and kill his believers, when all they wanted was to meet him? '
+  - speaker: 0
+    text: "Maybe he doesn\u2019t want to be disturbed? "
+  - speaker: 1
+    text: 'And he will murder us for that? '
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
-  ItemGameReward: {fileID: 0}
+  cardGameRewards: []
