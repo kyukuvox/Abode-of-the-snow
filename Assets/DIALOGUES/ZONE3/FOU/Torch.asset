@@ -18,14 +18,8 @@ MonoBehaviour:
   isBadDecision: 0
   lines:
   - speaker: 1
-    text: "Do you want to know something very funny? I stole this pendant from her
-      one night when she dozed off! Since then, she doesn\u2019t even remember her
-      own daughter\u2019s face anymore!"
-  - speaker: 0
-    text: How could you do that to yourself? And why?!
-  - speaker: 1
-    text: Oh you know, I ended up getting bored and I found it funny. And then it
-      was so shiny that it made me want to!
+    text: "What a beautiful dancing flame. Don\u2019t you think it\u2019s splendid?
+      We\u2019re seeing the first show humanity has ever seen!"
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}

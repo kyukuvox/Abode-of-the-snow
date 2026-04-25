@@ -65,7 +65,7 @@ public class NPCWithItemDialogue : NPCInteraction
                 }
 
                 if (pair.activatesPortal && PortalAnimator.Instance != null)
-                    PortalAnimator.Instance.ActivatePortal();
+                    PortalAnimator.Instance.TryActivate(pair.dialogue);
 
                 DialogueManager.Instance.StartDialogue(pair.dialogue, this);
 

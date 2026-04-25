@@ -5,8 +5,9 @@ public class PortalAnimator : MonoBehaviour
 {
     public static PortalAnimator Instance;
 
-    public float descendSpeed = 2f;    
-    public float targetYOffset = -3f; 
+    public float descendSpeed = 2f;
+    public float targetYOffset = -3f;
+    public DialogueData triggerDialogue; 
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
@@ -21,6 +22,12 @@ public class PortalAnimator : MonoBehaviour
             transform.position.y + targetYOffset,
             transform.position.z
         );
+    }
+
+    public void TryActivate(DialogueData dialogue)
+    {
+        if (dialogue == triggerDialogue)
+            ActivatePortal();
     }
 
     public void ActivatePortal()
@@ -43,18 +50,17 @@ public class PortalAnimator : MonoBehaviour
         }
 
         transform.position = targetPosition;
-        Debug.Log("Portail activé !");
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireCube(
-            new Vector3(transform.position.x, transform.position.y + targetYOffset, transform.position.z),
-            Vector3.one
+        Vector3 target = new Vector3(
+            transform.position.x,
+            transform.position.y + targetYOffset,
+            transform.position.z
         );
-        Gizmos.DrawLine(transform.position,
-            new Vector3(transform.position.x, transform.position.y + targetYOffset, transform.position.z)
-        );
+        Gizmos.DrawWireCube(target, Vector3.one);
+        Gizmos.DrawLine(transform.position, target);
     }
 }
