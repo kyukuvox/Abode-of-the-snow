@@ -50,6 +50,8 @@ public class NPCWithItemDialogue : NPCInteraction
                 DialogueManager.Instance.StartDialogue(alreadyDefeatedDialogue, this);
             else
                 DialogueManager.Instance.StartDialogue(defaultDialogue, this);
+
+            Inventory.Instance.AddItem(item);
             return;
         }
 
@@ -57,9 +59,12 @@ public class NPCWithItemDialogue : NPCInteraction
         {
             if (pair.item == item)
             {
-                if (pair.consumesItem)
+                if (!pair.consumesItem)
                 {
-                    Inventory.Instance.RemoveItem(item);
+                    Inventory.Instance.AddItem(item);
+                }
+                else
+                {
                     if (!consumedItems.Contains(item))
                         consumedItems.Add(item);
                 }
@@ -75,7 +80,7 @@ public class NPCWithItemDialogue : NPCInteraction
                 return;
             }
         }
-
+        Inventory.Instance.AddItem(item);
         DialogueManager.Instance.StartDialogue(defaultDialogue, this);
     }
 

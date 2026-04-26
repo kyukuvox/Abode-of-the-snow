@@ -8,8 +8,7 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private Canvas canvas;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-    private Vector2 originalPosition;
-    private Transform originalParent;
+    private GameObject ghostImage;
 
     void Awake()
     {
@@ -32,25 +31,52 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
 
-        originalPosition = rectTransform.anchoredPosition;
-        originalParent = transform.parent;
+        EventSystem.current.SetSelectedGameObject(null);
 
-        transform.SetParent(canvas.transform);
-        transform.SetAsLastSibling();
+        Inventory.Instance.RemoveItemSilent(myItem);
 
-        canvasGroup.alpha = 0.7f;
+        canvasGroup.alpha = 0f;
         canvasGroup.blocksRaycasts = false;
+
+        ghostImage = Instantiate(gameObject, canvas.transform);
+        ghostImage.name = "GhostItem";
+        ghostImage.transform.SetAsLastSibling();
+
+        Destroy(ghostImage.GetComponent<ItemSlotUI>());
+        Destroy(ghostImage.GetComponent<ItemSlotHover>());
+
+        CanvasGroup ghostCG = ghostImage.GetComponent<CanvasGroup>();
+        if (ghostCG == null)
+            ghostCG = ghostImage.AddComponent<CanvasGroup>();
+        ghostCG.blocksRaycasts = false;
+        ghostCG.alpha = 0.7f;
+
+        RectTransform ghostRect = ghostImage.GetComponent<RectTransform>();
+        ghostRect.pivot = new Vector2(0.5f, 0.5f);
+        ghostRect.sizeDelta = rectTransform.sizeDelta;
+        ghostImage.transform.localScale = Vector3.one * 0.8f;
+
+        MoveGhostToMouse(eventData);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        if (ghostImage != null)
+            MoveGhostToMouse(eventData);
+    }
+
+    void MoveGhostToMouse(PointerEventData eventData)
+    {
+        RectTransform ghostRect = ghostImage.GetComponent<RectTransform>();
+        ghostRect.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        canvasGroup.alpha = 1f;
-        canvasGroup.blocksRaycasts = true;
+        if (ghostImage != null)
+            Destroy(ghostImage);
+
+        EventSystem.current.SetSelectedGameObject(null);
 
         NPCDropTarget npc = GetNPCUnderCursor();
 
@@ -60,9 +86,7 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         }
         else
         {
-      
-            transform.SetParent(originalParent);
-            rectTransform.anchoredPosition = originalPosition;
+            Inventory.Instance.AddItem(myItem);
         }
     }
 

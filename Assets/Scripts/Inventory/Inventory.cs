@@ -3,23 +3,27 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public static Inventory Instance; // Accès global (Singleton)
+    public static Inventory Instance; 
 
     public List<Item> items = new List<Item>();
 
     public delegate void OnItemChanged();
-    public OnItemChanged onItemChangedCallback; // Notifie l'UI quand l'inventaire change
+    public OnItemChanged onItemChangedCallback;
 
     void Awake()
     {
         Instance = this;
     }
 
+    public void RemoveItemSilent(Item item)
+    {
+        items.Remove(item);
+    }
+
     public void AddItem(Item item)
     {
         items.Add(item);
 
-        // Prévient l'UI qu'il faut se mettre à jour
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
     }

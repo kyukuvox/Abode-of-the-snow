@@ -16,19 +16,7 @@ public class NPCDropTarget : MonoBehaviour
             Debug.Log("Ce PNJ ne peut pas recevoir d'items !");
             return;
         }
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        float distance = Vector2.Distance(
-            player.transform.position,
-            transform.position
-        );
 
-        if (distance <= npcDialogue.interactionRange)
-        {
-            npcDialogue.ReceiveItem(item);
-        }
-        else
-        {
-            Debug.Log("Trop loin du PNJ !");
-        }
+        npcDialogue.ReceiveItem(item);
     }
 }

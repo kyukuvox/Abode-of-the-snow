@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Propaganda
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: 'Propaganda poster '
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 1566108442484387111, guid: 39753b2fda2295a409b1b640f748f9ca, type: 3}
   descriptionSprite: {fileID: 0}
   description: 'Poster, mostly torn and with greatly depleted ink. The illustration
     highlights the benefits of the atom. '

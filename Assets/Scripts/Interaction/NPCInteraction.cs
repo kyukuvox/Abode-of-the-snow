@@ -6,8 +6,8 @@ public class NPCInteraction : MonoBehaviour
     public float interactionRange = 2f;
     public GameObject interactionSprite;
 
-    public enum InteractionType { KeyPress, MouseClick } 
-    public InteractionType interactionType = InteractionType.KeyPress; 
+    public enum InteractionType { KeyPress, MouseClick }
+    public InteractionType interactionType = InteractionType.KeyPress;
 
     protected Transform player;
     protected bool playerInRange = false;
@@ -41,23 +41,24 @@ public class NPCInteraction : MonoBehaviour
             dialogueCooldown = 1f;
         wasDialogueActive = isDialogueCurrentlyActive;
 
-        if (interactionType == InteractionType.KeyPress)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (ItemDescriptionManager.Instance.IsActive())
             {
-                if (ItemDescriptionManager.Instance.IsActive())
-                {
-                    ItemDescriptionManager.Instance.ClosePanel();
-                    return;
-                }
+                ItemDescriptionManager.Instance.ClosePanel();
+                return;
+            }
 
-                if (DialogueManager.Instance.IsActive())
-                {
-                    if (DialogueManager.Instance.IsWaitingForInput())
-                        DialogueManager.Instance.OnPressE();
-                    return;
-                }
-                else if (playerInRange && dialogueCooldown <= 0f)
+            if (DialogueManager.Instance.IsActive())
+            {
+                if (DialogueManager.Instance.IsWaitingForInput())
+                    DialogueManager.Instance.OnPressE();
+                return;
+            }
+
+            if (interactionType == InteractionType.KeyPress)
+            {
+                if (playerInRange && dialogueCooldown <= 0f)
                 {
                     dialogueCooldown = 1f;
                     TriggerDialogue();
