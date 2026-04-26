@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class ItemSpriteInteraction : MonoBehaviour
 {
-    public Item requiredItem;      
-    public GameObject spriteToRemove; 
-    public GameObject hoverSprite;  
-    public bool consumesItem = true; 
+    public Item requiredItem;
+    public GameObject spriteToRemove;
+    public GameObject hoverSprite;
+    public bool consumesItem = true;
+    public Sprite activatedSprite; 
 
     private bool isActivated = false;
+    private SpriteRenderer spriteRenderer; 
 
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         if (hoverSprite != null)
             hoverSprite.SetActive(false);
     }
@@ -20,6 +24,7 @@ public class ItemSpriteInteraction : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (isActivated) return;
+
         if (hoverSprite != null)
             hoverSprite.SetActive(true);
     }
@@ -30,19 +35,26 @@ public class ItemSpriteInteraction : MonoBehaviour
             hoverSprite.SetActive(false);
     }
 
-    void OnMouseDown()
+    public void TryActivateWithItem(Item item)
     {
         if (isActivated) return;
-        if (PauseMenu.Instance.IsPaused()) return;
-        if (MenuManager.Instance.IsMenuOpen()) return;
-        if (DialogueManager.Instance.IsActive()) return;
 
-        if (Inventory.Instance.items.Contains(requiredItem))
+        if (item == requiredItem)
         {
             isActivated = true;
 
+            if (activatedSprite != null && spriteRenderer != null)
+                spriteRenderer.sprite = activatedSprite;
+
             if (consumesItem)
-                Inventory.Instance.RemoveItem(requiredItem);
+            {
+                if (Inventory.Instance.onItemChangedCallback != null)
+                    Inventory.Instance.onItemChangedCallback.Invoke();
+            }
+            else
+            {
+                Inventory.Instance.AddItem(item);
+            }
 
             if (spriteToRemove != null)
                 Destroy(spriteToRemove);
@@ -52,6 +64,7 @@ public class ItemSpriteInteraction : MonoBehaviour
         }
         else
         {
+            Inventory.Instance.AddItem(item);
             Debug.Log("Il vous faut : " + requiredItem.itemName);
         }
     }

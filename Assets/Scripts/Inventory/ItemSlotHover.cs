@@ -11,6 +11,7 @@ public class ItemSlotHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private Vector2 targetPosition;
     private RectTransform rectTransform;
     private Coroutine currentAnimation;
+    public static bool IsDragging = false;
 
     void Awake()
     {
@@ -26,6 +27,7 @@ public class ItemSlotHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (DialogueManager.Instance.IsActive()) return;
+        if (IsDragging) return; 
         targetPosition = basePosition + Vector2.up * hoverOffset;
         RestartAnimation();
     }

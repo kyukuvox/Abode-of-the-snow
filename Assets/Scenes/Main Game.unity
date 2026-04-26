@@ -1880,6 +1880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 472393492}
+  - component: {fileID: 472393497}
   - component: {fileID: 472393496}
   - component: {fileID: 472393495}
   - component: {fileID: 472393494}
@@ -2026,8 +2027,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PortalItemActivator
   requiredItem: {fileID: 11400000, guid: f371101d11fe6014aa28af5b59746910, type: 2}
   portalTarget: {fileID: 249751112}
-  hoverSprite: {fileID: 0}
+  hoverSprite: {fileID: 1618376946}
   consumesItem: 1
+  activatedSprite: {fileID: 3690293445947645659, guid: 6fed411ece9e5f042b84dcf9bea61315, type: 3}
 --- !u!114 &472393496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2042,6 +2044,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteChanger
   newSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   hoverSprite: {fileID: 1618376946}
+--- !u!114 &472393497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472393491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beee06c59f9815d4989c0ccee5b81228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PortalDropTarget
 --- !u!114 &491458797 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1737044677062908534, guid: 3feecf9da830d69458d5d4eca3d1a054, type: 3}
@@ -3153,6 +3167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 701832524}
+  - component: {fileID: 701832529}
   - component: {fileID: 701832528}
   - component: {fileID: 701832527}
   - component: {fileID: 701832526}
@@ -3299,8 +3314,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PortalItemActivator
   requiredItem: {fileID: 11400000, guid: 5b194eadec985084d9bee994256f1105, type: 2}
   portalTarget: {fileID: 1838085801}
-  hoverSprite: {fileID: 0}
+  hoverSprite: {fileID: 671957681}
   consumesItem: 1
+  activatedSprite: {fileID: 3690293445947645659, guid: 6fed411ece9e5f042b84dcf9bea61315, type: 3}
 --- !u!114 &701832528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3315,6 +3331,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteChanger
   newSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   hoverSprite: {fileID: 671957681}
+--- !u!114 &701832529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701832523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beee06c59f9815d4989c0ccee5b81228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PortalDropTarget
 --- !u!1001 &723063506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3935,6 +3963,7 @@ MonoBehaviour:
   targetYOffset: -34.1
   descendSpeed: 2
   hoverSprite: {fileID: 112183993}
+  activatedSprite: {fileID: 3690293445947645659, guid: 6fed411ece9e5f042b84dcf9bea61315, type: 3}
 --- !u!114 &789932832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3944,11 +3973,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 789932827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e09d0d7a372a844985f2f27bbc3e82c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fc96bd28137e4f4598664d1377e5ab0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpriteChanger
-  newSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  hoverSprite: {fileID: 112183993}
+  m_EditorClassIdentifier: Assembly-CSharp::ItemInteractableDropTarget
 --- !u!1 &803564041 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6869161335912367701, guid: aecd9748d64e01c4f924bb612576d368, type: 3}
@@ -4681,7 +4708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5052220292773089970, guid: 266abd35a7bab6049adfe6af810dfebe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.4
+      value: -19
       objectReference: {fileID: 0}
     - target: {fileID: 5052220292773089970, guid: 266abd35a7bab6049adfe6af810dfebe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5884,6 +5911,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1001 &1135228156
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1212612504}
+    m_Modifications:
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.897882
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.897882
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.8978822
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 872.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 67.65733
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388619642209135574, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b194eadec985084d9bee994256f1105, type: 2}
+    - target: {fileID: 3683834844812966283, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+      propertyPath: m_Name
+      value: Flowers (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
 --- !u!4 &1175682842 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
@@ -5962,6 +6062,7 @@ Transform:
   - {fileID: 789932828}
   - {fileID: 701832524}
   - {fileID: 1072708913}
+  - {fileID: 1940682456}
   - {fileID: 1597546345}
   - {fileID: 723063507}
   - {fileID: 1289997329}
@@ -8887,6 +8988,7 @@ MonoBehaviour:
   spriteToRemove: {fileID: 1253818363}
   hoverSprite: {fileID: 1333203408}
   consumesItem: 1
+  activatedSprite: {fileID: 3690293445947645659, guid: 6fed411ece9e5f042b84dcf9bea61315, type: 3}
 --- !u!114 &1840879839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8896,11 +8998,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1840879834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e09d0d7a372a844985f2f27bbc3e82c, type: 3}
+  m_Script: {fileID: 11500000, guid: 113cc9b9f12f89a4c8ebe7d6530ad306, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpriteChanger
-  newSprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  hoverSprite: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSpriteInteractionDropTarget
 --- !u!1 &1851449497
 GameObject:
   m_ObjectHideFlags: 0
@@ -9557,6 +9657,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
   m_PrefabInstance: {fileID: 954884497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1940682456 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3114076972418106992, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
+  m_PrefabInstance: {fileID: 1135228156}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1961052658
 GameObject:

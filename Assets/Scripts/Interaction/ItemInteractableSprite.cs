@@ -3,17 +3,21 @@ using UnityEngine;
 
 public class ItemInteractableSprite : MonoBehaviour
 {
-    public Item requiredItem;         
-    public GameObject animatedObject;  
-    public float targetYOffset = -3f;  
-    public float descendSpeed = 2f;    
-    public GameObject hoverSprite;     
+    public Item requiredItem;
+    public GameObject animatedObject;
+    public float targetYOffset = -3f;
+    public float descendSpeed = 2f;
+    public GameObject hoverSprite;
+    public Sprite activatedSprite; 
 
     private bool isActivated = false;
     private Vector3 targetPosition;
+    private SpriteRenderer spriteRenderer; 
 
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         if (hoverSprite != null)
             hoverSprite.SetActive(false);
 
@@ -30,6 +34,7 @@ public class ItemInteractableSprite : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (isActivated) return;
+
         if (hoverSprite != null)
             hoverSprite.SetActive(true);
     }
@@ -40,27 +45,29 @@ public class ItemInteractableSprite : MonoBehaviour
             hoverSprite.SetActive(false);
     }
 
-    void OnMouseDown()
+    public void TryActivateWithItem(Item item)
     {
         if (isActivated) return;
-        if (PauseMenu.Instance.IsPaused()) return;
-        if (MenuManager.Instance.IsMenuOpen()) return;
-        if (DialogueManager.Instance.IsActive()) return;
 
-        if (Inventory.Instance.items.Contains(requiredItem))
+        if (item == requiredItem)
         {
             isActivated = true;
 
-            Inventory.Instance.RemoveItem(requiredItem);
+            if (activatedSprite != null && spriteRenderer != null)
+                spriteRenderer.sprite = activatedSprite;
 
             if (hoverSprite != null)
                 hoverSprite.SetActive(false);
+
+            if (Inventory.Instance.onItemChangedCallback != null)
+                Inventory.Instance.onItemChangedCallback.Invoke();
 
             if (animatedObject != null)
                 StartCoroutine(DescendObject());
         }
         else
         {
+            Inventory.Instance.AddItem(item);
             Debug.Log("Il vous faut : " + requiredItem.itemName);
         }
     }
@@ -80,7 +87,6 @@ public class ItemInteractableSprite : MonoBehaviour
         }
 
         animatedObject.transform.position = targetPosition;
-        Debug.Log("Animation terminée !");
     }
 
     void OnDrawGizmosSelected()

@@ -67,6 +67,9 @@ public class NPCWithItemDialogue : NPCInteraction
                 {
                     if (!consumedItems.Contains(item))
                         consumedItems.Add(item);
+
+                    if (Inventory.Instance.onItemChangedCallback != null)
+                        Inventory.Instance.onItemChangedCallback.Invoke();
                 }
 
                 if (pair.activatesPortal && PortalAnimator.Instance != null)
@@ -80,7 +83,9 @@ public class NPCWithItemDialogue : NPCInteraction
                 return;
             }
         }
+
         Inventory.Instance.AddItem(item);
+        DialogueManager.Instance.StartDialogue(defaultDialogue, this);
         DialogueManager.Instance.StartDialogue(defaultDialogue, this);
     }
 
