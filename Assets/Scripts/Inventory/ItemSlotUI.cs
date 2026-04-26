@@ -35,6 +35,17 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
         Inventory.Instance.RemoveItemSilent(myItem);
 
+        GameObject placeholder = new GameObject("Placeholder");
+        placeholder.transform.SetParent(transform.parent);
+        placeholder.transform.SetSiblingIndex(transform.GetSiblingIndex());
+        RectTransform placeholderRect = placeholder.AddComponent<RectTransform>();
+        placeholderRect.sizeDelta = rectTransform.sizeDelta;
+        LayoutElement layoutElement = placeholder.AddComponent<LayoutElement>();
+        layoutElement.preferredWidth = rectTransform.sizeDelta.x;
+        layoutElement.preferredHeight = rectTransform.sizeDelta.y;
+
+        transform.SetAsLastSibling();
+
         canvasGroup.alpha = 0f;
         canvasGroup.blocksRaycasts = false;
 
@@ -56,8 +67,11 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         ghostRect.sizeDelta = rectTransform.sizeDelta;
         ghostImage.transform.localScale = Vector3.one * 0.8f;
 
+        Destroy(placeholder, 0.1f);
+
         MoveGhostToMouse(eventData);
     }
+
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -76,18 +90,17 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         if (ghostImage != null)
             Destroy(ghostImage);
 
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
+
         EventSystem.current.SetSelectedGameObject(null);
 
         NPCDropTarget npc = GetNPCUnderCursor();
 
         if (npc != null)
-        {
             npc.ReceiveDroppedItem(myItem);
-        }
         else
-        {
             Inventory.Instance.AddItem(myItem);
-        }
     }
 
     NPCDropTarget GetNPCUnderCursor()
