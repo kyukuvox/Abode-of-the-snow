@@ -431,6 +431,8 @@ public class CardGameManager : MonoBehaviour
         {
             if (rewardItems != null && rewardItems.Length > 0)
                 StartCoroutine(ShowRewardsSequentially());
+            else
+                StartCoroutine(ShowDefeatedDialogueAfterDelay());
 
             if (enemyData.rewardCard != null)
                 PlayerCardCollection.Instance.AddCard(enemyData.rewardCard);
@@ -441,15 +443,38 @@ public class CardGameManager : MonoBehaviour
 
     IEnumerator ShowRewardsSequentially()
     {
+        yield return new WaitForSeconds(0.5f);
+
         foreach (Item item in rewardItems)
         {
             if (item == null) continue;
 
             Inventory.Instance.AddItem(item);
-            ItemDescriptionManager.Instance.ShowItemDescription(item);
 
+            yield return new WaitUntil(() => !DialogueManager.Instance.IsActive());
+
+            ItemDescriptionManager.Instance.ShowItemDescription(item);
             yield return new WaitUntil(() => !ItemDescriptionManager.Instance.IsActive());
             yield return new WaitForSeconds(0.3f);
+        }
+
+        StartCoroutine(ShowDefeatedDialogueAfterDelay());
+    }
+
+    IEnumerator ShowDefeatedDialogueAfterDelay()
+    {
+        yield return new WaitUntil(() => !ItemDescriptionManager.Instance.IsActive());
+        yield return new WaitForSeconds(0.5f);
+
+        if (currentNPC != null && currentNPC.HasBeenDefeated())
+        {
+            NPCWithItemDialogue npcDialogue = currentNPC.GetComponent<NPCWithItemDialogue>();
+            if (npcDialogue != null && npcDialogue.alreadyDefeatedDialogue != null)
+            {
+                resultPanel.SetActive(false);
+                cardGameCanvas.SetActive(false);
+                DialogueManager.Instance.StartDialogue(npcDialogue.alreadyDefeatedDialogue, currentNPC);
+            }
         }
     }
 

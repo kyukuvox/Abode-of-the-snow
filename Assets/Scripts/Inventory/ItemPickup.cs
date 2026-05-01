@@ -36,6 +36,7 @@ public class ItemPickup : MonoBehaviour
         if (DialogueManager.Instance.IsActive()) return;
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
 
         if (PickedUpItemsTracker.Instance != null)
             PickedUpItemsTracker.Instance.AddPickedUpItem(item.itemName);

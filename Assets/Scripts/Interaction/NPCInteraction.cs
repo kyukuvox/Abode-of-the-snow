@@ -26,6 +26,7 @@ public class NPCInteraction : MonoBehaviour
     {
         if (BadDecisionManager.Instance.isGameOver) return;
         if (BadDecisionManager.Instance.isOverlayActive) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
 
         float distance = Vector2.Distance(transform.position, player.position);
         playerInRange = distance <= interactionRange;

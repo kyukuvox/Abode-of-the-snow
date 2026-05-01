@@ -36,6 +36,7 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         if (DialogueManager.Instance.IsActive()) return;
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
 
         EventSystem.current.SetSelectedGameObject(null);
         ItemSlotHover.IsDragging = true;

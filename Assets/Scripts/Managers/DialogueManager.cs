@@ -166,6 +166,9 @@ public class DialogueManager : MonoBehaviour
             );
         }
 
+        if (currentData != null && CinematicManager.Instance != null)
+            CinematicManager.Instance.TryTrigger(currentData);
+
         currentData = null;
 
         if (currentDialogueIsBad)

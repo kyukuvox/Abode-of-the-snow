@@ -44,6 +44,18 @@ public class PlayerMovement2D : MonoBehaviour
             return;
         }
 
+        if (GameStateManager.Instance.IsCinematicMode())
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
+        if (ItemDescriptionManager.Instance.IsActive()) 
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            return;
+        }
+
         float targetSpeed = horizontalInput * moveSpeed;
         float acceleration = isGrounded ? groundAcceleration : airAcceleration;
         float newX = Mathf.Lerp(rb.linearVelocity.x, targetSpeed, acceleration * Time.fixedDeltaTime);
@@ -73,6 +85,20 @@ public class PlayerMovement2D : MonoBehaviour
         }
 
         if (PauseMenu.Instance.IsPaused())
+        {
+            if (animator != null)
+                animator.SetBool("isWalking", false);
+            return;
+        }
+
+        if (GameStateManager.Instance.IsCinematicMode()) 
+        {
+            if (animator != null)
+                animator.SetBool("isWalking", false);
+            return;
+        }
+
+        if (ItemDescriptionManager.Instance.IsActive())
         {
             if (animator != null)
                 animator.SetBool("isWalking", false);
