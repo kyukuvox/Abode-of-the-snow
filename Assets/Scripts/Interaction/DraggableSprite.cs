@@ -4,7 +4,6 @@ using UnityEngine;
 public class DraggableSprite : MonoBehaviour
 {
     public GameObject hiddenItem;
-    public GameObject hoverSprite;
     public float triggerDistance = 2f;
     public float maxPullDistance = 1.5f;
     public float resistanceStrength = 3f;
@@ -13,17 +12,16 @@ public class DraggableSprite : MonoBehaviour
     private bool isActivated = false;
     private Vector3 startPosition;
     private SpriteRenderer spriteRenderer;
+    private HoverParticleManager hoverParticles;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        hoverParticles = GetComponent<HoverParticleManager>();
         startPosition = transform.position;
 
         if (hiddenItem != null)
             hiddenItem.SetActive(false);
-
-        if (hoverSprite != null)
-            hoverSprite.SetActive(false);
     }
 
     void OnMouseEnter()
@@ -31,16 +29,15 @@ public class DraggableSprite : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (isActivated) return;
-
-        if (hoverSprite != null)
-            hoverSprite.SetActive(true);
+        if (hoverParticles != null)
+            hoverParticles.Show();
     }
 
     void OnMouseExit()
     {
         if (!isDragging)
-            if (hoverSprite != null)
-                hoverSprite.SetActive(false);
+            if (hoverParticles != null)
+                hoverParticles.Hide();
     }
 
     void OnMouseDown()
@@ -88,15 +85,11 @@ public class DraggableSprite : MonoBehaviour
 
         if (distance >= triggerDistance && !isActivated)
         {
-  
             isActivated = true;
-
             if (hiddenItem != null)
                 hiddenItem.SetActive(true);
-
-            if (hoverSprite != null)
-                hoverSprite.SetActive(false);
-
+            if (hoverParticles != null)
+                hoverParticles.Hide();
             spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         }
 

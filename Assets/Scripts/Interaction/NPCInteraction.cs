@@ -13,10 +13,12 @@ public class NPCInteraction : MonoBehaviour
     protected bool playerInRange = false;
     protected float dialogueCooldown = 0f;
     private bool wasDialogueActive = false;
+    private HoverParticleManager hoverParticles;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        hoverParticles = GetComponent<HoverParticleManager>();
 
         if (interactionSprite != null)
             interactionSprite.SetActive(false);
@@ -76,6 +78,8 @@ public class NPCInteraction : MonoBehaviour
 
         if (interactionSprite != null)
             interactionSprite.SetActive(true);
+        if (hoverParticles != null)
+            hoverParticles.Show();
     }
 
     void OnMouseExit()
@@ -84,6 +88,8 @@ public class NPCInteraction : MonoBehaviour
 
         if (interactionSprite != null)
             interactionSprite.SetActive(false);
+        if (hoverParticles != null)
+            hoverParticles.Hide();
     }
 
     void OnMouseDown()

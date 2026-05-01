@@ -7,19 +7,17 @@ public class ItemInteractableSprite : MonoBehaviour
     public GameObject animatedObject;
     public float targetYOffset = -3f;
     public float descendSpeed = 2f;
-    public GameObject hoverSprite;
-    public Sprite activatedSprite; 
+    public Sprite activatedSprite;
 
     private bool isActivated = false;
     private Vector3 targetPosition;
-    private SpriteRenderer spriteRenderer; 
+    private SpriteRenderer spriteRenderer;
+    private HoverParticleManager hoverParticles;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (hoverSprite != null)
-            hoverSprite.SetActive(false);
+        hoverParticles = GetComponent<HoverParticleManager>();
 
         if (animatedObject != null)
             targetPosition = new Vector3(
@@ -34,15 +32,14 @@ public class ItemInteractableSprite : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (isActivated) return;
-
-        if (hoverSprite != null)
-            hoverSprite.SetActive(true);
+        if (hoverParticles != null)
+            hoverParticles.Show();
     }
 
     void OnMouseExit()
     {
-        if (hoverSprite != null)
-            hoverSprite.SetActive(false);
+        if (hoverParticles != null)
+            hoverParticles.Hide();
     }
 
     public void TryActivateWithItem(Item item)
@@ -56,8 +53,8 @@ public class ItemInteractableSprite : MonoBehaviour
             if (activatedSprite != null && spriteRenderer != null)
                 spriteRenderer.sprite = activatedSprite;
 
-            if (hoverSprite != null)
-                hoverSprite.SetActive(false);
+            if (hoverParticles != null)
+                hoverParticles.Hide();
 
             if (Inventory.Instance.onItemChangedCallback != null)
                 Inventory.Instance.onItemChangedCallback.Invoke();

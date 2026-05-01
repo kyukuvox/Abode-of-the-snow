@@ -1,34 +1,35 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    //A METTRE SUR TOUS LES ITEMS !!!
-
     public Item item;
-    public GameObject hoverSprite;
+    public float bumpScale = 1.3f; 
+    public float bumpDuration = 0.2f; 
 
+    private HoverParticleManager hoverParticles;
     private Transform player;
+    private Vector3 originalScale;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        if (hoverSprite != null)
-            hoverSprite.SetActive(false);
+        hoverParticles = GetComponent<HoverParticleManager>();
+        originalScale = transform.localScale;
     }
 
     void OnMouseEnter()
     {
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
-        if (hoverSprite != null)
-            hoverSprite.SetActive(true);
+        if (hoverParticles != null)
+            hoverParticles.Show();
     }
 
     void OnMouseExit()
     {
-        if (hoverSprite != null)
-            hoverSprite.SetActive(false);
+        if (hoverParticles != null)
+            hoverParticles.Hide();
     }
 
     void OnMouseDown()
@@ -36,7 +37,31 @@ public class ItemPickup : MonoBehaviour
         if (DialogueManager.Instance.IsActive()) return;
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
-        if (GameStateManager.Instance.IsCinematicMode()) return;
+
+        StartCoroutine(BumpAndPickup());
+    }
+
+    IEnumerator BumpAndPickup()
+    {
+        float elapsed = 0f;
+        float halfDuration = bumpDuration / 2f;
+
+        while (elapsed < halfDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / halfDuration;
+            transform.localScale = Vector3.Lerp(originalScale, originalScale * bumpScale, t);
+            yield return null;
+        }
+
+        elapsed = 0f;
+        while (elapsed < halfDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / halfDuration;
+            transform.localScale = Vector3.Lerp(originalScale * bumpScale, Vector3.zero, t);
+            yield return null;
+        }
 
         if (PickedUpItemsTracker.Instance != null)
             PickedUpItemsTracker.Instance.AddPickedUpItem(item.itemName);

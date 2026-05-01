@@ -4,19 +4,17 @@ public class PortalItemActivator : MonoBehaviour
 {
     public Item requiredItem;
     public PortalAnimator portalTarget;
-    public GameObject hoverSprite;
     public bool consumesItem = true;
-    public Sprite activatedSprite; 
+    public Sprite activatedSprite;
 
     private bool isActivated = false;
-    private SpriteRenderer spriteRenderer; 
+    private SpriteRenderer spriteRenderer;
+    private HoverParticleManager hoverParticles;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (hoverSprite != null)
-            hoverSprite.SetActive(false);
+        hoverParticles = GetComponent<HoverParticleManager>();
     }
 
     void OnMouseEnter()
@@ -24,15 +22,14 @@ public class PortalItemActivator : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (isActivated) return;
-
-        if (hoverSprite != null)
-            hoverSprite.SetActive(true);
+        if (hoverParticles != null)
+            hoverParticles.Show();
     }
 
     void OnMouseExit()
     {
-        if (hoverSprite != null)
-            hoverSprite.SetActive(false);
+        if (hoverParticles != null)
+            hoverParticles.Hide();
     }
 
     public void TryActivateWithItem(Item item)
@@ -59,8 +56,8 @@ public class PortalItemActivator : MonoBehaviour
             if (portalTarget != null)
                 portalTarget.ActivatePortal();
 
-            if (hoverSprite != null)
-                hoverSprite.SetActive(false);
+            if (hoverParticles != null)
+                hoverParticles.Hide();
         }
         else
         {

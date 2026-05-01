@@ -2,18 +2,15 @@ using UnityEngine;
 
 public class SpriteChanger : MonoBehaviour
 {
-    public Sprite newSprite;       
-    public GameObject hoverSprite; 
-
+    public Sprite newSprite;
     private SpriteRenderer spriteRenderer;
     private bool hasBeenClicked = false;
+    private HoverParticleManager hoverParticles;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (hoverSprite != null)
-            hoverSprite.SetActive(false);
+        hoverParticles = GetComponent<HoverParticleManager>();
     }
 
     void OnMouseEnter()
@@ -21,14 +18,14 @@ public class SpriteChanger : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (hasBeenClicked) return;
-        if (hoverSprite != null)
-            hoverSprite.SetActive(true);
+        if (hoverParticles != null)
+            hoverParticles.Show();
     }
 
     void OnMouseExit()
     {
-        if (hoverSprite != null)
-            hoverSprite.SetActive(false);
+        if (hoverParticles != null)
+            hoverParticles.Hide();
     }
 
     void OnMouseDown()
@@ -42,9 +39,8 @@ public class SpriteChanger : MonoBehaviour
         {
             spriteRenderer.sprite = newSprite;
             hasBeenClicked = true;
-
-            if (hoverSprite != null)
-                hoverSprite.SetActive(false);
+            if (hoverParticles != null)
+                hoverParticles.Hide();
         }
     }
 }
