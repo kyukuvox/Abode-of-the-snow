@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class NPCWithItemDialogue : NPCInteraction
 {
@@ -14,10 +15,40 @@ public class NPCWithItemDialogue : NPCInteraction
 
     public List<ItemDialoguePair> itemDialogues;
     public DialogueData alreadyDefeatedDialogue;
-    public DialogueData fightDialogue; 
+    public DialogueData fightDialogue;
 
     private bool hasBeenDefeated = false;
     private List<Item> consumedItems = new List<Item>();
+    private HoverParticleManager hoverParticles; // ← nouveau
+
+    void Start()
+    {
+        base.Start(); // ← appelle le Start de NPCInteraction
+        hoverParticles = GetComponent<HoverParticleManager>();
+    }
+
+    // Override OnMouseEnter pour gérer les particules
+    void OnMouseEnter()
+    {
+        if (interactionType != InteractionType.MouseClick) return;
+        if (PauseMenu.Instance.IsPaused()) return;
+        if (MenuManager.Instance.IsMenuOpen()) return;
+
+        if (interactionSprite != null)
+            interactionSprite.SetActive(true);
+        if (hoverParticles != null)
+            hoverParticles.Show();
+    }
+
+    void OnMouseExit()
+    {
+        if (interactionType != InteractionType.MouseClick) return;
+
+        if (interactionSprite != null)
+            interactionSprite.SetActive(false);
+        if (hoverParticles != null)
+            hoverParticles.Hide();
+    }
 
     public void SetDefeated(bool defeated)
     {
@@ -69,9 +100,7 @@ public class NPCWithItemDialogue : NPCInteraction
             if (pair.item == item)
             {
                 if (!pair.consumesItem)
-                {
                     Inventory.Instance.AddItem(item);
-                }
                 else
                 {
                     if (!consumedItems.Contains(item))
@@ -97,7 +126,7 @@ public class NPCWithItemDialogue : NPCInteraction
         DialogueManager.Instance.StartDialogue(defaultDialogue, this);
     }
 
-    System.Collections.IEnumerator LaunchFightDialogueAfterDelay()
+    IEnumerator LaunchFightDialogueAfterDelay()
     {
         yield return new WaitUntil(() => !DialogueManager.Instance.IsActive());
         DialogueManager.Instance.StartDialogue(fightDialogue, this);

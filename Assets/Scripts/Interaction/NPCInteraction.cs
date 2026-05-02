@@ -15,7 +15,7 @@ public class NPCInteraction : MonoBehaviour
     private bool wasDialogueActive = false;
     private HoverParticleManager hoverParticles;
 
-    void Start()
+    protected void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         hoverParticles = GetComponent<HoverParticleManager>();
@@ -33,8 +33,19 @@ public class NPCInteraction : MonoBehaviour
         float distance = Vector2.Distance(transform.position, player.position);
         playerInRange = distance <= interactionRange;
 
-        if (interactionType == InteractionType.KeyPress && interactionSprite != null)
-            interactionSprite.SetActive(playerInRange);
+        if (interactionType == InteractionType.KeyPress)
+        {
+            if (interactionSprite != null)
+                interactionSprite.SetActive(playerInRange);
+
+            if (hoverParticles != null)
+            {
+                if (playerInRange)
+                    hoverParticles.Show();
+                else
+                    hoverParticles.Hide();
+            }
+        }
 
         if (dialogueCooldown > 0f)
             dialogueCooldown -= Time.deltaTime;

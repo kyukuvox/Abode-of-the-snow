@@ -23,8 +23,8 @@ MonoBehaviour:
   - speaker: 1
     text: I would like to know if you will be able to climb higher than she did...
   triggersCardGame: 1
-  enemyCardData: {fileID: 0}
-  playerCardData: {fileID: 0}
+  enemyCardData: {fileID: 11400000, guid: 2dd8dac628eeae042bfda939937877ee, type: 2}
+  playerCardData: {fileID: 11400000, guid: 93c91f4b48cba784ca5604f0d7862d0e, type: 2}
   cardGameRewards:
   - {fileID: 11400000, guid: a80dce0cb93f575448fed643764b07e8, type: 2}
   - {fileID: 11400000, guid: 908ca40923d556546881ff2939e6e7a3, type: 2}
