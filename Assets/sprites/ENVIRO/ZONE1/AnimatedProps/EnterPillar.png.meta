@@ -1,0 +1,428 @@
+fileFormatVersion: 2
+guid: 213fb290ed7d8f944a606b5f8258df46
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2980776147364908283
+    second: EnterPillar_0
+  - first:
+      213: -8572650252844563567
+    second: EnterPillar_1
+  - first:
+      213: 8037666693261138825
+    second: EnterPillar_2
+  - first:
+      213: 122839214938197923
+    second: EnterPillar_3
+  - first:
+      213: -8166676748116593028
+    second: EnterPillar_4
+  - first:
+      213: -374230301208926508
+    second: EnterPillar_5
+  - first:
+      213: -1304863626305570680
+    second: EnterPillar_6
+  - first:
+      213: 6016661305932740841
+    second: EnterPillar_7
+  - first:
+      213: 1542845262968580294
+    second: EnterPillar_8
+  - first:
+      213: 7028697048321159674
+    second: EnterPillar_9
+  - first:
+      213: 3928306777272214754
+    second: EnterPillar_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EnterPillar_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4003
+        width: 2903
+        height: 1993
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5037b5503e722a6d0800000000000000
+      internalID: -2980776147364908283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterPillar_1
+      rect:
+        serializedVersion: 2
+        x: 2903
+        y: 4003
+        width: 2903
+        height: 1993
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 402429e286f072744ab88c3abb92007c
+      internalID: -8572650252844563567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterPillar_2
+      rect:
+        serializedVersion: 2
+        x: 5806
+        y: 4003
+        width: 2903
+        height: 1993
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48a65c03582562c48b078cf656107ef7
+      internalID: 8037666693261138825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterPillar_3
+      rect:
+        serializedVersion: 2
+        x: 8709
+        y: 4003
+        width: 2903
+        height: 1993
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00711b26c7ac26245b86735afe6ebe2c
+      internalID: 122839214938197923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterPillar_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2002
+        width: 2903
+        height: 1993
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e1b0984709c87e4387ecddeb7ae43f8
+      internalID: -8166676748116593028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterPillar_5
+      rect:
+        serializedVersion: 2
+        x: 2903
+        y: 2002
+        width: 2903
+        height: 1993
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c48b296441a1f6d4d812923d81633adb
+      internalID: -374230301208926508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterPillar_6
+      rect:
+        serializedVersion: 2
+        x: 5806
+        y: 2002
+        width: 2903
+        height: 1993
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6dd47ddde5ffab49a7e9093d5c61fef
+      internalID: -1304863626305570680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterPillar_7
+      rect:
+        serializedVersion: 2
+        x: 8709
+        y: 2002
+        width: 2903
+        height: 1993
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 645e39facb94bb3459b5a63daeb0f845
+      internalID: 6016661305932740841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterPillar_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 2903
+        height: 1993
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cafb6747159ce6f449d3002f920f2f3f
+      internalID: 1542845262968580294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterPillar_9
+      rect:
+        serializedVersion: 2
+        x: 2903
+        y: 1
+        width: 2903
+        height: 1993
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beddbd6b9d42f454f831abc0ab093884
+      internalID: 7028697048321159674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterPillar_10
+      rect:
+        serializedVersion: 2
+        x: 5806
+        y: 1
+        width: 2903
+        height: 1993
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88e3e1f5e3bd8ab49b8e7b742c7b1861
+      internalID: 3928306777272214754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnterPillar_11
+      rect:
+        serializedVersion: 2
+        x: 8709
+        y: 1
+        width: 2903
+        height: 1993
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15920219cad63fe4796611dc7b3cb124
+      internalID: 2135547861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 7d84a02b209129b4bb6e9ae2288dfb7f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":3.0},"gridSpriteSize":{"x":2903.0,"y":1993.0},"gridSpriteOffset":{"x":0.0,"y":4.0},"gridSpritePadding":{"x":0.0,"y":8.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":true,"isAlternate":false}'
+    nameFileIdTable:
+      EnterPillar_0: -2980776147364908283
+      EnterPillar_1: -8572650252844563567
+      EnterPillar_10: 3928306777272214754
+      EnterPillar_11: 2135547861
+      EnterPillar_2: 8037666693261138825
+      EnterPillar_3: 122839214938197923
+      EnterPillar_4: -8166676748116593028
+      EnterPillar_5: -374230301208926508
+      EnterPillar_6: -1304863626305570680
+      EnterPillar_7: 6016661305932740841
+      EnterPillar_8: 1542845262968580294
+      EnterPillar_9: 7028697048321159674
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

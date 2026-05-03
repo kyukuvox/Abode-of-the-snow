@@ -34,7 +34,7 @@ public class CameraGround : MonoBehaviour
     {
         Vector3 desiredPosition = new Vector3(
             player.transform.position.x,
-            player.transform.position.y + 9,
+            player.transform.position.y + 7,
             -10
         );
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
