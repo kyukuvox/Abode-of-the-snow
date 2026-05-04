@@ -19,15 +19,14 @@ public class NPCWithItemDialogue : NPCInteraction
 
     private bool hasBeenDefeated = false;
     private List<Item> consumedItems = new List<Item>();
-    private HoverParticleManager hoverParticles; // ← nouveau
+    private HoverParticleManager hoverParticles;
 
-    void Start()
+    protected new void Start()
     {
-        base.Start(); // ← appelle le Start de NPCInteraction
+        base.Start();
         hoverParticles = GetComponent<HoverParticleManager>();
     }
 
-    // Override OnMouseEnter pour gérer les particules
     void OnMouseEnter()
     {
         if (interactionType != InteractionType.MouseClick) return;
@@ -110,8 +109,13 @@ public class NPCWithItemDialogue : NPCInteraction
                         Inventory.Instance.onItemChangedCallback.Invoke();
                 }
 
-                if (pair.activatesPortal && PortalAnimator.Instance != null)
-                    PortalAnimator.Instance.TryActivate(pair.dialogue);
+                // Cherche tous les portails et essaie de les activer
+                if (pair.activatesPortal)
+                {
+                    PortalAnimator[] allPortals = FindObjectsByType<PortalAnimator>(FindObjectsSortMode.None);
+                    foreach (PortalAnimator portal in allPortals)
+                        portal.TryActivate(pair.dialogue);
+                }
 
                 DialogueManager.Instance.StartDialogue(pair.dialogue, this);
 

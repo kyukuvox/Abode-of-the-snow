@@ -149,25 +149,25 @@ public class DialogueManager : MonoBehaviour
 
         bool npcAlreadyDefeated = currentNPC != null && currentNPC.HasBeenDefeated();
 
-        Debug.Log("=== END DIALOGUE ===");
-        Debug.Log("triggersCardGame : " + (currentData != null ? currentData.triggersCardGame.ToString() : "currentData NULL"));
-        Debug.Log("npcAlreadyDefeated : " + npcAlreadyDefeated);
-        Debug.Log("CardGameManager : " + (CardGameManager.Instance != null ? "OK" : "NULL"));
-        Debug.Log("enemyCardData : " + (currentData != null && currentData.enemyCardData != null ? "OK" : "NULL"));
-        Debug.Log("playerCardData : " + (currentData != null && currentData.playerCardData != null ? "OK" : "NULL"));
+        if (currentData != null && CinematicManager.Instance != null)
+            CinematicManager.Instance.TryTrigger(currentData);
+
+        if (currentData != null)
+        {
+            PortalAnimator[] allPortals = FindObjectsByType<PortalAnimator>(FindObjectsSortMode.None);
+            foreach (PortalAnimator portal in allPortals)
+                portal.TryActivate(currentData);
+        }
 
         if (currentData != null && currentData.triggersCardGame && !npcAlreadyDefeated)
         {
             CardGameManager.Instance.StartCardGame(
                 currentData.enemyCardData,
                 currentData.playerCardData,
-               currentData.cardGameRewards,
+                currentData.cardGameRewards,
                 currentNPC
             );
         }
-
-        if (currentData != null && CinematicManager.Instance != null)
-            CinematicManager.Instance.TryTrigger(currentData);
 
         currentData = null;
 

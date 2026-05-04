@@ -3,11 +3,9 @@ using UnityEngine;
 
 public class PortalAnimator : MonoBehaviour
 {
-    public static PortalAnimator Instance;
-
     public float descendSpeed = 2f;
     public float targetYOffset = -3f;
-    public DialogueData triggerDialogue; 
+    public DialogueData triggerDialogue;
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
@@ -15,7 +13,6 @@ public class PortalAnimator : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
         startPosition = transform.position;
         targetPosition = new Vector3(
             transform.position.x,

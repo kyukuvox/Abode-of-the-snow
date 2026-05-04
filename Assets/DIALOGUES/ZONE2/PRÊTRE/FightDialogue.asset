@@ -24,8 +24,8 @@ MonoBehaviour:
     text: I would like to see what the surrounding people are worth in the game!
   - speaker: 0
     text: "If it\u2019s your will, my father..."
-  triggersCardGame: 0
-  enemyCardData: {fileID: 0}
-  playerCardData: {fileID: 0}
+  triggersCardGame: 1
+  enemyCardData: {fileID: 11400000, guid: 2dd8dac628eeae042bfda939937877ee, type: 2}
+  playerCardData: {fileID: 11400000, guid: 93c91f4b48cba784ca5604f0d7862d0e, type: 2}
   cardGameRewards:
   - {fileID: 11400000, guid: 5b194eadec985084d9bee994256f1105, type: 2}

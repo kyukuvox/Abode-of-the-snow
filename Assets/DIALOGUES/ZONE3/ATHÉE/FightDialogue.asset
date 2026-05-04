@@ -27,7 +27,7 @@ MonoBehaviour:
   - speaker: 1
     text: Please... I feel like I really need it
   triggersCardGame: 1
-  enemyCardData: {fileID: 0}
-  playerCardData: {fileID: 0}
+  enemyCardData: {fileID: 11400000, guid: 2dd8dac628eeae042bfda939937877ee, type: 2}
+  playerCardData: {fileID: 11400000, guid: 93c91f4b48cba784ca5604f0d7862d0e, type: 2}
   cardGameRewards:
   - {fileID: 11400000, guid: d186d96498c042a45b40719930de2c13, type: 2}
