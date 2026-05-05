@@ -24,5 +24,5 @@ MonoBehaviour:
   enemyCardData: {fileID: 11400000, guid: 2dd8dac628eeae042bfda939937877ee, type: 2}
   playerCardData: {fileID: 11400000, guid: 93c91f4b48cba784ca5604f0d7862d0e, type: 2}
   cardGameRewards:
-  - {fileID: 11400000, guid: 359a638f46656c24c9a1a288efb0e51e, type: 2}
+  - {fileID: 11400000, guid: 1897bb09da838ed4aac43d0aa6d843b5, type: 2}
   - {fileID: 11400000, guid: 1eb236f78d4ba4f44907fbdee7f36ce1, type: 2}
