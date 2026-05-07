@@ -25,8 +25,9 @@ MonoBehaviour:
   - speaker: 0
     text: "I have to say that I don\u2019t really see the point, to be honest."
   - speaker: 1
-    text: This is the remnant of one of the greatest weapons in the ancient world!
-      A metal demon carried by every soldier, spitting flames and steel on their
+    text: 'This is the remnant of one of the greatest weapons in the ancient world! '
+  - speaker: 1
+    text: A metal demon carried by every soldier, spitting flames and steel on their
       enemies!
   - speaker: 0
     text: "But it\u2019s terrifying! Who would want a demon near him?! Take it, I

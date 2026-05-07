@@ -21,7 +21,9 @@ MonoBehaviour:
     text: Hello...
   - speaker: 1
     text: If you are coming from the priest, you can tell him that I will never leave.
-      He only has to come himself and try to dislodge me if he has a modicum of courage.
+  - speaker: 1
+    text: He only has to come himself and try to dislodge me if he has a modicum
+      of courage.
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
