@@ -545,12 +545,12 @@ public class CardGameManager : MonoBehaviour
 
     void UpdateUI()
     {
-        if (playerLifeText != null) playerLifeText.text = "PV : " + playerLife;
-        if (playerActionText != null) playerActionText.text = "PA : " + playerActionPoints;
-        if (playerDefenseText != null) playerDefenseText.text = "DEF : " + playerDefense;
-        if (enemyLifeText != null) enemyLifeText.text = "PV : " + enemyLife;
-        if (enemyActionText != null) enemyActionText.text = "PA : " + enemyActionPoints;
-        if (enemyDefenseText != null) enemyDefenseText.text = "DEF : " + enemyDefense;
+        if (playerLifeText != null) playerLifeText.text = "l : " + playerLife;
+        if (playerActionText != null) playerActionText.text = "l : " + playerActionPoints;
+        if (playerDefenseText != null) playerDefenseText.text = "l : " + playerDefense;
+        if (enemyLifeText != null) enemyLifeText.text = "l : " + enemyLife;
+        if (enemyActionText != null) enemyActionText.text = "l : " + enemyActionPoints;
+        if (enemyDefenseText != null) enemyDefenseText.text = "l : " + enemyDefense;
 
         foreach (Card card in playerHand)
         {
