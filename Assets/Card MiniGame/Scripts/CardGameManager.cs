@@ -35,6 +35,15 @@ public class CardGameManager : MonoBehaviour
     public Button endTurnButton;
     public Button discardButton;
 
+    [Header("Boutons Sprites")]
+    public Image endTurnButtonImage;
+    public Image discardButtonImage;
+    public Sprite discardNormalSprite;
+    public Sprite discardUsedSprite;
+    public Sprite discardConfirmSprite;
+    public Sprite endTurnNormalSprite;
+    public Sprite endTurnDisabledSprite;
+
     [Header("Deck Builder")]
     public DeckBuilderManager deckBuilderManager;
 
@@ -267,7 +276,8 @@ public class CardGameManager : MonoBehaviour
 
         if (isDiscardMode)
         {
-            discardButton.GetComponentInChildren<Text>().text = "Confirmer (0/2)";
+            if (discardButtonImage != null && discardConfirmSprite != null)
+                discardButtonImage.sprite = discardConfirmSprite;
             selectedForDiscard.Clear();
         }
         else
@@ -279,7 +289,8 @@ public class CardGameManager : MonoBehaviour
                 foreach (Card card in playerHand)
                     card.ResetDiscardSelection();
                 selectedForDiscard.Clear();
-                discardButton.GetComponentInChildren<Text>().text = "Défausser";
+                if (discardButtonImage != null && discardNormalSprite != null)
+                    discardButtonImage.sprite = discardNormalSprite;
             }
         }
     }
@@ -298,9 +309,6 @@ public class CardGameManager : MonoBehaviour
             selectedForDiscard.Add(card);
             card.ToggleDiscardSelection();
         }
-
-        discardButton.GetComponentInChildren<Text>().text =
-            "Confirmer (" + selectedForDiscard.Count + "/2)";
     }
 
     void ConfirmDiscard()
@@ -320,7 +328,10 @@ public class CardGameManager : MonoBehaviour
         isDiscardMode = false;
         hasDiscardedThisTurn = true;
         discardButton.interactable = false;
-        discardButton.GetComponentInChildren<Text>().text = "Défaussé";
+
+        if (discardButtonImage != null && discardUsedSprite != null)
+            discardButtonImage.sprite = discardUsedSprite;
+
         UpdateUI();
     }
 
@@ -329,6 +340,10 @@ public class CardGameManager : MonoBehaviour
         if (!isPlayerTurn) return;
         isPlayerTurn = false;
         endTurnButton.interactable = false;
+
+        if (endTurnButtonImage != null && endTurnDisabledSprite != null)
+            endTurnButtonImage.sprite = endTurnDisabledSprite;
+
         StartCoroutine(EnemyTurn());
     }
 
@@ -372,7 +387,11 @@ public class CardGameManager : MonoBehaviour
         playerActionPoints = playerData.actionPointsPerTurn;
         hasDiscardedThisTurn = false;
         discardButton.interactable = true;
-        discardButton.GetComponentInChildren<Text>().text = "Défausser";
+
+        if (discardButtonImage != null && discardNormalSprite != null)
+            discardButtonImage.sprite = discardNormalSprite;
+        if (endTurnButtonImage != null && endTurnNormalSprite != null)
+            endTurnButtonImage.sprite = endTurnNormalSprite;
 
         DelayBarManager.Instance.TickTurn(true);
 
@@ -540,7 +559,11 @@ public class CardGameManager : MonoBehaviour
 
         endTurnButton.interactable = true;
         discardButton.interactable = true;
-        discardButton.GetComponentInChildren<Text>().text = "Défausser";
+
+        if (discardButtonImage != null && discardNormalSprite != null)
+            discardButtonImage.sprite = discardNormalSprite;
+        if (endTurnButtonImage != null && endTurnNormalSprite != null)
+            endTurnButtonImage.sprite = endTurnNormalSprite;
     }
 
     void UpdateUI()

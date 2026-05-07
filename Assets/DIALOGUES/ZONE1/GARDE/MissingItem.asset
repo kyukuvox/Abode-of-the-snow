@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13b48e65550d1a4f80dbc0550ba6b7b, type: 3}
+  m_Name: MissingItem
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  npcName: Guard
+  npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
+  playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
+  isBadDecision: 0
+  lines:
+  - speaker: 1
+    text: Not now!
+  - speaker: 1
+    text: Go take a walk around the village while you wait if you want, I should
+      be able to check your crossing permit soon.
+  triggersCardGame: 0
+  enemyCardData: {fileID: 0}
+  playerCardData: {fileID: 0}
+  cardGameRewards: []

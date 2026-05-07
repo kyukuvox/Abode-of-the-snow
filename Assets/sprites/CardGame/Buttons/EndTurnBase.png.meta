@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 72db35143a2f7c947a1c7b965c633724
+guid: 31fc9ddddd7e77249adc9b5fcffe7c74
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4564806136572960381
-    second: ENd Turn_0
+      213: 6294779188895001745
+    second: EndTurnBase_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ENd Turn_0
+      name: EndTurnBase_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 381ab01110d86a0c0800000000000000
-      internalID: -4564806136572960381
+      spriteID: 19cab95325c8b5750800000000000000
+      internalID: 6294779188895001745
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ENd Turn_0: -4564806136572960381
+      EndTurnBase_0: 6294779188895001745
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -13,9 +13,18 @@ public class NPCWithItemDialogue : NPCInteraction
         public bool activatesPortal = false;
     }
 
+    [System.Serializable]
+    public class RequiredItemsCondition
+    {
+        public Item triggerItem;
+        public Item[] requiredItems;
+        public DialogueData missingItemsDialogue;
+    }
+
     public List<ItemDialoguePair> itemDialogues;
     public DialogueData alreadyDefeatedDialogue;
     public DialogueData fightDialogue;
+    public RequiredItemsCondition itemsCondition;
 
     private bool hasBeenDefeated = false;
     private List<Item> consumedItems = new List<Item>();
@@ -55,6 +64,20 @@ public class NPCWithItemDialogue : NPCInteraction
     }
 
     public bool HasBeenDefeated() { return hasBeenDefeated; }
+
+    bool HasAllRequiredItems()
+    {
+        if (itemsCondition == null || itemsCondition.requiredItems == null ||
+            itemsCondition.requiredItems.Length == 0)
+            return true;
+
+        foreach (Item requiredItem in itemsCondition.requiredItems)
+        {
+            if (!Inventory.Instance.items.Contains(requiredItem))
+                return false;
+        }
+        return true;
+    }
 
     public override void TriggerDialogue()
     {
@@ -98,6 +121,23 @@ public class NPCWithItemDialogue : NPCInteraction
         {
             if (pair.item == item)
             {
+                if (pair.consumesItem &&
+                    itemsCondition != null &&
+                    itemsCondition.triggerItem == item &&
+                    itemsCondition.requiredItems != null &&
+                    itemsCondition.requiredItems.Length > 0)
+                {
+                    if (!HasAllRequiredItems())
+                    {
+                        Inventory.Instance.AddItem(item);
+                        if (itemsCondition.missingItemsDialogue != null)
+                            DialogueManager.Instance.StartDialogue(itemsCondition.missingItemsDialogue, this);
+                        else
+                            DialogueManager.Instance.StartDialogue(defaultDialogue, this);
+                        return;
+                    }
+                }
+
                 if (!pair.consumesItem)
                     Inventory.Instance.AddItem(item);
                 else
@@ -109,7 +149,6 @@ public class NPCWithItemDialogue : NPCInteraction
                         Inventory.Instance.onItemChangedCallback.Invoke();
                 }
 
-                // Cherche tous les portails et essaie de les activer
                 if (pair.activatesPortal)
                 {
                     PortalAnimator[] allPortals = FindObjectsByType<PortalAnimator>(FindObjectsSortMode.None);

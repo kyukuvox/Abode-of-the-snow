@@ -29,18 +29,39 @@ public class DelayBarManager : MonoBehaviour
     {
         GameObject entry = Instantiate(delayCardPrefab, delayContent);
 
+        RectTransform entryRect = entry.GetComponent<RectTransform>();
+        float cardWidth = entryRect.sizeDelta.x;
+        float cardHeight = entryRect.sizeDelta.y;
+        float spacing = 10f;
+
+        entryRect.anchorMin = new Vector2(0, 0.5f);
+        entryRect.anchorMax = new Vector2(0, 0.5f);
+        entryRect.pivot = new Vector2(0, 0.5f);
+
+        float xPos = delayedCards.Count * (cardWidth + spacing);
+        entryRect.anchoredPosition = new Vector2(xPos, 0f);
+
+        entryRect.sizeDelta = new Vector2(cardWidth, cardHeight);
+
+        RectTransform contentRect = delayContent.GetComponent<RectTransform>();
+        contentRect.sizeDelta = new Vector2(
+            (delayedCards.Count + 1) * (cardWidth + spacing),
+            contentRect.sizeDelta.y
+        );
+
         Text cardNameText = entry.transform.Find("CardNameText").GetComponent<Text>();
         Text turnsLeftText = entry.transform.Find("TurnsLeftText").GetComponent<Text>();
         Text ownerText = entry.transform.Find("OwnerText").GetComponent<Text>();
         Image background = entry.GetComponent<Image>();
 
-        cardNameText.text = card.cardName;
-        turnsLeftText.text = "Dans " + turns + " tours";
-        ownerText.text = isPlayer ? "J" : "E";
+        if (cardNameText != null) cardNameText.text = card.cardName;
+        if (turnsLeftText != null) turnsLeftText.text = "Dans " + turns + " tours";
+        if (ownerText != null) ownerText.text = isPlayer ? "J" : "E";
 
-        background.color = isPlayer ?
-            new Color(0.2f, 0.5f, 1f, 0.8f) :
-            new Color(1f, 0.3f, 0.3f, 0.8f); 
+        if (background != null)
+            background.color = isPlayer ?
+                new Color(0.2f, 0.5f, 1f, 0.8f) :
+                new Color(1f, 0.3f, 0.3f, 0.8f);
 
         DelayedCard delayed = new DelayedCard
         {
@@ -63,9 +84,11 @@ public class DelayBarManager : MonoBehaviour
             if (delayed.isPlayer == isPlayerTurn)
             {
                 delayed.turnsLeft--;
-                delayed.turnsLeftText.text = delayed.turnsLeft > 0 ?
-                    "Dans " + delayed.turnsLeft + " tours" :
-                    "Ce tour !";
+
+                if (delayed.turnsLeftText != null)
+                    delayed.turnsLeftText.text = delayed.turnsLeft > 0 ?
+                        "Dans " + delayed.turnsLeft + " tours" :
+                        "Ce tour !";
 
                 if (delayed.turnsLeft <= 0)
                 {
@@ -78,6 +101,28 @@ public class DelayBarManager : MonoBehaviour
 
         foreach (DelayedCard d in toRemove)
             delayedCards.Remove(d);
+
+        RefreshCardPositions();
+    }
+
+    void RefreshCardPositions()
+    {
+        if (delayedCards.Count == 0) return;
+
+        float cardWidth = delayedCards[0].uiElement.GetComponent<RectTransform>().sizeDelta.x;
+        float spacing = 10f;
+
+        for (int i = 0; i < delayedCards.Count; i++)
+        {
+            RectTransform rect = delayedCards[i].uiElement.GetComponent<RectTransform>();
+            rect.anchoredPosition = new Vector2(i * (cardWidth + spacing), 0f);
+        }
+
+        RectTransform contentRect = delayContent.GetComponent<RectTransform>();
+        contentRect.sizeDelta = new Vector2(
+            delayedCards.Count * (cardWidth + spacing),
+            contentRect.sizeDelta.y
+        );
     }
 
     public void ResetDelayBar()
@@ -87,5 +132,8 @@ public class DelayBarManager : MonoBehaviour
                 Destroy(delayed.uiElement);
 
         delayedCards.Clear();
+
+        RectTransform contentRect = delayContent.GetComponent<RectTransform>();
+        contentRect.sizeDelta = new Vector2(0f, contentRect.sizeDelta.y);
     }
 }
