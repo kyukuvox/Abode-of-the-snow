@@ -11,6 +11,7 @@ public class CharacterCardData : ScriptableObject
     public int maxLife = 20;
     public int maxActionPoints = 3;
     public int actionPointsPerTurn = 3;
+    public int handSize = 3; 
 
     public CardData[] startingDeck;
     public CardData rewardCard;

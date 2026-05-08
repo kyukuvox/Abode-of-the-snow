@@ -18,5 +18,6 @@ MonoBehaviour:
   maxLife: 20
   maxActionPoints: 3
   actionPointsPerTurn: 3
+  handSize: 5
   startingDeck: []
   rewardCard: {fileID: 0}

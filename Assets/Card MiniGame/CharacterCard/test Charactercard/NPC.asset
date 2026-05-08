@@ -17,7 +17,8 @@ MonoBehaviour:
   perkDescription: 
   maxLife: 15
   maxActionPoints: 2
-  actionPointsPerTurn: 2
+  actionPointsPerTurn: 10
+  handSize: 3
   startingDeck:
   - {fileID: 11400000, guid: 4b25f63d1b13ca84ea627c638d61f936, type: 2}
   - {fileID: 11400000, guid: 4b25f63d1b13ca84ea627c638d61f936, type: 2}

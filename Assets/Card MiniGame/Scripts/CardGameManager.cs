@@ -25,7 +25,6 @@ public class CardGameManager : MonoBehaviour
     [Header("Main Ennemie")]
     public Transform enemyHandZone;
     public GameObject enemyCardBackPrefab;
-    public int enemyHandSize = 3;
 
     [Header("Prefabs")]
     public GameObject cardPrefab;
@@ -56,6 +55,11 @@ public class CardGameManager : MonoBehaviour
     public float shakeIntensity = 5f;
     public float shakeDuration = 0.3f;
 
+    [Header("Intro")]
+    public float enemySpriteStartOffset = 300f;
+    public float enemySpriteDuration = 0.8f;
+    public float introFadeDuration = 0.5f;
+
     private int playerLife;
     private int playerActionPoints;
     private int playerDefense;
@@ -80,6 +84,8 @@ public class CardGameManager : MonoBehaviour
 
     private Item[] rewardItems;
     private NPCWithItemDialogue currentNPC;
+
+    private List<Vector2> enemyCardPositions = new List<Vector2>();
 
     void Awake()
     {
@@ -120,19 +126,63 @@ public class CardGameManager : MonoBehaviour
 
         enemyDeck.InitializeDeck(enemy.startingDeck);
 
+        enemyCardSprite.sprite = enemy.characterSprite;
+
         cardGameCanvas.SetActive(true);
         resultPanel.SetActive(false);
 
-        enemyCardSprite.sprite = enemy.characterSprite;
-
-        for (int i = 0; i < 5; i++)
-            DrawPlayerCard();
-
-        InitEnemyHand();
-
-        UpdateUI();
         isPlayerTurn = true;
         isGameEnded = false;
+
+        StartCoroutine(CardGameIntro());
+    }
+
+    IEnumerator CardGameIntro()
+    {
+        CanvasGroup canvasGroup = cardGameCanvas.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = cardGameCanvas.AddComponent<CanvasGroup>();
+
+        canvasGroup.alpha = 0f;
+
+        RectTransform enemySpriteRect = enemyCardSprite.GetComponent<RectTransform>();
+        Vector2 targetPos = enemySpriteRect.anchoredPosition;
+        Vector2 startPos = targetPos + new Vector2(0, enemySpriteStartOffset);
+        enemySpriteRect.anchoredPosition = startPos;
+
+        float elapsed = 0f;
+        while (elapsed < introFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsed / introFadeDuration);
+            yield return null;
+        }
+        canvasGroup.alpha = 1f;
+
+        elapsed = 0f;
+        while (elapsed < enemySpriteDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / enemySpriteDuration;
+            float smoothT = 1f - Mathf.Pow(1f - t, 3f);
+            enemySpriteRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, smoothT);
+            yield return null;
+        }
+        enemySpriteRect.anchoredPosition = targetPos;
+
+        yield return new WaitForSeconds(0.2f);
+
+        int attempts = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            if (attempts >= 20) break;
+            DrawPlayerCard();
+            attempts++;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        InitEnemyHand();
+        UpdateUI();
     }
 
     void InitEnemyHand()
@@ -140,21 +190,52 @@ public class CardGameManager : MonoBehaviour
         foreach (Transform child in enemyHandZone)
             Destroy(child.gameObject);
 
-        for (int i = 0; i < enemyHandSize; i++)
+        StartCoroutine(SpawnEnemyCards());
+    }
+
+    IEnumerator SpawnEnemyCards()
+    {
+        yield return null;
+
+        float cardWidth = 60f;
+        float cardHeight = 90f;
+        float spacing = 5f;
+
+        int handSize = enemyData.handSize;
+
+        float totalWidth = (handSize * cardWidth) + ((handSize - 1) * spacing);
+        float startX = -totalWidth / 2f + cardWidth / 2f;
+
+        enemyCardPositions.Clear();
+
+        for (int i = 0; i < handSize; i++)
         {
             GameObject card = Instantiate(enemyCardBackPrefab, enemyHandZone);
-            StartCoroutine(AnimateEnemyCardDraw(card));
+
+            RectTransform rect = card.GetComponent<RectTransform>();
+            rect.anchorMin = new Vector2(0.5f, 0.5f);
+            rect.anchorMax = new Vector2(0.5f, 0.5f);
+            rect.pivot = new Vector2(0.5f, 0.5f);
+            rect.sizeDelta = new Vector2(cardWidth, cardHeight);
+
+            float xPos = startX + i * (cardWidth + spacing);
+            Vector2 enemyTargetPos = new Vector2(xPos, 0f);
+            rect.anchoredPosition = enemyTargetPos;
+
+            enemyCardPositions.Add(enemyTargetPos);
+
+            StartCoroutine(AnimateEnemyCardDraw(card, enemyTargetPos));
+            yield return new WaitForSeconds(0.15f);
         }
     }
 
-    IEnumerator AnimateEnemyCardDraw(GameObject card)
+    IEnumerator AnimateEnemyCardDraw(GameObject card, Vector2 targetPos)
     {
         RectTransform rect = card.GetComponent<RectTransform>();
         CanvasGroup cg = card.GetComponent<CanvasGroup>();
         if (cg == null) cg = card.AddComponent<CanvasGroup>();
 
-        Vector2 startPos = rect.anchoredPosition + new Vector2(0, 50f);
-        Vector2 targetPos = rect.anchoredPosition;
+        Vector2 startPos = targetPos + new Vector2(0, 50f);
 
         cg.alpha = 0f;
         rect.anchoredPosition = startPos;
@@ -162,7 +243,7 @@ public class CardGameManager : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < 1f)
         {
-            elapsed += Time.deltaTime * 5f;
+            elapsed += Time.deltaTime * 8f;
             cg.alpha = Mathf.Lerp(0f, 1f, elapsed);
             rect.anchoredPosition = Vector2.Lerp(startPos, targetPos, elapsed);
             yield return null;
@@ -194,6 +275,45 @@ public class CardGameManager : MonoBehaviour
         }
 
         Destroy(card.gameObject);
+    }
+
+    void DrawPlayerCard()
+    {
+        CardData data = playerDeck.DrawCard();
+        if (data == null) return;
+
+        GameObject cardObj = Instantiate(cardPrefab, playerHandZone);
+        Card card = cardObj.GetComponent<Card>();
+        card.Setup(data);
+        playerHand.Add(card);
+        StartCoroutine(AnimatePlayerCardDraw(cardObj));
+    }
+
+    IEnumerator AnimatePlayerCardDraw(GameObject cardObj)
+    {
+        CanvasGroup cg = cardObj.GetComponent<CanvasGroup>();
+        if (cg == null) cg = cardObj.AddComponent<CanvasGroup>();
+
+        cg.alpha = 0f;
+
+        yield return null;
+        yield return null;
+        yield return null;
+        yield return null;
+
+        float elapsed = 0f;
+        while (elapsed < 1f)
+        {
+            elapsed += Time.deltaTime * 4f;
+            cg.alpha = Mathf.Clamp01(elapsed);
+            yield return null;
+        }
+
+        cg.alpha = 1f;
+
+        Card card = cardObj.GetComponent<Card>();
+        if (card != null)
+            card.InitRestPosition();
     }
 
     public void PlayCard(Card card)
@@ -323,17 +443,6 @@ public class CardGameManager : MonoBehaviour
         text.rectTransform.anchoredPosition = originalPos;
     }
 
-    void DrawPlayerCard()
-    {
-        CardData data = playerDeck.DrawCard();
-        if (data == null) return;
-
-        GameObject cardObj = Instantiate(cardPrefab, playerHandZone);
-        Card card = cardObj.GetComponent<Card>();
-        card.Setup(data);
-        playerHand.Add(card);
-    }
-
     public bool IsDiscardMode() { return isDiscardMode; }
 
     public void ToggleDiscardMode()
@@ -390,8 +499,13 @@ public class CardGameManager : MonoBehaviour
 
         selectedForDiscard.Clear();
 
+        int attempts = 0;
         for (int i = 0; i < 2; i++)
+        {
+            if (attempts >= 10) break;
             DrawPlayerCard();
+            attempts++;
+        }
 
         isDiscardMode = false;
         hasDiscardedThisTurn = true;
@@ -423,8 +537,8 @@ public class CardGameManager : MonoBehaviour
 
         enemyActionPoints = enemyData.actionPointsPerTurn;
 
-        CardData[] hand = new CardData[3];
-        for (int i = 0; i < 3; i++)
+        CardData[] hand = new CardData[enemyData.handSize];
+        for (int i = 0; i < enemyData.handSize; i++)
             hand[i] = enemyDeck.DrawCard();
 
         foreach (CardData card in hand)
@@ -472,8 +586,15 @@ public class CardGameManager : MonoBehaviour
 
         DelayBarManager.Instance.TickTurn(true);
 
-        while (playerHand.Count < 5)
+        int drawAttempts = 0;
+        while (playerHand.Count < 5 && drawAttempts < 20)
+        {
+            int previousCount = playerHand.Count;
             DrawPlayerCard();
+            if (playerHand.Count == previousCount) break;
+            drawAttempts++;
+            yield return new WaitForSeconds(0.1f);
+        }
 
         foreach (Card card in playerHand)
         {

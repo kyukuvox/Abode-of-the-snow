@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7254933d8125d2347a52ba9c228a4435, type: 3}
   m_Name: "ATH\xC9EandFOU"
   m_EditorClassIdentifier: Assembly-CSharp::CharacterCardData
-  characterName: 
+  characterName: ATHEIST
   characterSprite: {fileID: 0}
   perkDescription: 
-  maxLife: 20
+  maxLife: 40
   maxActionPoints: 3
   actionPointsPerTurn: 3
+  handSize: 10
   startingDeck: []
   rewardCard: {fileID: 0}
