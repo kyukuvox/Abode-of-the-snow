@@ -9,6 +9,10 @@ public class DelayBarManager : MonoBehaviour
     public Transform delayContent;
     public GameObject delayCardPrefab;
 
+    private const float CARD_WIDTH = 468f;
+    private const float CARD_HEIGHT = 240f;
+    private const float CARD_SPACING = 10f;
+
     private class DelayedCard
     {
         public CardData card;
@@ -27,26 +31,26 @@ public class DelayBarManager : MonoBehaviour
 
     public void AddDelayedCard(CardData card, int turns, bool isPlayer)
     {
+
         GameObject entry = Instantiate(delayCardPrefab, delayContent);
 
         RectTransform entryRect = entry.GetComponent<RectTransform>();
-        float cardWidth = entryRect.sizeDelta.x;
-        float cardHeight = entryRect.sizeDelta.y;
-        float spacing = 10f;
+        Debug.Log("Taille AVANT : " + entryRect.sizeDelta);
+
+        entryRect.sizeDelta = new Vector2(CARD_WIDTH, CARD_HEIGHT);
+        Debug.Log("Taille APRÈS : " + entryRect.sizeDelta);
 
         entryRect.anchorMin = new Vector2(0, 0.5f);
         entryRect.anchorMax = new Vector2(0, 0.5f);
         entryRect.pivot = new Vector2(0, 0.5f);
 
-        float xPos = delayedCards.Count * (cardWidth + spacing);
+        float xPos = delayedCards.Count * (CARD_WIDTH + CARD_SPACING);
         entryRect.anchoredPosition = new Vector2(xPos, 0f);
-
-        entryRect.sizeDelta = new Vector2(cardWidth, cardHeight);
 
         RectTransform contentRect = delayContent.GetComponent<RectTransform>();
         contentRect.sizeDelta = new Vector2(
-            (delayedCards.Count + 1) * (cardWidth + spacing),
-            contentRect.sizeDelta.y
+            (delayedCards.Count + 1) * (CARD_WIDTH + CARD_SPACING),
+            CARD_HEIGHT
         );
 
         Text cardNameText = entry.transform.Find("CardNameText").GetComponent<Text>();
@@ -107,21 +111,27 @@ public class DelayBarManager : MonoBehaviour
 
     void RefreshCardPositions()
     {
-        if (delayedCards.Count == 0) return;
-
-        float cardWidth = delayedCards[0].uiElement.GetComponent<RectTransform>().sizeDelta.x;
-        float spacing = 10f;
+        if (delayedCards.Count == 0)
+        {
+            RectTransform contentRect = delayContent.GetComponent<RectTransform>();
+            contentRect.sizeDelta = new Vector2(0f, CARD_HEIGHT);
+            return;
+        }
 
         for (int i = 0; i < delayedCards.Count; i++)
         {
             RectTransform rect = delayedCards[i].uiElement.GetComponent<RectTransform>();
-            rect.anchoredPosition = new Vector2(i * (cardWidth + spacing), 0f);
+            rect.sizeDelta = new Vector2(CARD_WIDTH, CARD_HEIGHT);
+            rect.anchorMin = new Vector2(0, 0.5f);
+            rect.anchorMax = new Vector2(0, 0.5f);
+            rect.pivot = new Vector2(0, 0.5f);
+            rect.anchoredPosition = new Vector2(i * (CARD_WIDTH + CARD_SPACING), 0f);
         }
 
-        RectTransform contentRect = delayContent.GetComponent<RectTransform>();
-        contentRect.sizeDelta = new Vector2(
-            delayedCards.Count * (cardWidth + spacing),
-            contentRect.sizeDelta.y
+        RectTransform contentRectUpdate = delayContent.GetComponent<RectTransform>();
+        contentRectUpdate.sizeDelta = new Vector2(
+            delayedCards.Count * (CARD_WIDTH + CARD_SPACING),
+            CARD_HEIGHT
         );
     }
 
@@ -134,6 +144,6 @@ public class DelayBarManager : MonoBehaviour
         delayedCards.Clear();
 
         RectTransform contentRect = delayContent.GetComponent<RectTransform>();
-        contentRect.sizeDelta = new Vector2(0f, contentRect.sizeDelta.y);
+        contentRect.sizeDelta = new Vector2(0f, CARD_HEIGHT);
     }
 }
