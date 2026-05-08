@@ -8,6 +8,8 @@ public class DelayBarManager : MonoBehaviour
 
     public Transform delayContent;
     public GameObject delayCardPrefab;
+    public Sprite playerCardBackground;
+    public Sprite enemyCardBackground;
 
     private const float CARD_WIDTH = 468f;
     private const float CARD_HEIGHT = 240f;
@@ -31,15 +33,11 @@ public class DelayBarManager : MonoBehaviour
 
     public void AddDelayedCard(CardData card, int turns, bool isPlayer)
     {
-
         GameObject entry = Instantiate(delayCardPrefab, delayContent);
 
         RectTransform entryRect = entry.GetComponent<RectTransform>();
-        Debug.Log("Taille AVANT : " + entryRect.sizeDelta);
 
         entryRect.sizeDelta = new Vector2(CARD_WIDTH, CARD_HEIGHT);
-        Debug.Log("Taille APRÈS : " + entryRect.sizeDelta);
-
         entryRect.anchorMin = new Vector2(0, 0.5f);
         entryRect.anchorMax = new Vector2(0, 0.5f);
         entryRect.pivot = new Vector2(0, 0.5f);
@@ -63,9 +61,24 @@ public class DelayBarManager : MonoBehaviour
         if (ownerText != null) ownerText.text = isPlayer ? "J" : "E";
 
         if (background != null)
-            background.color = isPlayer ?
-                new Color(0.2f, 0.5f, 1f, 0.8f) :
-                new Color(1f, 0.3f, 0.3f, 0.8f);
+        {
+            if (isPlayer && playerCardBackground != null)
+            {
+                background.sprite = playerCardBackground;
+                background.color = Color.white;
+            }
+            else if (!isPlayer && enemyCardBackground != null)
+            {
+                background.sprite = enemyCardBackground;
+                background.color = Color.white;
+            }
+            else
+            {
+                background.color = isPlayer ?
+                    new Color(0.2f, 0.5f, 1f, 0.8f) :
+                    new Color(1f, 0.3f, 0.3f, 0.8f);
+            }
+        }
 
         DelayedCard delayed = new DelayedCard
         {
