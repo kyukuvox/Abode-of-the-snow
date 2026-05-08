@@ -14871,6 +14871,14 @@ PrefabInstance:
       propertyPath: delayContent
       value: 
       objectReference: {fileID: 6263365939761158850}
+    - target: {fileID: 8153366002289730846, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: enemyCardBackground
+      value: 
+      objectReference: {fileID: 21300000, guid: 757d7345dc6322445af93fbdc593357f, type: 3}
+    - target: {fileID: 8153366002289730846, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: playerCardBackground
+      value: 
+      objectReference: {fileID: 21300000, guid: 24c9a771080d2db4597ec0b926e6c68a, type: 3}
     - target: {fileID: 8164966158570170338, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: npcNameText
       value: 

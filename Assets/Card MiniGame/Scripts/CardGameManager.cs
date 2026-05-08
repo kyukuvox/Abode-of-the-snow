@@ -22,6 +22,11 @@ public class CardGameManager : MonoBehaviour
     public Text enemyDefenseText;
     public Image enemyCardSprite;
 
+    [Header("Main Ennemie")]
+    public Transform enemyHandZone;
+    public GameObject enemyCardBackPrefab;
+    public int enemyHandSize = 3;
+
     [Header("Prefabs")]
     public GameObject cardPrefab;
 
@@ -123,9 +128,72 @@ public class CardGameManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
             DrawPlayerCard();
 
+        InitEnemyHand();
+
         UpdateUI();
         isPlayerTurn = true;
         isGameEnded = false;
+    }
+
+    void InitEnemyHand()
+    {
+        foreach (Transform child in enemyHandZone)
+            Destroy(child.gameObject);
+
+        for (int i = 0; i < enemyHandSize; i++)
+        {
+            GameObject card = Instantiate(enemyCardBackPrefab, enemyHandZone);
+            StartCoroutine(AnimateEnemyCardDraw(card));
+        }
+    }
+
+    IEnumerator AnimateEnemyCardDraw(GameObject card)
+    {
+        RectTransform rect = card.GetComponent<RectTransform>();
+        CanvasGroup cg = card.GetComponent<CanvasGroup>();
+        if (cg == null) cg = card.AddComponent<CanvasGroup>();
+
+        Vector2 startPos = rect.anchoredPosition + new Vector2(0, 50f);
+        Vector2 targetPos = rect.anchoredPosition;
+
+        cg.alpha = 0f;
+        rect.anchoredPosition = startPos;
+
+        float elapsed = 0f;
+        while (elapsed < 1f)
+        {
+            elapsed += Time.deltaTime * 5f;
+            cg.alpha = Mathf.Lerp(0f, 1f, elapsed);
+            rect.anchoredPosition = Vector2.Lerp(startPos, targetPos, elapsed);
+            yield return null;
+        }
+
+        cg.alpha = 1f;
+        rect.anchoredPosition = targetPos;
+    }
+
+    IEnumerator AnimateEnemyCardPlay(int cardIndex)
+    {
+        if (enemyHandZone.childCount <= cardIndex) yield break;
+
+        Transform card = enemyHandZone.GetChild(cardIndex);
+        RectTransform rect = card.GetComponent<RectTransform>();
+        CanvasGroup cg = card.GetComponent<CanvasGroup>();
+        if (cg == null) cg = card.gameObject.AddComponent<CanvasGroup>();
+
+        Vector2 startPos = rect.anchoredPosition;
+        Vector2 targetPos = startPos + new Vector2(0, -100f);
+
+        float elapsed = 0f;
+        while (elapsed < 1f)
+        {
+            elapsed += Time.deltaTime * 5f;
+            cg.alpha = Mathf.Lerp(1f, 0f, elapsed);
+            rect.anchoredPosition = Vector2.Lerp(startPos, targetPos, elapsed);
+            yield return null;
+        }
+
+        Destroy(card.gameObject);
     }
 
     public void PlayCard(Card card)
@@ -368,6 +436,9 @@ public class CardGameManager : MonoBehaviour
                 yield return new WaitForSeconds(0.8f);
                 enemyActionPoints -= card.actionCost;
 
+                StartCoroutine(AnimateEnemyCardPlay(0));
+                yield return new WaitForSeconds(0.3f);
+
                 if (card.delayTurns > 0)
                     DelayBarManager.Instance.AddDelayedCard(card, card.delayTurns, false);
                 else
@@ -378,9 +449,15 @@ public class CardGameManager : MonoBehaviour
 
                 if (CheckGameOver()) yield break;
             }
+            else
+            {
+                enemyDeck.DiscardCard(card);
+            }
         }
 
         yield return new WaitForSeconds(0.5f);
+
+        InitEnemyHand();
 
         isPlayerTurn = true;
         endTurnButton.interactable = true;
@@ -539,6 +616,10 @@ public class CardGameManager : MonoBehaviour
             if (card != null)
                 Destroy(card.gameObject);
         playerHand.Clear();
+
+        if (enemyHandZone != null)
+            foreach (Transform child in enemyHandZone)
+                Destroy(child.gameObject);
 
         DelayBarManager.Instance.ResetDelayBar();
 
