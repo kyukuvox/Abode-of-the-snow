@@ -28,6 +28,23 @@ public class NPCInteraction : MonoBehaviour
     {
         if (BadDecisionManager.Instance.isGameOver) return;
         if (BadDecisionManager.Instance.isOverlayActive) return;
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (ItemDescriptionManager.Instance.IsActive())
+            {
+                ItemDescriptionManager.Instance.ClosePanel();
+                return;
+            }
+
+            if (DialogueManager.Instance.IsActive())
+            {
+                if (DialogueManager.Instance.IsWaitingForInput())
+                    DialogueManager.Instance.OnPressE();
+                return;
+            }
+        }
+
         if (GameStateManager.Instance.IsCinematicMode()) return;
 
         float distance = Vector2.Distance(transform.position, player.position);
@@ -57,19 +74,6 @@ public class NPCInteraction : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (ItemDescriptionManager.Instance.IsActive())
-            {
-                ItemDescriptionManager.Instance.ClosePanel();
-                return;
-            }
-
-            if (DialogueManager.Instance.IsActive())
-            {
-                if (DialogueManager.Instance.IsWaitingForInput())
-                    DialogueManager.Instance.OnPressE();
-                return;
-            }
-
             if (interactionType == InteractionType.KeyPress)
             {
                 if (playerInRange && dialogueCooldown <= 0f)
@@ -86,6 +90,7 @@ public class NPCInteraction : MonoBehaviour
         if (interactionType != InteractionType.MouseClick) return;
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
 
         if (interactionSprite != null)
             interactionSprite.SetActive(true);
@@ -109,6 +114,7 @@ public class NPCInteraction : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (DialogueManager.Instance.IsActive()) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
         if (dialogueCooldown > 0f) return;
 
         dialogueCooldown = 1f;

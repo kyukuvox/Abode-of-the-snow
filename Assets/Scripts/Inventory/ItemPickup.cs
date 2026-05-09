@@ -4,8 +4,8 @@ using UnityEngine;
 public class ItemPickup : MonoBehaviour
 {
     public Item item;
-    public float bumpScale = 1.3f; 
-    public float bumpDuration = 0.2f; 
+    public float bumpScale = 1.3f;
+    public float bumpDuration = 0.2f;
 
     private HoverParticleManager hoverParticles;
     private Transform player;
@@ -22,6 +22,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
         if (hoverParticles != null)
             hoverParticles.Show();
     }
@@ -37,6 +38,7 @@ public class ItemPickup : MonoBehaviour
         if (DialogueManager.Instance.IsActive()) return;
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
 
         StartCoroutine(BumpAndPickup());
     }

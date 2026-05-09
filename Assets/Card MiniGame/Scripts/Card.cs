@@ -13,8 +13,6 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
     public float tiltStrength = 15f;
     public float tiltSmoothing = 8f;
-    public float hoverPushAmount = 20f;
-    public float hoverPushSpeed = 10f;
 
     private bool isPlayable = true;
     private bool isSelectedForDiscard = false;
@@ -24,13 +22,11 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Vector2 originalPosition;
-    private Vector2 restPosition;
     private Transform originalParent;
     private int originalSiblingIndex;
 
     private Vector2 previousMousePos;
     private float currentTilt = 0f;
-    private Coroutine pushCoroutine;
 
     void Awake()
     {
@@ -42,10 +38,7 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
     }
 
-    public void InitRestPosition()
-    {
-        restPosition = rectTransform.anchoredPosition;
-    }
+    public void InitRestPosition() { }
 
     public void Setup(CardData data)
     {
@@ -60,34 +53,6 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
             case CardData.CostType.Life: cardCostText.text = data.actionCost + " PV"; break;
             case CardData.CostType.Defense: cardCostText.text = data.actionCost + " DEF"; break;
         }
-    }
-
-    public void PushAside(Vector2 direction)
-    {
-        if (isDragging) return;
-        if (pushCoroutine != null) StopCoroutine(pushCoroutine);
-        pushCoroutine = StartCoroutine(AnimatePush(restPosition + direction * hoverPushAmount));
-    }
-
-    public void ResetPosition()
-    {
-        if (isDragging) return;
-        if (pushCoroutine != null) StopCoroutine(pushCoroutine);
-        pushCoroutine = StartCoroutine(AnimatePush(restPosition));
-    }
-
-    IEnumerator AnimatePush(Vector2 targetPos)
-    {
-        while (Vector2.Distance(rectTransform.anchoredPosition, targetPos) > 0.5f)
-        {
-            rectTransform.anchoredPosition = Vector2.Lerp(
-                rectTransform.anchoredPosition,
-                targetPos,
-                Time.deltaTime * hoverPushSpeed
-            );
-            yield return null;
-        }
-        rectTransform.anchoredPosition = targetPos;
     }
 
     public void SetPlayable(bool playable)
@@ -140,8 +105,6 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     public void OnBeginDrag(PointerEventData eventData)
     {
         isDragging = true;
-
-        restPosition = rectTransform.anchoredPosition;
         originalPosition = rectTransform.anchoredPosition;
         originalParent = transform.parent;
         originalSiblingIndex = transform.GetSiblingIndex();
@@ -155,17 +118,6 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
         previousMousePos = eventData.position;
         currentTilt = 0f;
-
-        RefreshAllRestPositions();
-    }
-
-    void RefreshAllRestPositions()
-    {
-        if (originalParent == null) return;
-        Card[] allCards = originalParent.GetComponentsInChildren<Card>();
-        foreach (Card card in allCards)
-            if (card != this)
-                card.restPosition = card.rectTransform.anchoredPosition;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -178,41 +130,6 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         float targetTilt = Mathf.Clamp(-mouseDelta.x * tiltStrength * 0.1f, -tiltStrength, tiltStrength);
         currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * tiltSmoothing);
         transform.rotation = Quaternion.Euler(0, 0, currentTilt);
-
-        PushNearbyCards(eventData);
-    }
-
-    void PushNearbyCards(PointerEventData eventData)
-    {
-        if (originalParent == null) return;
-        Card[] allCards = originalParent.GetComponentsInChildren<Card>();
-
-        foreach (Card card in allCards)
-        {
-            if (card == this || card.isDragging) continue;
-
-            bool isHovered = false;
-            foreach (GameObject obj in eventData.hovered)
-            {
-                if (obj == card.gameObject)
-                {
-                    isHovered = true;
-                    break;
-                }
-            }
-
-            if (isHovered)
-            {
-                Vector2 dir = card.rectTransform.anchoredPosition.x > rectTransform.anchoredPosition.x
-                    ? Vector2.right
-                    : Vector2.left;
-                card.PushAside(dir);
-            }
-            else
-            {
-                card.ResetPosition();
-            }
-        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -221,14 +138,6 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
-        if (originalParent != null)
-        {
-            Card[] allCards = originalParent.GetComponentsInChildren<Card>();
-            foreach (Card card in allCards)
-                if (card != this)
-                    card.ResetPosition();
-        }
-
         Card targetCard = GetCardUnderCursor(eventData);
 
         if (targetCard != null && targetCard != this)
@@ -236,7 +145,6 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
             int targetIndex = targetCard.transform.GetSiblingIndex();
             transform.SetParent(originalParent);
             transform.SetSiblingIndex(targetIndex);
-            transform.localScale = Vector3.one;
             CardGameManager.Instance.SwapCards(this, targetCard);
         }
         else
@@ -244,44 +152,10 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
             transform.SetParent(originalParent);
             transform.SetSiblingIndex(originalSiblingIndex);
             rectTransform.anchoredPosition = originalPosition;
-            transform.localScale = Vector3.one;
         }
 
-        StartCoroutine(ForceRefreshAllPositions());
+        transform.localScale = Vector3.one;
         StartCoroutine(ResetTilt());
-    }
-
-    IEnumerator ForceRefreshAllPositions()
-    {
-        yield return null;
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(
-            playerHandZone != null ?
-            playerHandZone.GetComponent<RectTransform>() :
-            originalParent?.GetComponent<RectTransform>()
-        );
-
-        yield return null;
-
-        if (originalParent != null)
-        {
-            Card[] allCards = originalParent.GetComponentsInChildren<Card>();
-            foreach (Card card in allCards)
-            {
-                card.restPosition = card.rectTransform.anchoredPosition;
-                card.rectTransform.anchoredPosition = card.restPosition;
-            }
-        }
-    }
-
-    private RectTransform playerHandZone
-    {
-        get
-        {
-            if (originalParent != null)
-                return originalParent.GetComponent<RectTransform>();
-            return null;
-        }
     }
 
     IEnumerator ResetTilt()

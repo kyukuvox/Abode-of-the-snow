@@ -1,18 +1,23 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class InventoryUI : MonoBehaviour
 {
-    public GameObject slotPrefab;
     public Transform slotContainer;
+    public GameObject slotPrefab;
 
-    private Inventory inventory;
-
-    void Start()
+    private void Start()
     {
-        inventory = Inventory.Instance;
-        inventory.onItemChangedCallback += UpdateUI;
+        Inventory.Instance.onItemChangedCallback += UpdateUI;
+        StartCoroutine(InitUI());
+    }
+
+    IEnumerator InitUI()
+    {
+        yield return null;
+        yield return null;
+        UpdateUI();
     }
 
     void UpdateUI()
@@ -20,31 +25,27 @@ public class InventoryUI : MonoBehaviour
         foreach (Transform child in slotContainer)
             Destroy(child.gameObject);
 
-        foreach (Item item in inventory.items)
+        foreach (Item item in Inventory.Instance.items)
         {
             GameObject slot = Instantiate(slotPrefab, slotContainer);
 
-            Image icon = slot.transform.GetChild(0).GetComponent<Image>();
-            icon.sprite = item.itemIcon;
+            Image itemIcon = slot.transform.Find("ItemIcon")?.GetComponent<Image>();
+            if (itemIcon == null)
+                itemIcon = slot.transform.Find("Visual/ItemIcon")?.GetComponent<Image>();
+            if (itemIcon == null)
+                itemIcon = slot.GetComponentInChildren<Image>();
+
+            if (itemIcon != null)
+                itemIcon.sprite = item.itemIcon;
 
             ItemSlotUI slotUI = slot.GetComponent<ItemSlotUI>();
-            slotUI.Setup(item);
-
-            StartCoroutine(InitSlotPosition(slot));
+            if (slotUI != null)
+                slotUI.Setup(item);
         }
-    }
 
-    IEnumerator InitSlotPosition(GameObject slot)
-    {
-        yield return null;
-        yield return null;
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(slotContainer as RectTransform);
-
-        yield return null;
-
-        ItemSlotHover hover = slot.GetComponent<ItemSlotHover>();
-        if (hover != null)
-            hover.InitBasePosition();
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(
+            slotContainer.GetComponent<RectTransform>()
+        );
     }
 }

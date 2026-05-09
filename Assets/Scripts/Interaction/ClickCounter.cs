@@ -41,6 +41,7 @@ public class ClickCounter : MonoBehaviour
     {
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
         if (isActivated) return;
         if (hoverParticles != null)
             hoverParticles.Show();
@@ -59,6 +60,7 @@ public class ClickCounter : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (DialogueManager.Instance.IsActive()) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
 
         if (clickSounds != null && currentClicks < clickSounds.Length)
         {

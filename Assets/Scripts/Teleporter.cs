@@ -22,6 +22,7 @@ public class Teleporter : MonoBehaviour
     {
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
         if (hoverParticles != null)
             hoverParticles.Show();
     }
@@ -37,6 +38,7 @@ public class Teleporter : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (DialogueManager.Instance.IsActive()) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
 
         StartCoroutine(Bump());
 

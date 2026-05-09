@@ -1,47 +1,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckManager 
+public class DeckManager
 {
-    private List<CardData> deck = new List<CardData>();
+    private List<CardData> drawPile = new List<CardData>();
     private List<CardData> discardPile = new List<CardData>();
 
     public void InitializeDeck(CardData[] cards)
     {
-        deck = new List<CardData>(cards);
-        ShuffleDeck();
+        drawPile.Clear();
+        discardPile.Clear();
+
+        foreach (CardData card in cards)
+            drawPile.Add(card);
+
+        Shuffle();
     }
 
     public CardData DrawCard()
     {
-        if (deck.Count == 0)
+        if (drawPile.Count == 0)
         {
-            if (discardPile.Count == 0) return null;
-            deck = new List<CardData>(discardPile);
+            if (discardPile.Count == 0)
+                return null;
+
+            drawPile.AddRange(discardPile);
             discardPile.Clear();
-            ShuffleDeck();
+            Shuffle();
         }
 
-        CardData card = deck[0];
-        deck.RemoveAt(0);
+        CardData card = drawPile[0];
+        drawPile.RemoveAt(0);
         return card;
     }
 
     public void DiscardCard(CardData card)
     {
-        discardPile.Add(card);
+        if (card != null)
+            discardPile.Add(card);
     }
 
-    void ShuffleDeck()
+    void Shuffle()
     {
-        for (int i = deck.Count - 1; i > 0; i--)
+        for (int i = drawPile.Count - 1; i > 0; i--)
         {
-            int j = Random.Range(0, i + 1);
-            CardData temp = deck[i];
-            deck[i] = deck[j];
-            deck[j] = temp;
+            int randomIndex = Random.Range(0, i + 1);
+            CardData temp = drawPile[i];
+            drawPile[i] = drawPile[randomIndex];
+            drawPile[randomIndex] = temp;
         }
     }
 
-    public int DeckCount() { return deck.Count; }
+    public int DrawPileCount() { return drawPile.Count; }
+    public int DiscardPileCount() { return discardPile.Count; }
 }

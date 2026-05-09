@@ -32,8 +32,6 @@ public class CardGameManager : MonoBehaviour
     [Header("Résultat")]
     public GameObject resultPanel;
     public Text resultText;
-    public float resultAnimationSpeed = 5f;
-    public float resultSlideOffset = 50f;
 
     [Header("Boutons")]
     public Button endTurnButton;
@@ -58,7 +56,10 @@ public class CardGameManager : MonoBehaviour
     [Header("Intro")]
     public float enemySpriteStartOffset = 300f;
     public float enemySpriteDuration = 0.8f;
-    public float introFadeDuration = 0.5f;
+
+    [Header("Fade")]
+    public float resultFadeDuration = 0.5f;
+    public Image fadePanel; 
 
     private int playerLife;
     private int playerActionPoints;
@@ -131,35 +132,72 @@ public class CardGameManager : MonoBehaviour
         cardGameCanvas.SetActive(true);
         resultPanel.SetActive(false);
 
+        if (fadePanel != null)
+        {
+            fadePanel.gameObject.SetActive(true);
+            Color c = fadePanel.color;
+            c.a = 1f;
+            fadePanel.color = c;
+        }
+
         isPlayerTurn = true;
         isGameEnded = false;
 
         StartCoroutine(CardGameIntro());
     }
 
+    IEnumerator FadeIn()
+    {
+        fadePanel.gameObject.SetActive(true);
+        Color c = fadePanel.color;
+
+        float elapsed = 0f;
+        while (elapsed < resultFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            c.a = Mathf.Lerp(0f, 1f, elapsed / resultFadeDuration);
+            fadePanel.color = c;
+            yield return null;
+        }
+        c.a = 1f;
+        fadePanel.color = c;
+    }
+
+    IEnumerator FadeOut()
+    {
+        fadePanel.gameObject.SetActive(true);
+        Color c = fadePanel.color;
+        c.a = 1f;
+        fadePanel.color = c;
+
+        float elapsed = 0f;
+        while (elapsed < resultFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            c.a = Mathf.Lerp(1f, 0f, elapsed / resultFadeDuration);
+            fadePanel.color = c;
+            yield return null;
+        }
+        c.a = 0f;
+        fadePanel.color = c;
+        fadePanel.gameObject.SetActive(false);
+    }
+
     IEnumerator CardGameIntro()
     {
-        CanvasGroup canvasGroup = cardGameCanvas.GetComponent<CanvasGroup>();
-        if (canvasGroup == null)
-            canvasGroup = cardGameCanvas.AddComponent<CanvasGroup>();
-
-        canvasGroup.alpha = 0f;
+        fadePanel.gameObject.SetActive(true);
+        Color c = fadePanel.color;
+        c.a = 1f;
+        fadePanel.color = c;
 
         RectTransform enemySpriteRect = enemyCardSprite.GetComponent<RectTransform>();
         Vector2 targetPos = enemySpriteRect.anchoredPosition;
         Vector2 startPos = targetPos + new Vector2(0, enemySpriteStartOffset);
         enemySpriteRect.anchoredPosition = startPos;
 
-        float elapsed = 0f;
-        while (elapsed < introFadeDuration)
-        {
-            elapsed += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsed / introFadeDuration);
-            yield return null;
-        }
-        canvasGroup.alpha = 1f;
+        yield return StartCoroutine(FadeOut());
 
-        elapsed = 0f;
+        float elapsed = 0f;
         while (elapsed < enemySpriteDuration)
         {
             elapsed += Time.deltaTime;
@@ -172,13 +210,12 @@ public class CardGameManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
 
-        int attempts = 0;
-        for (int i = 0; i < 5; i++)
+        int safetyLimit = 0;
+        while (playerHand.Count < 5 && safetyLimit < 20)
         {
-            if (attempts >= 20) break;
             DrawPlayerCard();
-            attempts++;
             yield return new WaitForSeconds(0.1f);
+            safetyLimit++;
         }
 
         InitEnemyHand();
@@ -589,11 +626,9 @@ public class CardGameManager : MonoBehaviour
         int drawAttempts = 0;
         while (playerHand.Count < 5 && drawAttempts < 20)
         {
-            int previousCount = playerHand.Count;
             DrawPlayerCard();
-            if (playerHand.Count == previousCount) break;
-            drawAttempts++;
             yield return new WaitForSeconds(0.1f);
+            drawAttempts++;
         }
 
         foreach (Card card in playerHand)
@@ -638,11 +673,25 @@ public class CardGameManager : MonoBehaviour
 
     void EndGame(bool playerWon)
     {
+        if (currentNPC != null)
+            currentNPC.SetDefeated(playerWon);
+
+        if (playerWon && enemyData.rewardCard != null)
+            PlayerCardCollection.Instance.AddCard(enemyData.rewardCard);
+
+        StartCoroutine(ShowResultWithFade(playerWon));
+    }
+
+    IEnumerator ShowResultWithFade(bool playerWon)
+    {
+        yield return StartCoroutine(FadeIn());
+
         resultPanel.SetActive(true);
         resultText.text = playerWon ? "Victoire !" : "Défaite...";
 
-        if (currentNPC != null)
-            currentNPC.SetDefeated(playerWon);
+        yield return StartCoroutine(FadeOut());
+
+        yield return new WaitForSeconds(1f);
 
         if (playerWon)
         {
@@ -650,16 +699,26 @@ public class CardGameManager : MonoBehaviour
                 StartCoroutine(ShowRewardsSequentially());
             else
                 StartCoroutine(ShowDefeatedDialogueAfterDelay());
-
-            if (enemyData.rewardCard != null)
-                PlayerCardCollection.Instance.AddCard(enemyData.rewardCard);
         }
+    }
 
-        StartCoroutine(AnimateResultPanel());
+    IEnumerator HideResultWithFade()
+    {
+        yield return StartCoroutine(FadeIn());
+
+        resultPanel.SetActive(false);
+        cardGameCanvas.SetActive(false);
+
+        Color c = fadePanel.color;
+        c.a = 0f;
+        fadePanel.color = c;
+        fadePanel.gameObject.SetActive(false);
     }
 
     IEnumerator ShowRewardsSequentially()
     {
+        GameStateManager.Instance.SetCinematicMode(true);
+
         yield return new WaitForSeconds(0.5f);
 
         foreach (Item item in rewardItems)
@@ -688,46 +747,25 @@ public class CardGameManager : MonoBehaviour
             NPCWithItemDialogue npcDialogue = currentNPC.GetComponent<NPCWithItemDialogue>();
             if (npcDialogue != null && npcDialogue.alreadyDefeatedDialogue != null)
             {
-                resultPanel.SetActive(false);
-                cardGameCanvas.SetActive(false);
+                yield return StartCoroutine(HideResultWithFade());
                 DialogueManager.Instance.StartDialogue(npcDialogue.alreadyDefeatedDialogue, currentNPC);
+
+                yield return new WaitUntil(() => !DialogueManager.Instance.IsActive());
             }
         }
-    }
 
-    IEnumerator AnimateResultPanel()
-    {
-        resultPanel.SetActive(true);
-
-        RectTransform resultRect = resultPanel.GetComponent<RectTransform>();
-
-        CanvasGroup cg = resultPanel.GetComponent<CanvasGroup>();
-        if (cg == null)
-            cg = resultPanel.AddComponent<CanvasGroup>();
-
-        Vector2 startPos = resultRect.anchoredPosition - new Vector2(0, resultSlideOffset);
-        Vector2 targetPos = resultRect.anchoredPosition;
-
-        cg.alpha = 0f;
-        resultRect.anchoredPosition = startPos;
-
-        float elapsed = 0f;
-        while (elapsed < 1f)
-        {
-            elapsed += Time.deltaTime * resultAnimationSpeed;
-            cg.alpha = Mathf.Lerp(0f, 1f, elapsed);
-            resultRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, elapsed);
-            yield return null;
-        }
-
-        cg.alpha = 1f;
-        resultRect.anchoredPosition = targetPos;
+        GameStateManager.Instance.SetCinematicMode(false);
     }
 
     public void CloseCardGame()
     {
+        StartCoroutine(CloseWithFade());
+    }
+
+    IEnumerator CloseWithFade()
+    {
+        yield return StartCoroutine(HideResultWithFade());
         ResetCardGame();
-        cardGameCanvas.SetActive(false);
         Time.timeScale = 1f;
     }
 

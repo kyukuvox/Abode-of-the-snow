@@ -1,68 +1,78 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class ItemSlotHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public float hoverOffset = 40f;
-    public float animationSpeed = 8f;
+    public float hoverOffset = 10f;
+    public float animationSpeed = 10f;
 
-    private Vector2 basePosition;
-    private Vector2 targetPosition;
-    private RectTransform rectTransform;
-    private Coroutine currentAnimation;
     public static bool IsDragging = false;
 
-    void Awake()
-    {
-        rectTransform = GetComponent<RectTransform>();
-    }
+    private RectTransform visualRect;
+    private Vector2 basePosition;
+    private Vector2 targetPosition;
+    private Coroutine animCoroutine;
+    private bool isReady = false; 
 
     void Start()
     {
-        basePosition = rectTransform.anchoredPosition;
+        Transform visual = transform.Find("Visual");
+        if (visual != null)
+            visualRect = visual.GetComponent<RectTransform>();
+        else
+            visualRect = GetComponent<RectTransform>();
+
+        StartCoroutine(InitBasePosition());
+    }
+
+    IEnumerator InitBasePosition()
+    {
+        yield return null;
+        yield return null;
+        yield return null;
+
+        basePosition = visualRect.anchoredPosition;
         targetPosition = basePosition;
+        isReady = true;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!isReady) return;
         if (DialogueManager.Instance.IsActive()) return;
-        if (IsDragging) return; 
+        if (IsDragging) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
+
         targetPosition = basePosition + Vector2.up * hoverOffset;
         RestartAnimation();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!isReady) return;
         targetPosition = basePosition;
         RestartAnimation();
     }
 
-    public void InitBasePosition()
-    {
-        basePosition = rectTransform.anchoredPosition;
-        targetPosition = basePosition;
-    }
-
     void RestartAnimation()
     {
-        if (currentAnimation != null)
-            StopCoroutine(currentAnimation);
-        currentAnimation = StartCoroutine(AnimateSlot());
+        if (animCoroutine != null)
+            StopCoroutine(animCoroutine);
+        animCoroutine = StartCoroutine(AnimateToTarget());
     }
 
-    IEnumerator AnimateSlot()
+    IEnumerator AnimateToTarget()
     {
-        while (Vector2.Distance(rectTransform.anchoredPosition, targetPosition) > 0.1f)
+        while (Vector2.Distance(visualRect.anchoredPosition, targetPosition) > 0.1f)
         {
-            rectTransform.anchoredPosition = Vector2.Lerp(
-                rectTransform.anchoredPosition,
+            visualRect.anchoredPosition = Vector2.Lerp(
+                visualRect.anchoredPosition,
                 targetPosition,
                 Time.deltaTime * animationSpeed
             );
             yield return null;
         }
-
-        rectTransform.anchoredPosition = targetPosition;
+        visualRect.anchoredPosition = targetPosition;
     }
 }

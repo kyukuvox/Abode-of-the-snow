@@ -33,19 +33,16 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-
         if (DialogueManager.Instance.IsActive()) return;
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (GameStateManager.Instance.IsCinematicMode()) return;
-
 
         EventSystem.current.SetSelectedGameObject(null);
         ItemSlotHover.IsDragging = true;
 
         Inventory.Instance.RemoveItemSilent(myItem);
 
-        // Crée le fantôme
         ghostImage = Instantiate(gameObject, canvas.transform);
         ghostImage.name = "GhostItem";
         ghostImage.transform.SetAsLastSibling();
@@ -69,7 +66,6 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
         ghostFollowCoroutine = StartCoroutine(GhostFollowMouse());
 
-        // Cache le slot original
         LayoutElement le = GetComponent<LayoutElement>();
         if (le == null) le = gameObject.AddComponent<LayoutElement>();
         le.preferredWidth = rectTransform.sizeDelta.x * 0.6f;
@@ -154,13 +150,19 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         );
 
         EventSystem.current.SetSelectedGameObject(null);
+
         NPCDropTarget npc = GetNPCUnderCursor();
+        Debug.Log("NPC détecté : " + (npc != null ? npc.name : "NULL"));
+
         PortalDropTarget portal = GetPortalUnderCursor();
         ItemInteractableDropTarget interactable = GetInteractableUnderCursor();
         ItemSpriteInteractionDropTarget spriteInteraction = GetSpriteInteractionUnderCursor();
 
         if (npc != null)
+        {
+            Debug.Log("ReceiveDroppedItem appelé sur : " + npc.name);
             npc.ReceiveDroppedItem(myItem);
+        }
         else if (portal != null)
             portal.ReceiveDroppedItem(myItem);
         else if (interactable != null)
@@ -170,51 +172,51 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         else
             Inventory.Instance.AddItem(myItem);
     }
-    ItemSpriteInteractionDropTarget GetSpriteInteractionUnderCursor()
-    {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0f;
-
-        Collider2D hit = Physics2D.OverlapPoint(mousePos);
-        if (hit != null)
-            return hit.GetComponent<ItemSpriteInteractionDropTarget>();
-
-        return null;
-    }
-    ItemInteractableDropTarget GetInteractableUnderCursor()
-    {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0f;
-
-        Collider2D hit = Physics2D.OverlapPoint(mousePos);
-        if (hit != null)
-            return hit.GetComponent<ItemInteractableDropTarget>();
-
-        return null;
-    }
-
 
     NPCDropTarget GetNPCUnderCursor()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
 
-        Collider2D hit = Physics2D.OverlapPoint(mousePos);
-        if (hit != null)
-            return hit.GetComponent<NPCDropTarget>();
+        Debug.Log("Position souris monde : " + mousePos);
+
+        Collider2D[] hits = Physics2D.OverlapPointAll(mousePos);
+        Debug.Log("Nombre de colliders détectés : " + hits.Length);
+
+        foreach (Collider2D hit in hits)
+        {
+            Debug.Log("Collider détecté : " + hit.name);
+            NPCDropTarget npc = hit.GetComponent<NPCDropTarget>();
+            if (npc != null)
+                return npc;
+        }
 
         return null;
     }
-
     PortalDropTarget GetPortalUnderCursor()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
-
         Collider2D hit = Physics2D.OverlapPoint(mousePos);
-        if (hit != null)
-            return hit.GetComponent<PortalDropTarget>();
+        if (hit != null) return hit.GetComponent<PortalDropTarget>();
+        return null;
+    }
 
+    ItemInteractableDropTarget GetInteractableUnderCursor()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0f;
+        Collider2D hit = Physics2D.OverlapPoint(mousePos);
+        if (hit != null) return hit.GetComponent<ItemInteractableDropTarget>();
+        return null;
+    }
+
+    ItemSpriteInteractionDropTarget GetSpriteInteractionUnderCursor()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0f;
+        Collider2D hit = Physics2D.OverlapPoint(mousePos);
+        if (hit != null) return hit.GetComponent<ItemSpriteInteractionDropTarget>();
         return null;
     }
 }
