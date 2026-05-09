@@ -8,13 +8,13 @@ public class CameraGround : MonoBehaviour
     [SerializeField] private float smoothSpeed = 0.3f;
 
     [Header("Cinématique")]
-    public float cinematicZoom = 6f;      
-    public float normalZoom = 8f;       
-    public float zoomSpeed = 2f;          
-    public Image topBar;                  
-    public Image bottomBar;              
-    public float barHeight = 60f;       
-    public float barAnimSpeed = 3f;      
+    public float cinematicZoom = 6f;
+    public float normalZoom = 8f;
+    public float zoomSpeed = 2f;
+    public Image topBar;
+    public Image bottomBar;
+    public float barHeight = 60f;
+    public float barAnimSpeed = 3f;
 
     private Camera cam;
     private bool isCinematic = false;
@@ -34,7 +34,7 @@ public class CameraGround : MonoBehaviour
     {
         Vector3 desiredPosition = new Vector3(
             player.transform.position.x,
-            player.transform.position.y + 7,
+            player.transform.position.y + 9,
             -10
         );
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
@@ -42,6 +42,16 @@ public class CameraGround : MonoBehaviour
 
         float targetZoom = isCinematic ? cinematicZoom : normalZoom;
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomSpeed);
+    }
+
+    public void SnapToPlayer()
+    {
+        Vector3 targetPosition = new Vector3(
+            player.transform.position.x,
+            player.transform.position.y + 9,
+            -10
+        );
+        transform.position = targetPosition;
     }
 
     public void EnterCinematicMode()

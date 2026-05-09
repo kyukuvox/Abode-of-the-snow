@@ -47,6 +47,13 @@ public class Teleporter : MonoBehaviour
             FadeManager.Instance.FadeToBlackAndBack(() =>
             {
                 player.position = destination.position;
+
+                CameraGround cam = Camera.main.GetComponent<CameraGround>();
+                if (cam != null)
+                    cam.SnapToPlayer();
+
+                if (ParallaxManager.Instance != null)
+                    ParallaxManager.Instance.ResetToOrigin();
             });
         }
     }

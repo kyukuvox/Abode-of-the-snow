@@ -5,14 +5,19 @@ public class DeckManager
 {
     private List<CardData> drawPile = new List<CardData>();
     private List<CardData> discardPile = new List<CardData>();
+    private List<CardData> originalDeck = new List<CardData>(); 
 
     public void InitializeDeck(CardData[] cards)
     {
         drawPile.Clear();
         discardPile.Clear();
+        originalDeck.Clear();
 
         foreach (CardData card in cards)
+        {
             drawPile.Add(card);
+            originalDeck.Add(card); 
+        }
 
         Shuffle();
     }
@@ -21,12 +26,21 @@ public class DeckManager
     {
         if (drawPile.Count == 0)
         {
-            if (discardPile.Count == 0)
+            if (discardPile.Count > 0)
+            {
+                drawPile.AddRange(discardPile);
+                discardPile.Clear();
+                Shuffle();
+            }
+            else if (originalDeck.Count > 0)
+            {
+                drawPile.AddRange(originalDeck);
+                Shuffle();
+            }
+            else
+            {
                 return null;
-
-            drawPile.AddRange(discardPile);
-            discardPile.Clear();
-            Shuffle();
+            }
         }
 
         CardData card = drawPile[0];

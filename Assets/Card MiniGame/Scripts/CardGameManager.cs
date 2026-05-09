@@ -59,7 +59,7 @@ public class CardGameManager : MonoBehaviour
 
     [Header("Fade")]
     public float resultFadeDuration = 0.5f;
-    public Image fadePanel; 
+    public Image fadePanel;
 
     private int playerLife;
     private int playerActionPoints;
@@ -82,6 +82,7 @@ public class CardGameManager : MonoBehaviour
     private bool isPlayerTurn = true;
     private bool hasDiscardedThisTurn = false;
     private bool isGameEnded = false;
+    private bool rewardsDone = false;
 
     private Item[] rewardItems;
     private NPCWithItemDialogue currentNPC;
@@ -108,6 +109,7 @@ public class CardGameManager : MonoBehaviour
         enemyData = enemy;
         playerData = player;
         rewardItems = rewards;
+        rewardsDone = false;
 
         playerLife = player.maxLife;
         playerActionPoints = player.actionPointsPerTurn;
@@ -673,6 +675,8 @@ public class CardGameManager : MonoBehaviour
 
     void EndGame(bool playerWon)
     {
+        rewardsDone = false;
+
         if (currentNPC != null)
             currentNPC.SetDefeated(playerWon);
 
@@ -691,32 +695,22 @@ public class CardGameManager : MonoBehaviour
 
         yield return StartCoroutine(FadeOut());
 
-        yield return new WaitForSeconds(1f);
-
         if (playerWon)
         {
             if (rewardItems != null && rewardItems.Length > 0)
                 StartCoroutine(ShowRewardsSequentially());
             else
-                StartCoroutine(ShowDefeatedDialogueAfterDelay());
+                rewardsDone = true;
         }
-    }
-
-    IEnumerator HideResultWithFade()
-    {
-        yield return StartCoroutine(FadeIn());
-
-        resultPanel.SetActive(false);
-        cardGameCanvas.SetActive(false);
-
-        Color c = fadePanel.color;
-        c.a = 0f;
-        fadePanel.color = c;
-        fadePanel.gameObject.SetActive(false);
+        else
+        {
+            rewardsDone = true; 
+        }
     }
 
     IEnumerator ShowRewardsSequentially()
     {
+        rewardsDone = false;
         GameStateManager.Instance.SetCinematicMode(true);
 
         yield return new WaitForSeconds(0.5f);
@@ -734,12 +728,13 @@ public class CardGameManager : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
 
-        StartCoroutine(ShowDefeatedDialogueAfterDelay());
+        GameStateManager.Instance.SetCinematicMode(false);
+        rewardsDone = true;
     }
 
     IEnumerator ShowDefeatedDialogueAfterDelay()
     {
-        yield return new WaitUntil(() => !ItemDescriptionManager.Instance.IsActive());
+        yield return new WaitUntil(() => rewardsDone);
         yield return new WaitForSeconds(0.5f);
 
         if (currentNPC != null && currentNPC.HasBeenDefeated())
@@ -747,14 +742,10 @@ public class CardGameManager : MonoBehaviour
             NPCWithItemDialogue npcDialogue = currentNPC.GetComponent<NPCWithItemDialogue>();
             if (npcDialogue != null && npcDialogue.alreadyDefeatedDialogue != null)
             {
-                yield return StartCoroutine(HideResultWithFade());
                 DialogueManager.Instance.StartDialogue(npcDialogue.alreadyDefeatedDialogue, currentNPC);
-
                 yield return new WaitUntil(() => !DialogueManager.Instance.IsActive());
             }
         }
-
-        GameStateManager.Instance.SetCinematicMode(false);
     }
 
     public void CloseCardGame()
@@ -766,7 +757,21 @@ public class CardGameManager : MonoBehaviour
     {
         yield return StartCoroutine(HideResultWithFade());
         ResetCardGame();
+        StartCoroutine(ShowDefeatedDialogueAfterDelay());
         Time.timeScale = 1f;
+    }
+
+    IEnumerator HideResultWithFade()
+    {
+        yield return StartCoroutine(FadeIn());
+
+        resultPanel.SetActive(false);
+        cardGameCanvas.SetActive(false);
+
+        Color c = fadePanel.color;
+        c.a = 0f;
+        fadePanel.color = c;
+        fadePanel.gameObject.SetActive(false);
     }
 
     void ResetCardGame()

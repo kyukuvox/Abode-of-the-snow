@@ -29,11 +29,19 @@ public class InventoryUI : MonoBehaviour
         {
             GameObject slot = Instantiate(slotPrefab, slotContainer);
 
-            Image itemIcon = slot.transform.Find("ItemIcon")?.GetComponent<Image>();
-            if (itemIcon == null)
-                itemIcon = slot.transform.Find("Visual/ItemIcon")?.GetComponent<Image>();
-            if (itemIcon == null)
-                itemIcon = slot.GetComponentInChildren<Image>();
+            Image itemIcon = null;
+            Image[] allImages = slot.GetComponentsInChildren<Image>();
+            foreach (Image img in allImages)
+            {
+                if (img.gameObject.name == "ItemIcon")
+                {
+                    itemIcon = img;
+                    break;
+                }
+            }
+
+            if (itemIcon == null && allImages.Length > 0)
+                itemIcon = allImages[0];
 
             if (itemIcon != null)
                 itemIcon.sprite = item.itemIcon;
