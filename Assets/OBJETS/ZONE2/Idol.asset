@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Idol
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Pagan idol
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 3920535e5ffc71f45bddd04719405ebb, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: 3f0471e5a811c9b4f937a35ffc5a1fe5, type: 3}
   description: 'A wooden sculpture depicting three bird heads. A Falcon, a Mockingbird,
     and a Raven. '

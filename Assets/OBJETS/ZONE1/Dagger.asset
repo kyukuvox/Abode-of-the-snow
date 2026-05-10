@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Dagger
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Dagger engraved
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: be161a6102d81534baa31d5e622f91dd, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: 9525264887b7ffa4b98135022ef700e6, type: 3}
   description: 'A dagger with a roughly hewn wooden handle and a rudimentary blade.
     The handle displays an engraving representing two adults and a child made in
     a very childish way. '

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pass3
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Crossing permit
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 5f88adf8e4324924e82e8fe19cbb295d, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: 32792f5e4d62152419d1d641a9dd1186, type: 3}
   description: Last crossing permit. He is the key to reaching the lord in his kingdom
     beyond the clouds.

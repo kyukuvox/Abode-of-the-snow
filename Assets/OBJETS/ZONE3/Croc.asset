@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Croc
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Torn fang
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: afae086d9ad3d044a84c22162c98a4e9, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: d05a81a7fc8c8274986cc09f0effde49, type: 3}
   description: 'Fang torn from a beast with the roots visible. '

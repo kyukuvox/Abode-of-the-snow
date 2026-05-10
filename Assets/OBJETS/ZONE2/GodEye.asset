@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GodEye
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Eye of God
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 77b1ae41d2f63c249b36852a954e0d88, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: 99226bc0eaf29e14bb550b7f0520d684, type: 3}
   description: 'Heart of a nuclear bomb. It has been inactive for centuries already,
     but it remains almost intact except for a few rust spots and a slight highlight. '

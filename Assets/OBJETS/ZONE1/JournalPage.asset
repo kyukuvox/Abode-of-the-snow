@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: JournalPage
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: 'Torn log page '
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 38c5ca6e6b78e204ca717fe8b746e669, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: c1c02b08b2d91f4498c6afaf524f6a1b, type: 3}
   description: "A page where it says: \"I can\u2019t wait anymore and just leave
     the days gone by. It\u2019s as if my reason for moving forward had been taken
     away from me... You understand me and I know it, this ordeal brings us together.

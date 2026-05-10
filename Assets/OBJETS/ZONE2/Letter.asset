@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Letter
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Letter
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 939af5edee6da2e42867d9a1c8bcacf1, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: c79b78d92de76bd4c90f597608dfb50f, type: 3}
   description: "A letter where it is written: \"You have been gone too long, too
     many days away from me. His memory is all I have left of us since you left with
     all these pilgrims. I know you\u2019re brave and strong, but I\u2019m not as

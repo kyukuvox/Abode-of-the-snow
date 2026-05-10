@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Torch
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Torch
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 6a7f7ef65481dad4fb381093be898859, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: 5235358738b96c949adc235c261d1600, type: 3}
   description: Torch still lit, found in the destroyed camp.

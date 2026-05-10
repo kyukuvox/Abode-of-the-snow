@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chapelet
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Rosary
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 39cbd9f8885d5e44f8e20148da58e0ab, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: f45037f3de7d6004692c37c781330005, type: 3}
   description: Old rosary worn by time. Its owner must certainly have been a devout
     believer.

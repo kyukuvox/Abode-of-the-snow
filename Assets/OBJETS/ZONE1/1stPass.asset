@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1stPass
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Crossing permit
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: b5d8259f9ee5e164cb2225de89d15819, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: 136ddf15cc709c34baa3c6f6bcb65c21, type: 3}
   description: A red ribbon surmounted by a golden globe with strange writing on
     its length.

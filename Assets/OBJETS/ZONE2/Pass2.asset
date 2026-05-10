@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pass2
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Crossing permit
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 6b4eb9f75d3af47478616a36c46f8426, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: e154934f713a03644b421af15d74d33b, type: 3}
   description: Golden star symbol, forged in bronze. Along the ribbon is a strange
     script.

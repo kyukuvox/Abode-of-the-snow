@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: eye
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Torn eye
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: cb5e3c28a8619c643b304bb49ebb4b3f, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: fe03737370fb06440a3790913f39e5eb, type: 3}
   description: Torn eye with apparent nerves and connected veins.

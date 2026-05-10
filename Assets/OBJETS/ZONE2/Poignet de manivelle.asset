@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poignet de manivelle
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Crank wrist
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 71ac62c69098b984a8d6191960facdd0, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: 33f7c99073d4d5c469941f1efb0a3f4a, type: 3}
   description: The wrist of a mechanism was picked up after breaking a worn and rusty
     machine. It could have another use...

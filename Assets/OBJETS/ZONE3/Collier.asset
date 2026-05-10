@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Collier
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: "Pendant with child\u2019s portrait"
-  itemIcon: {fileID: 0}
-  descriptionSprite: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 6d6e23c669915c640827fb926269aa55, type: 3}
+  descriptionSprite: {fileID: 21300000, guid: f8c1e7b8108434643b0b844dc91b7199, type: 3}
   description: A silver pendant with a broken chain. The image in the center of the
     jewel shows a girl with a blurred face.
