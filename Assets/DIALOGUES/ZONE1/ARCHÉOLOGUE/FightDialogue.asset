@@ -16,6 +16,7 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 41abe5e685221aa4db2e127f6837a817, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
+  rewardCard: {fileID: 11400000, guid: b99883c612d75ba41a1ffcced3c2c13c, type: 2}
   lines:
   - speaker: 1
     text: Ah, pilgrim, my friend! A card game with a man consumed by regret before

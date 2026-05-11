@@ -6,7 +6,8 @@ public class DialogueData : ScriptableObject
     public string npcName;
     public Sprite npcPortrait;
     public Sprite playerPortrait;
-    public bool isBadDecision = false; 
+    public bool isBadDecision = false;
+    public CardData rewardCard;
     public DialogueLine[] lines;
 
     public bool triggersCardGame = false;     
@@ -15,7 +16,7 @@ public class DialogueData : ScriptableObject
     public Item[] cardGameRewards;
 }
 
-[System.Serializable] //sauvegarde data
+[System.Serializable] 
 public class DialogueLine
 {
     public enum Speaker { Player, NPC }

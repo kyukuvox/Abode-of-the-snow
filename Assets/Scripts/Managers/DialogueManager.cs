@@ -92,7 +92,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            npcNameText.text = "Pilgrim";
+            npcNameText.text = "Joueur";
             npcPortraitImage.color = new Color(0.4f, 0.4f, 0.4f, 1f);
             playerPortraitImage.color = Color.white;
             scaleCoroutinePlayer = StartCoroutine(AnimateScale(playerPortraitImage.rectTransform, activeSpeakerScale));
@@ -165,6 +165,7 @@ public class DialogueManager : MonoBehaviour
                 currentData.enemyCardData,
                 currentData.playerCardData,
                 currentData.cardGameRewards,
+                currentData.rewardCard, 
                 currentNPC
             );
         }

@@ -61,6 +61,12 @@ public class CardGameManager : MonoBehaviour
     public float resultFadeDuration = 0.5f;
     public Image fadePanel;
 
+    [Header("Récompense Carte")]
+    public GameObject cardRewardPanel;
+    public Text cardRewardText;
+    public float cardRewardDisplayDuration = 3f;
+    public float cardRewardFadeDuration = 0.5f;
+
     private int playerLife;
     private int playerActionPoints;
     private int playerDefense;
@@ -85,6 +91,7 @@ public class CardGameManager : MonoBehaviour
     private bool rewardsDone = false;
 
     private Item[] rewardItems;
+    private CardData rewardCard;
     private NPCWithItemDialogue currentNPC;
 
     private List<Vector2> enemyCardPositions = new List<Vector2>();
@@ -101,14 +108,18 @@ public class CardGameManager : MonoBehaviour
         Button closeButton = resultPanel.GetComponentInChildren<Button>();
         if (closeButton != null)
             closeButton.onClick.AddListener(CloseCardGame);
+
+        if (cardRewardPanel != null)
+            cardRewardPanel.SetActive(false);
     }
 
-    public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item[] rewards, NPCWithItemDialogue npc)
+    public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item[] rewards, CardData cardReward, NPCWithItemDialogue npc)
     {
         currentNPC = npc;
         enemyData = enemy;
         playerData = player;
         rewardItems = rewards;
+        rewardCard = cardReward;
         rewardsDone = false;
 
         playerLife = player.maxLife;
@@ -133,6 +144,9 @@ public class CardGameManager : MonoBehaviour
 
         cardGameCanvas.SetActive(true);
         resultPanel.SetActive(false);
+
+        if (cardRewardPanel != null)
+            cardRewardPanel.SetActive(false);
 
         if (fadePanel != null)
         {
@@ -680,9 +694,6 @@ public class CardGameManager : MonoBehaviour
         if (currentNPC != null)
             currentNPC.SetDefeated(playerWon);
 
-        if (playerWon && enemyData.rewardCard != null)
-            PlayerCardCollection.Instance.AddCard(enemyData.rewardCard);
-
         StartCoroutine(ShowResultWithFade(playerWon));
     }
 
@@ -697,15 +708,53 @@ public class CardGameManager : MonoBehaviour
 
         if (playerWon)
         {
-            if (rewardItems != null && rewardItems.Length > 0)
+            bool hasRewards = rewardItems != null && rewardItems.Length > 0;
+            bool hasCardReward = rewardCard != null;
+
+            if (hasRewards || hasCardReward)
                 StartCoroutine(ShowRewardsSequentially());
             else
                 rewardsDone = true;
         }
         else
         {
-            rewardsDone = true; 
+            rewardsDone = true;
         }
+    }
+
+    IEnumerator ShowCardReward(CardData card)
+    {
+        if (cardRewardPanel == null) yield break;
+
+        if (cardRewardText != null)
+            cardRewardText.text = "+1 carte dans la collection";
+
+        CanvasGroup cg = cardRewardPanel.GetComponent<CanvasGroup>();
+        if (cg == null) cg = cardRewardPanel.AddComponent<CanvasGroup>();
+
+        cg.alpha = 0f;
+        cardRewardPanel.SetActive(true);
+
+        float elapsed = 0f;
+        while (elapsed < cardRewardFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(0f, 1f, elapsed / cardRewardFadeDuration);
+            yield return null;
+        }
+        cg.alpha = 1f;
+
+        yield return new WaitForSeconds(cardRewardDisplayDuration);
+
+        elapsed = 0f;
+        while (elapsed < cardRewardFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(1f, 0f, elapsed / cardRewardFadeDuration);
+            yield return null;
+        }
+        cg.alpha = 0f;
+        cardRewardPanel.SetActive(false);
     }
 
     IEnumerator ShowRewardsSequentially()
@@ -715,17 +764,26 @@ public class CardGameManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        foreach (Item item in rewardItems)
+        if (rewardCard != null)
         {
-            if (item == null) continue;
+            PlayerCardCollection.Instance.AddCard(rewardCard);
+            StartCoroutine(ShowCardReward(rewardCard)); 
+        }
 
-            Inventory.Instance.AddItem(item);
+        if (rewardItems != null)
+        {
+            foreach (Item item in rewardItems)
+            {
+                if (item == null) continue;
 
-            yield return new WaitUntil(() => !DialogueManager.Instance.IsActive());
+                Inventory.Instance.AddItem(item);
 
-            ItemDescriptionManager.Instance.ShowItemDescription(item);
-            yield return new WaitUntil(() => !ItemDescriptionManager.Instance.IsActive());
-            yield return new WaitForSeconds(0.3f);
+                yield return new WaitUntil(() => !DialogueManager.Instance.IsActive());
+
+                ItemDescriptionManager.Instance.ShowItemDescription(item);
+                yield return new WaitUntil(() => !ItemDescriptionManager.Instance.IsActive());
+                yield return new WaitForSeconds(0.3f);
+            }
         }
 
         GameStateManager.Instance.SetCinematicMode(false);
@@ -801,6 +859,7 @@ public class CardGameManager : MonoBehaviour
         enemyLife = 0;
         enemyActionPoints = 0;
         enemyDefense = 0;
+        rewardCard = null;
 
         endTurnButton.interactable = true;
         discardButton.interactable = true;
