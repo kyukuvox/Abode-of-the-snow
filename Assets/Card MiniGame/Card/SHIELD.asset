@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
-  m_Name: Attaque directe
+  m_Name: SHIELD
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: Attaque directe
-  cardSprite: {fileID: 21300000, guid: 6f46270d943e63a458e2fb17388252a5, type: 3}
+  cardName: SHIELD
+  cardSprite: {fileID: -1028012128017238524, guid: f46b59745596e4145bdfa0a2942d3e66, type: 3}
   description: 
-  cardType: 0
-  attackType: 3
+  cardType: 1
+  attackType: 0
+  costType: 0
   actionCost: 1
-  power: 3
+  power: 5
   delayTurns: 0

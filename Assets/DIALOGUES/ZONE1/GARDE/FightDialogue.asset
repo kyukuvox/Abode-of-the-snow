@@ -16,6 +16,7 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
+  rewardCard: {fileID: 0}
   lines:
   - speaker: 1
     text: "Traveler, so many people have perished on this ascent over the years that
@@ -23,7 +24,7 @@ MonoBehaviour:
   - speaker: 1
     text: "Please, Traveler, show me what you\u2019re worth."
   triggersCardGame: 1
-  enemyCardData: {fileID: 11400000, guid: 2dd8dac628eeae042bfda939937877ee, type: 2}
+  enemyCardData: {fileID: 11400000, guid: a0c332ceb1cc5fc4885e2963098e8796, type: 2}
   playerCardData: {fileID: 11400000, guid: 93c91f4b48cba784ca5604f0d7862d0e, type: 2}
   cardGameRewards:
   - {fileID: 11400000, guid: c0d6cc8d37b467b46b82f91d554edf60, type: 2}

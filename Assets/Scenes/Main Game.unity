@@ -13187,11 +13187,11 @@ PrefabInstance:
     - target: {fileID: 8089207277193021019, guid: aecd9748d64e01c4f924bb612576d368, type: 3}
       propertyPath: itemDialogues.Array.data[0].dialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 961322bb3ee3df34f8f6091bfa80c08a, type: 2}
+      objectReference: {fileID: 11400000, guid: ab098edf0e19f5f41be97d3294abe216, type: 2}
     - target: {fileID: 8089207277193021019, guid: aecd9748d64e01c4f924bb612576d368, type: 3}
       propertyPath: itemDialogues.Array.data[1].dialogue
       value: 
-      objectReference: {fileID: 11400000, guid: ab098edf0e19f5f41be97d3294abe216, type: 2}
+      objectReference: {fileID: 11400000, guid: 961322bb3ee3df34f8f6091bfa80c08a, type: 2}
     - target: {fileID: 8089207277193021019, guid: aecd9748d64e01c4f924bb612576d368, type: 3}
       propertyPath: itemDialogues.Array.data[2].dialogue
       value: 
@@ -33577,7 +33577,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a664097069b04dc4c933bb5bdc6c606a, type: 3}
-    m_FontSize: 24
+    m_FontSize: 25
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
@@ -34648,7 +34648,7 @@ Transform:
   m_GameObject: {fileID: 6260154984261033616}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -72, y: 8, z: 0}
+  m_LocalPosition: {x: -75, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

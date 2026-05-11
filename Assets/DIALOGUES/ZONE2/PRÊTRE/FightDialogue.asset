@@ -16,6 +16,7 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 1ad02a1cb9d09e14581bf86b6b08ede7, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
+  rewardCard: {fileID: 0}
   lines:
   - speaker: 1
     text: "It\u2019s been so long since I\u2019ve had the chance to talk so much
@@ -25,7 +26,7 @@ MonoBehaviour:
   - speaker: 0
     text: "If it\u2019s your will, my father..."
   triggersCardGame: 1
-  enemyCardData: {fileID: 11400000, guid: 2dd8dac628eeae042bfda939937877ee, type: 2}
+  enemyCardData: {fileID: 11400000, guid: ec66762f397ece14cae3a947bd78859f, type: 2}
   playerCardData: {fileID: 11400000, guid: 93c91f4b48cba784ca5604f0d7862d0e, type: 2}
   cardGameRewards:
   - {fileID: 11400000, guid: 5b194eadec985084d9bee994256f1105, type: 2}

@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
-  m_Name: lifeCost
+  m_Name: REST
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: vampirisme
-  cardSprite: {fileID: 0}
-  description: 'yummy
-
-'
-  cardType: 0
-  attackType: 3
-  costType: 1
-  actionCost: 5
-  power: 10
+  cardName: REST
+  cardSprite: {fileID: -637072680794381938, guid: c1a9ee6f3cee5394ea24f78681900c15, type: 3}
+  description: 
+  cardType: 2
+  attackType: 0
+  costType: 0
+  actionCost: 0
+  power: 2
   delayTurns: 0

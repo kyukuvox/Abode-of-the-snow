@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
-  m_Name: "Attaque d\xE9lay\xE9e"
+  m_Name: HEAVY ATTACK
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: "Attaque d\xE9lay\xE9e"
-  cardSprite: {fileID: 21300000, guid: 6f46270d943e63a458e2fb17388252a5, type: 3}
+  cardName: HEAVY ATTACK
+  cardSprite: {fileID: 8318920597621854153, guid: 6e4a9789c7c065e4f82564f0b57a33e4, type: 3}
   description: 
   cardType: 0
   attackType: 3
+  costType: 0
   actionCost: 1
   power: 6
   delayTurns: 2

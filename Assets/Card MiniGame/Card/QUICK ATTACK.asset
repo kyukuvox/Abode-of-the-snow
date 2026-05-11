@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
-  m_Name: Recharge
+  m_Name: QUICK ATTACK
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: Recharge
-  cardSprite: {fileID: 0}
+  cardName: QUICK ATTACK
+  cardSprite: {fileID: 8808574414164651098, guid: d32d9d40135cf9145a361d0927d3a1cf, type: 3}
   description: 
-  cardType: 2
-  attackType: 0
-  actionCost: 0
-  power: 2
+  cardType: 0
+  attackType: 3
+  costType: 0
+  actionCost: 1
+  power: 3
   delayTurns: 0
