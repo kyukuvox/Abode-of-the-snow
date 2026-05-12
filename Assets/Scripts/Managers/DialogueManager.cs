@@ -92,7 +92,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            npcNameText.text = "Joueur";
+            npcNameText.text = "Pilgrim";
             npcPortraitImage.color = new Color(0.4f, 0.4f, 0.4f, 1f);
             playerPortraitImage.color = Color.white;
             scaleCoroutinePlayer = StartCoroutine(AnimateScale(playerPortraitImage.rectTransform, activeSpeakerScale));
