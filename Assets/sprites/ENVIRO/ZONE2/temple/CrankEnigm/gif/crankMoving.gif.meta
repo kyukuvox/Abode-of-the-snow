@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 67c7d0307f41f66458ec3eadeaa15189
+guid: f8ab81308912d8f45a4b61ae90e3036b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6686982699164701678
-    second: bouquet_0
+      213: 3445697491973638654
+    second: crankMoving_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 3500
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bouquet_0
+      name: crankMoving_0
       rect:
         serializedVersion: 2
-        x: 304
-        y: 662
-        width: 2727
-        height: 3527
+        x: 695
+        y: 0
+        width: 418
+        height: 481
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 21cea1d0aa01333a0800000000000000
-      internalID: -6686982699164701678
+      spriteID: ef90b84ec9391df20800000000000000
+      internalID: 3445697491973638654
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bouquet_0: -6686982699164701678
+      crankMoving_0: 3445697491973638654
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
