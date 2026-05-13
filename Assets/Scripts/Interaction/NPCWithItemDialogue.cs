@@ -27,6 +27,7 @@ public class NPCWithItemDialogue : NPCInteraction
     public RequiredItemsCondition itemsCondition;
 
     private bool hasBeenDefeated = false;
+    private bool hasBeenFought = false;
     private List<Item> consumedItems = new List<Item>();
     private HoverParticleManager hoverParticles;
 
@@ -36,11 +37,17 @@ public class NPCWithItemDialogue : NPCInteraction
         hoverParticles = GetComponent<HoverParticleManager>();
     }
 
+    public void SetFought()
+    {
+        hasBeenFought = true;
+    }
+
     void OnMouseEnter()
     {
         if (interactionType != InteractionType.MouseClick) return;
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
+        if (GameStateManager.Instance.IsCinematicMode()) return;
 
         if (interactionSprite != null)
             interactionSprite.SetActive(true);
@@ -83,9 +90,18 @@ public class NPCWithItemDialogue : NPCInteraction
     {
         dialogueCooldown = 1f;
 
-        if (hasBeenDefeated && alreadyDefeatedDialogue != null)
+        if (hasBeenDefeated)
         {
-            DialogueManager.Instance.StartDialogue(alreadyDefeatedDialogue, this);
+            if (alreadyDefeatedDialogue != null)
+                DialogueManager.Instance.StartDialogue(alreadyDefeatedDialogue, this);
+            else
+                DialogueManager.Instance.StartDialogue(defaultDialogue, this);
+            return;
+        }
+
+        if (hasBeenFought && fightDialogue != null)
+        {
+            DialogueManager.Instance.StartDialogue(fightDialogue, this);
             return;
         }
 

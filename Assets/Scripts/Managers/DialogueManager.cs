@@ -152,7 +152,7 @@ public class DialogueManager : MonoBehaviour
         if (currentData != null && CinematicManager.Instance != null)
             CinematicManager.Instance.TryTrigger(currentData);
 
-        if (currentData != null)
+        if (currentData != null && !(currentData.triggersCardGame && currentData.activatesPortalAfterCardGame))
         {
             PortalAnimator[] allPortals = FindObjectsByType<PortalAnimator>(FindObjectsSortMode.None);
             foreach (PortalAnimator portal in allPortals)
@@ -165,7 +165,8 @@ public class DialogueManager : MonoBehaviour
                 currentData.enemyCardData,
                 currentData.playerCardData,
                 currentData.cardGameRewards,
-                currentData.rewardCard, 
+                currentData.rewardCard,
+                currentData.activatesPortalAfterCardGame,
                 currentNPC
             );
         }

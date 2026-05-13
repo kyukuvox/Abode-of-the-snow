@@ -18,6 +18,7 @@ public class CameraGround : MonoBehaviour
 
     private Camera cam;
     private bool isCinematic = false;
+    private bool isOverridden = false;
     private Coroutine cinematicCoroutine;
 
     void Start()
@@ -32,16 +33,24 @@ public class CameraGround : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 desiredPosition = new Vector3(
-            player.transform.position.x,
-            player.transform.position.y + 9,
-            -10
-        );
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        transform.position = smoothedPosition;
+        if (!isOverridden)
+        {
+            Vector3 desiredPosition = new Vector3(
+                player.transform.position.x,
+                player.transform.position.y + 9,
+                -10
+            );
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+            transform.position = smoothedPosition;
+        }
 
         float targetZoom = isCinematic ? cinematicZoom : normalZoom;
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomSpeed);
+    }
+
+    public void SetOverride(bool value)
+    {
+        isOverridden = value;
     }
 
     public void SnapToPlayer()

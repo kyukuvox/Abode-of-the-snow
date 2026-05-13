@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class CardGameManager : MonoBehaviour
 {
     public static CardGameManager Instance;
-
     public static bool IsPlaying { get; private set; } = false;
 
     [Header("Canvas")]
@@ -91,6 +90,8 @@ public class CardGameManager : MonoBehaviour
     private bool hasDiscardedThisTurn = false;
     private bool isGameEnded = false;
     private bool rewardsDone = false;
+    private bool activatesPortalAfterGame = false;
+    private bool playerWonLastGame = false;
 
     private Item[] rewardItems;
     private CardData rewardCard;
@@ -115,16 +116,19 @@ public class CardGameManager : MonoBehaviour
             cardRewardPanel.SetActive(false);
     }
 
-    public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item[] rewards, CardData cardReward, NPCWithItemDialogue npc)
+    public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item[] rewards, CardData cardReward, bool activatesPortal, NPCWithItemDialogue npc)
     {
-        IsPlaying = true;
-
         currentNPC = npc;
         enemyData = enemy;
         playerData = player;
         rewardItems = rewards;
         rewardCard = cardReward;
+        activatesPortalAfterGame = activatesPortal;
         rewardsDone = false;
+        playerWonLastGame = false;
+
+        if (currentNPC != null)
+            currentNPC.SetFought();
 
         playerLife = player.maxLife;
         playerActionPoints = player.actionPointsPerTurn;
@@ -162,6 +166,7 @@ public class CardGameManager : MonoBehaviour
 
         isPlayerTurn = true;
         isGameEnded = false;
+        IsPlaying = true;
 
         StartCoroutine(CardGameIntro());
     }
@@ -693,12 +698,22 @@ public class CardGameManager : MonoBehaviour
 
     void EndGame(bool playerWon)
     {
+        StopAllCoroutines();
+
         rewardsDone = false;
+        playerWonLastGame = playerWon;
 
-        GameStateManager.Instance.SetCinematicMode(true);
-
-        if (currentNPC != null)
-            currentNPC.SetDefeated(playerWon);
+        if (playerWon)
+        {
+            GameStateManager.Instance.SetCinematicMode(true);
+            if (currentNPC != null)
+                currentNPC.SetDefeated(true);
+        }
+        else
+        {
+            GameStateManager.Instance.SetCinematicMode(false);
+            rewardsDone = true;
+        }
 
         StartCoroutine(ShowResultWithFade(playerWon));
     }
@@ -712,21 +727,15 @@ public class CardGameManager : MonoBehaviour
 
         yield return StartCoroutine(FadeOut());
 
-        if (playerWon)
-        {
-            bool hasRewards = rewardItems != null && rewardItems.Length > 0;
-            bool hasCardReward = rewardCard != null;
+        if (!playerWon) yield break;
 
-            if (hasRewards || hasCardReward)
-                StartCoroutine(ShowRewardsSequentially());
-            else
-                rewardsDone = true;
-        }
+        bool hasRewards = rewardItems != null && rewardItems.Length > 0;
+        bool hasCardReward = rewardCard != null;
+
+        if (hasRewards || hasCardReward)
+            StartCoroutine(ShowRewardsSequentially());
         else
-        {
             rewardsDone = true;
-            GameStateManager.Instance.SetCinematicMode(false);
-        }
     }
 
     IEnumerator ShowCardReward()
@@ -766,6 +775,13 @@ public class CardGameManager : MonoBehaviour
 
     IEnumerator ShowRewardsSequentially()
     {
+        if (!playerWonLastGame)
+        {
+            rewardsDone = true;
+            GameStateManager.Instance.SetCinematicMode(false);
+            yield break;
+        }
+
         rewardsDone = false;
 
         yield return new WaitForSeconds(0.5f);
@@ -775,6 +791,8 @@ public class CardGameManager : MonoBehaviour
             foreach (Item item in rewardItems)
             {
                 if (item == null) continue;
+
+                if (!playerWonLastGame) break;
 
                 Inventory.Instance.AddItem(item);
 
@@ -804,6 +822,18 @@ public class CardGameManager : MonoBehaviour
             }
         }
 
+        if (activatesPortalAfterGame)
+        {
+            PortalAnimator[] allPortals = FindObjectsByType<PortalAnimator>(FindObjectsSortMode.None);
+            foreach (PortalAnimator portal in allPortals)
+            {
+                if (portal.onlyAfterCardGame)
+                    portal.ActivatePortal();
+            }
+
+            activatesPortalAfterGame = false;
+        }
+
         GameStateManager.Instance.SetCinematicMode(false);
     }
 
@@ -817,13 +847,29 @@ public class CardGameManager : MonoBehaviour
         yield return StartCoroutine(HideResultWithFade());
         ResetCardGame();
 
-        if (rewardCard != null)
+        if (playerWonLastGame)
         {
-            PlayerCardCollection.Instance.AddCard(rewardCard);
-            StartCoroutine(ShowCardReward());
+            if (rewardCard != null)
+            {
+                PlayerCardCollection.Instance.AddCard(rewardCard);
+                StartCoroutine(ShowCardReward());
+            }
+            StartCoroutine(ShowDefeatedDialogueAfterDelay());
+        }
+        else
+        {
+            if (currentNPC != null)
+            {
+                Collider2D col = currentNPC.GetComponent<Collider2D>();
+                if (col != null) col.enabled = true;
+
+                NPCWithItemDialogue npcDialogue = currentNPC.GetComponent<NPCWithItemDialogue>();
+                if (npcDialogue != null) npcDialogue.enabled = true;
+            }
+
+            GameStateManager.Instance.SetCinematicMode(false);
         }
 
-        StartCoroutine(ShowDefeatedDialogueAfterDelay());
         Time.timeScale = 1f;
     }
 
@@ -842,8 +888,6 @@ public class CardGameManager : MonoBehaviour
 
     void ResetCardGame()
     {
-        IsPlaying = false;
-
         foreach (Card card in playerHand)
             if (card != null)
                 Destroy(card.gameObject);
@@ -869,6 +913,8 @@ public class CardGameManager : MonoBehaviour
         enemyLife = 0;
         enemyActionPoints = 0;
         enemyDefense = 0;
+
+        IsPlaying = false;
 
         endTurnButton.interactable = true;
         discardButton.interactable = true;

@@ -6,14 +6,14 @@ public class DialogueData : ScriptableObject
     public string npcName;
     public Sprite npcPortrait;
     public Sprite playerPortrait;
-    public bool isBadDecision = false;
-    public CardData rewardCard;
-    public DialogueLine[] lines;
-
-    public bool triggersCardGame = false;     
-    public CharacterCardData enemyCardData;   
-    public CharacterCardData playerCardData;   
+    public bool isBadDecision;
+    public bool triggersCardGame;
+    public CharacterCardData enemyCardData;
+    public CharacterCardData playerCardData;
     public Item[] cardGameRewards;
+    public CardData rewardCard;
+    public bool activatesPortalAfterCardGame; 
+    public DialogueLine[] lines;
 }
 
 [System.Serializable] 
