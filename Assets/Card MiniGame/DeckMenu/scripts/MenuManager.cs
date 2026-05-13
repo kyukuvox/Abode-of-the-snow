@@ -12,12 +12,12 @@ public class MenuManager : MonoBehaviour
     public GameObject itemGlossairePage;
     public GameObject itemGlossaireButton;
 
-    public float animationSpeed = 5f;  
-    public float slideOffset = 50f;    
+    public float animationSpeed = 5f;
+    public float slideOffset = 50f;
 
     private bool isMenuOpen = false;
     private RectTransform panelRect;
-    private bool isAnimating = false; 
+    private bool isAnimating = false;
 
     void Awake()
     {
@@ -29,10 +29,11 @@ public class MenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (PauseMenu.Instance.IsPaused()) return;
             if (DialogueManager.Instance.IsActive()) return;
+            if (ItemDescriptionManager.Instance.IsActive()) return;
+            if (PauseMenu.Instance.IsPaused()) return;
             if (CardGameManager.Instance.cardGameCanvas.activeSelf) return;
-            if (isAnimating) return; 
+            if (isAnimating) return;
 
             if (isMenuOpen)
                 CloseMenu();
@@ -40,7 +41,6 @@ public class MenuManager : MonoBehaviour
                 OpenMenu();
         }
     }
-
 
     public void OpenMenu()
     {
@@ -58,7 +58,10 @@ public class MenuManager : MonoBehaviour
             itemGlossaireButton.GetComponent<Button>().interactable =
                 Inventory.Instance.items.Count > 0;
 
-        ShowGlossaire();
+        if (Inventory.Instance.items.Count > 0)
+            ShowItemGlossaire();
+        else
+            ShowGlossaire();
 
         StopAllCoroutines();
         StartCoroutine(AnimateOpen());
@@ -72,7 +75,7 @@ public class MenuManager : MonoBehaviour
 
     IEnumerator AnimateOpen()
     {
-        isAnimating = true; 
+        isAnimating = true;
 
         CanvasGroup canvasGroup = menuPanel.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
@@ -96,12 +99,12 @@ public class MenuManager : MonoBehaviour
         canvasGroup.alpha = 1f;
         panelRect.anchoredPosition = targetPos;
         Time.timeScale = 0f;
-        isAnimating = false; 
+        isAnimating = false;
     }
 
     IEnumerator AnimateClose()
     {
-        isAnimating = true; 
+        isAnimating = true;
         Time.timeScale = 1f;
 
         CanvasGroup canvasGroup = menuPanel.GetComponent<CanvasGroup>();
@@ -124,7 +127,7 @@ public class MenuManager : MonoBehaviour
         panelRect.anchoredPosition = startPos;
         isMenuOpen = false;
         menuPanel.SetActive(false);
-        isAnimating = false; 
+        isAnimating = false;
     }
 
     public void ShowGlossaire()

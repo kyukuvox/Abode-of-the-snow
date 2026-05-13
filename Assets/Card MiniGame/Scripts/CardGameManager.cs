@@ -7,6 +7,8 @@ public class CardGameManager : MonoBehaviour
 {
     public static CardGameManager Instance;
 
+    public static bool IsPlaying { get; private set; } = false;
+
     [Header("Canvas")]
     public GameObject cardGameCanvas;
 
@@ -115,6 +117,8 @@ public class CardGameManager : MonoBehaviour
 
     public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item[] rewards, CardData cardReward, NPCWithItemDialogue npc)
     {
+        IsPlaying = true;
+
         currentNPC = npc;
         enemyData = enemy;
         playerData = player;
@@ -691,6 +695,8 @@ public class CardGameManager : MonoBehaviour
     {
         rewardsDone = false;
 
+        GameStateManager.Instance.SetCinematicMode(true);
+
         if (currentNPC != null)
             currentNPC.SetDefeated(playerWon);
 
@@ -719,10 +725,11 @@ public class CardGameManager : MonoBehaviour
         else
         {
             rewardsDone = true;
+            GameStateManager.Instance.SetCinematicMode(false);
         }
     }
 
-    IEnumerator ShowCardReward(CardData card)
+    IEnumerator ShowCardReward()
     {
         if (cardRewardPanel == null) yield break;
 
@@ -760,15 +767,8 @@ public class CardGameManager : MonoBehaviour
     IEnumerator ShowRewardsSequentially()
     {
         rewardsDone = false;
-        GameStateManager.Instance.SetCinematicMode(true);
 
         yield return new WaitForSeconds(0.5f);
-
-        if (rewardCard != null)
-        {
-            PlayerCardCollection.Instance.AddCard(rewardCard);
-            StartCoroutine(ShowCardReward(rewardCard)); 
-        }
 
         if (rewardItems != null)
         {
@@ -786,7 +786,6 @@ public class CardGameManager : MonoBehaviour
             }
         }
 
-        GameStateManager.Instance.SetCinematicMode(false);
         rewardsDone = true;
     }
 
@@ -804,6 +803,8 @@ public class CardGameManager : MonoBehaviour
                 yield return new WaitUntil(() => !DialogueManager.Instance.IsActive());
             }
         }
+
+        GameStateManager.Instance.SetCinematicMode(false);
     }
 
     public void CloseCardGame()
@@ -815,6 +816,13 @@ public class CardGameManager : MonoBehaviour
     {
         yield return StartCoroutine(HideResultWithFade());
         ResetCardGame();
+
+        if (rewardCard != null)
+        {
+            PlayerCardCollection.Instance.AddCard(rewardCard);
+            StartCoroutine(ShowCardReward());
+        }
+
         StartCoroutine(ShowDefeatedDialogueAfterDelay());
         Time.timeScale = 1f;
     }
@@ -834,6 +842,8 @@ public class CardGameManager : MonoBehaviour
 
     void ResetCardGame()
     {
+        IsPlaying = false;
+
         foreach (Card card in playerHand)
             if (card != null)
                 Destroy(card.gameObject);
@@ -859,7 +869,6 @@ public class CardGameManager : MonoBehaviour
         enemyLife = 0;
         enemyActionPoints = 0;
         enemyDefense = 0;
-        rewardCard = null;
 
         endTurnButton.interactable = true;
         discardButton.interactable = true;

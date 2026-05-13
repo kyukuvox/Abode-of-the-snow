@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 public class DeckBuilderManager : MonoBehaviour
@@ -18,6 +19,11 @@ public class DeckBuilderManager : MonoBehaviour
     public Button browserRightArrow;
     public Button assignCardButton;
 
+    [Header("Visuel")]
+    public Color selectedOutlineColor = new Color(1f, 1f, 0f, 1f);
+    public Color flashColor = Color.yellow;
+    public float flashDuration = 0.3f;
+
     private List<CardData> currentDeck = new List<CardData>();
     private List<GameObject> deckSlots = new List<GameObject>();
     private int selectedSlotIndex = -1;
@@ -32,6 +38,9 @@ public class DeckBuilderManager : MonoBehaviour
 
     void OnEnable()
     {
+        if (browserCardNameText != null)
+            browserCardNameText.text = "";
+
         if (!isInitialized)
         {
             InitializeSlots();
@@ -48,25 +57,20 @@ public class DeckBuilderManager : MonoBehaviour
         browserIndex = 0;
         selectedSlotIndex = -1;
 
-        RefreshBrowser();
         UpdateSlotsDisplay();
+
+        StartCoroutine(InitBrowserDelayed());
     }
 
-    void RefreshBrowser()
+    IEnumerator InitBrowserDelayed()
     {
-        if (PlayerCardCollection.Instance == null)
-        {
-            Debug.Log("PlayerCardCollection introuvable !");
-            return;
-        }
+        yield return new WaitUntil(() => PlayerCardCollection.Instance != null);
+        yield return null;
+        yield return null;
 
         List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
-        Debug.Log("Cartes disponibles dans le navigateur : " + cards.Count);
-
         if (cards.Count > 0)
             DisplayBrowserCard(0);
-        else
-            Debug.Log("Aucune carte disponible !");
     }
 
     void InitializeSlots()
@@ -83,6 +87,13 @@ public class DeckBuilderManager : MonoBehaviour
 
             if (btn == null)
                 btn = slot.AddComponent<Button>();
+
+            Outline outline = slot.GetComponent<Outline>();
+            if (outline == null)
+                outline = slot.AddComponent<Outline>();
+            outline.enabled = false;
+            outline.effectColor = selectedOutlineColor;
+            outline.effectDistance = new Vector2(3f, 3f);
 
             btn.onClick.AddListener(() => SelectSlot(index));
             deckSlots.Add(slot);
@@ -101,6 +112,10 @@ public class DeckBuilderManager : MonoBehaviour
         {
             Image slotBg = deckSlots[i].GetComponent<Image>();
             Transform slotCardTransform = deckSlots[i].transform.Find("SlotCardImage");
+            Outline outline = deckSlots[i].GetComponent<Outline>();
+
+            if (outline != null)
+                outline.enabled = (i == selectedSlotIndex);
 
             if (slotCardTransform == null) continue;
 
@@ -149,20 +164,13 @@ public class DeckBuilderManager : MonoBehaviour
         if (cards.Count == 0 || index >= cards.Count) return;
 
         CardData card = cards[index];
-        Debug.Log("Carte : " + card.cardName);
-        Debug.Log("cardSprite : " + (card.cardSprite != null ? "OK" : "NULL"));
-        Debug.Log("browserCardImage : " + (browserCardImage != null ? "OK" : "NULL"));
-        Debug.Log("browserCardImage.sprite avant : " + (browserCardImage.sprite != null ? browserCardImage.sprite.name : "NULL"));
 
         if (browserCardImage != null)
         {
             browserCardImage.enabled = true;
-            browserCardImage.gameObject.SetActive(true); // ← force l'activation
+            browserCardImage.gameObject.SetActive(true);
             browserCardImage.sprite = card.cardSprite;
             browserCardImage.color = Color.white;
-            Debug.Log("Après activation - enabled : " + browserCardImage.enabled);
-            Debug.Log("Après activation - gameObject active : " + browserCardImage.gameObject.activeSelf);
-            Debug.Log("Parent actif : " + browserCardImage.transform.parent.gameObject.activeSelf);
         }
 
         if (browserCardNameText != null)
@@ -171,19 +179,47 @@ public class DeckBuilderManager : MonoBehaviour
 
     void AssignCardToSlot()
     {
-        if (selectedSlotIndex == -1)
-        {
-            Debug.Log("Aucun slot sélectionné !");
-            return;
-        }
+        if (selectedSlotIndex == -1) return;
 
         List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
         if (cards.Count == 0) return;
 
-        currentDeck[selectedSlotIndex] = cards[browserIndex];
-        Debug.Log("Carte assignée : " + cards[browserIndex].cardName + " → slot " + selectedSlotIndex);
+        int assignedIndex = selectedSlotIndex;
+        currentDeck[assignedIndex] = cards[browserIndex];
+
         selectedSlotIndex = -1;
         UpdateSlotsDisplay();
+
+        StartCoroutine(FlashSlot(deckSlots[assignedIndex]));
+    }
+
+    IEnumerator FlashSlot(GameObject slot)
+    {
+        yield return null;
+
+        Image slotImage = slot.GetComponent<Image>();
+        if (slotImage == null) yield break;
+
+        Color originalColor = slotImage.color;
+        float elapsed = 0f;
+        float halfDuration = flashDuration / 2f;
+
+        while (elapsed < halfDuration)
+        {
+            elapsed += Time.deltaTime;
+            slotImage.color = Color.Lerp(originalColor, flashColor, elapsed / halfDuration);
+            yield return null;
+        }
+
+        elapsed = 0f;
+        while (elapsed < halfDuration)
+        {
+            elapsed += Time.deltaTime;
+            slotImage.color = Color.Lerp(flashColor, originalColor, elapsed / halfDuration);
+            yield return null;
+        }
+
+        slotImage.color = originalColor;
     }
 
     public void LoadDeck(List<CardData> deck)
@@ -200,7 +236,6 @@ public class DeckBuilderManager : MonoBehaviour
         List<CardData> deck = new List<CardData>();
         foreach (CardData card in currentDeck)
             if (card != null) deck.Add(card);
-        Debug.Log("GetCurrentDeck : " + deck.Count + " cartes");
         return deck;
     }
 }

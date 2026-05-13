@@ -6,6 +6,7 @@ public class Teleporter : MonoBehaviour
     public Transform destination;
     public float bumpScale = 1.2f;
     public float bumpDuration = 0.2f;
+    public bool resetParallax = true; 
 
     private Transform player;
     private HoverParticleManager hoverParticles;
@@ -23,6 +24,7 @@ public class Teleporter : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (GameStateManager.Instance.IsCinematicMode()) return;
+        if (CardGameManager.IsPlaying) return;
         if (hoverParticles != null)
             hoverParticles.Show();
     }
@@ -39,6 +41,7 @@ public class Teleporter : MonoBehaviour
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (DialogueManager.Instance.IsActive()) return;
         if (GameStateManager.Instance.IsCinematicMode()) return;
+        if (CardGameManager.IsPlaying) return;
 
         StartCoroutine(Bump());
 
@@ -52,7 +55,7 @@ public class Teleporter : MonoBehaviour
                 if (cam != null)
                     cam.SnapToPlayer();
 
-                if (ParallaxManager.Instance != null)
+                if (resetParallax && ParallaxManager.Instance != null)
                     ParallaxManager.Instance.ResetToOrigin();
             });
         }

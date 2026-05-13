@@ -7,9 +7,9 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 {
     public CardData cardData;
     public Image cardImage;
-    public Text cardNameText;
-    public Text cardDescText;
     public Text cardCostText;
+    public Text cardDelayTurnText;
+    public Text cardPowerText;
 
     public float tiltStrength = 15f;
     public float tiltSmoothing = 8f;
@@ -24,6 +24,7 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     private Vector2 originalPosition;
     private Transform originalParent;
     private int originalSiblingIndex;
+    private Vector3 originalScale;
 
     private Vector2 previousMousePos;
     private float currentTilt = 0f;
@@ -43,16 +44,18 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     public void Setup(CardData data)
     {
         cardData = data;
-        cardImage.sprite = data.cardSprite;
-        cardNameText.text = data.cardName;
-        cardDescText.text = data.description;
 
-        switch (data.costType)
-        {
-            case CardData.CostType.ActionPoints: cardCostText.text = data.actionCost + " PA"; break;
-            case CardData.CostType.Life: cardCostText.text = data.actionCost + " PV"; break;
-            case CardData.CostType.Defense: cardCostText.text = data.actionCost + " DEF"; break;
-        }
+        if (cardImage != null)
+            cardImage.sprite = data.cardSprite;
+
+        if (cardCostText != null)
+            cardCostText.text = data.actionCost.ToString();
+
+        if (cardDelayTurnText != null)
+            cardDelayTurnText.text = data.delayTurns.ToString();
+
+        if (cardPowerText != null)
+            cardPowerText.text = data.power.ToString();
     }
 
     public void SetPlayable(bool playable)
@@ -105,6 +108,7 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     public void OnBeginDrag(PointerEventData eventData)
     {
         isDragging = true;
+        originalScale = Vector3.one;
         originalPosition = rectTransform.anchoredPosition;
         originalParent = transform.parent;
         originalSiblingIndex = transform.GetSiblingIndex();

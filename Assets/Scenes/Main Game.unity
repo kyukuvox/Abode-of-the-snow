@@ -13756,6 +13756,7 @@ MonoBehaviour:
   destination: {fileID: 582830049}
   bumpScale: 1.2
   bumpDuration: 0.2
+  resetParallax: 1
 --- !u!114 &657866032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18173,6 +18174,7 @@ MonoBehaviour:
   destination: {fileID: 273048021}
   bumpScale: 1.2
   bumpDuration: 0.2
+  resetParallax: 1
 --- !u!114 &844108842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24098,9 +24100,33 @@ PrefabInstance:
       value: MANAGERS
       objectReference: {fileID: 0}
     - target: {fileID: 2240256977202836355, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: bumpScale
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240256977202836355, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: bumpDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240256977202836355, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: flashColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240256977202836355, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: flashColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240256977202836355, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: flashColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240256977202836355, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: deckSlotsZone
       value: 
       objectReference: {fileID: 345231162298267450}
+    - target: {fileID: 2240256977202836355, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: flashDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2240256977202836355, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: assignCardButton
       value: 
@@ -24121,6 +24147,18 @@ PrefabInstance:
       propertyPath: browserCardNameText
       value: 
       objectReference: {fileID: 3435014649288744276}
+    - target: {fileID: 2240256977202836355, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: selectedOutlineColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240256977202836355, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: selectedOutlineColor.g
+      value: 0.7808454
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240256977202836355, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: selectedOutlineColor.r
+      value: 0.6773585
+      objectReference: {fileID: 0}
     - target: {fileID: 3787978039097130118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: fadePanel
       value: 
@@ -25328,6 +25366,7 @@ MonoBehaviour:
   destination: {fileID: 979646436}
   bumpScale: 1.05
   bumpDuration: 0.2
+  resetParallax: 1
 --- !u!212 &1159744224
 SpriteRenderer:
   serializedVersion: 2
@@ -43305,6 +43344,7 @@ MonoBehaviour:
   destination: {fileID: 453557314}
   bumpScale: 1.2
   bumpDuration: 0.2
+  resetParallax: 1
 --- !u!114 &2019989944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46380,6 +46420,7 @@ MonoBehaviour:
   destination: {fileID: 1206546858}
   bumpScale: 1.05
   bumpDuration: 0.2
+  resetParallax: 0
 --- !u!114 &2128614472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47184,7 +47225,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 84e387d37d37328448b258ec18411aaa, type: 3}
-    m_FontSize: 70
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -51000,7 +51041,7 @@ Transform:
   m_GameObject: {fileID: 6260154984261033616}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 280.1, y: 9.7, z: 0}
+  m_LocalPosition: {x: -81, y: 9.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -53801,8 +53842,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 4, y: -53.1}
-  m_SizeDelta: {x: 1920, y: 435.0954}
+  m_AnchoredPosition: {x: 4, y: -47}
+  m_SizeDelta: {x: 1920, y: 476.6}
   m_Pivot: {x: 0, y: 1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

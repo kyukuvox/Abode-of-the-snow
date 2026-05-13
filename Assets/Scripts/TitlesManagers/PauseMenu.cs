@@ -140,6 +140,10 @@ public class PauseMenu : MonoBehaviour
     public void QuitToTitleFromGameOver()
     {
         Time.timeScale = 1f;
+
+        if (SaveManager.Instance != null)
+            SaveManager.Instance.DeleteSave();
+
         SceneManager.LoadScene(0);
     }
 

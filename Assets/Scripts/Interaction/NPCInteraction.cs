@@ -29,7 +29,7 @@ public class NPCInteraction : MonoBehaviour
         if (BadDecisionManager.Instance.isGameOver) return;
         if (BadDecisionManager.Instance.isOverlayActive) return;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
         {
             if (ItemDescriptionManager.Instance.IsActive())
             {
