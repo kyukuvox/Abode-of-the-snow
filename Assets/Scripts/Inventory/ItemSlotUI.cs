@@ -152,17 +152,17 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         EventSystem.current.SetSelectedGameObject(null);
 
         NPCDropTarget npc = GetNPCUnderCursor();
-        Debug.Log("NPC détecté : " + (npc != null ? npc.name : "NULL"));
-
         PortalDropTarget portal = GetPortalUnderCursor();
         ItemInteractableDropTarget interactable = GetInteractableUnderCursor();
         ItemSpriteInteractionDropTarget spriteInteraction = GetSpriteInteractionUnderCursor();
 
+        Debug.Log("NPC : " + (npc != null ? npc.name : "NULL"));
+        Debug.Log("Portal : " + (portal != null ? portal.name : "NULL"));
+        Debug.Log("Interactable : " + (interactable != null ? interactable.name : "NULL"));
+        Debug.Log("SpriteInteraction : " + (spriteInteraction != null ? spriteInteraction.name : "NULL"));
+
         if (npc != null)
-        {
-            Debug.Log("ReceiveDroppedItem appelé sur : " + npc.name);
             npc.ReceiveDroppedItem(myItem);
-        }
         else if (portal != null)
             portal.ReceiveDroppedItem(myItem);
         else if (interactable != null)
@@ -177,28 +177,25 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
-
-        Debug.Log("Position souris monde : " + mousePos);
-
-        Collider2D[] hits = Physics2D.OverlapPointAll(mousePos);
-        Debug.Log("Nombre de colliders détectés : " + hits.Length);
-
+        Collider2D[] hits = Physics2D.OverlapCircleAll(mousePos, 0.5f);
         foreach (Collider2D hit in hits)
         {
-            Debug.Log("Collider détecté : " + hit.name);
             NPCDropTarget npc = hit.GetComponent<NPCDropTarget>();
-            if (npc != null)
-                return npc;
+            if (npc != null) return npc;
         }
-
         return null;
     }
+
     PortalDropTarget GetPortalUnderCursor()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
-        Collider2D hit = Physics2D.OverlapPoint(mousePos);
-        if (hit != null) return hit.GetComponent<PortalDropTarget>();
+        Collider2D[] hits = Physics2D.OverlapCircleAll(mousePos, 0.5f);
+        foreach (Collider2D hit in hits)
+        {
+            PortalDropTarget portal = hit.GetComponent<PortalDropTarget>();
+            if (portal != null) return portal;
+        }
         return null;
     }
 
@@ -206,8 +203,16 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
-        Collider2D hit = Physics2D.OverlapPoint(mousePos);
-        if (hit != null) return hit.GetComponent<ItemInteractableDropTarget>();
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(mousePos, 0.5f);
+        Debug.Log("Colliders détectés pour interactable : " + hits.Length);
+
+        foreach (Collider2D hit in hits)
+        {
+            Debug.Log("Collider détecté : " + hit.name);
+            ItemInteractableDropTarget target = hit.GetComponent<ItemInteractableDropTarget>();
+            if (target != null) return target;
+        }
         return null;
     }
 
@@ -215,8 +220,12 @@ public class ItemSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
-        Collider2D hit = Physics2D.OverlapPoint(mousePos);
-        if (hit != null) return hit.GetComponent<ItemSpriteInteractionDropTarget>();
+        Collider2D[] hits = Physics2D.OverlapCircleAll(mousePos, 0.5f);
+        foreach (Collider2D hit in hits)
+        {
+            ItemSpriteInteractionDropTarget spriteInteraction = hit.GetComponent<ItemSpriteInteractionDropTarget>();
+            if (spriteInteraction != null) return spriteInteraction;
+        }
         return null;
     }
 }
