@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: 87382ee8919d8e649a5a8243c185dab4
+guid: 035eef7c4d9bd714b99e43b5c9e9eb42
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1372020001906338899
-    second: oreille_0
+      213: 7028616704906629411
+    second: 7_0
   - first:
-      213: 710120561589469871
-    second: oreille_1
+      213: -922402802239089382
+    second: 7_1
   - first:
-      213: -5288829099312887926
-    second: oreille_2
-  - first:
-      213: -5126572985643146738
-    second: oreille_3
+      213: 1526234616134381953
+    second: 7_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 3500
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: oreille_0
+      name: 7_0
       rect:
         serializedVersion: 2
-        x: 425
-        y: 1578
-        width: 87
-        height: 295
+        x: 221
+        y: 776
+        width: 222
+        height: 109
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 35cab562ce46a0310800000000000000
-      internalID: 1372020001906338899
+      spriteID: 321165667a9aa8160800000000000000
+      internalID: 7028616704906629411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: oreille_1
+      name: 7_1
       rect:
         serializedVersion: 2
-        x: 476
-        y: 925
-        width: 2513
-        height: 3572
+        x: 241
+        y: 433
+        width: 1414
+        height: 645
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fa2cd3d63eadad900800000000000000
-      internalID: 710120561589469871
+      spriteID: a15d6b8d987f233f0800000000000000
+      internalID: -922402802239089382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: oreille_2
+      name: 7_2
       rect:
         serializedVersion: 2
-        x: 679
-        y: 549
-        width: 126
-        height: 443
+        x: 1316
+        y: 422
+        width: 127
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,30 +165,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a87c4b1a4fd4a96b0800000000000000
-      internalID: -5288829099312887926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: oreille_3
-      rect:
-        serializedVersion: 2
-        x: 873
-        y: 887
-        width: 62
-        height: 168
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e0260a30801cad8b0800000000000000
-      internalID: -5126572985643146738
+      spriteID: 181389a0c464e2510800000000000000
+      internalID: 1526234616134381953
       vertices: []
       indices: 
       edges: []
@@ -210,10 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      oreille_0: 1372020001906338899
-      oreille_1: 710120561589469871
-      oreille_2: -5288829099312887926
-      oreille_3: -5126572985643146738
+      7_0: 7028616704906629411
+      7_1: -922402802239089382
+      7_2: 1526234616134381953
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

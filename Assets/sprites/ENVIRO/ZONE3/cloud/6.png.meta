@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 87382ee8919d8e649a5a8243c185dab4
+guid: 45f843592af1fbc449a9e9301b21afca
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1372020001906338899
-    second: oreille_0
+      213: 3465286685962602723
+    second: 6_0
   - first:
-      213: 710120561589469871
-    second: oreille_1
+      213: 6653994858678897968
+    second: 6_1
   - first:
-      213: -5288829099312887926
-    second: oreille_2
+      213: -9091539399625358973
+    second: 6_2
   - first:
-      213: -5126572985643146738
-    second: oreille_3
+      213: 781045095500365311
+    second: 6_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 3500
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: oreille_0
+      name: 6_0
       rect:
         serializedVersion: 2
-        x: 425
-        y: 1578
-        width: 87
-        height: 295
+        x: 875
+        y: 885
+        width: 172
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 35cab562ce46a0310800000000000000
-      internalID: 1372020001906338899
+      spriteID: 3e801b981eb271030800000000000000
+      internalID: 3465286685962602723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: oreille_1
+      name: 6_1
       rect:
         serializedVersion: 2
-        x: 476
-        y: 925
-        width: 2513
-        height: 3572
+        x: 1070
+        y: 953
+        width: 74
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fa2cd3d63eadad900800000000000000
-      internalID: 710120561589469871
+      spriteID: 03dc4d0d11db75c50800000000000000
+      internalID: 6653994858678897968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: oreille_2
+      name: 6_2
       rect:
         serializedVersion: 2
-        x: 679
-        y: 549
-        width: 126
-        height: 443
+        x: 24
+        y: 300
+        width: 1692
+        height: 643
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a87c4b1a4fd4a96b0800000000000000
-      internalID: -5288829099312887926
+      spriteID: 381ccd7c51d54d180800000000000000
+      internalID: -9091539399625358973
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: oreille_3
+      name: 6_3
       rect:
         serializedVersion: 2
-        x: 873
-        y: 887
-        width: 62
-        height: 168
+        x: 1604
+        y: 516
+        width: 129
+        height: 106
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,8 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e0260a30801cad8b0800000000000000
-      internalID: -5126572985643146738
+      spriteID: ffd3cde4064d6da00800000000000000
+      internalID: 781045095500365311
       vertices: []
       indices: 
       edges: []
@@ -210,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      oreille_0: 1372020001906338899
-      oreille_1: 710120561589469871
-      oreille_2: -5288829099312887926
-      oreille_3: -5126572985643146738
+      6_0: 3465286685962602723
+      6_1: 6653994858678897968
+      6_2: -9091539399625358973
+      6_3: 781045095500365311
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
