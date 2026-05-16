@@ -10,16 +10,29 @@ public class ItemSpriteInteraction : MonoBehaviour
     public float bumpScale = 1.2f;
     public float bumpDuration = 0.2f;
 
+    [Header("Son")]
+    public AudioClip activationLoopSound;
+    [Range(0f, 1f)]
+    public float loopSoundVolume = 1f;
+    public float soundFadeInDuration = 0.3f;
+
     private bool isActivated = false;
     private SpriteRenderer spriteRenderer;
     private HoverParticleManager hoverParticles;
     private Vector3 originalScale;
+    private AudioSource loopAudioSource;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         hoverParticles = GetComponent<HoverParticleManager>();
         originalScale = transform.localScale;
+
+        loopAudioSource = gameObject.AddComponent<AudioSource>();
+        loopAudioSource.loop = true;
+        loopAudioSource.playOnAwake = false;
+        loopAudioSource.spatialBlend = 0f;
+        loopAudioSource.volume = 0f;
     }
 
     void OnMouseEnter()
@@ -62,6 +75,14 @@ public class ItemSpriteInteraction : MonoBehaviour
             if (hoverParticles != null)
                 hoverParticles.Hide();
 
+            if (activationLoopSound != null && loopAudioSource != null)
+            {
+                loopAudioSource.clip = activationLoopSound;
+                loopAudioSource.volume = 0f;
+                loopAudioSource.Play();
+                StartCoroutine(FadeInLoop());
+            }
+
             StartCoroutine(Bump());
         }
         else
@@ -69,6 +90,20 @@ public class ItemSpriteInteraction : MonoBehaviour
             Inventory.Instance.AddItem(item);
             Debug.Log("Il vous faut : " + requiredItem.itemName);
         }
+    }
+
+    IEnumerator FadeInLoop()
+    {
+        float elapsed = 0f;
+
+        while (elapsed < soundFadeInDuration)
+        {
+            elapsed += Time.deltaTime;
+            loopAudioSource.volume = Mathf.Lerp(0f, loopSoundVolume, elapsed / soundFadeInDuration);
+            yield return null;
+        }
+
+        loopAudioSource.volume = loopSoundVolume;
     }
 
     IEnumerator Bump()

@@ -125,7 +125,7 @@ public class NPCInteraction : MonoBehaviour
         TriggerDialogue();
     }
 
-    void PlayInteractionSound()
+    public void PlayInteractionSound()
     {
         if (interactionSound == null) return;
 

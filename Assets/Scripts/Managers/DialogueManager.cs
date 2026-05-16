@@ -59,6 +59,9 @@ public class DialogueManager : MonoBehaviour
         npcPortraitImage.gameObject.SetActive(true);
         playerPortraitImage.gameObject.SetActive(true);
 
+        if (currentNPC != null)
+            currentNPC.PlayInteractionSound();
+
         DisplayLine(currentData.lines[currentLineIndex]);
     }
 

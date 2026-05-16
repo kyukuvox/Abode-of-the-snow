@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
   m_Name: ARTHUR
   m_EditorClassIdentifier: Assembly-CSharp::CardData
+  cardDescription: Big Damages
   cardName: ARTHUR
   cardSprite: {fileID: -1547048719659269721, guid: 042ad6bbef462cc4499aaad7c2f50ad8, type: 3}
   description: "il es bo celui l\xE0"

@@ -14,10 +14,22 @@ public class ClickCounter : MonoBehaviour
         public AudioClip sound;
         [Range(0f, 1f)]
         public float volume = 1f;
+        public float fadeInDuration = 0f;
+        public float fadeOutDuration = 0f;
     }
 
     public ClickSound[] clickSounds;
+
+    [Header("Son en boucle")]
+    public AudioClip loopSound;
+    [Range(0f, 1f)]
+    public float loopSoundVolume = 1f;
+    public bool playLoopSound = false;
+    public float minDistance = 1f;
+    public float maxDistance = 10f;
+
     private AudioSource audioSource;
+    private AudioSource loopAudioSource;
     private HoverParticleManager hoverParticles;
     private Vector3 originalScale;
 
@@ -37,6 +49,21 @@ public class ClickCounter : MonoBehaviour
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
+
+        loopAudioSource = gameObject.AddComponent<AudioSource>();
+        loopAudioSource.loop = true;
+        loopAudioSource.playOnAwake = false;
+        loopAudioSource.spatialBlend = 1f;
+        loopAudioSource.rolloffMode = AudioRolloffMode.Linear;
+        loopAudioSource.minDistance = minDistance;
+        loopAudioSource.maxDistance = maxDistance;
+        loopAudioSource.volume = loopSoundVolume;
+
+        if (playLoopSound && loopSound != null)
+        {
+            loopAudioSource.clip = loopSound;
+            loopAudioSource.Play();
+        }
     }
 
     void OnMouseEnter()
@@ -66,10 +93,9 @@ public class ClickCounter : MonoBehaviour
 
         if (clickSounds != null && currentClicks < clickSounds.Length)
         {
-            AudioClip clip = clickSounds[currentClicks].sound;
-            float vol = clickSounds[currentClicks].volume;
-            if (clip != null)
-                audioSource.PlayOneShot(clip, vol);
+            ClickSound cs = clickSounds[currentClicks];
+            if (cs.sound != null)
+                StartCoroutine(PlayClickSound(cs));
         }
 
         currentClicks++;
@@ -79,11 +105,72 @@ public class ClickCounter : MonoBehaviour
         if (currentClicks >= clicksRequired)
         {
             isActivated = true;
+
+            if (loopAudioSource != null && loopAudioSource.isPlaying)
+                StartCoroutine(FadeAndStopLoop());
+
             if (hiddenItem != null)
                 hiddenItem.SetActive(true);
             if (hoverParticles != null)
                 hoverParticles.Hide();
         }
+    }
+
+    IEnumerator PlayClickSound(ClickSound cs)
+    {
+        GameObject tempAudio = new GameObject("TempAudio");
+        AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
+        tempSource.clip = cs.sound;
+        tempSource.spatialBlend = 0f;
+        tempSource.volume = 0f;
+        tempSource.Play();
+
+        float elapsed = 0f;
+        if (cs.fadeInDuration > 0f)
+        {
+            while (elapsed < cs.fadeInDuration)
+            {
+                elapsed += Time.deltaTime;
+                tempSource.volume = Mathf.Lerp(0f, cs.volume, elapsed / cs.fadeInDuration);
+                yield return null;
+            }
+        }
+        tempSource.volume = cs.volume;
+
+        float waitTime = cs.sound.length - cs.fadeInDuration - cs.fadeOutDuration;
+        if (waitTime > 0f)
+            yield return new WaitForSeconds(waitTime);
+
+        elapsed = 0f;
+        if (cs.fadeOutDuration > 0f)
+        {
+            while (elapsed < cs.fadeOutDuration)
+            {
+                elapsed += Time.deltaTime;
+                tempSource.volume = Mathf.Lerp(cs.volume, 0f, elapsed / cs.fadeOutDuration);
+                yield return null;
+            }
+        }
+
+        tempSource.volume = 0f;
+        Destroy(tempAudio);
+    }
+
+    IEnumerator FadeAndStopLoop()
+    {
+        float fadeDuration = 0.3f;
+        float startVolume = loopAudioSource.volume;
+        float elapsed = 0f;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            loopAudioSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / fadeDuration);
+            yield return null;
+        }
+
+        loopAudioSource.Stop();
+        loopAudioSource.volume = 0f;
     }
 
     IEnumerator Bump()

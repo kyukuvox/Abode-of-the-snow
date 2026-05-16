@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PortalItemActivator : MonoBehaviour
@@ -6,6 +7,12 @@ public class PortalItemActivator : MonoBehaviour
     public PortalAnimator portalTarget;
     public bool consumesItem = true;
     public Sprite activatedSprite;
+
+    [Header("Sons")]
+    public AudioClip activationSound;
+    [Range(0f, 1f)]
+    public float activationSoundVolume = 1f;
+    public float soundFadeDuration = 0.2f;
 
     private bool isActivated = false;
     private SpriteRenderer spriteRenderer;
@@ -32,6 +39,40 @@ public class PortalItemActivator : MonoBehaviour
             hoverParticles.Hide();
     }
 
+    IEnumerator PlaySoundWithFade(AudioClip clip, float targetVolume)
+    {
+        GameObject tempAudio = new GameObject("TempAudio");
+        AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
+        tempSource.clip = clip;
+        tempSource.spatialBlend = 0f;
+        tempSource.volume = 0f;
+        tempSource.Play();
+
+        float elapsed = 0f;
+        while (elapsed < soundFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            tempSource.volume = Mathf.Lerp(0f, targetVolume, elapsed / soundFadeDuration);
+            yield return null;
+        }
+        tempSource.volume = targetVolume;
+
+        float waitTime = clip.length - (soundFadeDuration * 2f);
+        if (waitTime > 0f)
+            yield return new WaitForSeconds(waitTime);
+
+        elapsed = 0f;
+        while (elapsed < soundFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            tempSource.volume = Mathf.Lerp(targetVolume, 0f, elapsed / soundFadeDuration);
+            yield return null;
+        }
+
+        tempSource.volume = 0f;
+        Destroy(tempAudio);
+    }
+
     public void TryActivateWithItem(Item item)
     {
         if (isActivated) return;
@@ -52,6 +93,9 @@ public class PortalItemActivator : MonoBehaviour
             {
                 Inventory.Instance.AddItem(item);
             }
+
+            if (activationSound != null)
+                StartCoroutine(PlaySoundWithFade(activationSound, activationSoundVolume));
 
             if (portalTarget != null)
                 portalTarget.ActivatePortal();

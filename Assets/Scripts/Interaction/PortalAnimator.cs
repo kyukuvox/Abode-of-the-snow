@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class PortalAnimator : MonoBehaviour
@@ -11,17 +11,22 @@ public class PortalAnimator : MonoBehaviour
     [Header("Particules")]
     public ParticleSystem descendParticles;
 
-    [Header("Cam�ra")]
+    [Header("Caméra")]
     public float shakeDuration = 0.5f;
     public float shakeMagnitude = 0.2f;
     public float cameraFocusSpeed = 5f;
     public float focusDuration = 2f;
 
+    [Header("Son")]
+    public AudioClip shakeSound;
+    [Range(0f, 1f)]
+    public float shakeSoundVolume = 1f;
+    public float soundFadeDuration = 0.3f;
+
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private bool isActivated = false;
-    private bool isOverridden = false;
-
+    private AudioSource shakeAudioSource;
 
     void Awake()
     {
@@ -34,6 +39,12 @@ public class PortalAnimator : MonoBehaviour
 
         if (descendParticles != null)
             descendParticles.Stop();
+
+        shakeAudioSource = gameObject.AddComponent<AudioSource>();
+        shakeAudioSource.loop = true;
+        shakeAudioSource.playOnAwake = false;
+        shakeAudioSource.spatialBlend = 0f;
+        shakeAudioSource.volume = 0f;
     }
 
     public void TryActivate(DialogueData dialogue)
@@ -79,7 +90,21 @@ public class PortalAnimator : MonoBehaviour
 
         transform.position = targetPosition;
 
+        if (shakeSound != null && shakeAudioSource != null)
+        {
+            shakeAudioSource.clip = shakeSound;
+            shakeAudioSource.volume = 0f;
+            shakeAudioSource.Play();
+            StartCoroutine(FadeAudioSource(shakeAudioSource, 0f, shakeSoundVolume, soundFadeDuration));
+        }
+
         yield return StartCoroutine(ShakeCamera());
+
+        if (shakeAudioSource != null)
+            yield return StartCoroutine(FadeAudioSource(shakeAudioSource, shakeSoundVolume, 0f, soundFadeDuration));
+
+        if (shakeAudioSource != null)
+            shakeAudioSource.Stop();
 
         if (descendParticles != null)
             descendParticles.Stop();
@@ -89,8 +114,23 @@ public class PortalAnimator : MonoBehaviour
         if (camGround != null)
         {
             camGround.ExitCinematicMode();
-            camGround.SetOverride(false); 
+            camGround.SetOverride(false);
         }
+    }
+
+    IEnumerator FadeAudioSource(AudioSource source, float startVolume, float endVolume, float duration)
+    {
+        float elapsed = 0f;
+        source.volume = startVolume;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            source.volume = Mathf.Lerp(startVolume, endVolume, elapsed / duration);
+            yield return null;
+        }
+
+        source.volume = endVolume;
     }
 
     IEnumerator FocusCameraOnPortal()

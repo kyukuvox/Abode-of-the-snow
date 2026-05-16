@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
   m_Name: QUICK ATTACK
   m_EditorClassIdentifier: Assembly-CSharp::CardData
+  cardDescription: 'Do 3 damage '
   cardName: QUICK ATTACK
   cardSprite: {fileID: 8808574414164651098, guid: d32d9d40135cf9145a361d0927d3a1cf, type: 3}
-  description: 
+  description: 'You directly attack the opponent and deal 3 points of damages. '
   cardType: 0
   attackType: 3
   costType: 0

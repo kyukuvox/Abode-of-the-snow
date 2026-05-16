@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
   m_Name: HEAVY ATTACK
   m_EditorClassIdentifier: Assembly-CSharp::CardData
+  cardDescription: Do 6 Damage in 2 Turns
   cardName: HEAVY ATTACK
   cardSprite: {fileID: 8318920597621854153, guid: 6e4a9789c7c065e4f82564f0b57a33e4, type: 3}
-  description: 
+  description: You attack the opponent with a charged attack. You will deal 6 damage
+    in 2 turns.
   cardType: 0
   attackType: 3
   costType: 0

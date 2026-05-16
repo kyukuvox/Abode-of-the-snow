@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class SpriteParticleHover : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class SpriteParticleHover : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Collider2D col;
     private Bounds emissionBounds;
+    private Coroutine deactivateCoroutine;
 
     void Start()
     {
@@ -118,6 +120,13 @@ public class SpriteParticleHover : MonoBehaviour
     public void ShowParticles()
     {
         if (particles == null) return;
+
+        if (deactivateCoroutine != null)
+        {
+            StopCoroutine(deactivateCoroutine);
+            deactivateCoroutine = null;
+        }
+
         particles.gameObject.SetActive(true);
         particles.Play();
     }
@@ -125,8 +134,18 @@ public class SpriteParticleHover : MonoBehaviour
     public void HideParticles()
     {
         if (particles == null) return;
-        particles.Stop();
-        particles.Clear();
+
+        particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+
+        if (deactivateCoroutine != null)
+            StopCoroutine(deactivateCoroutine);
+        deactivateCoroutine = StartCoroutine(WaitAndDeactivate());
+    }
+
+    IEnumerator WaitAndDeactivate()
+    {
+        yield return new WaitUntil(() => particles.particleCount == 0);
         particles.gameObject.SetActive(false);
+        deactivateCoroutine = null;
     }
 }

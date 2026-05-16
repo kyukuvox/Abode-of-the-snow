@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
   m_Name: EXHAUSTION
   m_EditorClassIdentifier: Assembly-CSharp::CardData
+  cardDescription: 'Pay 2 DEFENSE / Hit 5 ACTION '
   cardName: EXHAUSTION
   cardSprite: {fileID: 21300000, guid: 622d8b9b356a5b9408d27671db16730a, type: 3}
-  description: adieu le boucli
+  description: The opponent feel tired and loose 5 action points. In exchange , you
+    have to pay 2 defense points.
   cardType: 0
   attackType: 2
   costType: 2
