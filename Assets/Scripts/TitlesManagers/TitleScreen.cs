@@ -70,6 +70,7 @@ public class TitleScreen : MonoBehaviour
     {
         PlayerPrefs.DeleteKey(SAVE_KEY);
         PlayerPrefs.DeleteKey(LOAD_FLAG);
+        PlayerPrefs.DeleteKey("CardGameTutorialShown");
         PlayerPrefs.Save();
 
         StartCoroutine(PlayIntroThenLoad());

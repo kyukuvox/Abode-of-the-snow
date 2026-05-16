@@ -82,13 +82,18 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!isDragging)
-            transform.localScale = Vector3.one * 1.15f;
+        {
+            if (cardData != null && !string.IsNullOrEmpty(cardData.cardDescription))
+                CardTooltip.Instance.Show(cardData.cardDescription);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (!isDragging)
-            transform.localScale = Vector3.one;
+        {
+            CardTooltip.Instance.Hide();
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -108,6 +113,8 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     public void OnBeginDrag(PointerEventData eventData)
     {
         isDragging = true;
+        CardTooltip.Instance.Hide();
+
         originalScale = Vector3.one;
         originalPosition = rectTransform.anchoredPosition;
         originalParent = transform.parent;

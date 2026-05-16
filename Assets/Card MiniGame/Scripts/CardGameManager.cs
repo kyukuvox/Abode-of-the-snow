@@ -68,6 +68,17 @@ public class CardGameManager : MonoBehaviour
     public float cardRewardDisplayDuration = 3f;
     public float cardRewardFadeDuration = 0.5f;
 
+    [Header("Tutoriel")]
+    public GameObject tutorialPanel;
+    public Image tutorialImage;
+    public Button tutorialLeftButton;
+    public Button tutorialRightButton;
+    public Sprite[] tutorialSprites;
+    public float tutorialFadeDuration = 0.3f;
+
+    private int tutorialIndex = 0;
+    private const string TUTORIAL_KEY = "CardGameTutorialShown";
+
     private int playerLife;
     private int playerActionPoints;
     private int playerDefense;
@@ -114,6 +125,14 @@ public class CardGameManager : MonoBehaviour
 
         if (cardRewardPanel != null)
             cardRewardPanel.SetActive(false);
+
+        if (tutorialPanel != null)
+            tutorialPanel.SetActive(false);
+
+        if (tutorialLeftButton != null)
+            tutorialLeftButton.onClick.AddListener(TutorialPrevious);
+        if (tutorialRightButton != null)
+            tutorialRightButton.onClick.AddListener(TutorialNext);
     }
 
     public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item[] rewards, CardData cardReward, bool activatesPortal, NPCWithItemDialogue npc)
@@ -155,6 +174,9 @@ public class CardGameManager : MonoBehaviour
 
         if (cardRewardPanel != null)
             cardRewardPanel.SetActive(false);
+
+        if (tutorialPanel != null)
+            tutorialPanel.SetActive(false);
 
         if (fadePanel != null)
         {
@@ -235,6 +257,9 @@ public class CardGameManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
 
+        if (!PlayerPrefs.HasKey(TUTORIAL_KEY))
+            yield return StartCoroutine(ShowTutorial());
+
         int safetyLimit = 0;
         while (playerHand.Count < 5 && safetyLimit < 20)
         {
@@ -245,6 +270,84 @@ public class CardGameManager : MonoBehaviour
 
         InitEnemyHand();
         UpdateUI();
+    }
+
+    IEnumerator ShowTutorial()
+    {
+        if (tutorialPanel == null || tutorialSprites == null || tutorialSprites.Length == 0)
+            yield break;
+
+        tutorialIndex = 0;
+        UpdateTutorialImage();
+
+        CanvasGroup cg = tutorialPanel.GetComponent<CanvasGroup>();
+        if (cg == null) cg = tutorialPanel.AddComponent<CanvasGroup>();
+
+        cg.alpha = 0f;
+        tutorialPanel.SetActive(true);
+
+        float elapsed = 0f;
+        while (elapsed < tutorialFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(0f, 1f, elapsed / tutorialFadeDuration);
+            yield return null;
+        }
+        cg.alpha = 1f;
+        yield return new WaitUntil(() => !tutorialPanel.activeSelf);
+
+        PlayerPrefs.SetInt(TUTORIAL_KEY, 1);
+        PlayerPrefs.Save();
+    }
+
+    void UpdateTutorialImage()
+    {
+        if (tutorialImage != null && tutorialSprites != null && tutorialIndex < tutorialSprites.Length)
+            tutorialImage.sprite = tutorialSprites[tutorialIndex];
+
+        if (tutorialLeftButton != null)
+            tutorialLeftButton.gameObject.SetActive(tutorialIndex > 0);
+    }
+
+    void TutorialPrevious()
+    {
+        if (tutorialIndex > 0)
+        {
+            tutorialIndex--;
+            UpdateTutorialImage();
+        }
+    }
+
+    void TutorialNext()
+    {
+        if (tutorialSprites == null) return;
+
+        tutorialIndex++;
+
+        if (tutorialIndex >= tutorialSprites.Length)
+        {
+            StartCoroutine(CloseTutorialWithFade());
+            return;
+        }
+
+        UpdateTutorialImage();
+    }
+
+    IEnumerator CloseTutorialWithFade()
+    {
+        CanvasGroup cg = tutorialPanel.GetComponent<CanvasGroup>();
+        if (cg == null) cg = tutorialPanel.AddComponent<CanvasGroup>();
+
+        // Fade out
+        float elapsed = 0f;
+        while (elapsed < tutorialFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(1f, 0f, elapsed / tutorialFadeDuration);
+            yield return null;
+        }
+        cg.alpha = 0f;
+        tutorialPanel.SetActive(false);
     }
 
     void InitEnemyHand()
@@ -791,7 +894,6 @@ public class CardGameManager : MonoBehaviour
             foreach (Item item in rewardItems)
             {
                 if (item == null) continue;
-
                 if (!playerWonLastGame) break;
 
                 Inventory.Instance.AddItem(item);

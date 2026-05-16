@@ -38,8 +38,24 @@ public class DeckBuilderManager : MonoBehaviour
 
     void OnEnable()
     {
-        if (browserCardNameText != null)
-            browserCardNameText.text = "";
+        if (browserLeftArrow != null)
+        {
+            Navigation nav = browserLeftArrow.navigation;
+            nav.mode = Navigation.Mode.None;
+            browserLeftArrow.navigation = nav;
+        }
+        if (browserRightArrow != null)
+        {
+            Navigation nav = browserRightArrow.navigation;
+            nav.mode = Navigation.Mode.None;
+            browserRightArrow.navigation = nav;
+        }
+        if (assignCardButton != null)
+        {
+            Navigation nav = assignCardButton.navigation;
+            nav.mode = Navigation.Mode.None;
+            assignCardButton.navigation = nav;
+        }
 
         if (!isInitialized)
         {
@@ -58,7 +74,6 @@ public class DeckBuilderManager : MonoBehaviour
         selectedSlotIndex = -1;
 
         UpdateSlotsDisplay();
-
         StartCoroutine(InitBrowserDelayed());
     }
 
@@ -87,6 +102,10 @@ public class DeckBuilderManager : MonoBehaviour
 
             if (btn == null)
                 btn = slot.AddComponent<Button>();
+
+            Navigation nav = btn.navigation;
+            nav.mode = Navigation.Mode.None;
+            btn.navigation = nav;
 
             Outline outline = slot.GetComponent<Outline>();
             if (outline == null)
@@ -137,7 +156,7 @@ public class DeckBuilderManager : MonoBehaviour
         }
     }
 
-    void PreviousBrowserCard()
+    public void PreviousBrowserCard()
     {
         List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
         if (cards.Count == 0) return;
@@ -147,7 +166,7 @@ public class DeckBuilderManager : MonoBehaviour
         DisplayBrowserCard(browserIndex);
     }
 
-    void NextBrowserCard()
+    public void NextBrowserCard()
     {
         List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
         if (cards.Count == 0) return;

@@ -26,8 +26,13 @@ public class NPCWithItemDialogue : NPCInteraction
     public DialogueData fightDialogue;
     public RequiredItemsCondition itemsCondition;
 
+    [Header("Récompense finale")]
+    public Item rewardItem; 
+    public DialogueData rewardDialogue; 
+
     private bool hasBeenDefeated = false;
     private bool hasBeenFought = false;
+    private bool rewardGiven = false; 
     private List<Item> consumedItems = new List<Item>();
     private HoverParticleManager hoverParticles;
 
@@ -35,11 +40,6 @@ public class NPCWithItemDialogue : NPCInteraction
     {
         base.Start();
         hoverParticles = GetComponent<HoverParticleManager>();
-    }
-
-    public void SetFought()
-    {
-        hasBeenFought = true;
     }
 
     void OnMouseEnter()
@@ -68,6 +68,11 @@ public class NPCWithItemDialogue : NPCInteraction
     public void SetDefeated(bool defeated)
     {
         hasBeenDefeated = defeated;
+    }
+
+    public void SetFought()
+    {
+        hasBeenFought = true;
     }
 
     public bool HasBeenDefeated() { return hasBeenDefeated; }
@@ -174,8 +179,15 @@ public class NPCWithItemDialogue : NPCInteraction
 
                 DialogueManager.Instance.StartDialogue(pair.dialogue, this);
 
-                if (AllConsumedItemsGiven() && fightDialogue != null)
-                    StartCoroutine(LaunchFightDialogueAfterDelay());
+                if (AllConsumedItemsGiven())
+                {
+                    bool triggersCardGame = pair.dialogue != null && pair.dialogue.triggersCardGame;
+
+                    if (!triggersCardGame && rewardItem != null && !rewardGiven)
+                        StartCoroutine(GiveRewardAfterDialogue());
+                    else if (fightDialogue != null)
+                        StartCoroutine(LaunchFightDialogueAfterDelay());
+                }
 
                 return;
             }
@@ -183,6 +195,26 @@ public class NPCWithItemDialogue : NPCInteraction
 
         Inventory.Instance.AddItem(item);
         DialogueManager.Instance.StartDialogue(defaultDialogue, this);
+    }
+
+    IEnumerator GiveRewardAfterDialogue()
+    {
+        yield return new WaitUntil(() => !DialogueManager.Instance.IsActive());
+        yield return new WaitForSeconds(0.3f);
+
+        if (rewardGiven) yield break;
+        rewardGiven = true;
+
+        Inventory.Instance.AddItem(rewardItem);
+
+        ItemDescriptionManager.Instance.ShowItemDescription(rewardItem);
+        yield return new WaitUntil(() => !ItemDescriptionManager.Instance.IsActive());
+
+        if (rewardDialogue != null)
+        {
+            yield return new WaitForSeconds(0.3f);
+            DialogueManager.Instance.StartDialogue(rewardDialogue, this);
+        }
     }
 
     IEnumerator LaunchFightDialogueAfterDelay()

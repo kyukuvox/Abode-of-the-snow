@@ -12,6 +12,8 @@ public class ClickCounter : MonoBehaviour
     public class ClickSound
     {
         public AudioClip sound;
+        [Range(0f, 1f)]
+        public float volume = 1f;
     }
 
     public ClickSound[] clickSounds;
@@ -65,8 +67,9 @@ public class ClickCounter : MonoBehaviour
         if (clickSounds != null && currentClicks < clickSounds.Length)
         {
             AudioClip clip = clickSounds[currentClicks].sound;
+            float vol = clickSounds[currentClicks].volume;
             if (clip != null)
-                audioSource.PlayOneShot(clip);
+                audioSource.PlayOneShot(clip, vol);
         }
 
         currentClicks++;

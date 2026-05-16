@@ -6,6 +6,11 @@ public class NPCInteraction : MonoBehaviour
     public float interactionRange = 2f;
     public GameObject interactionSprite;
 
+    [Header("Son")]
+    public AudioClip interactionSound;
+    [Range(0f, 1f)]
+    public float soundVolume = 1f;
+
     public enum InteractionType { KeyPress, MouseClick }
     public InteractionType interactionType = InteractionType.KeyPress;
 
@@ -43,6 +48,16 @@ public class NPCInteraction : MonoBehaviour
                     DialogueManager.Instance.OnPressE();
                 return;
             }
+
+            if (interactionType == InteractionType.KeyPress)
+            {
+                if (playerInRange && dialogueCooldown <= 0f)
+                {
+                    PlayInteractionSound();
+                    dialogueCooldown = 1f;
+                    TriggerDialogue();
+                }
+            }
         }
 
         if (GameStateManager.Instance.IsCinematicMode()) return;
@@ -71,18 +86,6 @@ public class NPCInteraction : MonoBehaviour
         if (wasDialogueActive && !isDialogueCurrentlyActive)
             dialogueCooldown = 1f;
         wasDialogueActive = isDialogueCurrentlyActive;
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (interactionType == InteractionType.KeyPress)
-            {
-                if (playerInRange && dialogueCooldown <= 0f)
-                {
-                    dialogueCooldown = 1f;
-                    TriggerDialogue();
-                }
-            }
-        }
     }
 
     void OnMouseEnter()
@@ -117,8 +120,22 @@ public class NPCInteraction : MonoBehaviour
         if (GameStateManager.Instance.IsCinematicMode()) return;
         if (dialogueCooldown > 0f) return;
 
+        PlayInteractionSound();
         dialogueCooldown = 1f;
         TriggerDialogue();
+    }
+
+    void PlayInteractionSound()
+    {
+        if (interactionSound == null) return;
+
+        GameObject tempAudio = new GameObject("TempAudio");
+        AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
+        tempSource.clip = interactionSound;
+        tempSource.volume = soundVolume;
+        tempSource.spatialBlend = 0f; 
+        tempSource.Play();
+        Destroy(tempAudio, interactionSound.length);
     }
 
     public virtual void TriggerDialogue()

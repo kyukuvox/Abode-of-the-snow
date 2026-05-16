@@ -1,38 +1,30 @@
 using UnityEngine;
+using System.Collections;
 
 public class EndingTrigger : MonoBehaviour
 {
-    public GameObject hoverSprite;
+    private bool hasTriggered = false;
 
-    void Start()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (hoverSprite != null)
-            hoverSprite.SetActive(false);
-    }
-
-    void OnMouseEnter()
-    {
-        if (PauseMenu.Instance.IsPaused()) return;
-        if (MenuManager.Instance.IsMenuOpen()) return;
-        if (hoverSprite != null)
-            hoverSprite.SetActive(true);
-    }
-
-    void OnMouseExit()
-    {
-        if (hoverSprite != null)
-            hoverSprite.SetActive(false);
-    }
-
-    void OnMouseDown()
-    {
+        if (hasTriggered) return;
+        if (!other.CompareTag("Player")) return;
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (DialogueManager.Instance.IsActive()) return;
 
+        hasTriggered = true;
+        StartCoroutine(TriggerEnding());
+    }
+
+    IEnumerator TriggerEnding()
+    {
+        bool fadeDone = false;
         FadeManager.Instance.FadeToBlackAndBack(() =>
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(2);
         });
+
+        yield return null;
     }
 }

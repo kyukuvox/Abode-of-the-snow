@@ -8,6 +8,7 @@ public class SpriteParticleHover : MonoBehaviour
     public float particleSpeed = 0.3f;
     public float particleLifetime = 1.5f;
     public Color particleColor = Color.white;
+    public Sprite roundSprite;
 
     private ParticleSystem particles;
     private SpriteRenderer spriteRenderer;
@@ -37,7 +38,19 @@ public class SpriteParticleHover : MonoBehaviour
         particles = particleObj.AddComponent<ParticleSystem>();
 
         ParticleSystemRenderer psRenderer = particleObj.GetComponent<ParticleSystemRenderer>();
-        psRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        psRenderer.renderMode = ParticleSystemRenderMode.Billboard;
+
+        if (roundSprite != null)
+        {
+            Material mat = new Material(Shader.Find("Sprites/Default"));
+            mat.mainTexture = roundSprite.texture;
+            psRenderer.material = mat;
+        }
+        else
+        {
+            psRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        }
+
         psRenderer.sortingLayerName = spriteRenderer != null ?
             spriteRenderer.sortingLayerName : "Default";
         psRenderer.sortingOrder = spriteRenderer != null ?
@@ -53,11 +66,13 @@ public class SpriteParticleHover : MonoBehaviour
         main.simulationSpace = ParticleSystemSimulationSpace.World;
         main.maxParticles = maxParticles;
 
-        var shape = particles.shape;
-        shape.enabled = false;
-
         var emission = particles.emission;
-        emission.rateOverTime = 0f;
+        emission.rateOverTime = maxParticles / particleLifetime;
+
+        var shape = particles.shape;
+        shape.enabled = true;
+        shape.shapeType = ParticleSystemShapeType.Rectangle;
+        shape.scale = new Vector3(emissionBounds.size.x, emissionBounds.size.y, 0f);
 
         var velocity = particles.velocityOverLifetime;
         velocity.enabled = true;
@@ -98,24 +113,6 @@ public class SpriteParticleHover : MonoBehaviour
             emissionBounds = col.bounds;
         else if (spriteRenderer != null)
             emissionBounds = spriteRenderer.bounds;
-
-        if (particles != null && particles.isPlaying)
-        {
-            int toEmit = Mathf.Max(1, (int)(maxParticles * Time.deltaTime));
-            for (int i = 0; i < toEmit; i++)
-            {
-                Vector3 randomPos = new Vector3(
-                    Random.Range(emissionBounds.min.x, emissionBounds.max.x),
-                    Random.Range(emissionBounds.min.y, emissionBounds.max.y),
-                    0f
-                );
-
-                var emitParams = new ParticleSystem.EmitParams();
-                emitParams.position = randomPos;
-                emitParams.applyShapeToPosition = false;
-                particles.Emit(emitParams, 1);
-            }
-        }
     }
 
     public void ShowParticles()

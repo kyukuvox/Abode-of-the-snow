@@ -217,3 +217,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSlotHover
   hoverOffset: 50
   animationSpeed: 8
+  hoverSound: {fileID: 8300000, guid: cf35bab4333fdb7458ea07e16565505a, type: 3}
+  soundVolume: 0.5

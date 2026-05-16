@@ -7,13 +7,19 @@ public class ItemSlotHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public float hoverOffset = 10f;
     public float animationSpeed = 10f;
 
+    [Header("Son")]
+    public AudioClip hoverSound;
+    [Range(0f, 1f)]
+    public float soundVolume = 1f;
+
     public static bool IsDragging = false;
 
     private RectTransform visualRect;
     private Vector2 basePosition;
     private Vector2 targetPosition;
     private Coroutine animCoroutine;
-    private bool isReady = false; 
+    private bool isReady = false;
+    private AudioSource audioSource;
 
     void Start()
     {
@@ -22,6 +28,11 @@ public class ItemSlotHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             visualRect = visual.GetComponent<RectTransform>();
         else
             visualRect = GetComponent<RectTransform>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
 
         StartCoroutine(InitBasePosition());
     }
@@ -46,6 +57,9 @@ public class ItemSlotHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         targetPosition = basePosition + Vector2.up * hoverOffset;
         RestartAnimation();
+
+        if (hoverSound != null && audioSource != null)
+            audioSource.PlayOneShot(hoverSound, soundVolume);
     }
 
     public void OnPointerExit(PointerEventData eventData)

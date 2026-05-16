@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour
 {
@@ -39,6 +40,67 @@ public class MenuManager : MonoBehaviour
                 CloseMenu();
             else
                 OpenMenu();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isAnimating) return;
+            if (isMenuOpen)
+                CloseMenu();
+        }
+
+        if (isMenuOpen && !isAnimating)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                NavigateLeft();
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+                NavigateRight();
+        }
+    }
+
+    void NavigateLeft()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+
+        if (glossairePage.activeSelf)
+        {
+            GlossaireManager glossaire = glossairePage.GetComponent<GlossaireManager>();
+            if (glossaire != null)
+                glossaire.PreviousCard();
+        }
+        else if (itemGlossairePage.activeSelf)
+        {
+            ItemGlossaireManager itemGlossaire = itemGlossairePage.GetComponent<ItemGlossaireManager>();
+            if (itemGlossaire != null)
+                itemGlossaire.PreviousItem();
+        }
+        else if (deckBuilderPage.activeSelf)
+        {
+            if (DeckBuilderManager.Instance != null)
+                DeckBuilderManager.Instance.PreviousBrowserCard();
+        }
+    }
+
+    void NavigateRight()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+
+        if (glossairePage.activeSelf)
+        {
+            GlossaireManager glossaire = glossairePage.GetComponent<GlossaireManager>();
+            if (glossaire != null)
+                glossaire.NextCard();
+        }
+        else if (itemGlossairePage.activeSelf)
+        {
+            ItemGlossaireManager itemGlossaire = itemGlossairePage.GetComponent<ItemGlossaireManager>();
+            if (itemGlossaire != null)
+                itemGlossaire.NextItem();
+        }
+        else if (deckBuilderPage.activeSelf)
+        {
+            if (DeckBuilderManager.Instance != null)
+                DeckBuilderManager.Instance.NextBrowserCard();
         }
     }
 
@@ -100,6 +162,8 @@ public class MenuManager : MonoBehaviour
         panelRect.anchoredPosition = targetPos;
         Time.timeScale = 0f;
         isAnimating = false;
+
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     IEnumerator AnimateClose()
@@ -139,6 +203,8 @@ public class MenuManager : MonoBehaviour
         GlossaireManager glossaire = glossairePage.GetComponent<GlossaireManager>();
         if (glossaire != null)
             glossaire.RefreshCards();
+
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void ShowDeckBuilder()
@@ -146,6 +212,8 @@ public class MenuManager : MonoBehaviour
         glossairePage.SetActive(false);
         deckBuilderPage.SetActive(true);
         itemGlossairePage.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void ShowItemGlossaire()
@@ -159,6 +227,8 @@ public class MenuManager : MonoBehaviour
         ItemGlossaireManager itemGlossaire = itemGlossairePage.GetComponent<ItemGlossaireManager>();
         if (itemGlossaire != null)
             itemGlossaire.RefreshItems();
+
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public bool IsMenuOpen() { return isMenuOpen; }

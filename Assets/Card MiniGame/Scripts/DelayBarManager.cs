@@ -51,14 +51,22 @@ public class DelayBarManager : MonoBehaviour
             CARD_HEIGHT
         );
 
-        Text cardNameText = entry.transform.Find("CardNameText").GetComponent<Text>();
-        Text turnsLeftText = entry.transform.Find("TurnsLeftText").GetComponent<Text>();
-        Text ownerText = entry.transform.Find("OwnerText").GetComponent<Text>();
+        Text cardNameText = entry.transform.Find("CardNameText")?.GetComponent<Text>();
+        Text turnsLeftText = entry.transform.Find("TurnsLeftText")?.GetComponent<Text>();
+        Text ownerText = entry.transform.Find("OwnerText")?.GetComponent<Text>();
+        Text powerText = entry.transform.Find("PowerText")?.GetComponent<Text>();
+        Text effectText = entry.transform.Find("EffectText")?.GetComponent<Text>();
         Image background = entry.GetComponent<Image>();
 
         if (cardNameText != null) cardNameText.text = card.cardName;
-        if (turnsLeftText != null) turnsLeftText.text = "Dans " + turns + " tours";
+        if (turnsLeftText != null) turnsLeftText.text = "IN " + turns + " TURNS";
         if (ownerText != null) ownerText.text = isPlayer ? "J" : "E";
+
+        if (powerText != null)
+            powerText.text = card.power.ToString();
+
+        if (effectText != null)
+            effectText.text = GetEffectLabel(card);
 
         if (background != null)
         {
@@ -92,6 +100,34 @@ public class DelayBarManager : MonoBehaviour
         delayedCards.Add(delayed);
     }
 
+    string GetEffectLabel(CardData card)
+    {
+        switch (card.cardType)
+        {
+            case CardData.CardType.Defense:
+                return "DEFENSE";
+
+            case CardData.CardType.Recharge:
+                return "ACTION POINTS";
+
+            case CardData.CardType.Attack:
+                switch (card.attackType)
+                {
+                    case CardData.AttackType.HitLife:
+                        return "HEALTH";
+                    case CardData.AttackType.HitDefense:
+                        return "DEFENSE";
+                    case CardData.AttackType.HitRecharge:
+                        return "ACTION";
+                    default:
+                        return "ATTACK";
+                }
+
+            default:
+                return "";
+        }
+    }
+
     public void TickTurn(bool isPlayerTurn)
     {
         List<DelayedCard> toRemove = new List<DelayedCard>();
@@ -104,7 +140,7 @@ public class DelayBarManager : MonoBehaviour
 
                 if (delayed.turnsLeftText != null)
                     delayed.turnsLeftText.text = delayed.turnsLeft > 0 ?
-                        "Dans " + delayed.turnsLeft + " tours" :
+                        "IN " + delayed.turnsLeft + " TURNS" :
                         "Ce tour !";
 
                 if (delayed.turnsLeft <= 0)

@@ -44,7 +44,7 @@ public class ItemGlossaireManager : MonoBehaviour
             Debug.Log("Aucun item à afficher !");
     }
 
-    void PreviousItem()
+    public void PreviousItem()
     {
         if (collectedItems.Count == 0) return;
         currentIndex--;
@@ -53,7 +53,7 @@ public class ItemGlossaireManager : MonoBehaviour
         DisplayItem(currentIndex);
     }
 
-    void NextItem()
+    public void NextItem()
     {
         if (collectedItems.Count == 0) return;
         currentIndex++;
