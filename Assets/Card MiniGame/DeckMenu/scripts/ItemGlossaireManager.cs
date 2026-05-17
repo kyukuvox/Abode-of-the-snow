@@ -46,6 +46,7 @@ public class ItemGlossaireManager : MonoBehaviour
 
     public void PreviousItem()
     {
+        MenuManager.Instance.PlayNavigationSound();
         if (collectedItems.Count == 0) return;
         currentIndex--;
         if (currentIndex < 0)
@@ -55,6 +56,7 @@ public class ItemGlossaireManager : MonoBehaviour
 
     public void NextItem()
     {
+        MenuManager.Instance.PlayNavigationSound();
         if (collectedItems.Count == 0) return;
         currentIndex++;
         if (currentIndex >= collectedItems.Count)

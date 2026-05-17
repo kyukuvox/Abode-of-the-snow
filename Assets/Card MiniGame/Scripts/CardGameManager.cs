@@ -76,6 +76,35 @@ public class CardGameManager : MonoBehaviour
     public Sprite[] tutorialSprites;
     public float tutorialFadeDuration = 0.3f;
 
+    [Header("Sons")]
+    public AudioClip backgroundMusic;
+    [Range(0f, 1f)]
+    public float musicVolume = 1f;
+    public float musicFadeDuration = 1f;
+    public AudioClip playerCardDrawSound;
+    [Range(0f, 1f)]
+    public float playerCardDrawVolume = 1f;
+    public AudioClip enemyCardDrawSound;
+    [Range(0f, 1f)]
+    public float enemyCardDrawVolume = 1f;
+    public AudioClip characterIntroSound;
+    [Range(0f, 1f)]
+    public float characterIntroVolume = 1f;
+    public AudioClip playCardSound;
+    [Range(0f, 1f)]
+    public float playCardVolume = 1f;
+    public AudioClip playerDamageSound;
+    [Range(0f, 1f)]
+    public float playerDamageVolume = 1f;
+    public AudioClip enemyDamageSound;
+    [Range(0f, 1f)]
+    public float enemyDamageVolume = 1f;
+    public AudioClip statBoostSound;
+    [Range(0f, 1f)]
+    public float statBoostVolume = 1f;
+
+    private AudioSource musicAudioSource;
+
     private int tutorialIndex = 0;
     private const string TUTORIAL_KEY = "CardGameTutorialShown";
 
@@ -113,6 +142,12 @@ public class CardGameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+
+        musicAudioSource = gameObject.AddComponent<AudioSource>();
+        musicAudioSource.loop = true;
+        musicAudioSource.playOnAwake = false;
+        musicAudioSource.spatialBlend = 0f;
+        musicAudioSource.volume = 0f;
     }
 
     void Start()
@@ -133,6 +168,59 @@ public class CardGameManager : MonoBehaviour
             tutorialLeftButton.onClick.AddListener(TutorialPrevious);
         if (tutorialRightButton != null)
             tutorialRightButton.onClick.AddListener(TutorialNext);
+    }
+
+    void PlaySound(AudioClip clip, float volume)
+    {
+        if (clip == null) return;
+        GameObject tempAudio = new GameObject("TempAudio");
+        AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
+        tempSource.clip = clip;
+        tempSource.volume = volume;
+        tempSource.spatialBlend = 0f;
+        tempSource.Play();
+        Destroy(tempAudio, clip.length);
+    }
+
+    IEnumerator FadeInMusic()
+    {
+        if (backgroundMusic == null) yield break;
+        musicAudioSource.clip = backgroundMusic;
+        musicAudioSource.volume = 0f;
+        musicAudioSource.Play();
+
+        float elapsed = 0f;
+        while (elapsed < musicFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            musicAudioSource.volume = Mathf.Lerp(0f, musicVolume, elapsed / musicFadeDuration);
+            yield return null;
+        }
+        musicAudioSource.volume = musicVolume;
+    }
+
+    IEnumerator FadeOutMusic()
+    {
+        float startVolume = musicAudioSource.volume;
+        float elapsed = 0f;
+
+        while (elapsed < musicFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            musicAudioSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / musicFadeDuration);
+            yield return null;
+        }
+
+        musicAudioSource.volume = 0f;
+        musicAudioSource.Stop();
+    }
+
+    IEnumerator ResumeAmbientMusic()
+    {
+        yield return new WaitForSeconds(musicFadeDuration);
+
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.ResumeMusic(musicFadeDuration);
     }
 
     public void StartCardGame(CharacterCardData enemy, CharacterCardData player, Item[] rewards, CardData cardReward, bool activatesPortal, NPCWithItemDialogue npc)
@@ -244,6 +332,13 @@ public class CardGameManager : MonoBehaviour
 
         yield return StartCoroutine(FadeOut());
 
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.StopMusic(musicFadeDuration);
+
+        PlaySound(characterIntroSound, characterIntroVolume);
+
+        StartCoroutine(FadeInMusic());
+
         float elapsed = 0f;
         while (elapsed < enemySpriteDuration)
         {
@@ -294,6 +389,7 @@ public class CardGameManager : MonoBehaviour
             yield return null;
         }
         cg.alpha = 1f;
+
         yield return new WaitUntil(() => !tutorialPanel.activeSelf);
 
         PlayerPrefs.SetInt(TUTORIAL_KEY, 1);
@@ -338,7 +434,6 @@ public class CardGameManager : MonoBehaviour
         CanvasGroup cg = tutorialPanel.GetComponent<CanvasGroup>();
         if (cg == null) cg = tutorialPanel.AddComponent<CanvasGroup>();
 
-        // Fade out
         float elapsed = 0f;
         while (elapsed < tutorialFadeDuration)
         {
@@ -405,6 +500,8 @@ public class CardGameManager : MonoBehaviour
         cg.alpha = 0f;
         rect.anchoredPosition = startPos;
 
+        PlaySound(enemyCardDrawSound, enemyCardDrawVolume);
+
         float elapsed = 0f;
         while (elapsed < 1f)
         {
@@ -461,6 +558,8 @@ public class CardGameManager : MonoBehaviour
 
         cg.alpha = 0f;
 
+        PlaySound(playerCardDrawSound, playerCardDrawVolume);
+
         yield return null;
         yield return null;
         yield return null;
@@ -484,6 +583,8 @@ public class CardGameManager : MonoBehaviour
     public void PlayCard(Card card)
     {
         if (!isPlayerTurn) return;
+
+        PlaySound(playCardSound, playCardVolume);
 
         switch (card.cardData.costType)
         {
@@ -526,12 +627,15 @@ public class CardGameManager : MonoBehaviour
             switch (card.cardType)
             {
                 case CardData.CardType.Attack:
+                    PlaySound(enemyDamageSound, enemyDamageVolume);
                     ApplyAttack(card, ref enemyDefense, ref enemyActionPoints, ref enemyLife, true);
                     break;
                 case CardData.CardType.Defense:
+                    PlaySound(statBoostSound, statBoostVolume);
                     playerDefense += card.power;
                     break;
                 case CardData.CardType.Recharge:
+                    PlaySound(statBoostSound, statBoostVolume);
                     playerActionPoints = Mathf.Min(
                         playerActionPoints + card.power,
                         playerData.maxActionPoints
@@ -544,6 +648,7 @@ public class CardGameManager : MonoBehaviour
             switch (card.cardType)
             {
                 case CardData.CardType.Attack:
+                    PlaySound(playerDamageSound, playerDamageVolume);
                     ApplyAttack(card, ref playerDefense, ref playerActionPoints, ref playerLife, false);
                     break;
                 case CardData.CardType.Defense:
@@ -802,6 +907,10 @@ public class CardGameManager : MonoBehaviour
     void EndGame(bool playerWon)
     {
         StopAllCoroutines();
+
+        StartCoroutine(FadeOutMusic());
+
+        StartCoroutine(ResumeAmbientMusic());
 
         rewardsDone = false;
         playerWonLastGame = playerWon;

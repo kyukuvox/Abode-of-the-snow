@@ -168,6 +168,7 @@ public class DeckBuilderManager : MonoBehaviour
 
     public void NextBrowserCard()
     {
+        MenuManager.Instance.PlayNavigationSound();
         List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
         if (cards.Count == 0) return;
         browserIndex++;
@@ -178,6 +179,7 @@ public class DeckBuilderManager : MonoBehaviour
 
     void DisplayBrowserCard(int index)
     {
+        MenuManager.Instance.PlayNavigationSound();
         List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
 
         if (cards.Count == 0 || index >= cards.Count) return;

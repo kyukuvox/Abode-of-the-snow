@@ -5039,6 +5039,7 @@ MonoBehaviour:
     volume: 0.3
     fadeInDuration: 0
     fadeOutDuration: 0
+  clickCooldown: 0.5
   loopSound: {fileID: 0}
   loopSoundVolume: 1
   playLoopSound: 0
@@ -11190,6 +11191,7 @@ MonoBehaviour:
     volume: 0.5
     fadeInDuration: 0.2
     fadeOutDuration: 0.2
+  clickCooldown: 0.5
   loopSound: {fileID: 0}
   loopSoundVolume: 1
   playLoopSound: 0
@@ -15984,6 +15986,7 @@ MonoBehaviour:
   bumpScale: 1.2
   bumpDuration: 0.2
   clickSounds: []
+  clickCooldown: 0.5
   loopSound: {fileID: 8300000, guid: 143d31eec954136449f2beb2a8de3505, type: 3}
   loopSoundVolume: 0.2
   playLoopSound: 1
@@ -17023,6 +17026,7 @@ MonoBehaviour:
     volume: 0.5
     fadeInDuration: 0
     fadeOutDuration: 0
+  clickCooldown: 2
   loopSound: {fileID: 0}
   loopSoundVolume: 1
   playLoopSound: 0
@@ -34141,9 +34145,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5532756232183144029}
     - target: {fileID: 1720350958215180394, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0213291bdd47cff4eb5783203789456a, type: 3}
+    - target: {fileID: 1720350958215180394, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: closeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b6af3142d2bb2d54a8b1b310cd717c0d, type: 3}
+    - target: {fileID: 1720350958215180394, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 130378199445226366}
+    - target: {fileID: 1720350958215180394, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: buttonSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 632f9b378848dcf45b5fae1a62a32790, type: 3}
+    - target: {fileID: 1720350958215180394, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: openSoundVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1720350958215180394, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: buttonSoundVolume
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1920508897373245249, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: maxLives
       value: 3
@@ -34161,6 +34185,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3095792927821865562}
     - target: {fileID: 1920508897373245249, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: decisionSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920508897373245249, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: decisionSprites.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -34176,6 +34204,30 @@ PrefabInstance:
       propertyPath: 'decisionSprites.Array.data[2]'
       value: 
       objectReference: {fileID: 21300000, guid: 6d322755572655a4194c23afcc2dee25, type: 3}
+    - target: {fileID: 1920508897373245249, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: decisionSounds.Array.data[0].sound
+      value: 
+      objectReference: {fileID: 8300000, guid: c93ae42cb21cac744ab0e095ba24a522, type: 3}
+    - target: {fileID: 1920508897373245249, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: decisionSounds.Array.data[1].sound
+      value: 
+      objectReference: {fileID: 8300000, guid: c93ae42cb21cac744ab0e095ba24a522, type: 3}
+    - target: {fileID: 1920508897373245249, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: decisionSounds.Array.data[2].sound
+      value: 
+      objectReference: {fileID: 8300000, guid: c93ae42cb21cac744ab0e095ba24a522, type: 3}
+    - target: {fileID: 1920508897373245249, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: decisionSounds.Array.data[0].volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920508897373245249, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: decisionSounds.Array.data[1].volume
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920508897373245249, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: decisionSounds.Array.data[2].volume
+      value: 0.65
+      objectReference: {fileID: 0}
     - target: {fileID: 2166556846555966350, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: m_Name
       value: MANAGERS
@@ -34257,6 +34309,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 446222017127861698}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: musicVolume
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: resultPanel
       value: 
       objectReference: {fileID: 3938759137379128642}
@@ -34281,6 +34337,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6774172078752986438}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: playCardSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 59b94051cb537eb4aa3352ec15a467e6, type: 3}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: tutorialImage
       value: 
       objectReference: {fileID: 1259709855}
@@ -34297,6 +34357,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1371590483}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: playCardVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: playerHandZone
       value: 
       objectReference: {fileID: 4795025474153593989}
@@ -34304,6 +34368,14 @@ PrefabInstance:
       propertyPath: playerLifeText
       value: 
       objectReference: {fileID: 3527967389465592905}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: statBoostSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d5b48d348b707a4da18d0e6914c3872, type: 3}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: a7c469cd702d99b40b129f4ac75d5674, type: 3}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: cardRewardPanel
       value: 
@@ -34317,6 +34389,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2019624849603255026}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: statBoostVolume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: enemyDamageSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 430ddcc93a6db7d4aa7c012486883b32, type: 3}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: enemyDefenseText
       value: 
       objectReference: {fileID: 7493622145363648370}
@@ -34328,6 +34408,14 @@ PrefabInstance:
       propertyPath: discardUsedSprite
       value: 
       objectReference: {fileID: 21300000, guid: 43696852e11735c4c8cdd4b9d5a0e1aa, type: 3}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: enemyDamageVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: playerDamageSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 04bf19983aad5114198a1b88d9b4a759, type: 3}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: playerDefenseText
       value: 
@@ -34341,9 +34429,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3203052560088349717}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: enemyCardDrawSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a4786dbb8a0f8a4d8f9b259e7e35586, type: 3}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: playerDamageVolume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: tutorialLeftButton
       value: 
       objectReference: {fileID: 1050880300}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: characterIntroSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 09e862a6ad7cb0a469fe9d631f2f1171, type: 3}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: discardNormalSprite
       value: 
@@ -34357,13 +34457,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8740863580079796660, guid: 6386ed60757d04c418f361756cd9c3b4, type: 3}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: enemyCardDrawVolume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: playerCardDrawSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a4786dbb8a0f8a4d8f9b259e7e35586, type: 3}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: tutorialRightButton
       value: 
       objectReference: {fileID: 1619979451}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: characterIntroVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: discardConfirmSprite
       value: 
       objectReference: {fileID: 21300000, guid: 0f9cdf5380419364c8a9260f0198a729, type: 3}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: playerCardDrawVolume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: endTurnDisabledSprite
       value: 
@@ -34433,6 +34549,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6002454935821370747}
     - target: {fileID: 7222193813224423009, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0213291bdd47cff4eb5783203789456a, type: 3}
+    - target: {fileID: 7222193813224423009, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: closeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b6af3142d2bb2d54a8b1b310cd717c0d, type: 3}
+    - target: {fileID: 7222193813224423009, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: navbarSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 632f9b378848dcf45b5fae1a62a32790, type: 3}
+    - target: {fileID: 7222193813224423009, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: glossairePage
       value: 
       objectReference: {fileID: 5712895734561082953}
@@ -34441,13 +34569,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1271255360456041169}
     - target: {fileID: 7222193813224423009, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: navigationSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 632f9b378848dcf45b5fae1a62a32790, type: 3}
+    - target: {fileID: 7222193813224423009, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: openSoundVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222193813224423009, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: closeSoundVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222193813224423009, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: itemGlossairePage
       value: 
       objectReference: {fileID: 8373827716230531380}
     - target: {fileID: 7222193813224423009, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: navbarSoundVolume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222193813224423009, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: itemGlossaireButton
       value: 
       objectReference: {fileID: 3027977464221350461}
+    - target: {fileID: 7222193813224423009, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: navigationSoundVolume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8153366002289730846, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: delayContent
       value: 
@@ -56023,6 +56171,7 @@ MonoBehaviour:
     volume: 0.4
     fadeInDuration: 0
     fadeOutDuration: 0
+  clickCooldown: 0.5
   loopSound: {fileID: 0}
   loopSoundVolume: 1
   playLoopSound: 0
@@ -68899,7 +69048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &3192008629875139409
 GameObject:
   m_ObjectHideFlags: 0
@@ -70367,7 +70516,7 @@ Transform:
   m_GameObject: {fileID: 6260154984261033616}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1013, y: 6.78, z: 0}
+  m_LocalPosition: {x: -102, y: 6.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -72910,7 +73059,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: -49}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8819184313292489919
 CanvasRenderer:

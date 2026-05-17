@@ -14,7 +14,19 @@ public class BadDecisionManager : MonoBehaviour
     public float overlayDuration = 2f;
     public float fadeInDuration = 0.05f;
     public float fadeOutDuration = 1f;
-    public float gameOverFadeDuration = 1f; 
+    public float gameOverFadeDuration = 1f;
+
+    [System.Serializable]
+    public class DecisionSound
+    {
+        public AudioClip sound;
+        [Range(0f, 1f)]
+        public float volume = 1f;
+    }
+
+    [Header("Sons")]
+    public DecisionSound[] decisionSounds; 
+
     public int maxLives = 4;
     public int currentLives;
     public bool isGameOver = false;
@@ -26,6 +38,21 @@ public class BadDecisionManager : MonoBehaviour
         currentLives = maxLives;
     }
 
+    void PlayDecisionSound(int index)
+    {
+        if (decisionSounds == null || index >= decisionSounds.Length) return;
+        DecisionSound ds = decisionSounds[index];
+        if (ds.sound == null) return;
+
+        GameObject tempAudio = new GameObject("TempAudio");
+        AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
+        tempSource.clip = ds.sound;
+        tempSource.volume = ds.volume;
+        tempSource.spatialBlend = 0f;
+        tempSource.Play();
+        Destroy(tempAudio, ds.sound.length);
+    }
+
     public void TriggerBadDecision()
     {
         currentLives--;
@@ -35,15 +62,17 @@ public class BadDecisionManager : MonoBehaviour
             overlayImage.sprite = decisionSprites[spriteIndex];
 
         if (currentLives <= 0)
-            StartCoroutine(ShowOverlayThenGameOver());
+            StartCoroutine(ShowOverlayThenGameOver(spriteIndex));
         else
-            StartCoroutine(ShowOverlay());
+            StartCoroutine(ShowOverlay(spriteIndex));
     }
 
-    IEnumerator ShowOverlay()
+    IEnumerator ShowOverlay(int spriteIndex)
     {
         isOverlayActive = true;
         badDecisionOverlay.SetActive(true);
+
+        PlayDecisionSound(spriteIndex);
 
         yield return StartCoroutine(FadeOverlay(0f, 1f, fadeInDuration));
         yield return new WaitForSeconds(overlayDuration);
@@ -53,17 +82,17 @@ public class BadDecisionManager : MonoBehaviour
         isOverlayActive = false;
     }
 
-    IEnumerator ShowOverlayThenGameOver()
+    IEnumerator ShowOverlayThenGameOver(int spriteIndex)
     {
         isOverlayActive = true;
         badDecisionOverlay.SetActive(true);
 
-        yield return StartCoroutine(FadeOverlay(0f, 1f, fadeInDuration));
+        PlayDecisionSound(spriteIndex);
 
+        yield return StartCoroutine(FadeOverlay(0f, 1f, fadeInDuration));
         yield return new WaitForSeconds(overlayDuration);
 
         isOverlayActive = false;
-
         TriggerGameOver();
     }
 

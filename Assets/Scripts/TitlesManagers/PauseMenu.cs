@@ -8,12 +8,23 @@ public class PauseMenu : MonoBehaviour
     public static PauseMenu Instance;
 
     public GameObject pausePanel;
-    public float animationSpeed = 5f;  
-    public float slideOffset = 50f;   
+    public float animationSpeed = 5f;
+    public float slideOffset = 50f;
+
+    [Header("Sons")]
+    public AudioClip openSound;
+    [Range(0f, 1f)]
+    public float openSoundVolume = 1f;
+    public AudioClip closeSound;
+    [Range(0f, 1f)]
+    public float closeSoundVolume = 1f;
+    public AudioClip buttonSound;
+    [Range(0f, 1f)]
+    public float buttonSoundVolume = 1f;
 
     private bool isPaused = false;
-    private bool isAnimating = false; 
-    private RectTransform panelRect;   
+    private bool isAnimating = false;
+    private RectTransform panelRect;
 
     private const string LOAD_FLAG = "ShouldLoad";
 
@@ -28,7 +39,7 @@ public class PauseMenu : MonoBehaviour
         if (DialogueManager.Instance.IsActive()) return;
         if (BadDecisionManager.Instance.isGameOver) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
-        if (isAnimating) return; 
+        if (isAnimating) return;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -37,6 +48,18 @@ public class PauseMenu : MonoBehaviour
             else
                 Pause();
         }
+    }
+
+    void PlaySound(AudioClip clip, float volume)
+    {
+        if (clip == null) return;
+        GameObject tempAudio = new GameObject("TempAudio");
+        AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
+        tempSource.clip = clip;
+        tempSource.volume = volume;
+        tempSource.spatialBlend = 0f;
+        tempSource.Play();
+        Destroy(tempAudio, clip.length);
     }
 
     public void Pause()
@@ -49,6 +72,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        PlaySound(buttonSound, buttonSoundVolume);
         StopAllCoroutines();
         StartCoroutine(AnimateClose());
     }
@@ -56,6 +80,8 @@ public class PauseMenu : MonoBehaviour
     IEnumerator AnimateOpen()
     {
         isAnimating = true;
+
+        PlaySound(openSound, openSoundVolume);
 
         CanvasGroup cg = pausePanel.GetComponent<CanvasGroup>();
         if (cg == null)
@@ -87,6 +113,8 @@ public class PauseMenu : MonoBehaviour
         isAnimating = true;
         Time.timeScale = 1f;
 
+        PlaySound(closeSound, closeSoundVolume);
+
         CanvasGroup cg = pausePanel.GetComponent<CanvasGroup>();
         if (cg == null)
             cg = pausePanel.AddComponent<CanvasGroup>();
@@ -112,7 +140,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitToTitle()
     {
-        Debug.Log("=== QUIT TO TITLE APPELÉ ===");
+        PlaySound(buttonSound, buttonSoundVolume);
         isPaused = false;
         Time.timeScale = 1f;
 
@@ -133,12 +161,12 @@ public class PauseMenu : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        Debug.Log("Save présente avant chargement : " + PlayerPrefs.HasKey("SaveData"));
         SceneManager.LoadScene(0);
     }
 
     public void QuitToTitleFromGameOver()
     {
+        PlaySound(buttonSound, buttonSoundVolume);
         Time.timeScale = 1f;
 
         if (SaveManager.Instance != null)

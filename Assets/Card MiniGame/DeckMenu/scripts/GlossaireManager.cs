@@ -68,6 +68,7 @@ public class GlossaireManager : MonoBehaviour
     public void PreviousCard()
     {
         if (allCards == null || allCards.Length == 0) return;
+        MenuManager.Instance.PlayNavigationSound(); 
         currentIndex--;
         if (currentIndex < 0)
             currentIndex = allCards.Length - 1;
@@ -77,6 +78,7 @@ public class GlossaireManager : MonoBehaviour
     public void NextCard()
     {
         if (allCards == null || allCards.Length == 0) return;
+        MenuManager.Instance.PlayNavigationSound(); 
         currentIndex++;
         if (currentIndex >= allCards.Length)
             currentIndex = 0;

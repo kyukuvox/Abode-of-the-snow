@@ -20,6 +20,9 @@ public class ClickCounter : MonoBehaviour
 
     public ClickSound[] clickSounds;
 
+    [Header("Cooldown")]
+    public float clickCooldown = 0.5f;
+
     [Header("Son en boucle")]
     public AudioClip loopSound;
     [Range(0f, 1f)]
@@ -204,7 +207,13 @@ public class ClickCounter : MonoBehaviour
         if (hoverParticles != null)
             hoverParticles.Hide();
 
-        yield return new WaitUntil(() => !audioSource.isPlaying);
+        float elapsed = 0f;
+        while (elapsed < clickCooldown || audioSource.isPlaying)
+        {
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
         yield return new WaitForSeconds(0.1f);
 
         isOnCooldown = false;

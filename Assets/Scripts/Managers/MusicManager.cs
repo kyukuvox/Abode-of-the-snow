@@ -14,6 +14,10 @@ public class MusicManager : MonoBehaviour
 
     private Coroutine crossfadeCoroutine;
 
+    private AudioClip lastClip;
+    private float lastVolume;
+    private float lastFadeIn;
+
     void Awake()
     {
         Instance = this;
@@ -21,18 +25,30 @@ public class MusicManager : MonoBehaviour
         currentSource = audioSourceA;
         nextSource = audioSourceB;
 
+        audioSourceA.loop = true;
+        audioSourceB.loop = true;
         audioSourceA.volume = 0f;
         audioSourceB.volume = 0f;
     }
 
     public void PlayMusic(AudioClip clip, float fadeOutDuration = 1f, float fadeInDuration = 1f, float targetVolume = 1f)
     {
+        lastClip = clip;
+        lastVolume = targetVolume;
+        lastFadeIn = fadeInDuration;
+
         if (currentSource.clip == clip && currentSource.isPlaying) return;
 
         if (crossfadeCoroutine != null)
             StopCoroutine(crossfadeCoroutine);
 
         crossfadeCoroutine = StartCoroutine(Crossfade(clip, fadeOutDuration, fadeInDuration, targetVolume));
+    }
+
+    public void ResumeMusic(float fadeInDuration = 1f)
+    {
+        if (lastClip == null) return;
+        PlayMusic(lastClip, 0f, fadeInDuration, lastVolume);
     }
 
     IEnumerator Crossfade(AudioClip newClip, float fadeOutDuration, float fadeInDuration, float targetVolume)
