@@ -25,7 +25,7 @@ public class BadDecisionManager : MonoBehaviour
     }
 
     [Header("Sons")]
-    public DecisionSound[] decisionSounds; 
+    public DecisionSound[] decisionSounds;
 
     public int maxLives = 4;
     public int currentLives;
@@ -43,14 +43,7 @@ public class BadDecisionManager : MonoBehaviour
         if (decisionSounds == null || index >= decisionSounds.Length) return;
         DecisionSound ds = decisionSounds[index];
         if (ds.sound == null) return;
-
-        GameObject tempAudio = new GameObject("TempAudio");
-        AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
-        tempSource.clip = ds.sound;
-        tempSource.volume = ds.volume;
-        tempSource.spatialBlend = 0f;
-        tempSource.Play();
-        Destroy(tempAudio, ds.sound.length);
+        SoundSettings.PlaySound(ds.sound, ds.volume, this);
     }
 
     public void TriggerBadDecision()

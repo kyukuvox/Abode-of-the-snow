@@ -45,18 +45,7 @@ public class ItemPickup : MonoBehaviour
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (GameStateManager.Instance.IsCinematicMode()) return;
 
-        // Son 2D sur GameObject temporaire
-        if (pickupSound != null)
-        {
-            GameObject tempAudio = new GameObject("TempAudio");
-            AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
-            tempSource.clip = pickupSound;
-            tempSource.volume = soundVolume;
-            tempSource.spatialBlend = 0f;
-            tempSource.Play();
-            Destroy(tempAudio, pickupSound.length);
-        }
-
+        SoundSettings.PlaySound(pickupSound, soundVolume, this);
         StartCoroutine(BumpAndPickup());
     }
 

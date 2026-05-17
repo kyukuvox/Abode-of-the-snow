@@ -134,11 +134,11 @@ public class ClickCounter : MonoBehaviour
             while (elapsed < cs.fadeInDuration)
             {
                 elapsed += Time.deltaTime;
-                tempSource.volume = Mathf.Lerp(0f, cs.volume, elapsed / cs.fadeInDuration);
+                tempSource.volume = Mathf.Lerp(0f, cs.volume * SoundSettings.SFXVolume, elapsed / cs.fadeInDuration);
                 yield return null;
             }
         }
-        tempSource.volume = cs.volume;
+        tempSource.volume = cs.volume * SoundSettings.SFXVolume; 
 
         float waitTime = cs.sound.length - cs.fadeInDuration - cs.fadeOutDuration;
         if (waitTime > 0f)
@@ -150,7 +150,7 @@ public class ClickCounter : MonoBehaviour
             while (elapsed < cs.fadeOutDuration)
             {
                 elapsed += Time.deltaTime;
-                tempSource.volume = Mathf.Lerp(cs.volume, 0f, elapsed / cs.fadeOutDuration);
+                tempSource.volume = Mathf.Lerp(cs.volume * SoundSettings.SFXVolume, 0f, elapsed / cs.fadeOutDuration); 
                 yield return null;
             }
         }

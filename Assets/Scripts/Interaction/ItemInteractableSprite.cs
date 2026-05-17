@@ -54,14 +54,9 @@ public class ItemInteractableSprite : MonoBehaviour
             hoverParticles.Hide();
     }
 
-    void PlaySound(AudioClip clip, float volume)
-    {
-        if (clip == null) return;
-        StartCoroutine(PlaySoundWithFade(clip, volume));
-    }
-
     IEnumerator PlaySoundWithFade(AudioClip clip, float targetVolume)
     {
+        if (clip == null) yield break;
         GameObject tempAudio = new GameObject("TempAudio");
         AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
         tempSource.clip = clip;
@@ -73,10 +68,10 @@ public class ItemInteractableSprite : MonoBehaviour
         while (elapsed < soundFadeDuration)
         {
             elapsed += Time.deltaTime;
-            tempSource.volume = Mathf.Lerp(0f, targetVolume, elapsed / soundFadeDuration);
+            tempSource.volume = Mathf.Lerp(0f, targetVolume * SoundSettings.SFXVolume, elapsed / soundFadeDuration);
             yield return null;
         }
-        tempSource.volume = targetVolume;
+        tempSource.volume = targetVolume * SoundSettings.SFXVolume;
 
         float waitTime = clip.length - (soundFadeDuration * 2f);
         if (waitTime > 0f)
@@ -86,7 +81,7 @@ public class ItemInteractableSprite : MonoBehaviour
         while (elapsed < soundFadeDuration)
         {
             elapsed += Time.deltaTime;
-            tempSource.volume = Mathf.Lerp(targetVolume, 0f, elapsed / soundFadeDuration);
+            tempSource.volume = Mathf.Lerp(targetVolume * SoundSettings.SFXVolume, 0f, elapsed / soundFadeDuration);
             yield return null;
         }
 
@@ -111,7 +106,7 @@ public class ItemInteractableSprite : MonoBehaviour
             if (Inventory.Instance.onItemChangedCallback != null)
                 Inventory.Instance.onItemChangedCallback.Invoke();
 
-            PlaySound(activationSound, activationSoundVolume);
+            StartCoroutine(PlaySoundWithFade(activationSound, activationSoundVolume));
 
             switch (activationMode)
             {
@@ -131,13 +126,12 @@ public class ItemInteractableSprite : MonoBehaviour
         else
         {
             Inventory.Instance.AddItem(item);
-            Debug.Log("Il vous faut : " + requiredItem.itemName);
         }
     }
 
     IEnumerator DescendObject()
     {
-        PlaySound(descendSound, descendSoundVolume);
+        StartCoroutine(PlaySoundWithFade(descendSound, descendSoundVolume));
 
         Vector3 targetPosition = new Vector3(
             animatedObject.transform.position.x,

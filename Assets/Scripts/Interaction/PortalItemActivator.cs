@@ -41,6 +41,7 @@ public class PortalItemActivator : MonoBehaviour
 
     IEnumerator PlaySoundWithFade(AudioClip clip, float targetVolume)
     {
+        if (clip == null) yield break;
         GameObject tempAudio = new GameObject("TempAudio");
         AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
         tempSource.clip = clip;
@@ -52,10 +53,10 @@ public class PortalItemActivator : MonoBehaviour
         while (elapsed < soundFadeDuration)
         {
             elapsed += Time.deltaTime;
-            tempSource.volume = Mathf.Lerp(0f, targetVolume, elapsed / soundFadeDuration);
+            tempSource.volume = Mathf.Lerp(0f, targetVolume * SoundSettings.SFXVolume, elapsed / soundFadeDuration);
             yield return null;
         }
-        tempSource.volume = targetVolume;
+        tempSource.volume = targetVolume * SoundSettings.SFXVolume;
 
         float waitTime = clip.length - (soundFadeDuration * 2f);
         if (waitTime > 0f)
@@ -65,7 +66,7 @@ public class PortalItemActivator : MonoBehaviour
         while (elapsed < soundFadeDuration)
         {
             elapsed += Time.deltaTime;
-            tempSource.volume = Mathf.Lerp(targetVolume, 0f, elapsed / soundFadeDuration);
+            tempSource.volume = Mathf.Lerp(targetVolume * SoundSettings.SFXVolume, 0f, elapsed / soundFadeDuration);
             yield return null;
         }
 
@@ -90,9 +91,7 @@ public class PortalItemActivator : MonoBehaviour
                     Inventory.Instance.onItemChangedCallback.Invoke();
             }
             else
-            {
                 Inventory.Instance.AddItem(item);
-            }
 
             if (activationSound != null)
                 StartCoroutine(PlaySoundWithFade(activationSound, activationSoundVolume));
@@ -106,7 +105,6 @@ public class PortalItemActivator : MonoBehaviour
         else
         {
             Inventory.Instance.AddItem(item);
-            Debug.Log("Il vous faut : " + requiredItem.itemName);
         }
     }
 }

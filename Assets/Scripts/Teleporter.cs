@@ -8,6 +8,9 @@ public class Teleporter : MonoBehaviour
     public float bumpDuration = 0.2f;
     public bool resetParallax = true;
 
+    [Header("Cooldown")]
+    public float teleportCooldown = 1f;
+
     [Header("Son")]
     public AudioClip teleportSound;
     [Range(0f, 1f)]
@@ -16,7 +19,6 @@ public class Teleporter : MonoBehaviour
     private Transform player;
     private HoverParticleManager hoverParticles;
     private Vector3 originalScale;
-    private AudioSource audioSource;
 
     private static bool isTeleporting = false;
 
@@ -25,11 +27,6 @@ public class Teleporter : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         hoverParticles = GetComponent<HoverParticleManager>();
         originalScale = transform.localScale;
-
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-            audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false;
     }
 
     void OnMouseEnter()
@@ -57,8 +54,7 @@ public class Teleporter : MonoBehaviour
         if (CardGameManager.IsPlaying) return;
         if (isTeleporting) return;
 
-        if (teleportSound != null && audioSource != null)
-            audioSource.PlayOneShot(teleportSound, soundVolume);
+        SoundSettings.PlaySound(teleportSound, soundVolume, this);
 
         StartCoroutine(Bump());
         StartCoroutine(TeleportCooldown());
@@ -82,7 +78,7 @@ public class Teleporter : MonoBehaviour
     IEnumerator TeleportCooldown()
     {
         isTeleporting = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(teleportCooldown);
         isTeleporting = false;
     }
 

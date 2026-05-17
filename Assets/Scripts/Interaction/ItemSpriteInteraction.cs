@@ -88,22 +88,22 @@ public class ItemSpriteInteraction : MonoBehaviour
         else
         {
             Inventory.Instance.AddItem(item);
-            Debug.Log("Il vous faut : " + requiredItem.itemName);
         }
     }
 
     IEnumerator FadeInLoop()
     {
         float elapsed = 0f;
+        float targetVolume = loopSoundVolume * SoundSettings.SFXVolume;
 
         while (elapsed < soundFadeInDuration)
         {
             elapsed += Time.deltaTime;
-            loopAudioSource.volume = Mathf.Lerp(0f, loopSoundVolume, elapsed / soundFadeInDuration);
+            loopAudioSource.volume = Mathf.Lerp(0f, targetVolume, elapsed / soundFadeInDuration);
             yield return null;
         }
 
-        loopAudioSource.volume = loopSoundVolume;
+        loopAudioSource.volume = targetVolume;
     }
 
     IEnumerator Bump()

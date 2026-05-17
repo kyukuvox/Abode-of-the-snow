@@ -11,6 +11,17 @@ public class PauseMenu : MonoBehaviour
     public float animationSpeed = 5f;
     public float slideOffset = 50f;
 
+    [Header("Boutons principaux")]
+    public GameObject resumeButton;
+    public GameObject optionButton;
+    public GameObject quitButton;
+
+    [Header("Page Options")]
+    public GameObject optionsPage;
+    public Slider musicSlider;
+    public Slider sfxSlider;
+    public Button returnButton;
+
     [Header("Sons")]
     public AudioClip openSound;
     [Range(0f, 1f)]
@@ -32,10 +43,32 @@ public class PauseMenu : MonoBehaviour
     {
         Instance = this;
         panelRect = pausePanel.GetComponent<RectTransform>();
+
+        if (optionsPage != null)
+            optionsPage.SetActive(false);
+    }
+
+    void Start()
+    {
+        if (musicSlider != null)
+        {
+            musicSlider.value = SoundSettings.MusicVolume;
+            musicSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
+        }
+        if (sfxSlider != null)
+        {
+            sfxSlider.value = SoundSettings.SFXVolume;
+            sfxSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
+        }
+        if (returnButton != null)
+            returnButton.onClick.AddListener(CloseOptions);
     }
 
     void Update()
     {
+        if (!isPaused && optionsPage != null && optionsPage.activeSelf)
+            optionsPage.SetActive(false);
+
         if (DialogueManager.Instance.IsActive()) return;
         if (BadDecisionManager.Instance.isGameOver) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
@@ -50,38 +83,73 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    void PlaySound(AudioClip clip, float volume)
-    {
-        if (clip == null) return;
-        GameObject tempAudio = new GameObject("TempAudio");
-        AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
-        tempSource.clip = clip;
-        tempSource.volume = volume;
-        tempSource.spatialBlend = 0f;
-        tempSource.Play();
-        Destroy(tempAudio, clip.length);
-    }
-
     public void Pause()
     {
         isPaused = true;
         pausePanel.SetActive(true);
+
+        if (optionsPage != null)
+            optionsPage.SetActive(false);
+
+        ShowMainButtons();
         StopAllCoroutines();
         StartCoroutine(AnimateOpen());
     }
 
     public void Resume()
     {
-        PlaySound(buttonSound, buttonSoundVolume);
+        SoundSettings.PlaySound(buttonSound, buttonSoundVolume, this);
         StopAllCoroutines();
         StartCoroutine(AnimateClose());
+    }
+
+    public void OpenOptions()
+    {
+        SoundSettings.PlaySound(buttonSound, buttonSoundVolume, this);
+
+        if (resumeButton != null) resumeButton.SetActive(false);
+        if (optionButton != null) optionButton.SetActive(false);
+        if (quitButton != null) quitButton.SetActive(false);
+
+        if (optionsPage != null) optionsPage.SetActive(true);
+
+        if (musicSlider != null) musicSlider.value = SoundSettings.MusicVolume;
+        if (sfxSlider != null) sfxSlider.value = SoundSettings.SFXVolume;
+    }
+
+    public void CloseOptions()
+    {
+        SoundSettings.PlaySound(buttonSound, buttonSoundVolume, this);
+        SoundSettings.SaveSettings();
+
+        if (optionsPage != null) optionsPage.SetActive(false);
+
+        ShowMainButtons();
+    }
+
+    void ShowMainButtons()
+    {
+        if (resumeButton != null) resumeButton.SetActive(true);
+        if (optionButton != null) optionButton.SetActive(true);
+        if (quitButton != null) quitButton.SetActive(true);
+        if (optionsPage != null) optionsPage.SetActive(false);
+    }
+
+    void OnMusicVolumeChanged(float value)
+    {
+        SoundSettings.SetMusicVolume(value);
+    }
+
+    void OnSFXVolumeChanged(float value)
+    {
+        SoundSettings.SetSFXVolume(value);
     }
 
     IEnumerator AnimateOpen()
     {
         isAnimating = true;
 
-        PlaySound(openSound, openSoundVolume);
+        SoundSettings.PlaySound(openSound, openSoundVolume, this);
 
         CanvasGroup cg = pausePanel.GetComponent<CanvasGroup>();
         if (cg == null)
@@ -113,7 +181,7 @@ public class PauseMenu : MonoBehaviour
         isAnimating = true;
         Time.timeScale = 1f;
 
-        PlaySound(closeSound, closeSoundVolume);
+        SoundSettings.PlaySound(closeSound, closeSoundVolume, this);
 
         CanvasGroup cg = pausePanel.GetComponent<CanvasGroup>();
         if (cg == null)
@@ -140,7 +208,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitToTitle()
     {
-        PlaySound(buttonSound, buttonSoundVolume);
+        SoundSettings.PlaySound(buttonSound, buttonSoundVolume, this);
         isPaused = false;
         Time.timeScale = 1f;
 
@@ -166,7 +234,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitToTitleFromGameOver()
     {
-        PlaySound(buttonSound, buttonSoundVolume);
+        SoundSettings.PlaySound(buttonSound, buttonSoundVolume, this);
         Time.timeScale = 1f;
 
         if (SaveManager.Instance != null)

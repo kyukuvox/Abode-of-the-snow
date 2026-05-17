@@ -50,16 +50,7 @@ public class CardPickup : MonoBehaviour
     {
         hasBeenClicked = true;
 
-        if (pickupSound != null)
-        {
-            GameObject tempAudio = new GameObject("TempAudio");
-            AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
-            tempSource.clip = pickupSound;
-            tempSource.volume = soundVolume;
-            tempSource.spatialBlend = 0f;
-            tempSource.Play();
-            Destroy(tempAudio, pickupSound.length);
-        }
+        SoundSettings.PlaySound(pickupSound, soundVolume, this);
 
         if (cardToGive != null && PlayerCardCollection.Instance != null)
             PlayerCardCollection.Instance.AddCard(cardToGive);

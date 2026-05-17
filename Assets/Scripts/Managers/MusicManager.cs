@@ -31,6 +31,12 @@ public class MusicManager : MonoBehaviour
         audioSourceB.volume = 0f;
     }
 
+    public void ApplyMusicVolume(float volume)
+    {
+        if (currentSource != null && currentSource.isPlaying)
+            currentSource.volume = volume * lastVolume;
+    }
+
     public void PlayMusic(AudioClip clip, float fadeOutDuration = 1f, float fadeInDuration = 1f, float targetVolume = 1f)
     {
         lastClip = clip;

@@ -75,6 +75,9 @@ public class CardGameManager : MonoBehaviour
     public Button tutorialRightButton;
     public Sprite[] tutorialSprites;
     public float tutorialFadeDuration = 0.3f;
+    public AudioClip tutorialButtonSound; 
+    [Range(0f, 1f)]
+    public float tutorialButtonVolume = 1f; 
 
     [Header("Sons")]
     public AudioClip backgroundMusic;
@@ -150,6 +153,11 @@ public class CardGameManager : MonoBehaviour
         musicAudioSource.volume = 0f;
     }
 
+    public void ApplyMusicVolume(float volume)
+    {
+        if (musicAudioSource != null && musicAudioSource.isPlaying)
+            musicAudioSource.volume = volume * musicVolume;
+    }
     void Start()
     {
         endTurnButton.onClick.AddListener(EndPlayerTurn);
@@ -176,7 +184,7 @@ public class CardGameManager : MonoBehaviour
         GameObject tempAudio = new GameObject("TempAudio");
         AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
         tempSource.clip = clip;
-        tempSource.volume = volume;
+        tempSource.volume = volume * SoundSettings.SFXVolume; 
         tempSource.spatialBlend = 0f;
         tempSource.Play();
         Destroy(tempAudio, clip.length);
@@ -409,6 +417,7 @@ public class CardGameManager : MonoBehaviour
     {
         if (tutorialIndex > 0)
         {
+            SoundSettings.PlaySound(tutorialButtonSound, tutorialButtonVolume, this); 
             tutorialIndex--;
             UpdateTutorialImage();
         }
@@ -417,6 +426,8 @@ public class CardGameManager : MonoBehaviour
     void TutorialNext()
     {
         if (tutorialSprites == null) return;
+
+        SoundSettings.PlaySound(tutorialButtonSound, tutorialButtonVolume, this); 
 
         tutorialIndex++;
 

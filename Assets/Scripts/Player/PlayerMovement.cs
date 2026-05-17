@@ -18,7 +18,9 @@ public class PlayerMovement2D : MonoBehaviour
     [Header("Sons")]
     public AudioClip walkSound;
     public float walkSoundInterval = 0.3f;
-    public AudioSource walkAudioSource; 
+    [Range(0f, 1f)]
+    public float walkSoundVolume = 1f;
+    public AudioSource walkAudioSource;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -147,6 +149,7 @@ public class PlayerMovement2D : MonoBehaviour
         walkSoundTimer -= Time.deltaTime;
         if (walkSoundTimer <= 0f)
         {
+            walkAudioSource.volume = walkSoundVolume * SoundSettings.SFXVolume;
             walkAudioSource.PlayOneShot(walkSound);
             walkSoundTimer = walkSoundInterval;
         }

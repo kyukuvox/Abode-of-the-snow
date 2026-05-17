@@ -127,15 +127,7 @@ public class NPCInteraction : MonoBehaviour
 
     public void PlayInteractionSound()
     {
-        if (interactionSound == null) return;
-
-        GameObject tempAudio = new GameObject("TempAudio");
-        AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
-        tempSource.clip = interactionSound;
-        tempSource.volume = soundVolume;
-        tempSource.spatialBlend = 0f; 
-        tempSource.Play();
-        Destroy(tempAudio, interactionSound.length);
+        SoundSettings.PlaySound(interactionSound, soundVolume, this);
     }
 
     public virtual void TriggerDialogue()

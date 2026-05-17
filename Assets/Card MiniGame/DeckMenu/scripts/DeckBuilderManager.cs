@@ -24,6 +24,17 @@ public class DeckBuilderManager : MonoBehaviour
     public Color flashColor = Color.yellow;
     public float flashDuration = 0.3f;
 
+    [Header("Sons")]
+    public AudioClip slotSelectSound;
+    [Range(0f, 1f)]
+    public float slotSelectVolume = 1f;
+    public AudioClip assignButtonSound;
+    [Range(0f, 1f)]
+    public float assignButtonVolume = 1f;
+    public AudioClip cardAssignedSound;
+    [Range(0f, 1f)]
+    public float cardAssignedVolume = 1f;
+
     private List<CardData> currentDeck = new List<CardData>();
     private List<GameObject> deckSlots = new List<GameObject>();
     private int selectedSlotIndex = -1;
@@ -122,6 +133,7 @@ public class DeckBuilderManager : MonoBehaviour
     void SelectSlot(int index)
     {
         selectedSlotIndex = index;
+        SoundSettings.PlaySound(slotSelectSound, slotSelectVolume, this);
         UpdateSlotsDisplay();
     }
 
@@ -168,7 +180,6 @@ public class DeckBuilderManager : MonoBehaviour
 
     public void NextBrowserCard()
     {
-        MenuManager.Instance.PlayNavigationSound();
         List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
         if (cards.Count == 0) return;
         browserIndex++;
@@ -179,7 +190,6 @@ public class DeckBuilderManager : MonoBehaviour
 
     void DisplayBrowserCard(int index)
     {
-        MenuManager.Instance.PlayNavigationSound();
         List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
 
         if (cards.Count == 0 || index >= cards.Count) return;
@@ -205,6 +215,8 @@ public class DeckBuilderManager : MonoBehaviour
         List<CardData> cards = PlayerCardCollection.Instance.GetUnlockedCards();
         if (cards.Count == 0) return;
 
+        SoundSettings.PlaySound(assignButtonSound, assignButtonVolume, this);
+
         int assignedIndex = selectedSlotIndex;
         currentDeck[assignedIndex] = cards[browserIndex];
 
@@ -212,6 +224,8 @@ public class DeckBuilderManager : MonoBehaviour
         UpdateSlotsDisplay();
 
         StartCoroutine(FlashSlot(deckSlots[assignedIndex]));
+
+        SoundSettings.PlaySound(cardAssignedSound, cardAssignedVolume, this);
     }
 
     IEnumerator FlashSlot(GameObject slot)

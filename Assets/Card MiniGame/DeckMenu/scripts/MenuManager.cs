@@ -24,11 +24,11 @@ public class MenuManager : MonoBehaviour
     [Range(0f, 1f)]
     public float closeSoundVolume = 1f;
     public AudioClip navbarSound;
+    [Range(0f, 1f)]
+    public float navbarSoundVolume = 1f;
     public AudioClip navigationSound;
     [Range(0f, 1f)]
     public float navigationSoundVolume = 1f;
-    [Range(0f, 1f)]
-    public float navbarSoundVolume = 1f;
 
     private bool isMenuOpen = false;
     private RectTransform panelRect;
@@ -38,11 +38,6 @@ public class MenuManager : MonoBehaviour
     {
         Instance = this;
         panelRect = menuPanel.GetComponent<RectTransform>();
-    }
-
-    public void PlayNavigationSound()
-    {
-        PlaySound(navigationSound, navigationSoundVolume);
     }
 
     void Update()
@@ -123,16 +118,9 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    void PlaySound(AudioClip clip, float volume)
+    public void PlayNavigationSound()
     {
-        if (clip == null) return;
-        GameObject tempAudio = new GameObject("TempAudio");
-        AudioSource tempSource = tempAudio.AddComponent<AudioSource>();
-        tempSource.clip = clip;
-        tempSource.volume = volume;
-        tempSource.spatialBlend = 0f;
-        tempSource.Play();
-        Destroy(tempAudio, clip.length);
+        SoundSettings.PlaySound(navigationSound, navigationSoundVolume, this);
     }
 
     public void OpenMenu()
@@ -170,7 +158,7 @@ public class MenuManager : MonoBehaviour
     {
         isAnimating = true;
 
-        PlaySound(openSound, openSoundVolume);
+        SoundSettings.PlaySound(openSound, openSoundVolume, this);
 
         CanvasGroup canvasGroup = menuPanel.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
@@ -204,7 +192,7 @@ public class MenuManager : MonoBehaviour
         isAnimating = true;
         Time.timeScale = 1f;
 
-        PlaySound(closeSound, closeSoundVolume);
+        SoundSettings.PlaySound(closeSound, closeSoundVolume, this);
 
         CanvasGroup canvasGroup = menuPanel.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
@@ -231,8 +219,7 @@ public class MenuManager : MonoBehaviour
 
     public void ShowGlossaire()
     {
-        PlaySound(navbarSound, navbarSoundVolume);
-
+        SoundSettings.PlaySound(navbarSound, navbarSoundVolume, this);
         glossairePage.SetActive(true);
         deckBuilderPage.SetActive(false);
         itemGlossairePage.SetActive(false);
@@ -246,8 +233,7 @@ public class MenuManager : MonoBehaviour
 
     public void ShowDeckBuilder()
     {
-        PlaySound(navbarSound, navbarSoundVolume);
-
+        SoundSettings.PlaySound(navbarSound, navbarSoundVolume, this);
         glossairePage.SetActive(false);
         deckBuilderPage.SetActive(true);
         itemGlossairePage.SetActive(false);
@@ -259,8 +245,7 @@ public class MenuManager : MonoBehaviour
     {
         if (Inventory.Instance.items.Count == 0) return;
 
-        PlaySound(navbarSound, navbarSoundVolume);
-
+        SoundSettings.PlaySound(navbarSound, navbarSoundVolume, this);
         glossairePage.SetActive(false);
         deckBuilderPage.SetActive(false);
         itemGlossairePage.SetActive(true);
