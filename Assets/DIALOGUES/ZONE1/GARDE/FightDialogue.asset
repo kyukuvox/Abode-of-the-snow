@@ -21,7 +21,7 @@ MonoBehaviour:
   playerCardData: {fileID: 11400000, guid: 93c91f4b48cba784ca5604f0d7862d0e, type: 2}
   cardGameRewards:
   - {fileID: 11400000, guid: c0d6cc8d37b467b46b82f91d554edf60, type: 2}
-  rewardCard: {fileID: 0}
+  rewardCard: {fileID: 11400000, guid: 90bac49d79c39ca419a9e73d33e6e00b, type: 2}
   activatesPortalAfterCardGame: 1
   lines:
   - speaker: 1

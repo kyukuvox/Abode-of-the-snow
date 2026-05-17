@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: 32a780fa0f901cc49b500344ad8b4020
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7631090738766600657
+    second: RotCoffeeStudio Logo Blanc_0
+  - first:
+      213: 5997988430862197628
+    second: RotCoffeeStudio Logo Blanc_1
+  - first:
+      213: 6961820515015384138
+    second: RotCoffeeStudio Logo Blanc_2
+  - first:
+      213: -3546474656918445389
+    second: RotCoffeeStudio Logo Blanc_3
+  - first:
+      213: 5210778668885384642
+    second: RotCoffeeStudio Logo Blanc_4
+  - first:
+      213: 1799175739248982255
+    second: RotCoffeeStudio Logo Blanc_5
+  - first:
+      213: 4476990401059361760
+    second: RotCoffeeStudio Logo Blanc_6
+  - first:
+      213: 4229428854987620142
+    second: RotCoffeeStudio Logo Blanc_7
+  - first:
+      213: 8123763681832816118
+    second: RotCoffeeStudio Logo Blanc_8
+  - first:
+      213: -8631376664595516836
+    second: RotCoffeeStudio Logo Blanc_9
+  - first:
+      213: -6989327986226023933
+    second: RotCoffeeStudio Logo Blanc_10
+  - first:
+      213: -8797531394698861182
+    second: RotCoffeeStudio Logo Blanc_11
+  - first:
+      213: 940737020513946792
+    second: RotCoffeeStudio Logo Blanc_12
+  - first:
+      213: -3761410397526294278
+    second: RotCoffeeStudio Logo Blanc_13
+  - first:
+      213: 836153651697108637
+    second: RotCoffeeStudio Logo Blanc_14
+  - first:
+      213: 8977630843380007781
+    second: RotCoffeeStudio Logo Blanc_15
+  - first:
+      213: -6938454255624312270
+    second: RotCoffeeStudio Logo Blanc_16
+  - first:
+      213: -4357840908774146065
+    second: RotCoffeeStudio Logo Blanc_17
+  - first:
+      213: 5438883209872158088
+    second: RotCoffeeStudio Logo Blanc_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_0
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 1130
+        width: 163
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d9d4fc789417e960800000000000000
+      internalID: 7631090738766600657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_1
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 1130
+        width: 157
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c73a17cf2b22d3350800000000000000
+      internalID: 5997988430862197628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_2
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 1130
+        width: 150
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4cd4838fda5d9060800000000000000
+      internalID: 6961820515015384138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 414
+        width: 891
+        height: 691
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b2637de61468cec0800000000000000
+      internalID: -3546474656918445389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_4
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 257
+        width: 108
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cd981a6797605840800000000000000
+      internalID: 5210778668885384642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_5
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 257
+        width: 105
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe8bf6a6dc4f7f810800000000000000
+      internalID: 1799175739248982255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_6
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 257
+        width: 98
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e31af5bc07712e30800000000000000
+      internalID: 4476990401059361760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_7
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 257
+        width: 99
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2ff2589223f1ba30800000000000000
+      internalID: 4229428854987620142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_8
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 257
+        width: 99
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fd4ddee6086db070800000000000000
+      internalID: 8123763681832816118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_9
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 257
+        width: 98
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c52303097a0373880800000000000000
+      internalID: -8631376664595516836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_10
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 257
+        width: 99
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3023d424a3be00f90800000000000000
+      internalID: -6989327986226023933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_11
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 257
+        width: 108
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 285a0aecec3e8e580800000000000000
+      internalID: -8797531394698861182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_12
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 257
+        width: 111
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ac0bcef55b2e0d00800000000000000
+      internalID: 940737020513946792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_13
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 0
+        width: 189
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af00cf81c29cccbc0800000000000000
+      internalID: -3761410397526294278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_14
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 0
+        width: 170
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d964d0be05d9a9b00800000000000000
+      internalID: 836153651697108637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_15
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 0
+        width: 174
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5638140cfa3f69c70800000000000000
+      internalID: 8977630843380007781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_16
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 0
+        width: 177
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23a2733bd98a5bf90800000000000000
+      internalID: -6938454255624312270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_17
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 0
+        width: 81
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: feff9d448c6d583c0800000000000000
+      internalID: -4357840908774146065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RotCoffeeStudio Logo Blanc_18
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 0
+        width: 193
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88d2443867bca7b40800000000000000
+      internalID: 5438883209872158088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RotCoffeeStudio Logo Blanc_0: 7631090738766600657
+      RotCoffeeStudio Logo Blanc_1: 5997988430862197628
+      RotCoffeeStudio Logo Blanc_10: -6989327986226023933
+      RotCoffeeStudio Logo Blanc_11: -8797531394698861182
+      RotCoffeeStudio Logo Blanc_12: 940737020513946792
+      RotCoffeeStudio Logo Blanc_13: -3761410397526294278
+      RotCoffeeStudio Logo Blanc_14: 836153651697108637
+      RotCoffeeStudio Logo Blanc_15: 8977630843380007781
+      RotCoffeeStudio Logo Blanc_16: -6938454255624312270
+      RotCoffeeStudio Logo Blanc_17: -4357840908774146065
+      RotCoffeeStudio Logo Blanc_18: 5438883209872158088
+      RotCoffeeStudio Logo Blanc_2: 6961820515015384138
+      RotCoffeeStudio Logo Blanc_3: -3546474656918445389
+      RotCoffeeStudio Logo Blanc_4: 5210778668885384642
+      RotCoffeeStudio Logo Blanc_5: 1799175739248982255
+      RotCoffeeStudio Logo Blanc_6: 4476990401059361760
+      RotCoffeeStudio Logo Blanc_7: 4229428854987620142
+      RotCoffeeStudio Logo Blanc_8: 8123763681832816118
+      RotCoffeeStudio Logo Blanc_9: -8631376664595516836
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

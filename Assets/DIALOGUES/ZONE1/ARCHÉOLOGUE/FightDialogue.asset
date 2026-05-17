@@ -16,16 +16,17 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 41abe5e685221aa4db2e127f6837a817, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  rewardCard: {fileID: 11400000, guid: b99883c612d75ba41a1ffcced3c2c13c, type: 2}
-  lines:
-  - speaker: 1
-    text: Ah, pilgrim, my friend! A card game with a man consumed by regret before
-      you leave, how about it?
-  - speaker: 1
-    text: I would like to know if you will be able to climb higher than she did...
   triggersCardGame: 1
   enemyCardData: {fileID: 11400000, guid: a140804bb637a5048942351ebbf8b318, type: 2}
   playerCardData: {fileID: 11400000, guid: 93c91f4b48cba784ca5604f0d7862d0e, type: 2}
   cardGameRewards:
   - {fileID: 11400000, guid: a80dce0cb93f575448fed643764b07e8, type: 2}
   - {fileID: 11400000, guid: 908ca40923d556546881ff2939e6e7a3, type: 2}
+  rewardCard: {fileID: 11400000, guid: c9f759f10db5a0f44b0b0ee93816b4b7, type: 2}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: Ah, pilgrim, my friend! A card game with a man consumed by regret before
+      you leave, how about it?
+  - speaker: 1
+    text: I would like to know if you will be able to climb higher than she did...

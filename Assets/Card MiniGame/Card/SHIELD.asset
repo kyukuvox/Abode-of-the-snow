@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
   m_Name: SHIELD
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardDescription: Gain 5 DEFENSE
+  cardDescription: Gain 4 DEFENSE
   cardName: SHIELD
   cardSprite: {fileID: -1028012128017238524, guid: f46b59745596e4145bdfa0a2942d3e66, type: 3}
-  description: You protect yourself with a shield to block the opponent strike. You
-    gain 5 defense points.
+  description: You protect yourself with a shield to block the opponent strike.
   cardType: 1
   attackType: 0
   costType: 0
   actionCost: 1
-  power: 5
+  power: 4
   delayTurns: 0

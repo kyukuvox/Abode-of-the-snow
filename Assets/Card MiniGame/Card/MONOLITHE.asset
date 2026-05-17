@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
   m_Name: MONOLITHE
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardDescription: Gain 30 DEFENSE
+  cardDescription: Wait 1 turn / Gain 6 DEFENSE
   cardName: MONOLITH
-  cardSprite: {fileID: 21300000, guid: dafa267829045f24c87a2ff82f5b328d, type: 3}
+  cardSprite: {fileID: -4557883182864163363, guid: a6366be5ee7345f4c8e7bcaf9625e545, type: 3}
   description: A mystical creation create long before the cataclysm. It was a symbol
     of protection from the ancient civilisation.
   cardType: 1
@@ -22,4 +22,4 @@ MonoBehaviour:
   costType: 0
   actionCost: 2
   power: 30
-  delayTurns: 0
+  delayTurns: 1

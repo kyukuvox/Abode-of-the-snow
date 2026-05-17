@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
-  m_Name: lifeCost
+  m_Name: "PR\xCATRE"
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardDescription: Pay 1 HEALTH and deal 2 Damage
-  cardName: VAMPIRISM
-  cardSprite: {fileID: 21300000, guid: f0c5255adc5422d47b05b6eb7af8528b, type: 3}
-  description: You sacrifice 1 health points to deal 2 damage to your opponent.
+  cardDescription: Wait 2 Turn / Deal 7 damages
+  cardName: PRIEST
+  cardSprite: {fileID: 21300000, guid: 17d769e638f2f2b4bae4692d806c366b, type: 3}
+  description: With devotion you might obtain the power of our savior.
   cardType: 0
   attackType: 3
-  costType: 1
-  actionCost: 1
-  power: 2
-  delayTurns: 0
+  costType: 2
+  actionCost: 5
+  power: 7
+  delayTurns: 2

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
-  m_Name: lifeCost
+  m_Name: GARDE
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardDescription: Pay 1 HEALTH and deal 2 Damage
-  cardName: VAMPIRISM
-  cardSprite: {fileID: 21300000, guid: f0c5255adc5422d47b05b6eb7af8528b, type: 3}
-  description: You sacrifice 1 health points to deal 2 damage to your opponent.
-  cardType: 0
-  attackType: 3
+  cardDescription: Gain 8 DEFENSE
+  cardName: GUARD
+  cardSprite: {fileID: 21300000, guid: fca8ce5301c16514d85018f5dc02cd48, type: 3}
+  description: You will stand no matter what happen.
+  cardType: 1
+  attackType: 0
   costType: 1
-  actionCost: 1
-  power: 2
+  actionCost: 3
+  power: 8
   delayTurns: 0

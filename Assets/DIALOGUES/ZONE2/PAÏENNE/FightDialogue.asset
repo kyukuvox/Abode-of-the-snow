@@ -16,14 +16,15 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 8960afca12083c04881e00f02ce7167a, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  rewardCard: {fileID: 0}
-  lines:
-  - speaker: 1
-    text: Would you agree to play cards with me, pilgrim? We often played with my
-      family, and I would like to feel that joy from before.
   triggersCardGame: 1
   enemyCardData: {fileID: 11400000, guid: d34f90e0820f5624fbb32fc9bf54e074, type: 2}
   playerCardData: {fileID: 11400000, guid: 93c91f4b48cba784ca5604f0d7862d0e, type: 2}
   cardGameRewards:
   - {fileID: 11400000, guid: 1897bb09da838ed4aac43d0aa6d843b5, type: 2}
   - {fileID: 11400000, guid: 1eb236f78d4ba4f44907fbdee7f36ce1, type: 2}
+  rewardCard: {fileID: 11400000, guid: d385534eba114d24fb89990e40044c88, type: 2}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: Would you agree to play cards with me, pilgrim? We often played with my
+      family, and I would like to feel that joy from before.

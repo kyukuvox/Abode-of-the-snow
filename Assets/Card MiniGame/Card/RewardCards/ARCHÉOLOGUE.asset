@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
-  m_Name: lifeCost
+  m_Name: "ARCH\xC9OLOGUE"
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardDescription: Pay 1 HEALTH and deal 2 Damage
-  cardName: VAMPIRISM
-  cardSprite: {fileID: 21300000, guid: f0c5255adc5422d47b05b6eb7af8528b, type: 3}
-  description: You sacrifice 1 health points to deal 2 damage to your opponent.
-  cardType: 0
-  attackType: 3
-  costType: 1
-  actionCost: 1
+  cardDescription: Wait 1 Turn / Receive 2 ACTION
+  cardName: ARCHEOLOGIST
+  cardSprite: {fileID: 7046113299756270078, guid: d5c60efc60df4074ba88f142272ce810, type: 3}
+  description: With a little bit of research you could find something better to rest.
+  cardType: 2
+  attackType: 0
+  costType: 0
+  actionCost: 0
   power: 2
-  delayTurns: 0
+  delayTurns: 1
