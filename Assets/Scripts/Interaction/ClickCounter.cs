@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class ClickCounter : MonoBehaviour
 {
+    [Header("Objets")]
     public GameObject hiddenItem;
+    public GameObject particlesToHide;
     public int clicksRequired = 3;
     public float bumpScale = 1.2f;
     public float bumpDuration = 0.2f;
@@ -114,6 +116,10 @@ public class ClickCounter : MonoBehaviour
 
             if (hiddenItem != null)
                 hiddenItem.SetActive(true);
+
+            if (particlesToHide != null)
+                particlesToHide.SetActive(false);
+
             if (hoverParticles != null)
                 hoverParticles.Hide();
         }
@@ -138,7 +144,7 @@ public class ClickCounter : MonoBehaviour
                 yield return null;
             }
         }
-        tempSource.volume = cs.volume * SoundSettings.SFXVolume; 
+        tempSource.volume = cs.volume * SoundSettings.SFXVolume;
 
         float waitTime = cs.sound.length - cs.fadeInDuration - cs.fadeOutDuration;
         if (waitTime > 0f)
@@ -150,7 +156,7 @@ public class ClickCounter : MonoBehaviour
             while (elapsed < cs.fadeOutDuration)
             {
                 elapsed += Time.deltaTime;
-                tempSource.volume = Mathf.Lerp(cs.volume * SoundSettings.SFXVolume, 0f, elapsed / cs.fadeOutDuration); 
+                tempSource.volume = Mathf.Lerp(cs.volume * SoundSettings.SFXVolume, 0f, elapsed / cs.fadeOutDuration);
                 yield return null;
             }
         }

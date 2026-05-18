@@ -12,7 +12,15 @@ public class SoundSettings : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         MusicVolume = PlayerPrefs.GetFloat(MUSIC_KEY, 1f);
         SFXVolume = PlayerPrefs.GetFloat(SFX_KEY, 1f);
     }

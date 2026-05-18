@@ -10,6 +10,9 @@ public class ItemSpriteInteraction : MonoBehaviour
     public float bumpScale = 1.2f;
     public float bumpDuration = 0.2f;
 
+    [Header("Particules à activer")]
+    public GameObject particlesToShow;
+
     [Header("Son")]
     public AudioClip activationLoopSound;
     [Range(0f, 1f)]
@@ -33,6 +36,9 @@ public class ItemSpriteInteraction : MonoBehaviour
         loopAudioSource.playOnAwake = false;
         loopAudioSource.spatialBlend = 0f;
         loopAudioSource.volume = 0f;
+
+        if (particlesToShow != null)
+            particlesToShow.SetActive(false);
     }
 
     void OnMouseEnter()
@@ -74,6 +80,9 @@ public class ItemSpriteInteraction : MonoBehaviour
 
             if (hoverParticles != null)
                 hoverParticles.Hide();
+
+            if (particlesToShow != null)
+                particlesToShow.SetActive(true);
 
             if (activationLoopSound != null && loopAudioSource != null)
             {
