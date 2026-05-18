@@ -61,11 +61,9 @@ public class CinematicManager : MonoBehaviour
         if (walkingAnimator != null)
             walkingAnimator.SetBool("isWalking", true);
 
-        SpriteRenderer sr = walkingSprite.GetComponent<SpriteRenderer>();
-        if (sr != null)
-            sr.flipX = true;
+        yield return new WaitForSeconds(0.5f);
 
-        float distanceTravelled = 0f;
+        float distanceTravelled = 1f;
         while (distanceTravelled < walkDistance)
         {
             float step = walkSpeed * Time.deltaTime;

@@ -1,0 +1,613 @@
+fileFormatVersion: 2
+guid: 663452828ed93b242a6c98d2ace9465e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5102121772967656801
+    second: "Ath\xE9e_Walking-SpriteSheet_0"
+  - first:
+      213: 1836801193990258046
+    second: "Ath\xE9e_Walking-SpriteSheet_1"
+  - first:
+      213: -759316243602360591
+    second: "Ath\xE9e_Walking-SpriteSheet_2"
+  - first:
+      213: 4119333382056129374
+    second: "Ath\xE9e_Walking-SpriteSheet_3"
+  - first:
+      213: 4255447024420472863
+    second: "Ath\xE9e_Walking-SpriteSheet_4"
+  - first:
+      213: -6478352032030088565
+    second: "Ath\xE9e_Walking-SpriteSheet_5"
+  - first:
+      213: 6797389348107158320
+    second: "Ath\xE9e_Walking-SpriteSheet_6"
+  - first:
+      213: -6601181521661455660
+    second: "Ath\xE9e_Walking-SpriteSheet_7"
+  - first:
+      213: -2589739468978063003
+    second: "Ath\xE9e_Walking-SpriteSheet_8"
+  - first:
+      213: -2812472265330754356
+    second: "Ath\xE9e_Walking-SpriteSheet_9"
+  - first:
+      213: -5486024718047897356
+    second: "Ath\xE9e_Walking-SpriteSheet_10"
+  - first:
+      213: -3955886614863176312
+    second: "Ath\xE9e_Walking-SpriteSheet_11"
+  - first:
+      213: -2695609751954501876
+    second: "Ath\xE9e_Walking-SpriteSheet_12"
+  - first:
+      213: -3574769034195409024
+    second: "Ath\xE9e_Walking-SpriteSheet_13"
+  - first:
+      213: -5629265872160741413
+    second: "Ath\xE9e_Walking-SpriteSheet_14"
+  - first:
+      213: -8305606007142661335
+    second: "Ath\xE9e_Walking-SpriteSheet_15"
+  - first:
+      213: 5916586146081955050
+    second: "Ath\xE9e_Walking-SpriteSheet_16"
+  - first:
+      213: -1092913424717860712
+    second: "Ath\xE9e_Walking-SpriteSheet_17"
+  - first:
+      213: -2366110131346622899
+    second: "Ath\xE9e_Walking-SpriteSheet_18"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 160
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_0"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5760
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16df58668b06ec640800000000000000
+      internalID: 5102121772967656801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_1"
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 5760
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7d7dc244f0ad7910800000000000000
+      internalID: 1836801193990258046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_2"
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 5760
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f6b5e346ed5675f0800000000000000
+      internalID: -759316243602360591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_3"
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 5760
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e533dd4c2efca2930800000000000000
+      internalID: 4119333382056129374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_4"
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 5760
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f18431bb5826e0b30800000000000000
+      internalID: 4255447024420472863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_5"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3840
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b82aae096254816a0800000000000000
+      internalID: -6478352032030088565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_6"
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 3840
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03383f5199d255e50800000000000000
+      internalID: 6797389348107158320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_7"
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 3840
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d21f7f6164e364a0800000000000000
+      internalID: -6601181521661455660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_8"
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 3840
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 569f0ca8ca56f0cd0800000000000000
+      internalID: -2589739468978063003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_9"
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 3840
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccc7254306718f8d0800000000000000
+      internalID: -2812472265330754356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_10"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f81ebbc599bdd3b0800000000000000
+      internalID: -5486024718047897356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_11"
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1920
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88d9b5d351ed919c0800000000000000
+      internalID: -3955886614863176312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_12"
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 1920
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0f4ca96635479ad0800000000000000
+      internalID: -2695609751954501876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_13"
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 1920
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08767bad08ed36ec0800000000000000
+      internalID: -3574769034195409024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_14"
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 1920
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd721afa384d0e1b0800000000000000
+      internalID: -5629265872160741413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_15"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92349eb675f8cbc80800000000000000
+      internalID: -8305606007142661335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_16"
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aec5630a0cfeb1250800000000000000
+      internalID: 5916586146081955050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_17"
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 0
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 890bf6dd70135d0f0800000000000000
+      internalID: -1092913424717860712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ath\xE9e_Walking-SpriteSheet_18"
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 0
+        width: 1920
+        height: 1920
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d46b1a92f53e92fd0800000000000000
+      internalID: -2366110131346622899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 9d160bd7731e76e41ba77dfa8486b820
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":4.0},"gridSpriteSize":{"x":1920.0,"y":1920.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      "Ath\xE9e_Walking-SpriteSheet_0": 5102121772967656801
+      "Ath\xE9e_Walking-SpriteSheet_1": 1836801193990258046
+      "Ath\xE9e_Walking-SpriteSheet_10": -5486024718047897356
+      "Ath\xE9e_Walking-SpriteSheet_11": -3955886614863176312
+      "Ath\xE9e_Walking-SpriteSheet_12": -2695609751954501876
+      "Ath\xE9e_Walking-SpriteSheet_13": -3574769034195409024
+      "Ath\xE9e_Walking-SpriteSheet_14": -5629265872160741413
+      "Ath\xE9e_Walking-SpriteSheet_15": -8305606007142661335
+      "Ath\xE9e_Walking-SpriteSheet_16": 5916586146081955050
+      "Ath\xE9e_Walking-SpriteSheet_17": -1092913424717860712
+      "Ath\xE9e_Walking-SpriteSheet_18": -2366110131346622899
+      "Ath\xE9e_Walking-SpriteSheet_2": -759316243602360591
+      "Ath\xE9e_Walking-SpriteSheet_3": 4119333382056129374
+      "Ath\xE9e_Walking-SpriteSheet_4": 4255447024420472863
+      "Ath\xE9e_Walking-SpriteSheet_5": -6478352032030088565
+      "Ath\xE9e_Walking-SpriteSheet_6": 6797389348107158320
+      "Ath\xE9e_Walking-SpriteSheet_7": -6601181521661455660
+      "Ath\xE9e_Walking-SpriteSheet_8": -2589739468978063003
+      "Ath\xE9e_Walking-SpriteSheet_9": -2812472265330754356
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
