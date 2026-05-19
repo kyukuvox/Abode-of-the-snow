@@ -33,6 +33,7 @@ public class NPCInteraction : MonoBehaviour
     {
         if (BadDecisionManager.Instance.isGameOver) return;
         if (BadDecisionManager.Instance.isOverlayActive) return;
+        if (CardGameManager.IsPlaying) return; 
 
         if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
         {
@@ -94,6 +95,7 @@ public class NPCInteraction : MonoBehaviour
         if (PauseMenu.Instance.IsPaused()) return;
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (GameStateManager.Instance.IsCinematicMode()) return;
+        if (CardGameManager.IsPlaying) return; 
 
         if (interactionSprite != null)
             interactionSprite.SetActive(true);
@@ -118,6 +120,7 @@ public class NPCInteraction : MonoBehaviour
         if (MenuManager.Instance.IsMenuOpen()) return;
         if (DialogueManager.Instance.IsActive()) return;
         if (GameStateManager.Instance.IsCinematicMode()) return;
+        if (CardGameManager.IsPlaying) return; 
         if (dialogueCooldown > 0f) return;
 
         PlayInteractionSound();

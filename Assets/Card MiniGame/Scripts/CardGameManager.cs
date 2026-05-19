@@ -162,6 +162,13 @@ public class CardGameManager : MonoBehaviour
 
     private List<Vector2> enemyCardPositions = new List<Vector2>();
 
+    private Vector2 playerLifeInitPos;
+    private Vector2 playerActionInitPos;
+    private Vector2 playerDefenseInitPos;
+    private Vector2 enemyLifeInitPos;
+    private Vector2 enemyActionInitPos;
+    private Vector2 enemyDefenseInitPos;
+
     void Awake()
     {
         Instance = this;
@@ -204,6 +211,23 @@ public class CardGameManager : MonoBehaviour
             tutorialLeftButton.onClick.AddListener(TutorialPrevious);
         if (tutorialRightButton != null)
             tutorialRightButton.onClick.AddListener(TutorialNext);
+
+        playerLifeInitPos = playerLifeText.rectTransform.anchoredPosition;
+        playerActionInitPos = playerActionText.rectTransform.anchoredPosition;
+        playerDefenseInitPos = playerDefenseText.rectTransform.anchoredPosition;
+        enemyLifeInitPos = enemyLifeText.rectTransform.anchoredPosition;
+        enemyActionInitPos = enemyActionText.rectTransform.anchoredPosition;
+        enemyDefenseInitPos = enemyDefenseText.rectTransform.anchoredPosition;
+    }
+
+    void ResetTextPositions()
+    {
+        playerLifeText.rectTransform.anchoredPosition = playerLifeInitPos;
+        playerActionText.rectTransform.anchoredPosition = playerActionInitPos;
+        playerDefenseText.rectTransform.anchoredPosition = playerDefenseInitPos;
+        enemyLifeText.rectTransform.anchoredPosition = enemyLifeInitPos;
+        enemyActionText.rectTransform.anchoredPosition = enemyActionInitPos;
+        enemyDefenseText.rectTransform.anchoredPosition = enemyDefenseInitPos;
     }
 
     void PlaySound(AudioClip clip, float volume)
@@ -341,6 +365,8 @@ public class CardGameManager : MonoBehaviour
         isPlayerTurn = true;
         isGameEnded = false;
         IsPlaying = true;
+
+        ResetTextPositions();
 
         StartCoroutine(CardGameIntro());
     }
@@ -763,7 +789,7 @@ public class CardGameManager : MonoBehaviour
 
     IEnumerator ShakeText(Text text)
     {
-        Vector3 originalPos = text.rectTransform.anchoredPosition;
+        Vector2 originalPos = text.rectTransform.anchoredPosition;
         float elapsed = 0f;
 
         while (elapsed < shakeDuration)
@@ -1211,6 +1237,8 @@ public class CardGameManager : MonoBehaviour
             discardButtonImage.sprite = discardNormalSprite;
         if (endTurnButtonImage != null && endTurnNormalSprite != null)
             endTurnButtonImage.sprite = endTurnNormalSprite;
+
+        ResetTextPositions();
     }
 
     void UpdateUI()

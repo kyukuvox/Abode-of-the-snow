@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 8d64a1b32dc5e5744ab252e0aea83e6f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2836838040846441834
+    second: logoRotCoffee v.2 blanc_0
+  - first:
+      213: 1695607796190015265
+    second: logoRotCoffee v.2 blanc_1
+  - first:
+      213: -2433040681400132266
+    second: logoRotCoffee v.2 blanc_2
+  - first:
+      213: -7384382356975243785
+    second: logoRotCoffee v.2 blanc_3
+  - first:
+      213: 3673801787172049188
+    second: logoRotCoffee v.2 blanc_4
+  - first:
+      213: 7850146617248225321
+    second: logoRotCoffee v.2 blanc_5
+  - first:
+      213: -2446756650669760687
+    second: logoRotCoffee v.2 blanc_6
+  - first:
+      213: -4056080431677646950
+    second: logoRotCoffee v.2 blanc_7
+  - first:
+      213: 6843419973773549096
+    second: logoRotCoffee v.2 blanc_8
+  - first:
+      213: 2585022187473367789
+    second: logoRotCoffee v.2 blanc_9
+  - first:
+      213: -3360073097215099680
+    second: logoRotCoffee v.2 blanc_10
+  - first:
+      213: 2674278080292836601
+    second: logoRotCoffee v.2 blanc_11
+  - first:
+      213: 1188818402927816525
+    second: logoRotCoffee v.2 blanc_12
+  - first:
+      213: 7819845751829949855
+    second: logoRotCoffee v.2 blanc_13
+  - first:
+      213: 605063050974493261
+    second: logoRotCoffee v.2 blanc_14
+  - first:
+      213: -4295960520988616600
+    second: logoRotCoffee v.2 blanc_15
+  - first:
+      213: 3719300582224006553
+    second: logoRotCoffee v.2 blanc_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_0
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 363
+        width: 314
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6d97fdfa297e5720800000000000000
+      internalID: 2836838040846441834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 421
+        height: 348
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12fe9429e42088710800000000000000
+      internalID: 1695607796190015265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_2
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 225
+        width: 109
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65d121d146a1c3ed0800000000000000
+      internalID: -2433040681400132266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_3
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 225
+        width: 109
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fd24d6de57658990800000000000000
+      internalID: -7384382356975243785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_4
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 225
+        width: 110
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 421d593c247fbf230800000000000000
+      internalID: 3673801787172049188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_5
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 225
+        width: 109
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92890dba1c251fc60800000000000000
+      internalID: 7850146617248225321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_6
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 225
+        width: 109
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15f11092acf5b0ed0800000000000000
+      internalID: -2446756650669760687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_7
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 225
+        width: 110
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a97d0716658e5b7c0800000000000000
+      internalID: -4056080431677646950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_8
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 225
+        width: 109
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82ed5994536b8fe50800000000000000
+      internalID: 6843419973773549096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_9
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 225
+        width: 109
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de27ad4cbf7dfd320800000000000000
+      internalID: 2585022187473367789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_10
+      rect:
+        serializedVersion: 2
+        x: 1438
+        y: 225
+        width: 109
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ecb52d025f9e51d0800000000000000
+      internalID: -3360073097215099680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_11
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 0
+        width: 179
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f4d77ebeb1fc1520800000000000000
+      internalID: 2674278080292836601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_12
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 0
+        width: 179
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4fa5f0f9088f7010800000000000000
+      internalID: 1188818402927816525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_13
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 179
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9deb2ca74ca58c60800000000000000
+      internalID: 7819845751829949855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_14
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 0
+        width: 179
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4a7c0c93ad956800800000000000000
+      internalID: 605063050974493261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_15
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 0
+        width: 66
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8681f59caaea164c0800000000000000
+      internalID: -4295960520988616600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logoRotCoffee v.2 blanc_16
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 0
+        width: 178
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99d8d508c2c9d9330800000000000000
+      internalID: 3719300582224006553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      logoRotCoffee v.2 blanc_0: 2836838040846441834
+      logoRotCoffee v.2 blanc_1: 1695607796190015265
+      logoRotCoffee v.2 blanc_10: -3360073097215099680
+      logoRotCoffee v.2 blanc_11: 2674278080292836601
+      logoRotCoffee v.2 blanc_12: 1188818402927816525
+      logoRotCoffee v.2 blanc_13: 7819845751829949855
+      logoRotCoffee v.2 blanc_14: 605063050974493261
+      logoRotCoffee v.2 blanc_15: -4295960520988616600
+      logoRotCoffee v.2 blanc_16: 3719300582224006553
+      logoRotCoffee v.2 blanc_2: -2433040681400132266
+      logoRotCoffee v.2 blanc_3: -7384382356975243785
+      logoRotCoffee v.2 blanc_4: 3673801787172049188
+      logoRotCoffee v.2 blanc_5: 7850146617248225321
+      logoRotCoffee v.2 blanc_6: -2446756650669760687
+      logoRotCoffee v.2 blanc_7: -4056080431677646950
+      logoRotCoffee v.2 blanc_8: 6843419973773549096
+      logoRotCoffee v.2 blanc_9: 2585022187473367789
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

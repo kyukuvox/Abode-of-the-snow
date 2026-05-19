@@ -27,15 +27,45 @@ public class BadDecisionManager : MonoBehaviour
     [Header("Sons")]
     public DecisionSound[] decisionSounds;
 
+    [Header("Musique Game Over")]
+    public AudioClip gameOverMusic;
+    [Range(0f, 1f)]
+    public float gameOverMusicVolume = 1f;
+    public float musicFadeDuration = 1f;
+
+    [Header("Son bouton Game Over")]
+    public AudioClip gameOverButtonSound;
+    [Range(0f, 1f)]
+    public float gameOverButtonVolume = 1f;
+
     public int maxLives = 4;
     public int currentLives;
     public bool isGameOver = false;
     public bool isOverlayActive = false;
 
+    private AudioSource musicAudioSource;
+    private Button gameOverButton;
+
     void Awake()
     {
         Instance = this;
         currentLives = maxLives;
+
+        musicAudioSource = gameObject.AddComponent<AudioSource>();
+        musicAudioSource.loop = true;
+        musicAudioSource.playOnAwake = false;
+        musicAudioSource.spatialBlend = 0f;
+        musicAudioSource.volume = 0f;
+    }
+
+    void Start()
+    {
+        if (gameOverPanel != null)
+        {
+            gameOverButton = gameOverPanel.GetComponentInChildren<Button>();
+            if (gameOverButton != null)
+                gameOverButton.onClick.AddListener(OnGameOverButtonClicked);
+        }
     }
 
     void PlayDecisionSound(int index)
@@ -44,6 +74,51 @@ public class BadDecisionManager : MonoBehaviour
         DecisionSound ds = decisionSounds[index];
         if (ds.sound == null) return;
         SoundSettings.PlaySound(ds.sound, ds.volume, this);
+    }
+
+    void OnGameOverButtonClicked()
+    {
+        SoundSettings.PlaySound(gameOverButtonSound, gameOverButtonVolume, this);
+        StartCoroutine(FadeOutMusicThenQuit());
+    }
+
+    IEnumerator FadeOutMusicThenQuit()
+    {
+        float startVolume = musicAudioSource.volume;
+        float elapsed = 0f;
+
+        while (elapsed < musicFadeDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            musicAudioSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / musicFadeDuration);
+            yield return null;
+        }
+
+        musicAudioSource.volume = 0f;
+        musicAudioSource.Stop();
+
+        PauseMenu.Instance.QuitToTitleFromGameOver();
+    }
+
+    IEnumerator FadeInMusic()
+    {
+        if (gameOverMusic == null) yield break;
+
+        musicAudioSource.clip = gameOverMusic;
+        musicAudioSource.volume = 0f;
+        musicAudioSource.Play();
+
+        float elapsed = 0f;
+        float targetVolume = gameOverMusicVolume * SoundSettings.MusicVolume;
+
+        while (elapsed < musicFadeDuration)
+        {
+            elapsed += Time.unscaledDeltaTime; 
+            musicAudioSource.volume = Mathf.Lerp(0f, targetVolume, elapsed / musicFadeDuration);
+            yield return null;
+        }
+
+        musicAudioSource.volume = targetVolume;
     }
 
     public void TriggerBadDecision()
@@ -131,5 +206,7 @@ public class BadDecisionManager : MonoBehaviour
 
         cg.alpha = 1f;
         Time.timeScale = 0f;
+
+        StartCoroutine(FadeInMusic());
     }
 }
