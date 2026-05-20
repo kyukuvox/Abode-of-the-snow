@@ -15,9 +15,9 @@ MonoBehaviour:
   characterName: Joueur
   characterSprite: {fileID: 3690293445947645659, guid: 6fed411ece9e5f042b84dcf9bea61315, type: 3}
   perkDescription: 
-  maxLife: 20
-  maxActionPoints: 3
-  actionPointsPerTurn: 3
+  maxLife: 25
+  maxActionPoints: 5
+  actionPointsPerTurn: 0
   handSize: 5
   startingDeck:
   - {fileID: 11400000, guid: 4b25f63d1b13ca84ea627c638d61f936, type: 2}
@@ -29,6 +29,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 37f0d63e9608d1a48afe7bfefa71d1e3, type: 2}
   - {fileID: 11400000, guid: 37f0d63e9608d1a48afe7bfefa71d1e3, type: 2}
   - {fileID: 11400000, guid: 4aa6aeb245fb49e489876e75de9e1339, type: 2}
-  - {fileID: 0}
   - {fileID: 11400000, guid: 151d2fa4741c82349ad5499a529e6e1f, type: 2}
   rewardCard: {fileID: 0}

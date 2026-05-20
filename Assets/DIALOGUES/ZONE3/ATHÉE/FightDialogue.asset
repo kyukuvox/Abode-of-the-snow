@@ -16,7 +16,14 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: f6d820a7266204e4b8d98d50913746c6, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
+  triggersCardGame: 1
+  enemyCardData: {fileID: 11400000, guid: 3980c1e3e828516498c14aebbefc830b, type: 2}
+  playerCardData: {fileID: 11400000, guid: 93c91f4b48cba784ca5604f0d7862d0e, type: 2}
+  cardGameRewards:
+  - {fileID: 11400000, guid: d186d96498c042a45b40719930de2c13, type: 2}
+  - {fileID: 11400000, guid: f371101d11fe6014aa28af5b59746910, type: 2}
   rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
   lines:
   - speaker: 0
     text: "Are you okay? It looks like you\u2019re going to pass out!"
@@ -27,8 +34,3 @@ MonoBehaviour:
     text: "Are you sure you\u2019ll be okay? You\u2019re really pale..."
   - speaker: 1
     text: Please... I feel like I really need it
-  triggersCardGame: 1
-  enemyCardData: {fileID: 11400000, guid: 3980c1e3e828516498c14aebbefc830b, type: 2}
-  playerCardData: {fileID: 11400000, guid: 93c91f4b48cba784ca5604f0d7862d0e, type: 2}
-  cardGameRewards:
-  - {fileID: 11400000, guid: d186d96498c042a45b40719930de2c13, type: 2}

@@ -15,9 +15,9 @@ MonoBehaviour:
   characterName: "PA\xCFENNE"
   characterSprite: {fileID: 21300000, guid: 4b7808aba227e534f80467eae8932c2f, type: 3}
   perkDescription: 
-  maxLife: 20
+  maxLife: 25
   maxActionPoints: 3
-  actionPointsPerTurn: 3
+  actionPointsPerTurn: 0
   handSize: 5
   startingDeck:
   - {fileID: 11400000, guid: 37f0d63e9608d1a48afe7bfefa71d1e3, type: 2}

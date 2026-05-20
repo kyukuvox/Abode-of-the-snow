@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndingManager
   videoPlayer: {fileID: 1759608157}
-  endingVideo: {fileID: 32900000, guid: caa893b7c1cffcb40a16a3352c37095a, type: 3}
+  endingVideo: {fileID: 32900000, guid: 569f106468e29df4ea387c60f7dd838a, type: 3}
 --- !u!328 &1759608157
 VideoPlayer:
   m_ObjectHideFlags: 0

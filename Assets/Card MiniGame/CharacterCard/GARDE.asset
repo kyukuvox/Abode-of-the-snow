@@ -15,15 +15,15 @@ MonoBehaviour:
   characterName: GARDE
   characterSprite: {fileID: -2080150566128266222, guid: f1c8ff867d382a141b4438aa374af870, type: 3}
   perkDescription: 
-  maxLife: 20
-  maxActionPoints: 3
-  actionPointsPerTurn: 3
+  maxLife: 30
+  maxActionPoints: 2
+  actionPointsPerTurn: 0
   handSize: 5
   startingDeck:
-  - {fileID: 11400000, guid: 4b25f63d1b13ca84ea627c638d61f936, type: 2}
+  - {fileID: 11400000, guid: a48e26974fdd4a04ba042f406594bb58, type: 2}
   - {fileID: 11400000, guid: 37f0d63e9608d1a48afe7bfefa71d1e3, type: 2}
   - {fileID: 11400000, guid: 37f0d63e9608d1a48afe7bfefa71d1e3, type: 2}
-  - {fileID: 11400000, guid: 4b25f63d1b13ca84ea627c638d61f936, type: 2}
+  - {fileID: 11400000, guid: a48e26974fdd4a04ba042f406594bb58, type: 2}
   - {fileID: 11400000, guid: 4b25f63d1b13ca84ea627c638d61f936, type: 2}
   - {fileID: 11400000, guid: 4b25f63d1b13ca84ea627c638d61f936, type: 2}
   - {fileID: 11400000, guid: 238c3172d7094014c96b6334bf5c1b01, type: 2}

@@ -16,8 +16,8 @@ MonoBehaviour:
   characterSprite: {fileID: 21300000, guid: c1d1fb39d83f67944af594cec7d5ba00, type: 3}
   perkDescription: 
   maxLife: 20
-  maxActionPoints: 5
-  actionPointsPerTurn: 1
+  maxActionPoints: 8
+  actionPointsPerTurn: 0
   handSize: 5
   startingDeck:
   - {fileID: 11400000, guid: 4b25f63d1b13ca84ea627c638d61f936, type: 2}
