@@ -15,7 +15,8 @@ MonoBehaviour:
   cardDescription: Gain 4 DEFENSE
   cardName: SHIELD
   cardSprite: {fileID: -1028012128017238524, guid: f46b59745596e4145bdfa0a2942d3e66, type: 3}
-  description: You protect yourself with a shield to block the opponent strike.
+  description: You protect yourself with a shield to block the opponent strike. you
+    gain 4 defense point.
   cardType: 1
   attackType: 0
   costType: 0

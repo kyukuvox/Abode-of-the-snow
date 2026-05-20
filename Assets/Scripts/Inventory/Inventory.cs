@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public static Inventory Instance; 
+    public static Inventory Instance;
 
     public List<Item> items = new List<Item>();
 
@@ -15,13 +15,14 @@ public class Inventory : MonoBehaviour
         Instance = this;
     }
 
-    public void RemoveItemSilent(Item item)
-    {
-        items.Remove(item);
-    }
-
     public void AddItem(Item item)
     {
+        if (items.Contains(item))
+        {
+            Debug.Log("Item déjà dans l'inventaire : " + item.itemName);
+            return;
+        }
+
         items.Add(item);
 
         if (onItemChangedCallback != null)
@@ -34,5 +35,10 @@ public class Inventory : MonoBehaviour
 
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
+    }
+
+    public void RemoveItemSilent(Item item)
+    {
+        items.Remove(item);
     }
 }

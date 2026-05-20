@@ -15,7 +15,8 @@ MonoBehaviour:
   cardDescription: Wait 2 Turn / Deal 7 damages
   cardName: PRIEST
   cardSprite: {fileID: 21300000, guid: 17d769e638f2f2b4bae4692d806c366b, type: 3}
-  description: With devotion you might obtain the power of our savior.
+  description: 'With devotion you might obtain the power of our savior. in exchange
+    of 5 Defense points you deal 7 damages in 2 Turns. '
   cardType: 0
   attackType: 3
   costType: 2

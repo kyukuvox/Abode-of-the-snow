@@ -15,11 +15,11 @@ MonoBehaviour:
   cardDescription: Wait 2 Turn / Deal 4 damages
   cardName: PAGAN
   cardSprite: {fileID: 21300000, guid: cd65530ce15cefb46924d6a0bde25b19, type: 3}
-  description: Sometimes you need to sacrifice a little bit of yourself to reach
-    your goals.
+  description: 'Sometimes you need to sacrifice a little bit of yourself to reach
+    your goals. In exchange of 2 Health you deal 5 damages in 2 Turns. '
   cardType: 0
   attackType: 3
   costType: 1
   actionCost: 2
-  power: 4
+  power: 5
   delayTurns: 2

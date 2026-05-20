@@ -15,7 +15,8 @@ MonoBehaviour:
   cardDescription: Wait 1 Turn / Receive 2 ACTION
   cardName: ARCHEOLOGIST
   cardSprite: {fileID: 7046113299756270078, guid: d5c60efc60df4074ba88f142272ce810, type: 3}
-  description: With a little bit of research you could find something better to rest.
+  description: 'With a little bit of research you could find something better to
+    rest. You receive 2 Action points in the next turn. '
   cardType: 2
   attackType: 0
   costType: 0

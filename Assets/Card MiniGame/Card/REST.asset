@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
   m_Name: REST
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardDescription: Regain 2 ACTION
+  cardDescription: Regain 1 ACTION
   cardName: REST
   cardSprite: {fileID: -637072680794381938, guid: c1a9ee6f3cee5394ea24f78681900c15, type: 3}
-  description: You give ourself a little nap during the fight to recover 2 action
-    points.
+  description: You give yourself a little nap during the fight to recover 1 Action
+    point.
   cardType: 2
   attackType: 0
   costType: 0
   actionCost: 0
-  power: 2
+  power: 1
   delayTurns: 0

@@ -15,10 +15,11 @@ MonoBehaviour:
   cardDescription: Gain 8 DEFENSE
   cardName: GUARD
   cardSprite: {fileID: 21300000, guid: fca8ce5301c16514d85018f5dc02cd48, type: 3}
-  description: You will stand no matter what happen.
+  description: You will stand no matter what happen. By sacrificing 3 health you
+    gain 7 Defense points
   cardType: 1
   attackType: 0
   costType: 1
   actionCost: 3
-  power: 8
+  power: 7
   delayTurns: 0

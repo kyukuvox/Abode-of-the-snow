@@ -15,11 +15,11 @@ MonoBehaviour:
   cardDescription: 'Pay 2 DEFENSE / Hit 5 ACTION '
   cardName: EXHAUSTION
   cardSprite: {fileID: 21300000, guid: 622d8b9b356a5b9408d27671db16730a, type: 3}
-  description: The opponent feel tired and loose 5 action points. In exchange , you
-    have to pay 2 defense points.
+  description: The opponent feel tired and loose 2 Action points. In exchange , you
+    have to pay 1 defense points.
   cardType: 0
   attackType: 2
   costType: 2
-  actionCost: 2
-  power: 5
+  actionCost: 1
+  power: 2
   delayTurns: 0

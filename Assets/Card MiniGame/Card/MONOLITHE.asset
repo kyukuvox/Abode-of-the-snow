@@ -15,8 +15,9 @@ MonoBehaviour:
   cardDescription: Wait 1 turn / Gain 6 DEFENSE
   cardName: MONOLITH
   cardSprite: {fileID: -4557883182864163363, guid: a6366be5ee7345f4c8e7bcaf9625e545, type: 3}
-  description: A mystical creation create long before the cataclysm. It was a symbol
-    of protection from the ancient civilisation.
+  description: 'A mystical creation create long before the cataclysm. It was a symbol
+    of protection from the ancient civilisation. It gives you 6 Defense point but
+    you have to wait 1 turn. '
   cardType: 1
   attackType: 0
   costType: 0

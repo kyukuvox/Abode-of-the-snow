@@ -73,6 +73,7 @@ public class CardGameManager : MonoBehaviour
     public Image tutorialImage;
     public Button tutorialLeftButton;
     public Button tutorialRightButton;
+    public Button tutorialOpenButton;
     public Sprite[] tutorialSprites;
     public float tutorialFadeDuration = 0.3f;
     public AudioClip tutorialButtonSound;
@@ -211,6 +212,8 @@ public class CardGameManager : MonoBehaviour
             tutorialLeftButton.onClick.AddListener(TutorialPrevious);
         if (tutorialRightButton != null)
             tutorialRightButton.onClick.AddListener(TutorialNext);
+        if (tutorialOpenButton != null)
+            tutorialOpenButton.onClick.AddListener(ReopenTutorial);
 
         playerLifeInitPos = playerLifeText.rectTransform.anchoredPosition;
         playerActionInitPos = playerActionText.rectTransform.anchoredPosition;
@@ -483,6 +486,38 @@ public class CardGameManager : MonoBehaviour
 
         PlayerPrefs.SetInt(TUTORIAL_KEY, 1);
         PlayerPrefs.Save();
+    }
+
+    public void ReopenTutorial()
+    {
+        SoundSettings.PlaySound(tutorialButtonSound, tutorialButtonVolume, this);
+        StartCoroutine(ShowTutorialManual());
+    }
+
+    IEnumerator ShowTutorialManual()
+    {
+        if (tutorialPanel == null || tutorialSprites == null || tutorialSprites.Length == 0)
+            yield break;
+
+        tutorialIndex = 0;
+        UpdateTutorialImage();
+
+        CanvasGroup cg = tutorialPanel.GetComponent<CanvasGroup>();
+        if (cg == null) cg = tutorialPanel.AddComponent<CanvasGroup>();
+
+        cg.alpha = 0f;
+        tutorialPanel.SetActive(true);
+
+        float elapsed = 0f;
+        while (elapsed < tutorialFadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(0f, 1f, elapsed / tutorialFadeDuration);
+            yield return null;
+        }
+        cg.alpha = 1f;
+
+        yield return new WaitUntil(() => !tutorialPanel.activeSelf);
     }
 
     void UpdateTutorialImage()
