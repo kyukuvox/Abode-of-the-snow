@@ -27,12 +27,12 @@ public class NPCWithItemDialogue : NPCInteraction
     public RequiredItemsCondition itemsCondition;
 
     [Header("Récompense finale")]
-    public Item rewardItem; 
-    public DialogueData rewardDialogue; 
+    public Item rewardItem;
+    public DialogueData rewardDialogue;
 
     private bool hasBeenDefeated = false;
     private bool hasBeenFought = false;
-    private bool rewardGiven = false; 
+    private bool rewardGiven = false;
     private List<Item> consumedItems = new List<Item>();
     private HoverParticleManager hoverParticles;
 
@@ -76,6 +76,20 @@ public class NPCWithItemDialogue : NPCInteraction
     }
 
     public bool HasBeenDefeated() { return hasBeenDefeated; }
+
+    public List<string> GetConsumedItemNames()
+    {
+        List<string> names = new List<string>();
+        foreach (Item item in consumedItems)
+            names.Add(item.itemName);
+        return names;
+    }
+
+    public void LoadConsumedItem(Item item)
+    {
+        if (!consumedItems.Contains(item))
+            consumedItems.Add(item);
+    }
 
     bool HasAllRequiredItems()
     {

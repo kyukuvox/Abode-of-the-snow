@@ -19,6 +19,21 @@ public class SpriteChanger : MonoBehaviour
         originalScale = transform.localScale;
     }
 
+    public void ForceActivate()
+    {
+        hasBeenClicked = true;
+
+        if (newSprite != null && spriteRenderer != null)
+            spriteRenderer.sprite = newSprite;
+
+        if (hoverParticles != null)
+            hoverParticles.Hide();
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
+    }
+
     void OnMouseEnter()
     {
         if (PauseMenu.Instance.IsPaused()) return;
@@ -47,8 +62,16 @@ public class SpriteChanger : MonoBehaviour
         {
             spriteRenderer.sprite = newSprite;
             hasBeenClicked = true;
+
+            if (ActivatedObjectsTracker.Instance != null)
+                ActivatedObjectsTracker.Instance.RegisterActivated(gameObject.name);
+
             if (hoverParticles != null)
                 hoverParticles.Hide();
+
+            Collider2D col = GetComponent<Collider2D>();
+            if (col != null)
+                col.enabled = false;
         }
 
         StartCoroutine(Bump());

@@ -39,6 +39,41 @@ public class DraggableSprite : MonoBehaviour
         dragAudioSource.playOnAwake = false;
         dragAudioSource.spatialBlend = 0f;
         dragAudioSource.volume = 0f;
+
+        if (ActivatedObjectsTracker.Instance != null &&
+            ActivatedObjectsTracker.Instance.IsActivated(gameObject.name))
+        {
+            isActivated = true;
+            if (hiddenItem != null)
+                hiddenItem.SetActive(true);
+            if (hoverParticles != null)
+                hoverParticles.Hide();
+            spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+        }
+    }
+
+    public void ForceActivate()
+    {
+        isActivated = true;
+
+        if (hiddenItem != null)
+        {
+            ItemPickup pickup = hiddenItem.GetComponent<ItemPickup>();
+            if (pickup != null && PickedUpItemsTracker.Instance != null &&
+                PickedUpItemsTracker.Instance.HasPickedUp(pickup.item.itemName))
+            {
+                hiddenItem.SetActive(false);
+            }
+            else
+            {
+                hiddenItem.SetActive(true); 
+            }
+        }
+
+        if (hoverParticles != null)
+            hoverParticles.Hide();
+        if (spriteRenderer != null)
+            spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1f);
     }
 
     void OnMouseEnter()
@@ -113,6 +148,9 @@ public class DraggableSprite : MonoBehaviour
         if (distance >= triggerDistance && !isActivated)
         {
             isActivated = true;
+
+            if (ActivatedObjectsTracker.Instance != null)
+                ActivatedObjectsTracker.Instance.RegisterActivated(gameObject.name);
 
             if (hiddenItem != null)
                 hiddenItem.SetActive(true);

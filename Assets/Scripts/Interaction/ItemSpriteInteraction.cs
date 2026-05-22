@@ -39,6 +39,54 @@ public class ItemSpriteInteraction : MonoBehaviour
 
         if (particlesToShow != null)
             particlesToShow.SetActive(false);
+
+        if (ActivatedObjectsTracker.Instance != null &&
+            ActivatedObjectsTracker.Instance.IsActivated(gameObject.name))
+        {
+            isActivated = true;
+            if (activatedSprite != null && spriteRenderer != null)
+                spriteRenderer.sprite = activatedSprite;
+            if (spriteToRemove != null)
+                Destroy(spriteToRemove);
+            if (hoverParticles != null)
+                hoverParticles.Hide();
+            if (particlesToShow != null)
+                particlesToShow.SetActive(true);
+            if (activationLoopSound != null && loopAudioSource != null)
+            {
+                loopAudioSource.clip = activationLoopSound;
+                loopAudioSource.volume = loopSoundVolume * SoundSettings.SFXVolume;
+                loopAudioSource.Play();
+            }
+        }
+    }
+
+    public void ForceActivate()
+    {
+        isActivated = true;
+
+        if (activatedSprite != null && spriteRenderer != null)
+            spriteRenderer.sprite = activatedSprite;
+
+        if (spriteToRemove != null)
+            Destroy(spriteToRemove);
+
+        if (hoverParticles != null)
+            hoverParticles.Hide();
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
+
+        if (particlesToShow != null)
+            particlesToShow.SetActive(true);
+
+        if (activationLoopSound != null && loopAudioSource != null)
+        {
+            loopAudioSource.clip = activationLoopSound;
+            loopAudioSource.volume = loopSoundVolume * SoundSettings.SFXVolume;
+            loopAudioSource.Play();
+        }
     }
 
     void OnMouseEnter()
@@ -63,6 +111,9 @@ public class ItemSpriteInteraction : MonoBehaviour
         if (item == requiredItem)
         {
             isActivated = true;
+
+            if (ActivatedObjectsTracker.Instance != null)
+                ActivatedObjectsTracker.Instance.RegisterActivated(gameObject.name);
 
             if (activatedSprite != null && spriteRenderer != null)
                 spriteRenderer.sprite = activatedSprite;

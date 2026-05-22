@@ -16,6 +16,7 @@ public class ItemDescriptionManager : MonoBehaviour
     public float slideOffset = 50f;
 
     private bool isTyping = false;
+    private bool isAnimating = false;
     private string currentFullText = "";
     private Coroutine typingCoroutine;
     private RectTransform panelRect;
@@ -24,6 +25,16 @@ public class ItemDescriptionManager : MonoBehaviour
     {
         Instance = this;
         panelRect = descriptionPanel.GetComponent<RectTransform>();
+    }
+
+    void Update()
+    {
+        if (!descriptionPanel.activeSelf) return;
+        if (isAnimating) return; 
+        if (isTyping) return;
+
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
+            ClosePanel();
     }
 
     public void ShowItemDescription(Item item)
@@ -43,6 +54,8 @@ public class ItemDescriptionManager : MonoBehaviour
 
     IEnumerator AnimateOpen()
     {
+        isAnimating = true; 
+
         CanvasGroup canvasGroup = descriptionPanel.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
             canvasGroup = descriptionPanel.AddComponent<CanvasGroup>();
@@ -64,10 +77,14 @@ public class ItemDescriptionManager : MonoBehaviour
 
         canvasGroup.alpha = 1f;
         panelRect.anchoredPosition = targetPos;
+
+        isAnimating = false;
     }
 
     IEnumerator AnimateClose()
     {
+        isAnimating = true;
+
         CanvasGroup canvasGroup = descriptionPanel.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
             canvasGroup = descriptionPanel.AddComponent<CanvasGroup>();
@@ -87,6 +104,8 @@ public class ItemDescriptionManager : MonoBehaviour
         canvasGroup.alpha = 0f;
         panelRect.anchoredPosition = startPos;
         descriptionPanel.SetActive(false);
+
+        isAnimating = false;
     }
 
     IEnumerator TypeDescription(string text)
@@ -106,8 +125,10 @@ public class ItemDescriptionManager : MonoBehaviour
 
     public void ClosePanel()
     {
+        if (isAnimating) return; 
         if (isTyping) return;
         StopAllCoroutines();
+        isAnimating = false;
         StartCoroutine(AnimateClose());
     }
 

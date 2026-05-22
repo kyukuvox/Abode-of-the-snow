@@ -69,8 +69,49 @@ public class ClickCounter : MonoBehaviour
             loopAudioSource.clip = loopSound;
             loopAudioSource.Play();
         }
+
+        if (ActivatedObjectsTracker.Instance != null &&
+            ActivatedObjectsTracker.Instance.IsActivated(gameObject.name))
+        {
+            isActivated = true;
+            currentClicks = clicksRequired;
+            if (hiddenItem != null)
+                hiddenItem.SetActive(true);
+            if (particlesToHide != null)
+                particlesToHide.SetActive(false);
+            if (hoverParticles != null)
+                hoverParticles.Hide();
+            if (loopAudioSource != null && loopAudioSource.isPlaying)
+                loopAudioSource.Stop();
+        }
     }
 
+    public void ForceActivate()
+    {
+        isActivated = true;
+        currentClicks = clicksRequired;
+
+        if (hiddenItem != null)
+        {
+            ItemPickup pickup = hiddenItem.GetComponent<ItemPickup>();
+            if (pickup != null && PickedUpItemsTracker.Instance != null &&
+                PickedUpItemsTracker.Instance.HasPickedUp(pickup.item.itemName))
+            {
+                hiddenItem.SetActive(false);
+            }
+            else
+            {
+                hiddenItem.SetActive(true);
+            }
+        }
+
+        if (particlesToHide != null)
+            particlesToHide.SetActive(false);
+        if (hoverParticles != null)
+            hoverParticles.Hide();
+        if (loopAudioSource != null && loopAudioSource.isPlaying)
+            loopAudioSource.Stop();
+    }
     void OnMouseEnter()
     {
         if (PauseMenu.Instance.IsPaused()) return;
@@ -110,6 +151,9 @@ public class ClickCounter : MonoBehaviour
         if (currentClicks >= clicksRequired)
         {
             isActivated = true;
+
+            if (ActivatedObjectsTracker.Instance != null)
+                ActivatedObjectsTracker.Instance.RegisterActivated(gameObject.name);
 
             if (loopAudioSource != null && loopAudioSource.isPlaying)
                 StartCoroutine(FadeAndStopLoop());

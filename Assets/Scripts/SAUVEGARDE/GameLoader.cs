@@ -30,7 +30,6 @@ public class GameLoader : MonoBehaviour
         float timeout = 5f;
         float elapsed = 0f;
 
-        // Attend avec timeout pour éviter une boucle infinie
         while (elapsed < timeout)
         {
             if (SaveManager.Instance != null &&
@@ -38,7 +37,8 @@ public class GameLoader : MonoBehaviour
                 PlayerCardCollection.Instance != null &&
                 DeckBuilderManager.Instance != null &&
                 BadDecisionManager.Instance != null &&
-                PickedUpItemsTracker.Instance != null)
+                PickedUpItemsTracker.Instance != null &&
+                ActivatedObjectsTracker.Instance != null)
                 break;
 
             elapsed += Time.deltaTime;
@@ -54,6 +54,7 @@ public class GameLoader : MonoBehaviour
             Debug.Log("DeckBuilderManager : " + (DeckBuilderManager.Instance != null));
             Debug.Log("BadDecisionManager : " + (BadDecisionManager.Instance != null));
             Debug.Log("PickedUpItemsTracker : " + (PickedUpItemsTracker.Instance != null));
+            Debug.Log("ActivatedObjectsTracker : " + (ActivatedObjectsTracker.Instance != null)); 
             yield break;
         }
 
@@ -64,5 +65,52 @@ public class GameLoader : MonoBehaviour
         PlayerPrefs.Save();
 
         SaveManager.Instance.LoadGame();
+
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+
+        ApplyActivatedObjects();
+    }
+
+    void ApplyActivatedObjects()
+    {
+        if (ActivatedObjectsTracker.Instance == null) return;
+
+        ItemInteractableSprite[] interactables = FindObjectsByType<ItemInteractableSprite>(FindObjectsSortMode.None);
+        foreach (ItemInteractableSprite obj in interactables)
+        {
+            if (ActivatedObjectsTracker.Instance.IsActivated(obj.gameObject.name))
+                obj.ForceActivate();
+        }
+
+        SpriteChanger[] spriteChangers = FindObjectsByType<SpriteChanger>(FindObjectsSortMode.None);
+        foreach (SpriteChanger obj in spriteChangers)
+        {
+            if (ActivatedObjectsTracker.Instance.IsActivated(obj.gameObject.name))
+                obj.ForceActivate();
+        }
+
+        ItemSpriteInteraction[] spriteInteractions = FindObjectsByType<ItemSpriteInteraction>(FindObjectsSortMode.None);
+        foreach (ItemSpriteInteraction obj in spriteInteractions)
+        {
+            if (ActivatedObjectsTracker.Instance.IsActivated(obj.gameObject.name))
+                obj.ForceActivate();
+        }
+        
+        ClickCounter[] clickCounters = FindObjectsByType<ClickCounter>(FindObjectsSortMode.None);
+        foreach (ClickCounter obj in clickCounters)
+        {
+            if (ActivatedObjectsTracker.Instance.IsActivated(obj.gameObject.name))
+                obj.ForceActivate();
+        }
+
+        DraggableSprite[] draggables = FindObjectsByType<DraggableSprite>(FindObjectsSortMode.None);
+        foreach (DraggableSprite obj in draggables)
+        {
+            if (ActivatedObjectsTracker.Instance.IsActivated(obj.gameObject.name))
+                obj.ForceActivate();
+        }
+
+        Debug.Log("Objets interactifs restaurés !");
     }
 }

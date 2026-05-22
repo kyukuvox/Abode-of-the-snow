@@ -18,6 +18,11 @@ public class PickedUpItemsTracker : MonoBehaviour
             pickedUpItems.Add(itemName);
     }
 
+    public bool HasPickedUp(string itemName) 
+    {
+        return pickedUpItems.Contains(itemName);
+    }
+
     public List<string> GetPickedUpItems()
     {
         return pickedUpItems;
@@ -31,7 +36,6 @@ public class PickedUpItemsTracker : MonoBehaviour
 
     void HidePickedUpItems()
     {
-        // Cache les items déjà ramassés dans la scène
         ItemPickup[] allItems = FindObjectsOfType<ItemPickup>();
         foreach (ItemPickup pickup in allItems)
             if (pickedUpItems.Contains(pickup.item.itemName))

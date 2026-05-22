@@ -21,6 +21,12 @@ public class ItemPickup : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         hoverParticles = GetComponent<HoverParticleManager>();
         originalScale = transform.localScale;
+
+        if (PickedUpItemsTracker.Instance != null &&
+            PickedUpItemsTracker.Instance.HasPickedUp(item.itemName))
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnMouseEnter()

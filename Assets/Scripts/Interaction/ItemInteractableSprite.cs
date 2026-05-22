@@ -37,8 +37,56 @@ public class ItemInteractableSprite : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         hoverParticles = GetComponent<HoverParticleManager>();
+
+        if (ActivatedObjectsTracker.Instance != null &&
+            ActivatedObjectsTracker.Instance.IsActivated(gameObject.name))
+        {
+            isActivated = true;
+            if (activatedSprite != null && spriteRenderer != null)
+                spriteRenderer.sprite = activatedSprite;
+            if (hoverParticles != null)
+                hoverParticles.Hide();
+            if (animatedObject != null)
+            {
+                Vector3 targetPosition = new Vector3(
+                    animatedObject.transform.position.x,
+                    animatedObject.transform.position.y + targetYOffset,
+                    animatedObject.transform.position.z
+                );
+                animatedObject.transform.position = targetPosition;
+            }
+        }
     }
 
+    public void ForceActivate()
+    {
+        isActivated = true;
+
+        if (hoverParticles != null)
+            hoverParticles.Hide();
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
+
+        if (activationMode == ActivationMode.Animation && targetAnimator != null)
+        {
+            targetAnimator.enabled = false;
+        }
+
+        if (activatedSprite != null && spriteRenderer != null)
+            spriteRenderer.sprite = activatedSprite;
+
+        if (animatedObject != null)
+        {
+            Vector3 targetPosition = new Vector3(
+                animatedObject.transform.position.x,
+                animatedObject.transform.position.y + targetYOffset,
+                animatedObject.transform.position.z
+            );
+            animatedObject.transform.position = targetPosition;
+        }
+    }
     void OnMouseEnter()
     {
         if (PauseMenu.Instance.IsPaused()) return;
@@ -96,6 +144,9 @@ public class ItemInteractableSprite : MonoBehaviour
         if (item == requiredItem)
         {
             isActivated = true;
+
+            if (ActivatedObjectsTracker.Instance != null)
+                ActivatedObjectsTracker.Instance.RegisterActivated(gameObject.name);
 
             if (activatedSprite != null && spriteRenderer != null)
                 spriteRenderer.sprite = activatedSprite;

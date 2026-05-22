@@ -69,9 +69,15 @@ public class SaveManager : MonoBehaviour
 
         NPCWithItemDialogue[] allNPCs = FindObjectsByType<NPCWithItemDialogue>(FindObjectsSortMode.None);
         foreach (NPCWithItemDialogue npc in allNPCs)
+        {
             if (npc.HasBeenDefeated())
                 data.defeatedNPCNames.Add(npc.gameObject.name);
+
+            foreach (string itemName in npc.GetConsumedItemNames())
+                data.npcConsumedItems.Add(npc.gameObject.name + "|" + itemName);
+        }
         Debug.Log("NPCs vaincus sauvegardés : " + data.defeatedNPCNames.Count);
+        Debug.Log("Items consommés NPC sauvegardés : " + data.npcConsumedItems.Count);
 
         if (PickedUpItemsTracker.Instance != null)
         {
@@ -82,17 +88,17 @@ public class SaveManager : MonoBehaviour
         else
             Debug.Log("ERREUR : PickedUpItemsTracker introuvable !");
 
-        string json = JsonUtility.ToJson(data);
-        Debug.Log("JSON généré : " + json);
+        if (ActivatedObjectsTracker.Instance != null)
+        {
+            foreach (string name in ActivatedObjectsTracker.Instance.GetActivatedObjects())
+                data.activatedObjectNames.Add(name);
+            Debug.Log("Objets activés sauvegardés : " + data.activatedObjectNames.Count);
+        }
 
+        string json = JsonUtility.ToJson(data);
         PlayerPrefs.SetString("SaveData", json);
         PlayerPrefs.Save();
-        Debug.Log("Vérification immédiate : " + PlayerPrefs.HasKey("SaveData"));
-        Debug.Log("Valeur sauvegardée : " + PlayerPrefs.GetString("SaveData", "VIDE"));
-
-        // Vérifie que la save est bien écrite
-        bool saveExists = PlayerPrefs.HasKey("SaveData");
-        Debug.Log("Save écrite dans PlayerPrefs : " + saveExists);
+        Debug.Log("Save écrite dans PlayerPrefs : " + PlayerPrefs.HasKey("SaveData"));
         Debug.Log("=== SAVE GAME FIN ===");
     }
 
@@ -108,7 +114,6 @@ public class SaveManager : MonoBehaviour
         Debug.Log("JSON chargé : " + json);
         SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-        // Position du joueur
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -116,11 +121,9 @@ public class SaveManager : MonoBehaviour
             Debug.Log("Position restaurée : " + data.playerX + ", " + data.playerY);
         }
 
-        // Vies
         BadDecisionManager.Instance.currentLives = data.currentLives;
         Debug.Log("Vies restaurées : " + data.currentLives);
 
-        // Inventaire
         Inventory.Instance.items.Clear();
         foreach (string itemName in data.inventoryItemNames)
         {
@@ -133,11 +136,9 @@ public class SaveManager : MonoBehaviour
             else
                 Debug.Log("Item introuvable : " + itemName);
         }
-        // Force la mise à jour de l'UI de l'inventaire
         if (Inventory.Instance.onItemChangedCallback != null)
             Inventory.Instance.onItemChangedCallback.Invoke();
 
-        // Cartes débloquées
         PlayerCardCollection.Instance.ClearAndReload();
         foreach (string cardName in data.unlockedCardNames)
         {
@@ -148,7 +149,6 @@ public class SaveManager : MonoBehaviour
                 Debug.Log("Carte introuvable : " + cardName);
         }
 
-        // Deck
         List<CardData> deck = new List<CardData>();
         foreach (string cardName in data.deckCardNames)
         {
@@ -158,15 +158,35 @@ public class SaveManager : MonoBehaviour
         }
         DeckBuilderManager.Instance.LoadDeck(deck);
 
-        // PNJs vaincus
         NPCWithItemDialogue[] allNPCs = FindObjectsByType<NPCWithItemDialogue>(FindObjectsSortMode.None);
         foreach (NPCWithItemDialogue npc in allNPCs)
             if (data.defeatedNPCNames.Contains(npc.gameObject.name))
                 npc.SetDefeated(true);
 
-        // Items ramassés
+        foreach (string entry in data.npcConsumedItems)
+        {
+            string[] parts = entry.Split('|');
+            if (parts.Length != 2) continue;
+
+            string npcName = parts[0];
+            string itemName = parts[1];
+
+            foreach (NPCWithItemDialogue npc in allNPCs)
+            {
+                if (npc.gameObject.name == npcName)
+                {
+                    Item item = itemDatabase.GetItemByName(itemName);
+                    if (item != null)
+                        npc.LoadConsumedItem(item);
+                }
+            }
+        }
+
         if (PickedUpItemsTracker.Instance != null)
             PickedUpItemsTracker.Instance.LoadPickedUpItems(data.pickedUpItemNames);
+
+        if (ActivatedObjectsTracker.Instance != null)
+            ActivatedObjectsTracker.Instance.LoadActivatedObjects(data.activatedObjectNames);
 
         Debug.Log("Chargement terminé !");
     }
