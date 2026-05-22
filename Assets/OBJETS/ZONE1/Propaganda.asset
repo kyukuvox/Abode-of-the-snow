@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: 'Propaganda poster '
   itemIcon: {fileID: 21300000, guid: d1d6872fd041c8a4086513912bd9a7f3, type: 3}
   descriptionSprite: {fileID: 21300000, guid: 54ee5117b8722f04285ba29e0c72ca01, type: 3}
-  description: 'Poster, mostly torn and with greatly depleted ink. The illustration
-    highlights the benefits of the atom. '
+  description: 'A poster, mostly torn and with greatly depleted ink. The illustration
+    highlights the benefits of the Atom. '

@@ -16,13 +16,19 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
+  triggersCardGame: 0
+  enemyCardData: {fileID: 0}
+  playerCardData: {fileID: 0}
+  cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
   lines:
   - speaker: 1
     text: So she was indeed part of the expedition...
   - speaker: 0
-    text: Who are you talking about?
+    text: Who are you talking about ?
   - speaker: 1
-    text: From the most devoted woman I have ever seen, a woman who would have given
+    text: About the most devoted woman I have ever met, a woman who would have given
       everything for her daughter.
   - speaker: 1
     text: And I guess she was ready to go up the mountain for her.
@@ -32,9 +38,5 @@ MonoBehaviour:
     text: If you find her, she will answer you herself. But I sincerely hope that
       she has finally been able to talk to her again.
   - speaker: 1
-    text: 'If only I had known that she had decided to climb the mountain, I would
-      have given her some of my help, a help I should have given her long before... '
-  triggersCardGame: 0
-  enemyCardData: {fileID: 0}
-  playerCardData: {fileID: 0}
-  cardGameRewards: []
+    text: '*sigh* If only I had known that she had decided to climb the mountain,
+      I would have given her some of my help... '

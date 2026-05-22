@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Letter
   itemIcon: {fileID: 21300000, guid: 939af5edee6da2e42867d9a1c8bcacf1, type: 3}
   descriptionSprite: {fileID: 21300000, guid: c79b78d92de76bd4c90f597608dfb50f, type: 3}
-  description: "A letter where it is written: \"You have been gone too long, too
-    many days away from me. His memory is all I have left of us since you left with
+  description: "A letter where it is written: \"You have been gone too long; too
+    many days away from me. Her memory is all I have left of us since you left with
     all these pilgrims. I know you\u2019re brave and strong, but I\u2019m not as
-    strong as you, I need you. Please, go home.  -Your beloved [signature]\""
+    strong as you, I need you. Please, come home.  -Your beloved [signature]\""

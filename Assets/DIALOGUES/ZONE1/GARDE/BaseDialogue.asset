@@ -16,16 +16,18 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
+  triggersCardGame: 0
+  enemyCardData: {fileID: 0}
+  playerCardData: {fileID: 0}
+  cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
   lines:
   - speaker: 1
-    text: "I\u2019m sorry, pilgrim, but I won\u2019t be able to let you go upstairs
-      without a pass from our church."
+    text: "I\u2019m sorry, pilgrim, but I won\u2019t be able to let you pass without
+      a crossing permit from our church."
   - speaker: 0
     text: How am I supposed to get one?
   - speaker: 1
     text: With luck, someone in town could help you. But until then, this gate will
       remain closed.
-  triggersCardGame: 0
-  enemyCardData: {fileID: 0}
-  playerCardData: {fileID: 0}
-  cardGameRewards: []

@@ -16,10 +16,16 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 41abe5e685221aa4db2e127f6837a817, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
+  triggersCardGame: 0
+  enemyCardData: {fileID: 0}
+  playerCardData: {fileID: 0}
+  cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
   lines:
   - speaker: 1
-    text: "Now go and continue your pilgrim\u2019s journey! May your trip take place
-      under the best conditions!"
+    text: Now go pilgrim and continue your journey! May your trip take place under
+      the best conditions!
   - speaker: 1
     text: If you ever meet our God upstairs, I would like you to ask him for me why
       he lets so many atrocities happen in front of his eyes without taking action.
@@ -27,7 +33,3 @@ MonoBehaviour:
     text: I promise to ask him if I can, goodbye.
   - speaker: 1
     text: Farewell my friend, good climb.
-  triggersCardGame: 0
-  enemyCardData: {fileID: 0}
-  playerCardData: {fileID: 0}
-  cardGameRewards: []

@@ -16,20 +16,22 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: f6d820a7266204e4b8d98d50913746c6, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 1
-    text: "But ... It\u2019s my handwriting, I recognize this signature."
-  - speaker: 1
-    text: Where did you find this letter, traveler?
-  - speaker: 0
-    text: 'One of your acquaintances gave it to me... Apparently you handed this
-      letter to your wife before leaving. '
-  - speaker: 1
-    text: "My wife? I had a wife? No, it\u2019s not possible, I don\u2019t remember.
-      It\u2019s not possible, no no no, I refuse, I couldn\u2019t forget her, no!"
-  - speaker: 1
-    text: What did you do to me, why am I crying?!
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: This is my handwriting... I recognize this signature.
+  - speaker: 1
+    text: Where did you find this letter, Pilgrim ?
+  - speaker: 0
+    text: 'One of your acquaintances gave it to me... Apparently you handed this
+      letter to your wife before leaving. '
+  - speaker: 1
+    text: "My wife ? I had a wife ? No, I don't believe it, I don\u2019t remember.
+      It\u2019s not possible, I... I refuse, I couldn\u2019t forget her, no !"
+  - speaker: 1
+    text: What did you do to me, why am I crying ?!

@@ -26,11 +26,11 @@ MonoBehaviour:
   activatesPortalAfterCardGame: 0
   lines:
   - speaker: 0
-    text: "Are you okay? It looks like you\u2019re going to pass out!"
+    text: "Are you okay ? It looks like you\u2019re going to pass out !"
   - speaker: 1
-    text: " I ... Let\u2019s play, let\u2019s play this card game now. I need to
-      be sure of something. I know my answer is in these cards."
+    text: " I... Let\u2019s play, let\u2019s play this card game now. I need to be
+      sure of something. I know the answer is in these cards."
   - speaker: 0
-    text: "Are you sure you\u2019ll be okay? You\u2019re really pale..."
+    text: "Are you sure you\u2019ll be okay ? You\u2019re really pale..."
   - speaker: 1
     text: Please... I feel like I really need it

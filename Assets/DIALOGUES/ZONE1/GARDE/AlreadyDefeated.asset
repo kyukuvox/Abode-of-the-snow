@@ -16,10 +16,12 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 1
-    text: 'Would you like to stay in the village for a while longer? '
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: "I\u2019ll let you continue on your way, goodbye. "

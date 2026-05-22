@@ -16,18 +16,18 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
+  triggersCardGame: 0
+  enemyCardData: {fileID: 0}
+  playerCardData: {fileID: 0}
+  cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
   lines:
   - speaker: 1
     text: "I wish you to survive the ascent, pilgrim. If you manage to climb to the
       top, please ask for my soul\u2019s forgiveness."
   - speaker: 0
-    text: What sin must you make yourself forgive?
+    text: What sin have you committed ?
   - speaker: 1
     text: My innaction in the face of total injustice. And my fear of disobeying
       a totally absurd and cruel order.
-  - speaker: 1
-    text: "Whatever it is, I\u2019ll let you continue on your way, goodbye"
-  triggersCardGame: 0
-  enemyCardData: {fileID: 0}
-  playerCardData: {fileID: 0}
-  cardGameRewards: []

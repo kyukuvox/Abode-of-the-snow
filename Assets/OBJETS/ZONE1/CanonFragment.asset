@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Piece of rifle
   itemIcon: {fileID: 21300000, guid: b9bafbbd069a1ba44a45c5b2b2d7275b, type: 3}
   descriptionSprite: {fileID: 21300000, guid: c8a238cfc63fed342b17ad77c84baa1d, type: 3}
-  description: Piece of a rusty and twisted rifle. An engraving with the name of
-    a company is still slightly visible.
+  description: A Piece of a rusty and twisted rifle. An engraving with the name of
+    a company is still slightly visible on it.

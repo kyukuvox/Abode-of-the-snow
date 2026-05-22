@@ -16,20 +16,22 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 8960afca12083c04881e00f02ce7167a, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
+  triggersCardGame: 0
+  enemyCardData: {fileID: 0}
+  playerCardData: {fileID: 0}
+  cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
   lines:
   - speaker: 1
     text: "My love... I hoped I wouldn\u2019t have to reread this letter one day.
-      But on the other hand, it allows me to rethink her voice and imagine her still
+      But on the other hand, it allows me to remember her voice and imagine her still
       with me."
   - speaker: 0
-    text: 'But how long has it been since she left? '
+    text: 'How long has it been since she left ?  '
   - speaker: 1
     text: "It\u2019s already been 4 weeks since she left to find our daughter on
       top of the mountain."
   - speaker: 1
     text: "I know it\u2019s absurd to imagine her still up there climbing the mountain.
       But deep down, I know she is still alive."
-  triggersCardGame: 0
-  enemyCardData: {fileID: 0}
-  playerCardData: {fileID: 0}
-  cardGameRewards: []

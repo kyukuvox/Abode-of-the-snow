@@ -16,22 +16,25 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 1ad02a1cb9d09e14581bf86b6b08ede7, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 1
-  lines:
-  - speaker: 0
-    text: Do you know what that can represent?
-  - speaker: 1
-    text: How dare you present yourself to me with such infamy in your hands?!
-  - speaker: 0
-    text: What do you mean?
-  - speaker: 1
-    text: "You\u2019re lucky that our guards are far away at this time of day, otherwise
-      I\u2019ll have thrown you in jail!"
-  - speaker: 0
-    text: But why so much aggression, my father?
-  - speaker: 1
-    text: In my eyes, you are no better than a miscreant with such an object in your
-      possession!
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 0
+    text: Do you have an idea of what this could represent ?
+  - speaker: 1
+    text: How dare you present yourself to me with such a blasphemous object in your
+      hands ?!
+  - speaker: 0
+    text: What do you mean ?
+  - speaker: 1
+    text: "You\u2019re lucky that our guards are far away at this time of day, otherwise
+      I would have thrown you in the dungeon !"
+  - speaker: 0
+    text: But why so much aggressivity, my father ?
+  - speaker: 1
+    text: In my eyes, you are no better than a miscreant with such an object in your
+      possession !

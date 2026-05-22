@@ -16,24 +16,26 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: a12205541509adf4eba26d9cead915af, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 1
-  lines:
-  - speaker: 1
-    text: "Do you dare to come face to face with a blade, hoping I\u2019ll let you
-      go without consequences?!"
-  - speaker: 0
-    text: "But I wasn\u2019t counting..."
-  - speaker: 1
-    text: 'Do you think our saviour would forgive you for threatening one of his
-      sons? '
-  - speaker: 0
-    text: The lord will know how to forgive an ignorant!
-  - speaker: 1
-    text: A fool, perhaps, but a madman cannot find himself with him in his kingdom
-      beyond the clouds.
-  - speaker: 1
-    text: If your mentality is so irreligious, abandon your pilgrimage and go home
-      traveler.
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: "Do you dare to come face to face with a blade, hoping I\u2019ll let you
+      go without consequences ?!"
+  - speaker: 0
+    text: "But I wasn\u2019t counting..."
+  - speaker: 1
+    text: 'Do you think our saviour would forgive you for threatening one of his
+      sons ? '
+  - speaker: 0
+    text: The lord will know how to forgive an ignorant !
+  - speaker: 1
+    text: An ignorant, perhaps, but a madman cannot find himself with God in his
+      kingdom beyond the clouds.
+  - speaker: 1
+    text: If your mentality is so irreligious, abandon your pilgrimage and go home
+      traveler.

@@ -16,20 +16,22 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 8960afca12083c04881e00f02ce7167a, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 1
-  lines:
-  - speaker: 1
-    text: Get it away from me right now!! Those Demons next to us will end up killing
-      both of us!
-  - speaker: 0
-    text: "But why does everyone seem to be afraid of this object? Isn\u2019t that
-      one of our links with the lord?"
-  - speaker: 1
-    text: Listen to me, traveler, if our lord really existed, he would never have
-      allowed my daughter to be taken from me in such an atrocious manner. And those
-      monsters in the monastery would be punished.
-  - speaker: 1
-    text: "Honestly, I don\u2019t understand you... Why believe in such a cruel god?"
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: Get it away from me right now!! Those Demons next to us will end up killing
+      both of us !
+  - speaker: 0
+    text: "But why does everyone seem to be afraid of this object ? Isn\u2019t it
+      one of our links with God ?"
+  - speaker: 1
+    text: Listen to me, traveler, if our lord really existed, he would never have
+      allowed my daughter to be taken from me in such an atrocious manner, and those
+      monsters in the monastery would be punished.
+  - speaker: 1
+    text: "Honestly, I don\u2019t understand you... Why believe in such a cruel god?"

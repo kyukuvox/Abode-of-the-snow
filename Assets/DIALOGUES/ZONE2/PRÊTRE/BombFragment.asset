@@ -16,17 +16,19 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 1ad02a1cb9d09e14581bf86b6b08ede7, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 1
-    text: Finally, here is someone wise and intelligent. I take into account the
-      fact that you brought this relic to us directly and will therefore not punish
-      you for having placed your hands on it.
-  - speaker: 0
-    text: "Why would I have been punished if I didn\u2019t give it back to you?"
-  - speaker: 1
-    text: Oh traveler, I take into account your ignorance. But be careful with your
-      words or you will never be able to see the light of the day again.
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: Finally, someone wise and intelligent. I take into account the fact that
+      you brought this relic to us directly and will therefore not punish you for
+      having placed your hands on it.
+  - speaker: 0
+    text: "Why would I have been punished if I didn\u2019t give it back to you ?"
+  - speaker: 1
+    text: Oh traveler, I will forgive your ignorance. But be careful with your words
+      or you will never be able to see the light of day again.

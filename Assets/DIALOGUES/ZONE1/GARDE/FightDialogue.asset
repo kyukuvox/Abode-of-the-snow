@@ -25,7 +25,7 @@ MonoBehaviour:
   activatesPortalAfterCardGame: 1
   lines:
   - speaker: 1
-    text: "Traveler, so many people have perished on this ascent over the years that
+    text: "Pilgrim , so many people have perished on this ascent over the years that
       I can\u2019t just let you go up."
   - speaker: 1
-    text: "Please, Traveler, show me what you\u2019re worth."
+    text: "Please, show me what you\u2019re worth."

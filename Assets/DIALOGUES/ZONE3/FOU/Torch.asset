@@ -16,11 +16,13 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 3a19bcb7865f45f4cabe7638cb318be5, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 1
-    text: "What a beautiful dancing flame. Don\u2019t you think it\u2019s splendid?
-      We\u2019re seeing the first show humanity has ever seen!"
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: "What a beautiful dancing flame. Don\u2019t you think it\u2019s splendid
+      ? We\u2019re seeing the first show humanity has ever seen !"

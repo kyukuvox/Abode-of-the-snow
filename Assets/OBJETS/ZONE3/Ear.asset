@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Torn ear
   itemIcon: {fileID: 21300000, guid: 87382ee8919d8e649a5a8243c185dab4, type: 3}
   descriptionSprite: {fileID: 21300000, guid: 2bf9d143c9d21c24b8436fbeea197d19, type: 3}
-  description: Ear torn off and hackled. The bite marks seem to be those of a beast
-    with a powerful jaw.
+  description: An ear torn off and hackled. The bite marks seem to be those of a
+    beast with a powerful jaw.

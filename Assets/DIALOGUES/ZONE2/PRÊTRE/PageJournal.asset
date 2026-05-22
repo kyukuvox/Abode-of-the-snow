@@ -16,22 +16,24 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 1ad02a1cb9d09e14581bf86b6b08ede7, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 1
-    text: 'The only pious one in the family, after all. '
-  - speaker: 1
-    text: "That said, we haven\u2019t heard from the last exp\xE9dition in a while."
-  - speaker: 0
-    text: Who was that person? I thought I had understood that she was a very courageous
-      person from what is said about the inhabitants of the village below.
-  - speaker: 1
-    text: Courageous she is, but her family was filled with unbelievers, impious
-      and eager to wreak chaos in our community!
-  - speaker: 0
-    text: But ... where is this family now?
-  - speaker: 1
-    text: "It\u2019s no longer the time to ask questions, traveler..."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: 'The only pious one in the family, after all. '
+  - speaker: 1
+    text: "That said, we haven\u2019t heard from the last expedition in a while."
+  - speaker: 0
+    text: Who was that person ? I I heard from the inhabitant of the village below
+      that she was a very courageous person.
+  - speaker: 1
+    text: Courageous she was, but her family was filled with unbelievers, all impious
+      and eager to wreak chaos in our community !
+  - speaker: 0
+    text: But ... where is this family now ?
+  - speaker: 1
+    text: It is no longer time to ask questions, Pilgrim...

@@ -16,9 +16,15 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 8960afca12083c04881e00f02ce7167a, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
+  triggersCardGame: 0
+  enemyCardData: {fileID: 0}
+  playerCardData: {fileID: 0}
+  cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
   lines:
   - speaker: 1
-    text: "You traveler, return this object to that odious priest. I don\u2019t want
+    text: "You Pilgrim, return this object to that odious priest. I don\u2019t want
       to see him near me anymore."
   - speaker: 1
     text: "It\u2019s so... ridiculous that this globe was the reason for her loss."
@@ -26,11 +32,7 @@ MonoBehaviour:
     text: "All I ask in exchange for this object is that you make sure to carry my
       letter to the top and give it to my love. I know she\u2019s still alive."
   - speaker: 0
-    text: I promise you that I will hand her over and let her know that you are waiting
-      for her return.
+    text: I promise you that I will hand it over to her and let her know that you
+      are waiting for her return.
   - speaker: 1
-    text: Thank you pilgrim, with all my heart...
-  triggersCardGame: 0
-  enemyCardData: {fileID: 0}
-  playerCardData: {fileID: 0}
-  cardGameRewards: []
+    text: With all my heart, thank you Pilgrim...

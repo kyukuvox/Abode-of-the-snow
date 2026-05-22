@@ -15,8 +15,8 @@ MonoBehaviour:
   itemName: 'Torn log page '
   itemIcon: {fileID: 21300000, guid: 38c5ca6e6b78e204ca717fe8b746e669, type: 3}
   descriptionSprite: {fileID: 21300000, guid: c1c02b08b2d91f4498c6afaf524f6a1b, type: 3}
-  description: "A page where it says: \"I can\u2019t wait anymore and just leave
-    the days gone by. It\u2019s as if my reason for moving forward had been taken
-    away from me... You understand me and I know it, this ordeal brings us together.
-    I refuse to stay shut away at home, I refuse to be passive, I have to say goodbye
-    to him.   -See you soon, my love, I\u2019ll be back soon. [signature] \""
+  description: "A page where it is written: \"I can\u2019t wait anymore and just
+    leave the days go by. It\u2019s as if my reason for moving forward had been taken
+    away... You understand me and I know it, this ordeal brings us together. I refuse
+    to stay shut away at home, I refuse to be passive, I have to say goodbye to her.  
+    -See you soon, my love, I\u2019ll be back soon. [signature] \""

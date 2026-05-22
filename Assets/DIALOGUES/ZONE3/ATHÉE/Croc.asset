@@ -16,15 +16,17 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: f6d820a7266204e4b8d98d50913746c6, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 1
-    text: 'This beast is indeed proof that our lord never existed... Why did he actively
-      seek and kill his believers, when all they wanted was to meet him? '
-  - speaker: 0
-    text: "Maybe he doesn\u2019t want to be disturbed? "
-  - speaker: 1
-    text: 'And he will murder us for that? '
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: 'This beast is indeed proof that our lord never existed... Why did he actively
+      seek and kill his believers, when all they wanted was to meet him ? '
+  - speaker: 0
+    text: "Maybe he doesn\u2019t want to be disturbed ? "
+  - speaker: 1
+    text: 'And he would kill us for that ? '

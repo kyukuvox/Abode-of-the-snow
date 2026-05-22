@@ -16,11 +16,13 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 1ad02a1cb9d09e14581bf86b6b08ede7, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 1
-    text: "It\u2019s a beautiful piece of wood, but what do you want me to do with
-      it?"
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: "It\u2019s a beautiful piece of wood, but what do you want me to do with
+      it ?"

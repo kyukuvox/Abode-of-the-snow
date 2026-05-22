@@ -16,16 +16,18 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 8960afca12083c04881e00f02ce7167a, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 1
-    text: Thank you very much for this game. It felt good to escape from all that
-      for a few moments.
-  - speaker: 0
-    text: It was a really enjoyable game, I hope to see you again soon when I get
-      back down.
-  - speaker: 1
-    text: "I just hope you don\u2019t go back down alone..."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: Thank you very much for this game. It felt good to escape from my grieving
+      for a moment.
+  - speaker: 0
+    text: It was a really enjoyable game, I hope to see you again soon when I get
+      back down.
+  - speaker: 1
+    text: "I just hope you won\u2019t come back down alone..."

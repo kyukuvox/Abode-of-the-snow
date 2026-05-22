@@ -16,25 +16,27 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 3a19bcb7865f45f4cabe7638cb318be5, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 0
-    text: Tell me it sounds familiar to you, please!
-  - speaker: 1
-    text: "Oh yes, indeed! But I don\u2019t find any amusement in remembering this
-      little memory!"
-  - speaker: 1
-    text: The other one might find it interesting, she has always been too fond of
-      the sentimental, poor thing.
-  - speaker: 0
-    text: You know that... you are this other one?
-  - speaker: 1
-    text: "It\u2019s rather her who is me! Although, I think she would want to look
-      like the splendor that I am!"
-  - speaker: 0
-    text: "You\u2019ve lost your mind..."
-  - speaker: 1
-    text: Thank you for the compliment!
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 0
+    text: Tell me it looks familiar to you, please !
+  - speaker: 1
+    text: "Oh yes, indeed! But I don\u2019t find any amusement in remembering this
+      little memory !"
+  - speaker: 1
+    text: The other one might find it interesting, she has always been too fond of
+      the sentimental, poor thing.
+  - speaker: 0
+    text: You know that... You are this other one ?
+  - speaker: 1
+    text: "It\u2019s rather her who is me ! Although, I think she would want to look
+      like the splendor that I am !"
+  - speaker: 0
+    text: "You\u2019ve lost your mind..."
+  - speaker: 1
+    text: Thank you for the compliment !

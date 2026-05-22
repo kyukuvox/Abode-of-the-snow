@@ -16,13 +16,15 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: f6d820a7266204e4b8d98d50913746c6, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 1
-    text: I... I think I remember everything now. My head hurts so much...
-  - speaker: 1
-    text: "My god, why does it hurt me so much? Why do I remember all this now? This
-      face... it\u2019s my daughter\u2019s."
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: I... I think I remember everything now. My head hurts so much...
+  - speaker: 1
+    text: "Why does it hurt me so much ? Why do I only remember all of this now ?
+      This face... it\u2019s my daughter's."

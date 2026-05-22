@@ -16,15 +16,18 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 3a19bcb7865f45f4cabe7638cb318be5, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 1
-    text: 'Do you believe that only one man here was smiling during the massacre? '
-  - speaker: 0
-    text: What are you talking about?!
-  - speaker: 1
-    text: Some were crying, others ran away in vain and I even saw one who was praying.
-      So maybe there was one who wanted to smile?
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: 'Do you really believe that anyone here was smiling during the massacre
+      ? '
+  - speaker: 0
+    text: What are you talking about ?!
+  - speaker: 1
+    text: Some were crying, others ran away in vain and I even saw one who was praying.
+      So maybe there actually was someone who wanted to smile ?

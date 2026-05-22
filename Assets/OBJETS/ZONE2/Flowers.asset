@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Bouquet of faded flowers
   itemIcon: {fileID: 21300000, guid: 67c7d0307f41f66458ec3eadeaa15189, type: 3}
   descriptionSprite: {fileID: 21300000, guid: bd9bb2492dafbee4abd9ed76c2635470, type: 3}
-  description: Bouquet of flowers carried away by the wind. Almost nothing remains
+  description: A bouquet of flowers carried away by the wind. Almost nothing remains
     of the carnation petals from this present.

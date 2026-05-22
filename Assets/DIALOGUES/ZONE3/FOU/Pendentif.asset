@@ -16,17 +16,19 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 3a19bcb7865f45f4cabe7638cb318be5, type: 3}
   playerPortrait: {fileID: 21300000, guid: aac3ceb7a1214734aaa33b9d5bd4941c, type: 3}
   isBadDecision: 0
-  lines:
-  - speaker: 1
-    text: "Do you want to know something very funny? I stole this pendant from her
-      one night when she dozed off! Since then, she doesn\u2019t even remember her
-      own daughter\u2019s face anymore!"
-  - speaker: 0
-    text: How could you do that to yourself? And why?!
-  - speaker: 1
-    text: Oh you know, I ended up getting bored and I found it funny. And then it
-      was so shiny that it made me want to!
   triggersCardGame: 0
   enemyCardData: {fileID: 0}
   playerCardData: {fileID: 0}
   cardGameRewards: []
+  rewardCard: {fileID: 0}
+  activatesPortalAfterCardGame: 0
+  lines:
+  - speaker: 1
+    text: "Do you want to know something very funny ? I stole this pendant from her
+      one night when she dozed off ! Ever since then, she has not even been able
+      to remember her own daughter\u2019s face !"
+  - speaker: 0
+    text: How could you do that to yourself ? And why ?!
+  - speaker: 1
+    text: Oh you know, I was feeling bored and I found it funny. It was so shiny
+      that I couldn't help myself !
