@@ -54776,36 +54776,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: tutorialSprites.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: 'tutorialSprites.Array.data[0]'
       value: 
-      objectReference: {fileID: 1349113724313713552, guid: a218ff1b920f2b84fbf12fd75750d6bd, type: 3}
+      objectReference: {fileID: 21300000, guid: 45d010d4effcee847b3603c774039bd3, type: 3}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: 'tutorialSprites.Array.data[1]'
       value: 
-      objectReference: {fileID: 21300000, guid: 91f2eed33f3b4eb4ba1f60e6d820da96, type: 3}
+      objectReference: {fileID: 21300000, guid: 49619e85bf4605b4eb6fa42c4df7d688, type: 3}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: 'tutorialSprites.Array.data[2]'
       value: 
-      objectReference: {fileID: 21300000, guid: 4e3ee6d60a747b34e8bc365cda342e16, type: 3}
+      objectReference: {fileID: 21300000, guid: dd5e5a3b94fe658449554c5790213841, type: 3}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: 'tutorialSprites.Array.data[3]'
       value: 
-      objectReference: {fileID: 21300000, guid: 15505edb189bb9f46ad894adaa664303, type: 3}
+      objectReference: {fileID: 21300000, guid: 90366cae6bce2ec4ca30bf59a72bfed6, type: 3}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: 'tutorialSprites.Array.data[4]'
       value: 
-      objectReference: {fileID: 21300000, guid: 971f8cdb816ad7c4482b9114b6acb434, type: 3}
+      objectReference: {fileID: 21300000, guid: 15061f670c9ba7f4bbe1f06890790b5c, type: 3}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: 'tutorialSprites.Array.data[5]'
       value: 
-      objectReference: {fileID: 21300000, guid: 08233b2d68d3e0b4eb0314bea3714957, type: 3}
+      objectReference: {fileID: 21300000, guid: 04bb7f81e28ef984f8d777c389ff84ef, type: 3}
     - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: 'tutorialSprites.Array.data[6]'
       value: 
-      objectReference: {fileID: 21300000, guid: 7931f1209b3707441acbcf230aea3085, type: 3}
+      objectReference: {fileID: 21300000, guid: 4daee34d0537618458b9a7c16f36a798, type: 3}
+    - target: {fileID: 4417588829896360118, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
+      propertyPath: 'tutorialSprites.Array.data[7]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 16ed0e70a4617d844b3a4273e782dcad, type: 3}
     - target: {fileID: 4922627598683391539, guid: 2228eb9fd951073438f0b7f6ae886655, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.86811
@@ -95130,7 +95134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &3192008629875139409
 GameObject:
   m_ObjectHideFlags: 0
@@ -96600,7 +96604,7 @@ Transform:
   m_GameObject: {fileID: 6260154984261033616}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -87, y: 6.8, z: 0}
+  m_LocalPosition: {x: -109.9, y: 6.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -99201,7 +99205,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: -49}
-  m_SizeDelta: {x: 10, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8819184313292489919
 CanvasRenderer:
