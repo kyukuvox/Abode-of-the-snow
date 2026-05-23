@@ -23,6 +23,12 @@ public class CardPickup : MonoBehaviour
         hoverParticles = GetComponent<HoverParticleManager>();
         originalScale = transform.localScale;
         col = GetComponent<Collider2D>();
+
+        if (ActivatedObjectsTracker.Instance != null &&
+            ActivatedObjectsTracker.Instance.IsActivated(gameObject.name))
+        {
+            ForceActivate();
+        }
     }
 
     void Update()
@@ -50,6 +56,9 @@ public class CardPickup : MonoBehaviour
     {
         hasBeenClicked = true;
 
+        if (ActivatedObjectsTracker.Instance != null)
+            ActivatedObjectsTracker.Instance.RegisterActivated(gameObject.name);
+
         SoundSettings.PlaySound(pickupSound, soundVolume, this);
 
         if (cardToGive != null && PlayerCardCollection.Instance != null)
@@ -58,8 +67,22 @@ public class CardPickup : MonoBehaviour
         if (hoverParticles != null)
             hoverParticles.Hide();
 
+        if (col != null)
+            col.enabled = false;
+
         StartCoroutine(ShowCardReward());
         StartCoroutine(Bump());
+    }
+
+    public void ForceActivate()
+    {
+        hasBeenClicked = true;
+
+        if (hoverParticles != null)
+            hoverParticles.Hide();
+
+        if (col != null)
+            col.enabled = false;
     }
 
     IEnumerator ShowCardReward()

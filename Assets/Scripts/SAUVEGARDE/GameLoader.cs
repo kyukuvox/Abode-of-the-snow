@@ -54,7 +54,7 @@ public class GameLoader : MonoBehaviour
             Debug.Log("DeckBuilderManager : " + (DeckBuilderManager.Instance != null));
             Debug.Log("BadDecisionManager : " + (BadDecisionManager.Instance != null));
             Debug.Log("PickedUpItemsTracker : " + (PickedUpItemsTracker.Instance != null));
-            Debug.Log("ActivatedObjectsTracker : " + (ActivatedObjectsTracker.Instance != null)); 
+            Debug.Log("ActivatedObjectsTracker : " + (ActivatedObjectsTracker.Instance != null));
             yield break;
         }
 
@@ -83,20 +83,13 @@ public class GameLoader : MonoBehaviour
                 obj.ForceActivate();
         }
 
-        SpriteChanger[] spriteChangers = FindObjectsByType<SpriteChanger>(FindObjectsSortMode.None);
-        foreach (SpriteChanger obj in spriteChangers)
-        {
-            if (ActivatedObjectsTracker.Instance.IsActivated(obj.gameObject.name))
-                obj.ForceActivate();
-        }
-
         ItemSpriteInteraction[] spriteInteractions = FindObjectsByType<ItemSpriteInteraction>(FindObjectsSortMode.None);
         foreach (ItemSpriteInteraction obj in spriteInteractions)
         {
             if (ActivatedObjectsTracker.Instance.IsActivated(obj.gameObject.name))
                 obj.ForceActivate();
         }
-        
+
         ClickCounter[] clickCounters = FindObjectsByType<ClickCounter>(FindObjectsSortMode.None);
         foreach (ClickCounter obj in clickCounters)
         {
@@ -106,6 +99,20 @@ public class GameLoader : MonoBehaviour
 
         DraggableSprite[] draggables = FindObjectsByType<DraggableSprite>(FindObjectsSortMode.None);
         foreach (DraggableSprite obj in draggables)
+        {
+            if (ActivatedObjectsTracker.Instance.IsActivated(obj.gameObject.name))
+                obj.ForceActivate();
+        }
+
+        SpriteChanger[] spriteChangers = FindObjectsByType<SpriteChanger>(FindObjectsSortMode.None);
+        foreach (SpriteChanger obj in spriteChangers)
+        {
+            if (ActivatedObjectsTracker.Instance.IsActivated(obj.gameObject.name))
+                obj.ForceActivate();
+        }
+
+        CardPickup[] cardPickups = FindObjectsByType<CardPickup>(FindObjectsSortMode.None);
+        foreach (CardPickup obj in cardPickups)
         {
             if (ActivatedObjectsTracker.Instance.IsActivated(obj.gameObject.name))
                 obj.ForceActivate();
