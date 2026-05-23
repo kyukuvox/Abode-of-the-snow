@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
   m_Name: Rot Coffee
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardDescription: In 5 Turns you 15 DEFENSE
+  cardDescription: In 5 Turns you 10 DEFENSE
   cardName: ROTCOFFEE
   cardSprite: {fileID: 21300000, guid: 40b45561460b3724e95670a2cf1d6242, type: 3}
-  description: 'A symbol of harmony in these lands, in a distant past , a starnge
-    team used it.  You will gain 15 DEFENSE points in 5 Turns in exchange of 5 HEALTH. '
+  description: 'A symbol of harmony in these lands, in a distant past , a strange
+    team used it.  You will gain 10 DEFENSE points in 5 Turns in exchange of 5 HEALTH. '
   cardType: 1
   attackType: 0
   costType: 1
   actionCost: 5
-  power: 15
+  power: 10
   delayTurns: 5

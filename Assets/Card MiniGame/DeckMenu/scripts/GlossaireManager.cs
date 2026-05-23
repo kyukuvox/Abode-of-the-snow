@@ -109,14 +109,14 @@ public class GlossaireManager : MonoBehaviour
             string costLabel = "";
             switch (card.costType)
             {
-                case CardData.CostType.ActionPoints: costLabel = card.actionCost + " PA"; break;
-                case CardData.CostType.Life: costLabel = card.actionCost + " PV"; break;
+                case CardData.CostType.ActionPoints: costLabel = card.actionCost + " AP"; break;
+                case CardData.CostType.Life: costLabel = card.actionCost + " HP"; break;
                 case CardData.CostType.Defense: costLabel = card.actionCost + " DEF"; break;
             }
 
-            cardStatsText.text = "Coût : " + costLabel +
-                                 " | Délai : " + card.delayTurns +
-                                 " | Puissance : " + card.power;
+            cardStatsText.text = "Cost : " + costLabel +
+                                 " | Delay : " + card.delayTurns +
+                                 " | Power : " + card.power;
         }
         else
         {
@@ -128,7 +128,7 @@ public class GlossaireManager : MonoBehaviour
             cardImage.color = lockedColor;
             cardNameText.text = "???";
             cardDescriptionText.text = "???";
-            cardStatsText.text = "Coût : ??? | Délai : ??? | Puissance : ???";
+            cardStatsText.text = "Cost : ??? | Delay : ??? | Power : ???";
         }
     }
 }

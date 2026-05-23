@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31db6a436cda52c4b92dcb503c4a3b83, type: 3}
   m_Name: Tahi Tiki
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardDescription: In 2 Turn you gain 9 DEFENSE
+  cardDescription: In 3Turn you gain 6 DEFENSE
   cardName: TAHI TIKI
   cardSprite: {fileID: 21300000, guid: c898c54801cd288409cb050b864f5ed4, type: 3}
   description: 'In this snowy plains, it''s a good remembrance of the warm sensation
-    of the sun. In Exchange of 3 DEFENSE points you will gain 9 DEFENSE points in
-    2 turns. '
+    of the sun. In Exchange of 3 DEFENSE points you will gain 6 DEFENSE points in
+    3 turns. '
   cardType: 1
   attackType: 0
   costType: 2
   actionCost: 3
-  power: 9
-  delayTurns: 2
+  power: 6
+  delayTurns: 3

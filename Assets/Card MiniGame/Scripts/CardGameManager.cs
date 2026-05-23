@@ -856,7 +856,9 @@ public class CardGameManager : MonoBehaviour
         else
         {
             if (selectedForDiscard.Count == 2)
+            {
                 ConfirmDiscard();
+            }
             else
             {
                 foreach (Card card in playerHand)
@@ -864,6 +866,8 @@ public class CardGameManager : MonoBehaviour
                 selectedForDiscard.Clear();
                 if (discardButtonImage != null && discardNormalSprite != null)
                     discardButtonImage.sprite = discardNormalSprite;
+
+                UpdateUI();
             }
         }
     }
@@ -931,7 +935,10 @@ public class CardGameManager : MonoBehaviour
 
         DelayBarManager.Instance.TickTurn(false);
 
-        enemyActionPoints = enemyData.actionPointsPerTurn;
+        enemyActionPoints = Mathf.Min(
+            enemyActionPoints + enemyData.actionPointsPerTurn,
+            enemyData.maxActionPoints
+        );
 
         CardData[] hand = new CardData[enemyData.handSize];
         for (int i = 0; i < enemyData.handSize; i++)
@@ -969,9 +976,13 @@ public class CardGameManager : MonoBehaviour
 
         InitEnemyHand();
 
+        playerActionPoints = Mathf.Min(
+            playerActionPoints + playerData.actionPointsPerTurn,
+            playerData.maxActionPoints
+        );
+
         isPlayerTurn = true;
         endTurnButton.interactable = true;
-        playerActionPoints = playerData.actionPointsPerTurn;
         hasDiscardedThisTurn = false;
         discardButton.interactable = true;
 

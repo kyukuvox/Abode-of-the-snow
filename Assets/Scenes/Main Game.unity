@@ -26042,7 +26042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac802d0e11c348499573fb0954b4bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardPickup
-  cardToGive: {fileID: 0}
+  cardToGive: {fileID: 11400000, guid: 09fe730480f3e7b48a618fde982cda66, type: 2}
   bumpScale: 1.2
   bumpDuration: 0.2
   pickupSound: {fileID: 8300000, guid: f5e4c3f977c407d46b141dac26034137, type: 3}
@@ -34308,7 +34308,6 @@ GameObject:
   - component: {fileID: 472393499}
   - component: {fileID: 472393498}
   - component: {fileID: 472393497}
-  - component: {fileID: 472393496}
   - component: {fileID: 472393495}
   - component: {fileID: 472393494}
   - component: {fileID: 472393500}
@@ -34412,21 +34411,6 @@ MonoBehaviour:
   activationSound: {fileID: 8300000, guid: 5e613d59fe64fd940ae91005d9b971d8, type: 3}
   activationSoundVolume: 0.2
   soundFadeDuration: 0.5
---- !u!114 &472393496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 472393491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e09d0d7a372a844985f2f27bbc3e82c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpriteChanger
-  newSprite: {fileID: 8846809144968278084, guid: cced9d68ef041424ba63b12fecc197f4, type: 3}
-  bumpScale: 1
-  bumpDuration: 0
 --- !u!114 &472393497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41067,7 +41051,6 @@ GameObject:
   - component: {fileID: 701832531}
   - component: {fileID: 701832530}
   - component: {fileID: 701832529}
-  - component: {fileID: 701832528}
   - component: {fileID: 701832527}
   - component: {fileID: 701832526}
   - component: {fileID: 701832532}
@@ -41171,21 +41154,6 @@ MonoBehaviour:
   activationSound: {fileID: 8300000, guid: 5e613d59fe64fd940ae91005d9b971d8, type: 3}
   activationSoundVolume: 0.2
   soundFadeDuration: 0.5
---- !u!114 &701832528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701832523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e09d0d7a372a844985f2f27bbc3e82c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpriteChanger
-  newSprite: {fileID: 8846809144968278084, guid: 3a917db4464dc244d9e34dae0e251905, type: 3}
-  bumpScale: 1.2
-  bumpDuration: 0.2
 --- !u!114 &701832529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50858,15 +50826,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: d1d6872fd041c8a4086513912bd9a7f3, type: 3}
     - target: {fileID: 8361584352199003997, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
       propertyPath: m_Color.b
-      value: 0.6679245
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8361584352199003997, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
       propertyPath: m_Color.g
-      value: 0.6679245
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8361584352199003997, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
       propertyPath: m_Color.r
-      value: 0.6679245
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2957221063004680655, guid: 1690735ce26f74747a24101a49eaa0f0, type: 3}
@@ -57929,7 +57897,7 @@ Transform:
   m_GameObject: {fileID: 1201933437}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38.14499, y: -260.05, z: -1.68}
+  m_LocalPosition: {x: -38.224976, y: -260.05, z: -1.68}
   m_LocalScale: {x: 0.089865, y: 0.089865, z: 0.089865}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80185,7 +80153,7 @@ Transform:
   m_GameObject: {fileID: 1795376564}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -45.850006, y: -258.09, z: 4.25}
+  m_LocalPosition: {x: -45.93, y: -258.09, z: 4.25}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -82142,7 +82110,7 @@ Transform:
   m_GameObject: {fileID: 1845574614}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.149994, y: -258.09, z: -1.35}
+  m_LocalPosition: {x: -39.22998, y: -258.09, z: -1.35}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -86064,7 +86032,7 @@ Transform:
   m_GameObject: {fileID: 1949488709}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -470.465, y: -267.235, z: 0}
+  m_LocalPosition: {x: -470.465, y: -267.235, z: 1.41}
   m_LocalScale: {x: 0.09715024, y: 0.09715024, z: 0.09715024}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -94791,7 +94759,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 33
+  m_Text: 0
 --- !u!114 &1403117970661374090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96654,7 +96622,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 20
+  m_Text: 0
 --- !u!114 &3554789764197354965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97105,7 +97073,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 6
+  m_Text: 0
 --- !u!222 &4187440650341651072
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -97884,7 +97852,7 @@ Transform:
   m_GameObject: {fileID: 6260154984261033616}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -107, y: 6.8, z: 0}
+  m_LocalPosition: {x: -108.8, y: 6.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -98610,7 +98578,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 13
+  m_Text: 0
 --- !u!114 &5917750620778996119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99293,7 +99261,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 9
+  m_Text: 0
 --- !u!222 &6798599416186655842
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -99741,7 +99709,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 74
+  m_Text: 0
 --- !u!1 &7508299004581081791
 GameObject:
   m_ObjectHideFlags: 0

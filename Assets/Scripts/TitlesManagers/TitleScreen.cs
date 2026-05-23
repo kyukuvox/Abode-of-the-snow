@@ -53,6 +53,7 @@ public class TitleScreen : MonoBehaviour
 
     private AudioSource musicAudioSource;
     private RenderTexture renderTexture;
+    private bool videoSkipped = false;
 
     private const string SAVE_KEY = "SaveData";
     private const string LOAD_FLAG = "ShouldLoad";
@@ -143,6 +144,12 @@ public class TitleScreen : MonoBehaviour
         StartCoroutine(VideoSequence());
     }
 
+    void Update()
+    {
+        if (Input.anyKeyDown && !videoSkipped)
+            videoSkipped = true;
+    }
+
     IEnumerator WaitForPrepare(VideoPlayer vp)
     {
         float elapsed = 0f;
@@ -166,6 +173,7 @@ public class TitleScreen : MonoBehaviour
             startupVideoPlayer.Prepare();
             yield return StartCoroutine(WaitForPrepare(startupVideoPlayer));
 
+            videoSkipped = false; 
             startupVideoPlayer.Play();
 
             int frameWait = 0;
@@ -176,7 +184,7 @@ public class TitleScreen : MonoBehaviour
             }
 
             float elapsed = 0f;
-            while (elapsed < 0.3f)
+            while (elapsed < 0.3f && !videoSkipped)
             {
                 elapsed += Time.deltaTime;
                 blackPanel.alpha = Mathf.Lerp(1f, 0f, elapsed / 0.3f);
@@ -188,8 +196,7 @@ public class TitleScreen : MonoBehaviour
 
             elapsed = 0f;
             float minDuration = (float)startupVideoPlayer.length;
-
-            while (elapsed < minDuration)
+            while (elapsed < minDuration && !videoSkipped)
             {
                 elapsed += Time.deltaTime;
                 yield return null;
@@ -368,6 +375,7 @@ public class TitleScreen : MonoBehaviour
             playIntroVideoPlayer.Prepare();
             yield return StartCoroutine(WaitForPrepare(playIntroVideoPlayer));
 
+            videoSkipped = false; 
             playIntroVideoPlayer.Play();
 
             int frameWait = 0;
@@ -379,7 +387,7 @@ public class TitleScreen : MonoBehaviour
 
             float elapsed = 0f;
             float duration = (float)playIntroVideoPlayer.length;
-            while (elapsed < duration)
+            while (elapsed < duration && !videoSkipped)
             {
                 elapsed += Time.deltaTime;
                 yield return null;
